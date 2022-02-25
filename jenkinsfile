@@ -1,0 +1,4 @@
+#!groovy
+@Library('uvms-jenkins@main') _
+uvmsJenkinsfile {
+}
