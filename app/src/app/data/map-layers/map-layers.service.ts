@@ -12,14 +12,14 @@ export class MapLayersService {
 
   getAreas(authToken: string) {
     return this.http.get(
-      environment.baseApiUrl + 'spatialSwe/rest/area/layers',
+      environment.baseApiUrl + 'spatial/rest/area/layers',
       getDefaultHttpOptions(authToken)
     );
   }
 
   getUserAreas(authToken: string, scopeName: string, roleName: string) {
     return this.http.get(
-      environment.baseApiUrl + 'spatialSwe/rest/userarea/layers/distinctAreaGroups?scopeName=' + scopeName,
+      environment.baseApiUrl + 'spatial/rest/userarea/layers/distinctAreaGroups?scopeName=' + scopeName,
       getDefaultHttpOptions(authToken)
     );
   }
