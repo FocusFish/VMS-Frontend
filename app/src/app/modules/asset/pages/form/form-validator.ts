@@ -15,6 +15,7 @@ export const createAssetFormValidator = (asset: AssetTypes.Asset) => {
       imo: new FormControl(asset.imo, [Validators.minLength(7), Validators.maxLength(7), Validators.pattern('[0-9]*')]),
       portOfRegistration: new FormControl(asset.portOfRegistration),
       mmsi: new FormControl(asset.mmsi),
+      vesselType: new FormControl(asset.vesselType),
     }),
     metrics: new FormGroup({
       lengthOverAll: new FormControl(asset.lengthOverAll),

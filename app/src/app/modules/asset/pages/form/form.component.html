@@ -61,6 +61,14 @@
         <input matInput type="number" formControlName="mmsi">
         <mat-error *ngFor="let error of getErrors(['identificationFields', 'mmsi'])">{{ errorMessage(error) }}</mat-error>
       </mat-form-field>
+
+      <mat-form-field id="asset-form--vesselType" >
+        <mat-label i18n>Vesseltype</mat-label>
+        <mat-select formControlName="vesselType" [typeaheadDebounceInterval]="700">
+        <mat-option *ngFor="let vesselType of vesselTypes" id="mat-option-{{vesselType}}" [value]="vesselType">{{vesselType}}</mat-option>
+        </mat-select>
+        <mat-error *ngFor="let error of getErrors(['identificationFields', 'vesselType'])">{{ errorMessage(error) }}</mat-error>
+      </mat-form-field>
     </fieldset>
 
     <fieldset formGroupName="metrics">
