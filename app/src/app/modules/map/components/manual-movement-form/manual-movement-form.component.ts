@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, OnDestroy, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { filter, takeUntil, first } from 'rxjs/operators';
 
@@ -44,7 +44,7 @@ export class ManualMovementFormComponent implements OnInit, OnDestroy {
   private vectorSource: VectorSource;
   private vectorLayer: VectorLayer;
   private readonly layerTitle = 'Manual movement form preview';
-  public formValidator: FormGroup;
+  public formValidator: UntypedFormGroup;
   private readonly featureId = 'manual_movement_preview';
   public autoUpdateDatetime = false;
 

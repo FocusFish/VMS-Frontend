@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewContainerRef, ViewChild, AfterViewIni
 import { Store } from '@ngrx/store';
 import { Subscription, Observable, Subject } from 'rxjs';
 import { take, takeUntil, map, skipWhile } from 'rxjs/operators';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -38,7 +38,7 @@ export class FormPageComponent implements OnInit, OnDestroy, AfterViewInit {
   ) { }
 
   public createWithSerialNo: string | null;
-  public formValidator: FormGroup;
+  public formValidator: UntypedFormGroup;
   public pluginSubscription: Subscription;
   public selectedAsset: AssetTypes.Asset;
 

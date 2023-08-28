@@ -2,7 +2,7 @@ import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AssetTypes } from '@data/asset';
 import { MapSavedFiltersTypes } from '@data/map-saved-filters';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'map-edit-asset-group-dialog',
@@ -13,7 +13,7 @@ import { FormControl, Validators } from '@angular/forms';
 export class EditAssetGroupDialogComponent {
 
   public assetGroupFilterQuery: Readonly<MapSavedFiltersTypes.AssetFilterQuery>;
-  public filterName: FormControl;
+  public filterName: UntypedFormControl;
   public miniAssets: ReadonlyArray<{ assetName: string, assetId: string }>;
   public assetsToRemove: ReadonlyArray<string> = [];
 
@@ -29,7 +29,7 @@ export class EditAssetGroupDialogComponent {
       assetId,
       assetName: data.assets[assetId] ? data.assets[assetId].name : null
     }));
-    this.filterName = new FormControl(data.assetGroupFilter.name, Validators.required);
+    this.filterName = new UntypedFormControl(data.assetGroupFilter.name, Validators.required);
   }
 
   getErrorMessage() {

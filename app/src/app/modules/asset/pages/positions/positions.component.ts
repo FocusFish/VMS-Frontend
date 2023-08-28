@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewContainerRef, ViewChild, AfterViewIni
 import { Store } from '@ngrx/store';
 import { Subject, Observable } from 'rxjs';
 import { takeUntil, take } from 'rxjs/operators';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 import { State } from '@app/app-reducer';
 import { AssetTypes, AssetActions, AssetSelectors } from '@data/asset';
@@ -25,7 +25,7 @@ export class PositionsPageComponent implements OnInit, OnDestroy, AfterViewInit 
   public positions$: Observable<ReadonlyArray<AssetTypes.Movement>>;
   public userTimezone$: Observable<string>;
 
-  public coordinateFormat: FormControl = new FormControl('DDM');
+  public coordinateFormat: UntypedFormControl = new UntypedFormControl('DDM');
 
   public displayedColumns: string[] = ['timestamp', 'latitude', 'longitude', 'speed', 'heading', 'satelliteId', 'oceanRegion', 'status'];
 

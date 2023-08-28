@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
-import { FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormGroup, FormControl } from '@angular/forms';
 
 import { State } from '@app/app-reducer';
 import { AssetActions, AssetSelectors, AssetTypes } from '@data/asset';
@@ -23,7 +23,7 @@ export class FormPageComponent implements OnInit, OnDestroy {
   public contact = {} as ContactTypes.Contact;
   public save: () => void;
   public mergedRoute: RouterTypes.MergedRoute;
-  public formValidator: FormGroup;
+  public formValidator: UntypedFormGroup;
   public unmount$: Subject<boolean> = new Subject<boolean>();
   public selectedAsset: AssetTypes.Asset;
 

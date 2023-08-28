@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { getAlpha3Codes, langs, getNames, alpha2ToAlpha3, getName } from 'i18n-iso-countries';
 import { errorMessage } from '@app/helpers/validators/error-messages';
 // import enLang from 'i18n-iso-countries/langs/en.json';
@@ -28,7 +28,7 @@ export class FormPageComponent implements OnInit, OnDestroy {
   public unitTonnages: ReadonlyArray<AssetTypes.UnitTonnage>;
   
   public assetObject = {} as AssetTypes.Asset;
-  public formValidator: FormGroup;
+  public formValidator: UntypedFormGroup;
   public save: () => void;
   public mergedRoute: RouterTypes.MergedRoute;
 

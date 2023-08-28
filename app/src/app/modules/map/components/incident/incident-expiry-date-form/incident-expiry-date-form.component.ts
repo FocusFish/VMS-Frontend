@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnChanges, OnDestroy, ViewChild, ElementRef, AfterViewInit  } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 
 import { IncidentTypes } from '@data/incident';
 import { createIncidentExpiryDateFormValidator } from './form-validator';
@@ -19,7 +19,7 @@ export class IncidentExpiryDateFormComponent implements OnChanges, OnDestroy, Af
 
   @ViewChild('expiryDateForm') expiryDateForm: ElementRef;
 
-  public formValidator: FormGroup;
+  public formValidator: UntypedFormGroup;
   public autoUpdateDatetime = false;
   public bottomPosition = -48;
   public topPosition: number;

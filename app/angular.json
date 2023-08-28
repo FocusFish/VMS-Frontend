@@ -197,7 +197,6 @@
       }
     }
   },
-  "defaultProject": "vms-frontend",
   "cli": {
     "analytics": false
   }
