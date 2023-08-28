@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnChanges } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 
 import { IncidentTypes } from '@data/incident';
 import { createIncidentStatusFormValidator } from './form-validator';
@@ -15,7 +15,7 @@ export class IncidentStatusFormComponent implements OnChanges {
   @Input() changeStatus: (status: string) => void;
   @Output() triggerShowLog = new EventEmitter();
 
-  public formValidator: FormGroup;
+  public formValidator: UntypedFormGroup;
 
   ngOnChanges() {
     this.formValidator = createIncidentStatusFormValidator(this.status);

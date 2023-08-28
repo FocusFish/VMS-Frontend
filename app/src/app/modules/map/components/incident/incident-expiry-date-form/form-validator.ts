@@ -1,9 +1,9 @@
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import CustomValidators from '@validators/.';
 
 export const createIncidentExpiryDateFormValidator = () => {
-  return new FormGroup({
-    expiryDate: new FormControl(null, [CustomValidators.momentValid]),
-    note: new FormControl('', [Validators.required]),
+  return new UntypedFormGroup({
+    expiryDate: new UntypedFormControl(null, [CustomValidators.momentValid]),
+    note: new UntypedFormControl('', [Validators.required]),
   });
 };

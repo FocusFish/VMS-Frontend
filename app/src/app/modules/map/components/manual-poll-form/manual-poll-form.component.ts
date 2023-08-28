@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 
 import { AssetTypes } from '@data/asset';
 import { createManualPollFormValidator } from './form-validator';
@@ -20,7 +20,7 @@ export class ManualPollFormComponent implements OnInit {
 
   public pollType = 'manual';
 
-  public formValidator: FormGroup;
+  public formValidator: UntypedFormGroup;
   public save = () => {
     let params: AssetTypes.PollPostObject = { comment: this.formValidator.value.comment };
 

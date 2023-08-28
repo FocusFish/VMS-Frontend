@@ -2,7 +2,7 @@ import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AssetTypes } from '@data/asset';
 import { MapSavedFiltersTypes } from '@data/map-saved-filters';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'map-add-to-asset-group-dialog',
@@ -14,7 +14,7 @@ export class AddToAssetGroupDialogComponent {
 
   public createNew = false;
   public newGroupNameDecided = false;
-  public newGroupName = new FormControl('', Validators.required);
+  public newGroupName = new UntypedFormControl('', Validators.required);
   public selectedGroup: string;
 
   private readonly assetGroupFilters: Readonly<{ [id: string]: MapSavedFiltersTypes.SavedFilter }>;

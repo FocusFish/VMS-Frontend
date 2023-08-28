@@ -1,29 +1,29 @@
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { ContactTypes } from '@data/contact';
 import CustomValidators from '@validators/.';
 
 export const createContactFormValidator = (contact: ContactTypes.Contact) => {
-  return new FormGroup({
-    essentailFields: new FormGroup({
-      name: new FormControl(contact.name, Validators.required),
-      type: new FormControl(contact.type, Validators.required),
+  return new UntypedFormGroup({
+    essentailFields: new UntypedFormGroup({
+      name: new UntypedFormControl(contact.name, Validators.required),
+      type: new UntypedFormControl(contact.type, Validators.required),
     }),
-    contact: new FormGroup({
-      email: new FormControl(contact.email, CustomValidators.validateEmail),
-      phone: new FormControl(contact.phoneNumber, CustomValidators.phoneNumber),
+    contact: new UntypedFormGroup({
+      email: new UntypedFormControl(contact.email, CustomValidators.validateEmail),
+      phone: new UntypedFormControl(contact.phoneNumber, CustomValidators.phoneNumber),
     }),
-    address: new FormGroup({
-      country: new FormControl(contact.country),
-      city: new FormControl(contact.cityName),
-      street: new FormControl(contact.streetName),
-      postOfficeBox: new FormControl(contact.postOfficeBox),
-      postalArea: new FormControl(contact.postalArea),
-      zipCode: new FormControl(contact.zipCode),
+    address: new UntypedFormGroup({
+      country: new UntypedFormControl(contact.country),
+      city: new UntypedFormControl(contact.cityName),
+      street: new UntypedFormControl(contact.streetName),
+      postOfficeBox: new UntypedFormControl(contact.postOfficeBox),
+      postalArea: new UntypedFormControl(contact.postalArea),
+      zipCode: new UntypedFormControl(contact.zipCode),
     }),
-    other: new FormGroup({
-      nationality: new FormControl(contact.nationality),
-      owner: new FormControl(contact.owner),
-      source: new FormControl(contact.source),
+    other: new UntypedFormGroup({
+      nationality: new UntypedFormControl(contact.nationality),
+      owner: new UntypedFormControl(contact.owner),
+      source: new UntypedFormControl(contact.source),
     }),
   });
 };

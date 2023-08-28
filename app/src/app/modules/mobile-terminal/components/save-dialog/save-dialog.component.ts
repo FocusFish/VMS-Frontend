@@ -2,7 +2,7 @@ import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AssetTypes } from '@data/asset';
 import { MapSavedFiltersTypes } from '@data/map-saved-filters';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'mobile-terminal-save-dialog',
@@ -12,7 +12,7 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class SaveDialogComponent {
 
-  public note = new FormControl('', Validators.required);
+  public note = new UntypedFormControl('', Validators.required);
 
   constructor(public dialogRef: MatDialogRef<SaveDialogComponent>) {}
 

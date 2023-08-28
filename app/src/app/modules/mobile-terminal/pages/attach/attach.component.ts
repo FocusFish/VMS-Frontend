@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription, Subject } from 'rxjs';
 import { take, takeUntil, filter } from 'rxjs/operators';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { Sort } from '@angular/material/sort';
 
 import { State } from '@app/app-reducer';
@@ -29,7 +29,7 @@ export class AttachPageComponent implements OnInit, OnDestroy {
   public unmount$: Subject<boolean> = new Subject<boolean>();
   public mobileTerminals: ReadonlyArray<MobileTerminalTypes.MobileTerminal>;
   public mergedRoute: RouterTypes.MergedRoute;
-  public serialNo: FormControl;
+  public serialNo: UntypedFormControl;
   public lastSearchedSerialNo: string;
   public searchMobileTerminals: (query: any, includeArchived: boolean) => void;
   public sortedMobileTerminals: ReadonlyArray<MobileTerminalTypes.MobileTerminal>;
@@ -92,13 +92,13 @@ export class AttachPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    const alphanumericWithHyphenTest = (c: FormControl) => {
+    const alphanumericWithHyphenTest = (c: UntypedFormControl) => {
       const REGEXP = /^[a-z0-9\-]*$/i;
       return c.value === null || c.value.length === 0 || REGEXP.test(c.value) ? null : {
         validateAlphanumericHyphen: true
       };
     };
-    this.serialNo = new FormControl('', [Validators.required, alphanumericWithHyphenTest]);
+    this.serialNo = new UntypedFormControl('', [Validators.required, alphanumericWithHyphenTest]);
 
     this.mapStateToProps();
     this.mapDispatchToProps();

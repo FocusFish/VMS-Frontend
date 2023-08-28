@@ -11,7 +11,7 @@ import {
   ViewChild
 } from '@angular/core';
 
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 // @ts-ignore
 import moment from 'moment-timezone';
 
@@ -35,11 +35,11 @@ export class DatetimePickerComponent implements OnChanges, OnInit, AfterViewInit
 
   @Output() dateTimeChange = new EventEmitter<moment.Moment>();
 
-  public pressentableDateTime: FormControl;
+  public pressentableDateTime: UntypedFormControl;
   public selectedDate: moment.Moment;
   public popupActive = false;
-  public hour: FormControl;
-  public minute: FormControl;
+  public hour: UntypedFormControl;
+  public minute: UntypedFormControl;
   public errorStateMatcher: MyErrorStateMatcher;
   public isInvalid = false;
 
@@ -49,13 +49,13 @@ export class DatetimePickerComponent implements OnChanges, OnInit, AfterViewInit
 
   setDate() {
     if (typeof this.dateTime !== 'undefined' && this.dateTime !== null && this.dateTime.isValid()) {
-      this.pressentableDateTime = new FormControl({ value: this.dateTime.format('YYYY-MM-DD HH:mm'), disabled: this.disabled });
-      this.hour = new FormControl(this.dateTime.format('HH'));
-      this.minute = new FormControl(this.dateTime.format('mm'));
+      this.pressentableDateTime = new UntypedFormControl({ value: this.dateTime.format('YYYY-MM-DD HH:mm'), disabled: this.disabled });
+      this.hour = new UntypedFormControl(this.dateTime.format('HH'));
+      this.minute = new UntypedFormControl(this.dateTime.format('mm'));
     } else {
-      this.pressentableDateTime = new FormControl({ value: '', disabled: this.disabled });
-      this.hour = new FormControl(0);
-      this.minute = new FormControl(0);
+      this.pressentableDateTime = new UntypedFormControl({ value: '', disabled: this.disabled });
+      this.hour = new UntypedFormControl(0);
+      this.minute = new UntypedFormControl(0);
     }
     this.selectedDate = this.dateTime;
   }
@@ -154,7 +154,7 @@ export class DatetimePickerComponent implements OnChanges, OnInit, AfterViewInit
       .minute(parseInt(this.minute.value, 10))
       .second(0);
 
-    this.pressentableDateTime = new FormControl(this.dateTime.format('YYYY-MM-DD HH:mm'));
+    this.pressentableDateTime = new UntypedFormControl(this.dateTime.format('YYYY-MM-DD HH:mm'));
     this.dateTimeChange.emit(this.dateTime);
     this.popupActive = false;
   }

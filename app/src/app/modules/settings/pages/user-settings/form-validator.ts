@@ -1,4 +1,4 @@
-import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, FormArray, Validators } from '@angular/forms';
 import { MapSettingsTypes } from '@data/map-settings';
 import { UserSettingsTypes } from '@data/user-settings';
 import CustomValidators from '@validators/.';
@@ -6,33 +6,33 @@ import CustomValidators from '@validators/.';
 export const createUserSettingsFormValidator = (
   mapSettings: MapSettingsTypes.Settings,
   userSettings: UserSettingsTypes.State
-): FormGroup => {
-  return new FormGroup({
-    mapSettings: new FormGroup({
-      flagsVisible: new FormControl(mapSettings.flagsVisible),
-      tracksVisible: new FormControl(mapSettings.tracksVisible),
-      namesVisible: new FormControl(mapSettings.namesVisible),
-      speedsVisible: new FormControl(mapSettings.speedsVisible),
-      forecastsVisible: new FormControl(mapSettings.forecastsVisible),
-      unitOfDistance: new FormControl(mapSettings.unitOfDistance),
-      mapStartPosition: new FormGroup({
-        startZoomLevel: new FormControl(mapSettings.startZoomLevel, [
+): UntypedFormGroup => {
+  return new UntypedFormGroup({
+    mapSettings: new UntypedFormGroup({
+      flagsVisible: new UntypedFormControl(mapSettings.flagsVisible),
+      tracksVisible: new UntypedFormControl(mapSettings.tracksVisible),
+      namesVisible: new UntypedFormControl(mapSettings.namesVisible),
+      speedsVisible: new UntypedFormControl(mapSettings.speedsVisible),
+      forecastsVisible: new UntypedFormControl(mapSettings.forecastsVisible),
+      unitOfDistance: new UntypedFormControl(mapSettings.unitOfDistance),
+      mapStartPosition: new UntypedFormGroup({
+        startZoomLevel: new UntypedFormControl(mapSettings.startZoomLevel, [
           Validators.required,
           Validators.min(0),
           Validators.max(19)
         ]),
-        latitude: new FormControl(mapSettings.startPosition.latitude, [Validators.required]),
-        longitude: new FormControl(mapSettings.startPosition.longitude, [Validators.required]),
+        latitude: new UntypedFormControl(mapSettings.startPosition.latitude, [Validators.required]),
+        longitude: new UntypedFormControl(mapSettings.startPosition.longitude, [Validators.required]),
       }),
-      mapLimits: new FormGroup({
-        tracksMinuteCap: new FormControl('' + mapSettings.tracksMinuteCap),
-        forecastInterval: new FormControl(mapSettings.forecastInterval, [Validators.required]),
+      mapLimits: new UntypedFormGroup({
+        tracksMinuteCap: new UntypedFormControl('' + mapSettings.tracksMinuteCap),
+        forecastInterval: new UntypedFormControl(mapSettings.forecastInterval, [Validators.required]),
       }),
-      assetColorMethod: new FormControl(mapSettings.assetColorMethod),
-      autoHelp: new FormControl(mapSettings.autoHelp),
+      assetColorMethod: new UntypedFormControl(mapSettings.assetColorMethod),
+      autoHelp: new UntypedFormControl(mapSettings.autoHelp),
     }),
-    userSettings: new FormGroup({
-      experimentalFeaturesEnabled: new FormControl(userSettings.experimentalFeaturesEnabled),
+    userSettings: new UntypedFormGroup({
+      experimentalFeaturesEnabled: new UntypedFormControl(userSettings.experimentalFeaturesEnabled),
     }),
   });
 };
