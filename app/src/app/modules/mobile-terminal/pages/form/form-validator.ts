@@ -1,4 +1,4 @@
-import { FormGroup, FormControl, FormArray, Validators, AbstractControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, UntypedFormArray, Validators, AbstractControl } from '@angular/forms';
 import { MobileTerminalTypes } from '@data/mobile-terminal';
 import { map, take, skip, skipWhile } from 'rxjs/operators';
 import CustomValidators from '@validators/.';
@@ -7,12 +7,12 @@ import { Observable } from 'rxjs';
 import moment from 'moment-timezone';
 
 interface MobileTerminalFormValidator {
-  essentailFields: FormGroup;
-  mobileTerminalFields: FormGroup;
-  channels: FormArray;
+  essentailFields: UntypedFormGroup;
+  mobileTerminalFields: UntypedFormGroup;
+  channels: UntypedFormArray;
 }
 
-const alphanumericWithHyphenAndSpace = (c: FormControl) => {
+const alphanumericWithHyphenAndSpace = (c: UntypedFormControl) => {
   const REGEXP = /^[a-z0-9\- ]*$/i;
   return c.value === null || c.value.length === 0 || REGEXP.test(c.value) ? null : {
     validateAlphanumericHyphenAndSpace: true
@@ -40,7 +40,7 @@ const createNewChannel = (
   channel: MobileTerminalTypes.Channel | null = null,
   memberNumberAndDnidCombinationExists: (type: string) =>
     (control: AbstractControl) => Observable<{ memberNumberAndDnidCombinationExists: boolean }|null>
-): FormGroup  => {
+): UntypedFormGroup  => {
   let formValues = {
     id: 'temp-' + Math.random().toString(36),
     name: '',
@@ -74,28 +74,28 @@ const createNewChannel = (
     };
   }
 
-  return new FormGroup({
-    id: new FormControl(formValues.id),
-    name: new FormControl(formValues.name, [Validators.required]),
-    pollChannel: new FormControl(formValues.pollChannel),
-    configChannel: new FormControl(formValues.configChannel),
-    defaultChannel: new FormControl(formValues.defaultChannel),
-    dnid: new FormControl(
+  return new UntypedFormGroup({
+    id: new UntypedFormControl(formValues.id),
+    name: new UntypedFormControl(formValues.name, [Validators.required]),
+    pollChannel: new UntypedFormControl(formValues.pollChannel),
+    configChannel: new UntypedFormControl(formValues.configChannel),
+    defaultChannel: new UntypedFormControl(formValues.defaultChannel),
+    dnid: new UntypedFormControl(
       formValues.dnid,
       [Validators.required, CustomValidators.minLengthOfNumber(5), CustomValidators.maxLengthOfNumber(5)],
       memberNumberAndDnidCombinationExists('dnid')
     ),
-    memberNumber: new FormControl(
+    memberNumber: new UntypedFormControl(
       formValues.memberNumber,
       [Validators.required, Validators.min(1), Validators.max(255)],
       memberNumberAndDnidCombinationExists('memberNumber')
     ),
-    lesDescription: new FormControl(formValues.lesDescription, [Validators.required]),
-    startDate: new FormControl(formValues.startDate, [CustomValidators.momentValid]),
-    endDate: new FormControl(formValues.endDate, [CustomValidators.momentValid]),
-    expectedFrequency: new FormControl(formValues.expectedFrequency, [Validators.required]),
-    frequencyGracePeriod: new FormControl(formValues.frequencyGracePeriod, [Validators.required]),
-    expectedFrequencyInPort: new FormControl(formValues.expectedFrequencyInPort, [Validators.required]),
+    lesDescription: new UntypedFormControl(formValues.lesDescription, [Validators.required]),
+    startDate: new UntypedFormControl(formValues.startDate, [CustomValidators.momentValid]),
+    endDate: new UntypedFormControl(formValues.endDate, [CustomValidators.momentValid]),
+    expectedFrequency: new UntypedFormControl(formValues.expectedFrequency, [Validators.required]),
+    frequencyGracePeriod: new UntypedFormControl(formValues.frequencyGracePeriod, [Validators.required]),
+    expectedFrequencyInPort: new UntypedFormControl(formValues.expectedFrequencyInPort, [Validators.required]),
   });
 };
 
@@ -104,7 +104,7 @@ export const createMobileTerminalFormValidator = (
   validateSerialNoExists: (control: AbstractControl) => Observable<{ serialNumberAlreadyExists: boolean }|null>,
   memberNumberAndDnidCombinationExists: (type: string) =>
     (control: AbstractControl) => Observable<{ memberNumberAndDnidCombinationExists: boolean }|null>
-): FormGroup => {
+): UntypedFormGroup => {
   const selectedOceanRegions = [];
   if(mobileTerminal.eastAtlanticOceanRegion) { selectedOceanRegions.push('East Atlantic'); }
   if(mobileTerminal.indianOceanRegion) { selectedOceanRegions.push('Indian'); }
@@ -125,48 +125,48 @@ export const createMobileTerminalFormValidator = (
     channels.push(createNewChannel(null, memberNumberAndDnidCombinationExists));
   }
 
-  return new FormGroup({
-    essentailFields: new FormGroup({
-      mobileTerminalType: new FormControl(mobileTerminal.mobileTerminalType, Validators.required),
-      serialNo: new FormControl(mobileTerminal.serialNo, [Validators.required, alphanumericWithHyphenAndSpace], validateSerialNoExists),
-      selectedOceanRegions: new FormControl(selectedOceanRegions, [Validators.required]),
-      transceiverType: new FormControl(mobileTerminal.transceiverType, [Validators.required]),
+  return new UntypedFormGroup({
+    essentailFields: new UntypedFormGroup({
+      mobileTerminalType: new UntypedFormControl(mobileTerminal.mobileTerminalType, Validators.required),
+      serialNo: new UntypedFormControl(mobileTerminal.serialNo, [Validators.required, alphanumericWithHyphenAndSpace], validateSerialNoExists),
+      selectedOceanRegions: new UntypedFormControl(selectedOceanRegions, [Validators.required]),
+      transceiverType: new UntypedFormControl(mobileTerminal.transceiverType, [Validators.required]),
     }),
-    mobileTerminalFields: new FormGroup({
-      softwareVersion: new FormControl(mobileTerminal.softwareVersion),
-      antenna: new FormControl(mobileTerminal.antenna),
-      satelliteNumber: new FormControl(mobileTerminal.satelliteNumber),
-      active: new FormControl(mobileTerminal.active),
-      installDate: new FormControl(
+    mobileTerminalFields: new UntypedFormGroup({
+      softwareVersion: new UntypedFormControl(mobileTerminal.softwareVersion),
+      antenna: new UntypedFormControl(mobileTerminal.antenna),
+      satelliteNumber: new UntypedFormControl(mobileTerminal.satelliteNumber),
+      active: new UntypedFormControl(mobileTerminal.active),
+      installDate: new UntypedFormControl(
         (typeof mobileTerminal.installDate === 'undefined' || mobileTerminal.installDate === null
           ? null
           : moment(mobileTerminal.installDate)
         ),
         [CustomValidators.momentValid]
       ),
-      uninstallDate: new FormControl(
+      uninstallDate: new UntypedFormControl(
         (typeof mobileTerminal.uninstallDate === 'undefined' || mobileTerminal.uninstallDate === null
           ? null
           : moment(mobileTerminal.uninstallDate)
         ),
         [CustomValidators.momentValid]
       ),
-      installedBy: new FormControl(mobileTerminal.installedBy),
+      installedBy: new UntypedFormControl(mobileTerminal.installedBy),
     }),
-    channels: new FormArray(channels),
+    channels: new UntypedFormArray(channels),
   });
 };
 
 export const addChannelToFormValidator = (
-  formValidator: FormGroup,
+  formValidator: UntypedFormGroup,
   memberNumberAndDnidCombinationExists: (type: string) =>
     (control: AbstractControl) => Observable<{ memberNumberAndDnidCombinationExists: boolean }|null>
 ): void => {
-  const channels = formValidator.get('channels') as FormArray;
+  const channels = formValidator.get('channels') as UntypedFormArray;
   channels.push(createNewChannel(null, memberNumberAndDnidCombinationExists));
 };
 
-export const removeChannelAtFromFromValidator = (formValidator: FormGroup, index: number): void => {
-  const channels = formValidator.get('channels') as FormArray;
+export const removeChannelAtFromFromValidator = (formValidator: UntypedFormGroup, index: number): void => {
+  const channels = formValidator.get('channels') as UntypedFormArray;
   return channels.removeAt(index);
 };

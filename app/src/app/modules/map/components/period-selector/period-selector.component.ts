@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { formatDate } from '@app/helpers/helpers';
 // @ts-ignore
 import moment from 'moment-timezone';
@@ -15,7 +15,7 @@ import { createPeriodSelectorFormValidator } from './form-validator';
 export class PeriodSelectorComponent implements OnInit {
 
   @Input() setPeriod: (from: number, to: number) => void;
-  public formValidator: FormGroup;
+  public formValidator: UntypedFormGroup;
 
   public periods = [
     { value: 86400000, label: '24 hours' },  // 24 * 60 * 60 * 1000

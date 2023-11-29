@@ -1,32 +1,32 @@
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { AssetTypes } from '@data/asset';
 import { getName } from 'i18n-iso-countries';
 
 export const createAssetFormValidator = (asset: AssetTypes.Asset) => {
-  return new FormGroup({
-    essentailFields: new FormGroup({
-      flagState: new FormControl(asset.flagStateCode + " " + getName(asset.flagStateCode, 'en'), [Validators.required]),
-      externalMarking: new FormControl(asset.externalMarking, [Validators.required]),
-      name: new FormControl(asset.name, [Validators.required]),
+  return new UntypedFormGroup({
+    essentailFields: new UntypedFormGroup({
+      flagState: new UntypedFormControl(asset.flagStateCode + " " + getName(asset.flagStateCode, 'en'), [Validators.required]),
+      externalMarking: new UntypedFormControl(asset.externalMarking, [Validators.required]),
+      name: new UntypedFormControl(asset.name, [Validators.required]),
     }),
-    identificationFields: new FormGroup({
-      cfr: new FormControl(asset.cfr),
-      ircs: new FormControl(asset.ircs),
-      imo: new FormControl(asset.imo, [Validators.minLength(7), Validators.maxLength(7), Validators.pattern('[0-9]*')]),
-      portOfRegistration: new FormControl(asset.portOfRegistration),
-      mmsi: new FormControl(asset.mmsi),
-      vesselType: new FormControl(asset.vesselType),
+    identificationFields: new UntypedFormGroup({
+      cfr: new UntypedFormControl(asset.cfr),
+      ircs: new UntypedFormControl(asset.ircs),
+      imo: new UntypedFormControl(asset.imo, [Validators.minLength(7), Validators.maxLength(7), Validators.pattern('[0-9]*')]),
+      portOfRegistration: new UntypedFormControl(asset.portOfRegistration),
+      mmsi: new UntypedFormControl(asset.mmsi),
+      vesselType: new UntypedFormControl(asset.vesselType),
     }),
-    metrics: new FormGroup({
-      lengthOverAll: new FormControl(asset.lengthOverAll),
-      lengthBetweenPerpendiculars: new FormControl(asset.lengthBetweenPerpendiculars),
-      grossTonnage: new FormControl(asset.grossTonnage),
-      grossTonnageUnit: new FormControl(asset.grossTonnageUnit),
-      powerOfMainEngine: new FormControl(asset.powerOfMainEngine),
+    metrics: new UntypedFormGroup({
+      lengthOverAll: new UntypedFormControl(asset.lengthOverAll),
+      lengthBetweenPerpendiculars: new UntypedFormControl(asset.lengthBetweenPerpendiculars),
+      grossTonnage: new UntypedFormControl(asset.grossTonnage),
+      grossTonnageUnit: new UntypedFormControl(asset.grossTonnageUnit),
+      powerOfMainEngine: new UntypedFormControl(asset.powerOfMainEngine),
     }),
-    companyInformation: new FormGroup({
-      prodOrgName: new FormControl(asset.prodOrgName),
-      prodOrgCode: new FormControl(asset.prodOrgCode),
+    companyInformation: new UntypedFormGroup({
+      prodOrgName: new UntypedFormControl(asset.prodOrgName),
+      prodOrgCode: new UntypedFormControl(asset.prodOrgCode),
     }),
   });
 };

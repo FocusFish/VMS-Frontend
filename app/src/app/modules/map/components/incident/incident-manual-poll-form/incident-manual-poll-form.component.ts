@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 
 import { NotesActions, NotesTypes, NotesSelectors } from '@data/notes';
 import { createManualPollFormValidator } from './form-validator';
@@ -14,7 +14,7 @@ export class IncidentManualPollFormComponent implements OnInit {
   @Input() pollIncident: (incidentId: number, comment: string) => void;
   @Input() incidentId: number;
 
-  public formValidator: FormGroup;
+  public formValidator: UntypedFormGroup;
   public save = () => {
     return this.pollIncident(
       this.incidentId,

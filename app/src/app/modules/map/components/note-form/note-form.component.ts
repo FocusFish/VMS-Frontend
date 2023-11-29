@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 
 import { NotesTypes } from '@data/notes';
 import { createNotesFormValidator } from './form-validator';
@@ -14,7 +14,7 @@ export class NoteFormComponent implements OnInit {
   @Input() createNote: (note: NotesTypes.NoteParameters) => void;
   @Input() assetId: string;
 
-  public formValidator: FormGroup;
+  public formValidator: UntypedFormGroup;
   public save = () => {
     return this.createNote({
       note: this.formValidator.value.note as string,

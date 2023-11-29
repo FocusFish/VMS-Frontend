@@ -1,4 +1,4 @@
-import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
+import { UntypedFormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 
 export default class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -9,7 +9,7 @@ export default class MyErrorStateMatcher implements ErrorStateMatcher {
     this.errorMessages = errorMessages;
   }
 
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+  isErrorState(control: UntypedFormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     return typeof this.errorMessages !== 'undefined' && this.errorMessages.length > 0;
     // return !!(control && control.invalid && (control.dirty || control.touched));
   }

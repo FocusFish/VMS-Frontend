@@ -1,6 +1,6 @@
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
-export const minLengthOfNumber = (min: number) => (c: FormControl) => {
+export const minLengthOfNumber = (min: number) => (c: UntypedFormControl) => {
   return (c.value + '').length >= min
     ? null
     : {
@@ -11,7 +11,7 @@ export const minLengthOfNumber = (min: number) => (c: FormControl) => {
     };
 };
 
-export const maxLengthOfNumber = (max: number) => (c: FormControl) => {
+export const maxLengthOfNumber = (max: number) => (c: UntypedFormControl) => {
   return (c.value + '').length <= max
     ? null
     : {

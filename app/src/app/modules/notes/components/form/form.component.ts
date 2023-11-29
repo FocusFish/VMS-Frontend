@@ -2,7 +2,7 @@ import { Component, Input, OnChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription, Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import { FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormGroup, FormControl } from '@angular/forms';
 
 import { State } from '@app/app-reducer';
 import { NotesActions, NotesTypes, NotesSelectors } from '@data/notes';
@@ -24,7 +24,7 @@ export class FormComponent implements OnChanges {
   @Input() dontUpdate?: boolean;
 
   public notesSubscription: Subscription;
-  public formValidator: FormGroup;
+  public formValidator: UntypedFormGroup;
 
   ngOnChanges() {
     if(this.formValidator === undefined || !this.dontUpdate) {

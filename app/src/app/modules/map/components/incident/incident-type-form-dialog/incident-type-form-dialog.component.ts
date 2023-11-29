@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { IncidentTypes } from '@data/incident';
@@ -16,7 +16,7 @@ import moment from 'moment-timezone';
 })
 export class IncidentTypeFormDialogComponent {
 
-  public formValidator: FormGroup;
+  public formValidator: UntypedFormGroup;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: {
     type: string,

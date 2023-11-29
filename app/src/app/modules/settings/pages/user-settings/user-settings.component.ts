@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { takeUntil, scan, filter } from 'rxjs/operators';
-import { FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormGroup, FormControl } from '@angular/forms';
 
 import { State } from '@app/app-reducer';
 import { createUserSettingsFormValidator } from './form-validator';
@@ -22,7 +22,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
 
   public unmount$: Subject<boolean> = new Subject<boolean>();
   public save: () => void;
-  public formValidator: FormGroup;
+  public formValidator: UntypedFormGroup;
   public isFormReady = false;
   private mapSettings: MapSettingsTypes.Settings;
   private userSettings: UserSettingsTypes.State;

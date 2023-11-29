@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@import '@angular/material/theming';
 @import 'variables.scss';
 // Plus imports for other components in your app.
 
@@ -8,10 +8,12 @@
 @include mat-core();
 
 $primary-color: (
+  100: #2280A7,
   300: #2280A7,
   500: #004371,
   700: #092D4B,
    contrast: (
+    100: $light-primary-text,
     300: $light-primary-text,
     500: $light-primary-text,
     700: $light-primary-text,
@@ -19,10 +21,12 @@ $primary-color: (
 );
 
 $accent-color: (
+  100: #66C622,
   300: #66C622,
   500: #227E00,
   700: #01763B,
    contrast: (
+    100: $dark-primary-text,
     300: $dark-primary-text,
     500: $light-primary-text,
     700: $light-primary-text,
@@ -30,10 +34,12 @@ $accent-color: (
 );
 
 $warn-color: (
+  100: $color_warn_light,
   300: $color_warn_light,
   500: $color_warn,
   700: $color_warn_dark,
    contrast: (
+    100: $dark-primary-text,
     300: $dark-primary-text,
     500: $light-primary-text,
     700: $light-primary-text,
