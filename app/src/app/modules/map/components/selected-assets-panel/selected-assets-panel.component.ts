@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import getContryISO2 from 'country-iso-3-to-2';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 import { AssetActions, AssetTypes, AssetSelectors } from '@data/asset';
 import { AddToAssetGroupDialogComponent } from '../add-to-asset-group-dialog/add-to-asset-group-dialog.component';

@@ -1,7 +1,7 @@
 import { Component, Input, TemplateRef, ElementRef, ViewChild } from '@angular/core';
 import { AssetTypes } from '@data/asset';
 import { MapSavedFiltersTypes } from '@data/map-saved-filters';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 @Component({
   selector: 'map-saved-filters',

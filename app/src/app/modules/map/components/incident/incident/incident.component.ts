@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, Input, OnChanges } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import Map from 'ol/Map';
 import { first } from 'rxjs/operators';
 

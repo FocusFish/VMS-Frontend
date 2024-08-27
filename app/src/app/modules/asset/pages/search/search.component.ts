@@ -5,7 +5,7 @@ import { takeWhile, endWith, takeUntil, filter, take } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { getAlpha3Codes, langs, getNames, registerLocale, alpha2ToAlpha3 } from 'i18n-iso-countries';
 import { Sort } from '@angular/material/sort';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatLegacySlideToggleModule as MatSlideToggleModule} from '@angular/material/legacy-slide-toggle';
 // @ts-ignore
 import moment from 'moment-timezone';
 // import sv from 'i18n-iso-countries/langs/sv.json';

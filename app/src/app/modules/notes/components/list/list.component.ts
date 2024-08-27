@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, ViewEncapsulation } from '@angular/core';
 import { first } from 'rxjs/operators';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 import { NotesActions, NotesTypes, NotesSelectors } from '@data/notes';
 import { formatUnixtime } from '@app/helpers/datetime-formatter';

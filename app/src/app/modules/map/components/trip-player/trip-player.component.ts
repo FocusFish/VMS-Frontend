@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy } from '@angular/core';
-import { MatSliderChange } from '@angular/material/slider';
+import { MatLegacySliderChange as MatSliderChange } from '@angular/material/legacy-slider';
 import { formatDate, formatTimestamp } from '@app/helpers/helpers';
 import { AssetTypes } from '@data/asset';
 import { Position } from '@data/generic.types';

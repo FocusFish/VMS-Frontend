@@ -1,8 +1,8 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnChanges, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
 import { Sort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { formatUnixtimeSeconds } from '@app/helpers/datetime-formatter';
 import { compareTableSortNumber, compareTableSortString } from '@app/helpers/helpers';
 import { convertDDToDDM } from '@app/helpers/wgs84-formatter';

@@ -4,7 +4,7 @@ import { Subscription, Observable, Subject } from 'rxjs';
 import { take, takeUntil, map, skipWhile } from 'rxjs/operators';
 import { UntypedFormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 import { State } from '@app/app-reducer';
 import { AssetActions, AssetTypes, AssetSelectors } from '@data/asset';
