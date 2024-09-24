@@ -1,13 +1,25 @@
-import { Component, OnInit, OnDestroy, ViewChild, ViewContainerRef } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Subscription, Subject } from 'rxjs';
-import { takeWhile, endWith, takeUntil, filter, take } from 'rxjs/operators';
-import { FormControl } from '@angular/forms';
-import { getAlpha3Codes, langs, getNames, registerLocale, alpha2ToAlpha3 } from 'i18n-iso-countries';
-import { Sort } from '@angular/material/sort';
-import {MatLegacySlideToggleModule as MatSlideToggleModule} from '@angular/material/legacy-slide-toggle';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  ViewContainerRef,
+} from "@angular/core";
+import { Store } from "@ngrx/store";
+import { Subscription, Subject } from "rxjs";
+import { takeWhile, endWith, takeUntil, filter, take } from "rxjs/operators";
+import { FormControl } from "@angular/forms";
+import {
+  getAlpha3Codes,
+  langs,
+  getNames,
+  registerLocale,
+  alpha2ToAlpha3,
+} from "i18n-iso-countries";
+import { Sort } from "@angular/material/sort";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 // @ts-ignore
-import moment from 'moment-timezone';
+import moment from "moment-timezone";
 // import sv from 'i18n-iso-countries/langs/sv.json';
 // import en from 'i18n-iso-countries/langs/en.json';
 // import fi from 'i18n-iso-countries/langs/fi.json';
@@ -15,24 +27,33 @@ import moment from 'moment-timezone';
 // registerLocale(en);
 // registerLocale(fi);
 
-import { compareTableSortString, compareTableSortNumber } from '@app/helpers/helpers';
+import {
+  compareTableSortString,
+  compareTableSortNumber,
+} from "@app/helpers/helpers";
 // const allFlagstates = Object.keys(getAlpha3Codes());
-const allCountries = getNames('en');
-const allCountryCodes = Object.entries(allCountries).reduce((obj, [key, value]) => ({ ...obj, [value]: alpha2ToAlpha3(key) }), { });
+const allCountries = getNames("en");
+const allCountryCodes = Object.entries(allCountries).reduce(
+  (obj, [key, value]) => ({ ...obj, [value]: alpha2ToAlpha3(key) }),
+  {}
+);
 
-import { State } from '@app/app-reducer';
+import { State } from "@app/app-reducer";
 
-import { AssetTypes, AssetActions, AssetSelectors } from '@data/asset';
+import { AssetTypes, AssetActions, AssetSelectors } from "@data/asset";
 
 @Component({
-  selector: 'asset-search-page',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  selector: "asset-search-page",
+  templateUrl: "./search.component.html",
+  styleUrls: ["./search.component.scss"],
 })
 export class SearchPageComponent implements OnInit, OnDestroy {
-  @ViewChild('toolbox') toolbox;
+  @ViewChild("toolbox") toolbox;
 
-  constructor(private readonly store: Store<State>, private readonly viewContainerRef: ViewContainerRef) { }
+  constructor(
+    private readonly store: Store<State>,
+    private readonly viewContainerRef: ViewContainerRef
+  ) {}
 
   public unmount$: Subject<boolean> = new Subject<boolean>();
   public assets: ReadonlyArray<AssetTypes.Asset>;
@@ -40,81 +61,144 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   public loadingData = false;
   public tableReadyForDisplay = false;
   public dataLoadedSubscription: Subscription;
-  public displayedColumns: string[] = ['externalMarking', 'ircs', 'name', 'cfr', 'flagStateCode', 'mmsi'];
+  public displayedColumns: string[] = [
+    "externalMarking",
+    "ircs",
+    "name",
+    "cfr",
+    "flagStateCode",
+    "mmsi",
+  ];
   public assetSearchObject = {
-    search: '',
-    searchType: 'Swedish Assets',
+    search: "",
+    searchType: "Swedish Assets",
     flagState: [],
-    includeInactivated: true
+    includeInactivated: true,
   };
   public search: () => void;
   public clearSearch: () => void;
-  public commonCountries = ['Sweden', 'Finland', 'Denmark', 'Estonia', 'Norway'].sort();
+  public commonCountries = [
+    "Sweden",
+    "Finland",
+    "Denmark",
+    "Estonia",
+    "Norway",
+  ].sort();
   public allCountryCodes = allCountryCodes;
-  public flagstates = Object.values(allCountries).sort().filter(flagstate => !this.commonCountries.includes(flagstate));
+  public flagstates = Object.values(allCountries)
+    .sort()
+    .filter((flagstate) => !this.commonCountries.includes(flagstate));
 
   mapStateToProps() {
-    this.store.select(AssetSelectors.getLastUserAssetSearch).pipe(
-      filter(lastSearch => lastSearch !== null), take(1)
-    ).subscribe((lastUserAssetSearch) => {
-      if(lastUserAssetSearch !== null) {
-        this.store.dispatch(AssetActions.setCurrentAssetList({ assetListIdentifier: lastUserAssetSearch }));
-      }
-      this.store.select(AssetSelectors.getCurrentAssetList).pipe(takeUntil(this.unmount$)).subscribe((assets) => {
-        this.loadingData = false;
-        if(assets.length > 0) {
-          this.tableReadyForDisplay = true;
+    this.store
+      .select(AssetSelectors.getLastUserAssetSearch)
+      .pipe(
+        filter((lastSearch) => lastSearch !== null),
+        take(1)
+      )
+      .subscribe((lastUserAssetSearch) => {
+        if (lastUserAssetSearch !== null) {
+          this.store.dispatch(
+            AssetActions.setCurrentAssetList({
+              assetListIdentifier: lastUserAssetSearch,
+            })
+          );
         }
-        this.assets = assets;
-        this.sortedAssets = assets;
-      });
-      this.store.select(AssetSelectors.getCurrentAssetListSearchQuery).pipe(
-        takeUntil(this.unmount$),
-        filter(searchQuery => searchQuery !== null)
-      ).subscribe((searchQuery) => {
-        let searchQueryIncluded = true;
+        this.store
+          .select(AssetSelectors.getCurrentAssetList)
+          .pipe(takeUntil(this.unmount$))
+          .subscribe((assets) => {
+            this.loadingData = false;
+            if (assets.length > 0) {
+              this.tableReadyForDisplay = true;
+            }
+            this.assets = assets;
+            this.sortedAssets = assets;
+          });
+        this.store
+          .select(AssetSelectors.getCurrentAssetListSearchQuery)
+          .pipe(
+            takeUntil(this.unmount$),
+            filter((searchQuery) => searchQuery !== null)
+          )
+          .subscribe((searchQuery) => {
+            let searchQueryIncluded = true;
 
-        // @ts-ignore:next-line
-        if([1, 2].includes(searchQuery.fields.length) && searchQuery.fields[0].searchValue === 'SWE') {
-          this.assetSearchObject = { ...this.assetSearchObject, searchType: 'Swedish Assets' };
-          if(searchQuery.fields.length === 1) {
-            searchQueryIncluded = false;
-          }
-          // @ts-ignore:next-line
-        } else if([1, 2].includes(searchQuery.fields.length) && searchQuery.fields[0].searchField === 'mobileTerminals') {
-          this.assetSearchObject = { ...this.assetSearchObject, searchType: 'VMS' };
-          if(searchQuery.fields.length === 2) {
-            searchQueryIncluded = false;
-          }
-        } else {
-          const flagStateSearch = searchQuery.fields[0] as AssetTypes.AssetListSearchQuery;
-          this.assetSearchObject = {
-            ...this.assetSearchObject,
-            searchType: 'other',
-            flagState: flagStateSearch.fields.map((flagstateField: AssetTypes.AssetListSearchQueryField) => flagstateField.searchValue)
-          };
-          if(searchQuery.fields.length === 1) {
-            searchQueryIncluded = false;
-          }
-        }
-        if(searchQueryIncluded) {
-          const searchStringQuery = searchQuery.fields[searchQuery.fields.length - 1] as AssetTypes.AssetListSearchQuery;
-          let search: string;
-          if(searchStringQuery.logicalAnd === true) {
-            search = searchStringQuery.fields.reduce((searchString: string, query: AssetTypes.AssetListSearchQuery) => {
-              searchString += ' && ' + (query.fields[0] as AssetTypes.AssetListSearchQueryField).searchValue;
-              return searchString;
-            }, '').substring(4);
-          } else {
-            search = (searchStringQuery.fields[0] as AssetTypes.AssetListSearchQueryField).searchValue as string;
-          }
-          this.assetSearchObject = {
-            ...this.assetSearchObject,
-            search
-          };
-        }
+            if (
+              [1, 2].includes(searchQuery.fields.length) &&
+              // @ts-ignore:next-line
+              searchQuery.fields[0].searchValue === "SWE"
+            ) {
+              this.assetSearchObject = {
+                ...this.assetSearchObject,
+                searchType: "Swedish Assets",
+              };
+              if (searchQuery.fields.length === 1) {
+                searchQueryIncluded = false;
+              }
+            } else if (
+              [1, 2].includes(searchQuery.fields.length) &&
+              // @ts-ignore:next-line
+              searchQuery.fields[0].searchField === "mobileTerminals"
+            ) {
+              this.assetSearchObject = {
+                ...this.assetSearchObject,
+                searchType: "VMS",
+              };
+              if (searchQuery.fields.length === 2) {
+                searchQueryIncluded = false;
+              }
+            } else {
+              const flagStateSearch = searchQuery
+                .fields[0] as AssetTypes.AssetListSearchQuery;
+              this.assetSearchObject = {
+                ...this.assetSearchObject,
+                searchType: "other",
+                flagState: flagStateSearch.fields.map(
+                  (flagstateField: AssetTypes.AssetListSearchQueryField) =>
+                    flagstateField.searchValue
+                ),
+              };
+              if (searchQuery.fields.length === 1) {
+                searchQueryIncluded = false;
+              }
+            }
+            if (searchQueryIncluded) {
+              const searchStringQuery = searchQuery.fields[
+                searchQuery.fields.length - 1
+              ] as AssetTypes.AssetListSearchQuery;
+              let search: string;
+              if (searchStringQuery.logicalAnd === true) {
+                search = searchStringQuery.fields
+                  .reduce(
+                    (
+                      searchString: string,
+                      query: AssetTypes.AssetListSearchQuery
+                    ) => {
+                      searchString +=
+                        " && " +
+                        (
+                          query
+                            .fields[0] as AssetTypes.AssetListSearchQueryField
+                        ).searchValue;
+                      return searchString;
+                    },
+                    ""
+                  )
+                  .substring(4);
+              } else {
+                search = (
+                  searchStringQuery
+                    .fields[0] as AssetTypes.AssetListSearchQueryField
+                ).searchValue as string;
+              }
+              this.assetSearchObject = {
+                ...this.assetSearchObject,
+                search,
+              };
+            }
+          });
       });
-    });
   }
 
   mapDispatchToProps() {
@@ -124,79 +208,96 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 
       let searchQuery: AssetTypes.AssetListSearchQuery = {
         fields: [],
-        logicalAnd: true
+        logicalAnd: true,
       };
 
-      if(this.assetSearchObject.searchType === 'Swedish Assets') {
-        searchQuery = { ...searchQuery,
-          fields: [ ...searchQuery.fields,
+      if (this.assetSearchObject.searchType === "Swedish Assets") {
+        searchQuery = {
+          ...searchQuery,
+          fields: [
+            ...searchQuery.fields,
             {
-              searchField: 'flagStateCode',
-              searchValue: 'SWE'
-            }
-          ]
+              searchField: "flagStateCode",
+              searchValue: "SWE",
+            },
+          ],
         };
-      } else if(this.assetSearchObject.searchType === 'VMS') {
-        searchQuery = { ...searchQuery,
-          fields: [ ...searchQuery.fields,
+      } else if (this.assetSearchObject.searchType === "VMS") {
+        searchQuery = {
+          ...searchQuery,
+          fields: [
+            ...searchQuery.fields,
             {
-              searchField: 'mobileTerminals',
-              searchValue: 'true',
+              searchField: "mobileTerminals",
+              searchValue: "true",
             },
             {
-              searchField: 'vesselType',
-              searchValue: 'fishing'
+              searchField: "vesselType",
+              searchValue: "fishing",
             },
-          ]
+          ],
         };
-      } else if(this.assetSearchObject.searchType === 'other') {
-        searchQuery = { ...searchQuery,
-          fields: [ ...searchQuery.fields,
+      } else if (this.assetSearchObject.searchType === "other") {
+        searchQuery = {
+          ...searchQuery,
+          fields: [
+            ...searchQuery.fields,
             {
-              fields: this.assetSearchObject.flagState.map(flagstate => ({
-                searchField: 'flagStateCode',
-                searchValue: flagstate
+              fields: this.assetSearchObject.flagState.map((flagstate) => ({
+                searchField: "flagStateCode",
+                searchValue: flagstate,
               })),
-              logicalAnd: false
-            }
-          ]
+              logicalAnd: false,
+            },
+          ],
         };
       }
 
-      if(this.assetSearchObject.search > '') {
-        const searchFields = ['name', 'externalMarking', 'cfr', 'ircs', 'mmsi'];
-        const splitSearch = this.assetSearchObject.search.split('&&');
+      if (this.assetSearchObject.search > "") {
+        const searchFields = ["name", "externalMarking", "cfr", "ircs", "mmsi"];
+        const splitSearch = this.assetSearchObject.search.split("&&");
 
         const searchStringQuery = {
-          fields: splitSearch.map(searchString => ({
-            fields: searchFields.map(searchField => {
+          fields: splitSearch.map((searchString) => ({
+            fields: searchFields.map((searchField) => {
               return {
                 searchField,
                 searchValue: searchString.trim(),
               };
             }),
-            logicalAnd: false
+            logicalAnd: false,
           })),
-          logicalAnd: true
+          logicalAnd: true,
         };
 
-        searchQuery = { ...searchQuery,
-          fields: [ ...searchQuery.fields,
-            (splitSearch.length > 1 ? searchStringQuery : searchStringQuery.fields[0]),
-          ]
+        searchQuery = {
+          ...searchQuery,
+          fields: [
+            ...searchQuery.fields,
+            splitSearch.length > 1
+              ? searchStringQuery
+              : searchStringQuery.fields[0],
+          ],
         };
       }
-      this.store.dispatch(AssetActions.searchAssets({ searchQuery, userSearch: true, includeInactivated: this.assetSearchObject.includeInactivated }));
+      this.store.dispatch(
+        AssetActions.searchAssets({
+          searchQuery,
+          userSearch: true,
+          includeInactivated: this.assetSearchObject.includeInactivated,
+        })
+      );
     };
 
-    this.clearSearch = () => this.store.dispatch(AssetActions.clearAssetSearch());
+    this.clearSearch = () =>
+      this.store.dispatch(AssetActions.clearAssetSearch());
   }
 
   ngOnInit() {
     this.mapStateToProps();
     this.mapDispatchToProps();
   }
-  
+
   ngAfterViewInit() {
     setTimeout(() => {
       this.viewContainerRef.createEmbeddedView(this.toolbox);
@@ -210,31 +311,50 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 
   clear() {
     this.assetSearchObject = {
-      search: '',
-      searchType: 'Swedish Assets',
+      search: "",
+      searchType: "Swedish Assets",
       flagState: [],
-      includeInactivated: true
+      includeInactivated: true,
     };
     this.clearSearch();
   }
 
   sortData(sort: Sort) {
     const assets = this.assets.slice();
-    if (!sort.active || sort.direction === '') {
+    if (!sort.active || sort.direction === "") {
       this.sortedAssets = assets;
       return;
     }
 
     this.sortedAssets = assets.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
+      const isAsc = sort.direction === "asc";
       switch (sort.active) {
-        case 'name': return compareTableSortString(a.name, b.name, isAsc);
-        case 'ircs': return compareTableSortString(a.ircs, b.ircs, isAsc);
-        case 'mmsi': return compareTableSortNumber(a.mmsi as unknown as number, b.mmsi as unknown as number, isAsc);
-        case 'flagStateCode': return compareTableSortString(a.flagStateCode, b.flagStateCode, isAsc);
-        case 'externalMarking': return compareTableSortString(a.externalMarking, b.externalMarking, isAsc);
-        case 'cfr': return compareTableSortString(a.cfr, b.cfr, isAsc);
-        default: return 0;
+        case "name":
+          return compareTableSortString(a.name, b.name, isAsc);
+        case "ircs":
+          return compareTableSortString(a.ircs, b.ircs, isAsc);
+        case "mmsi":
+          return compareTableSortNumber(
+            a.mmsi as unknown as number,
+            b.mmsi as unknown as number,
+            isAsc
+          );
+        case "flagStateCode":
+          return compareTableSortString(
+            a.flagStateCode,
+            b.flagStateCode,
+            isAsc
+          );
+        case "externalMarking":
+          return compareTableSortString(
+            a.externalMarking,
+            b.externalMarking,
+            isAsc
+          );
+        case "cfr":
+          return compareTableSortString(a.cfr, b.cfr, isAsc);
+        default:
+          return 0;
       }
     });
   }
@@ -242,38 +362,53 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   exportAssetsToCSV() {
     const nrOfColumns = this.displayedColumns.length;
     const nrOfRows = this.sortedAssets.length;
-    let csv = this.displayedColumns.reduce((csvRow, column, index) => {
-      let columnName = column.toUpperCase();
-      if(column === 'flagStateCode'){
-        columnName = 'F.S.';
-      }
-      if(column === 'externalMarking'){
-        columnName = 'Ext. Mark';
-      }
-      if(column === 'name'){
-        columnName = 'Name';
-      }
-      return csvRow + columnName + (nrOfColumns !== index + 1 ? ';' : '');
-    }, '') + '\r\n';
+    let csv =
+      this.displayedColumns.reduce((csvRow, column, index) => {
+        let columnName = column.toUpperCase();
+        if (column === "flagStateCode") {
+          columnName = "F.S.";
+        }
+        if (column === "externalMarking") {
+          columnName = "Ext. Mark";
+        }
+        if (column === "name") {
+          columnName = "Name";
+        }
+        return csvRow + columnName + (nrOfColumns !== index + 1 ? ";" : "");
+      }, "") + "\r\n";
 
-    csv = csv + this.sortedAssets.reduce((acc, asset, mtIndex) => {
-      return acc + this.displayedColumns.reduce((csvRow, column, index) => {
-        const fieldName = (column === 'status' ? 'statusText' : column);
-        return csvRow +
-          (typeof asset[fieldName] !== 'undefined' ? asset[fieldName] : '') +
-          (nrOfColumns !== index + 1 ? ';' : '');
-      }, '') + (nrOfRows !== mtIndex + 1 ? '\r\n' : '');
-    }, '');
-    const exportedFilenmae = 'assets.' + moment().format('YYYY-MM-DD.HH_mm') + '.csv';
+    csv =
+      csv +
+      this.sortedAssets.reduce((acc, asset, mtIndex) => {
+        return (
+          acc +
+          this.displayedColumns.reduce((csvRow, column, index) => {
+            const fieldName = column === "status" ? "statusText" : column;
+            return (
+              csvRow +
+              (typeof asset[fieldName] !== "undefined"
+                ? asset[fieldName]
+                : "") +
+              (nrOfColumns !== index + 1 ? ";" : "")
+            );
+          }, "") +
+          (nrOfRows !== mtIndex + 1 ? "\r\n" : "")
+        );
+      }, "");
+    const exportedFilenmae =
+      "assets." + moment().format("YYYY-MM-DD.HH_mm") + ".csv";
 
-    const blob = new Blob(["\uFEFF"+csv], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-    if (link.download !== undefined) { // feature detection
+    const blob = new Blob(["\uFEFF" + csv], {
+      type: "text/csv;charset=utf-8;",
+    });
+    const link = document.createElement("a");
+    if (link.download !== undefined) {
+      // feature detection
       // Browsers that support HTML5 download attribute
       const url = URL.createObjectURL(blob);
-      link.setAttribute('href', url);
-      link.setAttribute('download', exportedFilenmae);
-      link.style.visibility = 'hidden';
+      link.setAttribute("href", url);
+      link.setAttribute("download", exportedFilenmae);
+      link.style.visibility = "hidden";
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);

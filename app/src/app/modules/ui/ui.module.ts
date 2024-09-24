@@ -1,28 +1,35 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
-import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatInputModule } from "@angular/material/input";
 
-import { CloseButtonComponent } from './components/button/close/close.component';
-import { CountdownComponent } from './components/countdown/countdown.component';
-import { CountdownCircleComponent } from './components/countdown-circle/countdown-circle.component';
-import { LoadingDotsComponent } from './components/loading-dots/loading-dots.component';
-import { ProgressCircleComponent } from './components/progress-circle/progress-circle.component';
-import { ToggleButtonComponent } from './components/button/toggle/toggle.component';
-import { TruncatedTextComponent } from './components/truncated-text/truncated-text.component';
-import { DatetimePickerComponent } from './components/datetime-picker/datetime-picker.component';
+import { CloseButtonComponent } from "./components/button/close/close.component";
+import { CountdownComponent } from "./components/countdown/countdown.component";
+import { CountdownCircleComponent } from "./components/countdown-circle/countdown-circle.component";
+import { LoadingDotsComponent } from "./components/loading-dots/loading-dots.component";
+import { ProgressCircleComponent } from "./components/progress-circle/progress-circle.component";
+import { ToggleButtonComponent } from "./components/button/toggle/toggle.component";
+import { TruncatedTextComponent } from "./components/truncated-text/truncated-text.component";
+import { DatetimePickerComponent } from "./components/datetime-picker/datetime-picker.component";
 
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {
+  MAT_MOMENT_DATE_FORMATS,
+  MomentDateAdapter,
+} from "@angular/material-moment-adapter";
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+} from "@angular/material/core";
 
-import {MatLegacyButtonModule as MatButtonModule} from '@angular/material/legacy-button';
+import { MatButtonModule } from "@angular/material/button";
 
-export class DatetimePickerModule { }
+export class DatetimePickerModule {}
 @NgModule({
   imports: [
     CommonModule,
@@ -42,7 +49,7 @@ export class DatetimePickerModule { }
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   declarations: [
     CloseButtonComponent,
@@ -65,9 +72,12 @@ export class DatetimePickerModule { }
     DatetimePickerComponent,
   ],
   providers: [
-    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE],
+    },
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
-  ]
+  ],
 })
-
-export class UIModule { }
+export class UIModule {}

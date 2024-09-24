@@ -1,29 +1,64 @@
-@import 'variables.scss';
+@import "variables.scss";
 
-*, ::after, ::before {
+*,
+::after,
+::before {
   // font-size: $default_font_size;
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   color: $color_black;
   background: $color_background_gray;
 }
 
-h1 { margin-top: 0px; margin-bottom: 0px; padding-top: 0.67em; padding-bottom: 0.67em; }
-h2 { margin-top: 0px; margin-bottom: 0px; padding-top: 0.83em; padding-bottom: 0.83em; }
-h3 { margin-top: 0px; margin-bottom: 0px; padding-top: 1em; padding-bottom: 1em; }
-h4 { margin-top: 0px; margin-bottom: 0px; padding-top: 1.33em; padding-bottom: 1.33em; font-weight: 500; }
-h5 { margin-top: 0px; margin-bottom: 0px; padding-top: $medium_distance; padding-bottom: $medium_distance; }
-
+h1 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0.67em;
+  padding-bottom: 0.67em;
+}
+h2 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0.83em;
+  padding-bottom: 0.83em;
+}
+h3 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+h4 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 1.33em;
+  padding-bottom: 1.33em;
+  font-weight: 500;
+}
+h5 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: $medium_distance;
+  padding-bottom: $medium_distance;
+}
 
 .hidden {
   display: none;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; font-size: $default_font_size; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: $default_font_size;
+}
 
 .container h1 {
   font-size: $h1_font_size;
@@ -77,24 +112,22 @@ button {
   -ms-user-select: none;
   user-select: none;
   line-height: 1.5;
-  transition: color .15s
-    ease-in-out,background-color .15s
-    ease-in-out,border-color .15s
-    ease-in-out,box-shadow .15s
-    ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
-  padding: .84rem 2.14rem;
-  font-size: .81rem;
-  margin: .375rem;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  padding: 0.84rem 2.14rem;
+  font-size: 0.81rem;
+  margin: 0.375rem;
   border: 0;
-  border-radius: .125rem;
+  border-radius: 0.125rem;
   white-space: normal;
   word-wrap: break-word;
   color: #fff;
 
   &:active {
-    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18),
+      0 4px 15px 0 rgba(0, 0, 0, 0.15);
   }
 }
 
@@ -109,7 +142,6 @@ button {
 .btn-primary {
   background-color: $color_blue;
   &:active {
-
     background-color: $color_dark_blue;
   }
 }
@@ -136,7 +168,6 @@ button.map-panel-button {
   }
 }
 
-
 fieldset {
   border: 0px;
 }
@@ -150,11 +181,11 @@ mat-form-field.no-white-background {
     border-top: none;
   }
   .mat-form-field-wrapper {
-      padding-bottom: 0;
+    padding-bottom: 0;
   }
   .mat-form-field-underline {
     position: unset;
-    background-color: rgba($color_orange, .42);
+    background-color: rgba($color_orange, 0.42);
   }
 
   .mat-form-field-wrapper {
@@ -165,21 +196,28 @@ mat-form-field.no-white-background {
     top: 1em;
   }
 
-  &.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
-  &.mat-form-field-appearance-legacy.mat-form-field-can-float .mat-form-field-autofill-control:-webkit-autofill+.mat-form-field-label-wrapper .mat-form-field-label {
-    -webkit-transform: translateY(-1.3em) scale(.75) perspective(100px) translateY(0.001px);
-    transform: translateY(-1.3em) scale(.75) perspective(100px) translateY(0.001px);
-    -ms-transform: translateY(-1.3em) scale(.75);
+  &.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float
+    .mat-form-field-label,
+  &.mat-form-field-appearance-legacy.mat-form-field-can-float
+    .mat-form-field-autofill-control:-webkit-autofill
+    + .mat-form-field-label-wrapper
+    .mat-form-field-label {
+    -webkit-transform: translateY(-1.3em) scale(0.75) perspective(100px)
+      translateY(0.001px);
+    transform: translateY(-1.3em) scale(0.75) perspective(100px)
+      translateY(0.001px);
+    -ms-transform: translateY(-1.3em) scale(0.75);
     color: white;
   }
 }
 
 mat-form-field.white-text {
-  &.mat-focused .mat-form-field-label, .mat-form-field-label {
+  &.mat-focused .mat-form-field-label,
+  .mat-form-field-label {
     color: white;
   }
   .mat-form-field-underline {
-    background-color: rgba(255,255,255,.42);
+    background-color: rgba(255, 255, 255, 0.42);
     .mat-form-field-ripple {
       background-color: white;
     }
@@ -206,7 +244,7 @@ mat-dialog-container.mat-dialog-container {
       padding-top: distance(2);
       text-align: center;
       font-size: 16px;
-    //  line-spacing: 24pt;
+      //  line-spacing: 24pt;
       line-height: distance(1.5);
     }
     .content-container {

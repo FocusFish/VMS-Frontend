@@ -1,26 +1,28 @@
-import { Component, Inject } from '@angular/core';
-import { UntypedFormGroup } from '@angular/forms';
-import { MatLegacyDialog as MatDialog, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
+import { Component, Inject } from "@angular/core";
+import { UntypedFormGroup } from "@angular/forms";
+import { MatDialog, MAT_DIALOG_DATA } from "@angular/material/dialog";
 
-import { IncidentTypes } from '@data/incident';
-import { createAttemptedContactFormValidator } from './form-validator';
-import { errorMessage } from '@app/helpers/validators/error-messages';
+import { IncidentTypes } from "@data/incident";
+import { createAttemptedContactFormValidator } from "./form-validator";
+import { errorMessage } from "@app/helpers/validators/error-messages";
 
 // @ts-ignore
-import moment from 'moment-timezone';
+import moment from "moment-timezone";
 
 @Component({
-  selector: 'map-incident-attempted-contact-dialog',
-  templateUrl: './incident-attempted-contact-dialog.component.html',
-  styleUrls: ['./incident-attempted-contact-dialog.component.scss']
+  selector: "map-incident-attempted-contact-dialog",
+  templateUrl: "./incident-attempted-contact-dialog.component.html",
+  styleUrls: ["./incident-attempted-contact-dialog.component.scss"],
 })
 export class IncidentAttemptedContactDialogComponent {
-
   public formValidator: UntypedFormGroup;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {
-    incident: IncidentTypes.Incident
-  }) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA)
+    public data: {
+      incident: IncidentTypes.Incident;
+    }
+  ) {
     this.formValidator = createAttemptedContactFormValidator();
   }
 

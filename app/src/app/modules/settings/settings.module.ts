@@ -1,22 +1,21 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 /* Modules */
-import { UIModule } from '../ui/ui.module';
-import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
-import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
-import { MatLegacySelectModule as MatSelectModule } from '@angular/material/legacy-select';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
-import { MatLegacyRadioModule as MatRadioModule } from '@angular/material/legacy-radio';
-import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
-import { MatLegacySlideToggleModule as MatSlideToggleModule } from '@angular/material/legacy-slide-toggle';
+import { UIModule } from "../ui/ui.module";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
+import { MatButtonModule } from "@angular/material/button";
+import { MatRadioModule } from "@angular/material/radio";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 
 /* Pages */
-import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
+import { UserSettingsComponent } from "./pages/user-settings/user-settings.component";
 
 /* Components */
-
 
 @NgModule({
   imports: [
@@ -31,9 +30,6 @@ import { UserSettingsComponent } from './pages/user-settings/user-settings.compo
     MatRadioModule,
     MatSlideToggleModule,
   ],
-  declarations: [
-    UserSettingsComponent
-  ]
+  declarations: [UserSettingsComponent],
 })
-
-export class SettingsModule { }
+export class SettingsModule {}

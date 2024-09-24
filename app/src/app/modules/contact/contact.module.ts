@@ -1,21 +1,21 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 /* Modules */
-import { RouterModule } from '@angular/router';
-import { UIModule } from '../ui/ui.module';
-import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
-import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
-import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
-import { MatLegacySelectModule as MatSelectModule } from '@angular/material/legacy-select';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
-import { MatLegacyCheckboxModule as MatCheckboxModule } from '@angular/material/legacy-checkbox';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { RouterModule } from "@angular/router";
+import { UIModule } from "../ui/ui.module";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
+import { MatButtonModule } from "@angular/material/button";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatDatepickerModule } from "@angular/material/datepicker";
 
 /* Pages */
-import { FormPageComponent } from './pages/form/form.component';
-import { ShowByAssetPageComponent } from './pages/show-by-asset/show-by-asset.component';
+import { FormPageComponent } from "./pages/form/form.component";
+import { ShowByAssetPageComponent } from "./pages/show-by-asset/show-by-asset.component";
 
 @NgModule({
   imports: [
@@ -32,10 +32,6 @@ import { ShowByAssetPageComponent } from './pages/show-by-asset/show-by-asset.co
     MatCheckboxModule,
     MatDatepickerModule,
   ],
-  declarations: [
-    FormPageComponent,
-    ShowByAssetPageComponent
-  ]
+  declarations: [FormPageComponent, ShowByAssetPageComponent],
 })
-
-export class ContactModule { }
+export class ContactModule {}
