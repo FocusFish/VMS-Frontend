@@ -1,4 +1,4 @@
-@import 'variables.scss';
+@import "variables.scss";
 
 .container-component {
   padding: distance(1);
@@ -46,8 +46,6 @@
         font-weight: bold;
         color: $color_accent;
 
-
-
         &.info {
           color: $color_dark_turquoise;
         }
@@ -59,10 +57,12 @@
         .data {
           border-bottom: 1px solid $color_accent;
 
-          &.info, .info {
+          &.info,
+          .info {
             border-bottom: 1px solid $color_dark_turquoise;
           }
-          &.warn, .warn {
+          &.warn,
+          .warn {
             border-bottom: 1px solid $color_warn;
           }
         }
@@ -117,5 +117,16 @@
   .other-information-buttons {
     display: grid;
     grid-row-gap: distance(1);
+
+    button {
+      max-height: 30px;
+
+      & ::ng-deep .mdc-button__label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
   }
 }
