@@ -119,12 +119,14 @@
     grid-row-gap: distance(1);
 
     button {
-      max-height: 30px;
+      font-size: 14px;
+      max-height: 36px;
 
       & ::ng-deep .mdc-button__label {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        padding: 5px;
         width: 100%;
       }
     }
