@@ -8,11 +8,9 @@
     "test": "ng test --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "extract-i18n": "ng xi18n --output-path i18n && xliffmerge --profile xliffmerge.json",
-    "postinstall": "ngcc"
+    "extract-i18n": "ng xi18n --output-path i18n && xliffmerge --profile xliffmerge.json"
   },
   "private": true,
-  "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
   "dependencies": {
     "@angular/animations": "^16.2.12",
     "@angular/cdk": "^16.2.14",
