@@ -1,4 +1,4 @@
-@import 'variables.scss';
+@import "variables.scss";
 
 form.manual-position-form {
   background: white;
@@ -7,9 +7,10 @@ form.manual-position-form {
   grid-template-columns: 1fr 1fr;
   grid-column-gap: $small_distance;
 
-  #manual-position-form--latitude--wrapper, #manual-position-form--longitude--wrapper {
+  #manual-position-form--latitude--wrapper,
+  #manual-position-form--longitude--wrapper {
     display: grid;
-    grid-template-columns: 20px 35px 20px 1fr;
+    grid-template-columns: 1fr 60px 50px 60px;
     position: relative;
 
     .errors {
@@ -37,6 +38,10 @@ form.manual-position-form {
       }
     }
 
+    .mat-mdc-text-field-wrapper {
+      padding-right: 5px;
+    }
+
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
       -webkit-appearance: none;
@@ -47,6 +52,8 @@ form.manual-position-form {
     }
   }
 
+  #manual-position-form--latitude--wrapper,
+  #manual-position-form--longitude--wrapper,
   #manual-position-form--timestamp,
   #manual-position-form--note,
   #manual-position-form--save {

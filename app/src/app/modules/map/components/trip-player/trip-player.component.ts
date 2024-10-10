@@ -1,14 +1,13 @@
-import { Component, Input, OnDestroy } from '@angular/core';
-import { MatSliderChange } from '@angular/material/slider';
-import { formatDate, formatTimestamp } from '@app/helpers/helpers';
-import { AssetTypes } from '@data/asset';
-import { Position } from '@data/generic.types';
-
+import { Component, Input, OnDestroy } from "@angular/core";
+import { MatSliderChange } from "@angular/material/slider";
+import { formatDate, formatTimestamp } from "@app/helpers/helpers";
+import { AssetTypes } from "@data/asset";
+import { Position } from "@data/generic.types";
 
 @Component({
-  selector: 'map-trip-player',
-  templateUrl: './trip-player.component.html',
-  styleUrls: ['./trip-player.component.scss']
+  selector: "map-trip-player",
+  templateUrl: "./trip-player.component.html",
+  styleUrls: ["./trip-player.component.scss"],
 })
 export class TripPlayerComponent implements OnDestroy {
   @Input() tripGranularity: number;
@@ -34,7 +33,7 @@ export class TripPlayerComponent implements OnDestroy {
 
   play() {
     this.intervalId = setInterval(() => {
-      if(this.currentStep >= (this.tripTimestamps.length - 1)) {
+      if (this.currentStep >= this.tripTimestamps.length - 1) {
         this.pause();
         return;
       }
@@ -48,31 +47,31 @@ export class TripPlayerComponent implements OnDestroy {
   }
 
   stepForward() {
-    if(this.currentStep >= (this.tripTimestamps.length - 1)) {
+    if (this.currentStep >= this.tripTimestamps.length - 1) {
       return;
     }
     this.currentStep++;
-    this.changeTimestamp({value: this.currentStep} as MatSliderChange);
+    this.changeTimestamp({ value: this.currentStep } as MatSliderChange);
   }
 
   stepBackwards() {
-    if(this.currentStep <= 1) {
+    if (this.currentStep <= 1) {
       return;
     }
     this.currentStep--;
-    this.changeTimestamp({value: this.currentStep} as MatSliderChange);
+    this.changeTimestamp({ value: this.currentStep } as MatSliderChange);
   }
 
   increaseSpeed() {
     this.playSpeed = this.playSpeed / 2;
-    if(this.intervalId) {
+    if (this.intervalId) {
       this.pause();
       this.play();
     }
   }
   decreaseSpeed() {
     this.playSpeed = this.playSpeed * 2;
-    if(this.intervalId) {
+    if (this.intervalId) {
       this.pause();
       this.play();
     }

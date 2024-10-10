@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { CanActivate, UrlTree } from '@angular/router';
+import { UrlTree } from '@angular/router';
 
 import { Store } from '@ngrx/store';
 
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { AuthSelectors } from '../../data/auth';
 
 @Injectable()
-export class FishingGuard implements CanActivate, OnDestroy {
+export class FishingGuard  implements OnDestroy {
   private fishingActivityUnlocked = false;
   private readonly unmount$: Subject<boolean> = new Subject<boolean>();
 

@@ -1,15 +1,23 @@
-import { Component, Input, TemplateRef, ElementRef, ViewChild } from '@angular/core';
-import { AssetTypes } from '@data/asset';
-import { MapSavedFiltersTypes } from '@data/map-saved-filters';
-import { MatDialog } from '@angular/material/dialog';
+import {
+  Component,
+  Input,
+  TemplateRef,
+  ElementRef,
+  ViewChild,
+} from "@angular/core";
+import { AssetTypes } from "@data/asset";
+import { MapSavedFiltersTypes } from "@data/map-saved-filters";
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
-  selector: 'map-saved-filters',
-  templateUrl: './saved-filters.component.html',
-  styleUrls: ['./saved-filters.component.scss'],
+  selector: "map-saved-filters",
+  templateUrl: "./saved-filters.component.html",
+  styleUrls: ["./saved-filters.component.scss"],
 })
 export class SavedFiltersComponent {
-  @Input() saveFilterFunction: (filter: MapSavedFiltersTypes.SavedFilter) => void;
+  @Input() saveFilterFunction: (
+    filter: MapSavedFiltersTypes.SavedFilter
+  ) => void;
   @Input() activeFilters: ReadonlyArray<string>;
   @Input() activateFilter: (filterName: string) => void;
   @Input() deactivateFilter: (filterName: string) => void;
@@ -19,34 +27,40 @@ export class SavedFiltersComponent {
 
   public savedFilterNames = [];
   public creatingNewFilter = false;
-  public newFilterName = '';
+  public newFilterName = "";
 
-  @ViewChild('createNewFilterNameInput') createNewFilterNameInput: ElementRef;
+  @ViewChild("createNewFilterNameInput") createNewFilterNameInput: ElementRef;
 
   constructor(private readonly dialog: MatDialog) {}
 
   toggleFilter(filterId: string) {
-    if(this.activeFilters.includes(filterId)) {
+    if (this.activeFilters.includes(filterId)) {
       this.deactivateFilter(filterId);
     } else {
       this.activateFilter(filterId);
     }
   }
 
-  trackBySavedFilterIds(index: number, savedFilter: MapSavedFiltersTypes.SavedFilter) {
+  trackBySavedFilterIds(
+    index: number,
+    savedFilter: MapSavedFiltersTypes.SavedFilter
+  ) {
     return savedFilter.id;
   }
 
   saveFilter() {
-    if(this.newFilterName.length > 0 && this.filterQuery.length > 0) {
-      this.saveFilterFunction({ name: this.newFilterName, filter: this.filterQuery });
+    if (this.newFilterName.length > 0 && this.filterQuery.length > 0) {
+      this.saveFilterFunction({
+        name: this.newFilterName,
+        filter: this.filterQuery,
+      });
       this.creatingNewFilter = false;
-      this.newFilterName = '';
+      this.newFilterName = "";
     } else {
-      if(this.newFilterName.length === 0) {
-        alert('Please insert desired filter name.');
+      if (this.newFilterName.length === 0) {
+        alert("Please insert desired filter name.");
       } else {
-        alert('Filter query missing!');
+        alert("Filter query missing!");
       }
     }
   }
@@ -60,13 +74,17 @@ export class SavedFiltersComponent {
 
   cancelFilter() {
     this.creatingNewFilter = false;
-    this.newFilterName = '';
+    this.newFilterName = "";
   }
 
-  openDialog(templateRef: TemplateRef<any>, actionFunction: (id: string) => void, id: string) {
+  openDialog(
+    templateRef: TemplateRef<any>,
+    actionFunction: (id: string) => void,
+    id: string
+  ) {
     const dialogRef = this.dialog.open(templateRef);
-    dialogRef.afterClosed().subscribe(result => {
-      if(result === true) {
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === true) {
         actionFunction(id);
       }
     });
