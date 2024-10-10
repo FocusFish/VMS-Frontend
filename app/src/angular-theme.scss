@@ -1,36 +1,37 @@
-@import '@angular/material/theming';
-@import 'variables.scss';
-// Plus imports for other components in your app.
+@use "@angular/material" as mat;
+@import "@angular/material/theming";
+@import "variables.scss";
+/* Plus imports for other components in your app. */
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// **Be sure that you only ever include this mixin once!**
-@include mat-core();
+/* Include the common styles for Angular Material. We include this here so that you only
+have to load a single css file for Angular Material in your app.
+**Be sure that you only ever include this mixin once!** */
+@include mat.core();
 
 $primary-color: (
-  100: #2280A7,
-  300: #2280A7,
+  100: #2280a7,
+  300: #2280a7,
   500: #004371,
-  700: #092D4B,
-   contrast: (
+  700: #092d4b,
+  contrast: (
     100: $light-primary-text,
     300: $light-primary-text,
     500: $light-primary-text,
     700: $light-primary-text,
-  )
+  ),
 );
 
 $accent-color: (
-  100: #66C622,
-  300: #66C622,
-  500: #227E00,
-  700: #01763B,
-   contrast: (
+  100: #66c622,
+  300: #66c622,
+  500: #227e00,
+  700: #01763b,
+  contrast: (
     100: $dark-primary-text,
     300: $dark-primary-text,
     500: $light-primary-text,
     700: $light-primary-text,
-  )
+  ),
 );
 
 $warn-color: (
@@ -38,19 +39,29 @@ $warn-color: (
   300: $color_warn_light,
   500: $color_warn,
   700: $color_warn_dark,
-   contrast: (
+  contrast: (
     100: $dark-primary-text,
     300: $dark-primary-text,
     500: $light-primary-text,
     700: $light-primary-text,
+  ),
+);
+
+/* Define the default theme (same as the example above). */
+$primary-color-palette: mat.define-palette($primary-color);
+$accent-color-palette: mat.define-palette($accent-color);
+$warn-color-palette: mat.define-palette($warn-color);
+$candy-app-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $primary-color-palette,
+      accent: $accent-color-palette,
+      warn: $warn-color-palette,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
   )
 );
 
-// Define the default theme (same as the example above).
-$primary-color-palette: mat-palette($primary-color);
-$accent-color-palette:  mat-palette($accent-color);
-$warn-color-palette:  mat-palette($warn-color);
-$candy-app-theme:   mat-light-theme($primary-color-palette, $accent-color-palette, $warn-color-palette);
-
-// Include the default theme styles.
-@include angular-material-theme($candy-app-theme);
+/* Include the default theme styles. */
+@include mat.all-component-themes($candy-app-theme);

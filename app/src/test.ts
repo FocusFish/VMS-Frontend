@@ -8,8 +8,6 @@ import {
 } from '@angular/platform-browser-dynamic/testing';
 import { environment } from './environments/environment';
 
-declare const require: any;
-
 if(environment.strictTests === true) {
   console.warn = (message: string) => {
     throw new Error(message);
@@ -23,7 +21,3 @@ getTestBed().initTestEnvironment(
     teardown: { destroyAfterEach: false }
 }
 );
-// Then we find all the tests.
-const context = require.context('./', true, /\.spec\.ts$/);
-// And load the modules.
-context.keys().map(context);

@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { CanActivate, UrlTree } from '@angular/router';
+import { UrlTree } from '@angular/router';
 
 import { Store } from '@ngrx/store';
 
@@ -13,7 +13,7 @@ import { RouterSelectors } from '@data/router';
 
 
 @Injectable()
-export class AuthGuard implements CanActivate, OnDestroy {
+export class AuthGuard  implements OnDestroy {
   private isLoggedIn = false;
   private currentUrl: string;
   private readonly unmount$: Subject<boolean> = new Subject<boolean>();

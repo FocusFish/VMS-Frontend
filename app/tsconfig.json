@@ -9,13 +9,23 @@
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2020",
+    "target": "ES2022",
     "paths": {
-      "@data/*": ["src/app/data/*"],
-      "@app/*": ["src/app/*"],
-      "@modules/*": ["src/app/modules/*"],
-      "@src/*": ["src/*"],
-      "@validators/*": ["src/app/helpers/validators"]
+      "@data/*": [
+        "src/app/data/*"
+      ],
+      "@app/*": [
+        "src/app/*"
+      ],
+      "@modules/*": [
+        "src/app/modules/*"
+      ],
+      "@src/*": [
+        "src/*"
+      ],
+      "@validators/*": [
+        "src/app/helpers/validators"
+      ]
     },
     "typeRoots": [
       "node_modules/@types"
@@ -25,7 +35,8 @@
       "dom"
     ],
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

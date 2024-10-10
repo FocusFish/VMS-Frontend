@@ -1,4 +1,4 @@
-@import 'variables.scss';
+@import "variables.scss";
 
 .layout-top-menu.navbar {
   background: $color_blue;
@@ -28,7 +28,7 @@
 
       i.brand-image {
         display: block;
-        background: url('/assets/UVMS_logo.svg');
+        background: url("/assets/UVMS_logo.svg");
         height: 32px;
         width: 103.375px;
         background-size: 103.375px 32px;
@@ -64,7 +64,6 @@
         padding-left: distance(1);
         font-size: 7px;
       }
-
     }
   }
 
@@ -83,17 +82,14 @@
       padding: 0px;
       min-width: 200px;
 
-      .mat-select-value-text {
-        color: white;
-      }
-      .mat-select-arrow {
+      & * {
         color: white;
       }
     }
 
-    .icon-user-name  {
+    .icon-user-name {
       display: inline-block;
-      background: url('/assets/svg-icons/person-fill.svg');
+      background: url("/assets/svg-icons/person-fill.svg");
       background-size: 20px 20px;
       width: 20px;
       min-height: 20px;

@@ -4,12 +4,14 @@
 
     <!-- Username -->
     <mat-form-field>
-      <input id="loginFormUsername" matInput placeholder="Username" i18n-placeholder #username>
+      <mat-label>{{ "Username" }}</mat-label>
+      <input id="loginFormUsername" matInput #username />
     </mat-form-field>
 
     <!-- Password -->
     <mat-form-field>
-      <input id="loginFormPassword" type="password" matInput placeholder="Password" i18n-placeholder #password>
+      <mat-label>Password</mat-label>
+      <input id="loginFormPassword" type="password" matInput #password />
     </mat-form-field>
 
     <div>
@@ -23,7 +25,8 @@
       type="submit"
       (click)="submitLogin(username.value, password.value)"
       i18n
-    >Sign in</button>
-
+    >
+      Sign in
+    </button>
   </form>
 </div>

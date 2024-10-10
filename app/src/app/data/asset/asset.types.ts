@@ -1,36 +1,36 @@
-import { Position, TimePosition } from '../generic.types';
-import { MobileTerminal } from '@data/mobile-terminal/mobile-terminal.types';
-import { UrgentByType } from '@data/incident/incident.types';
+import { Position, TimePosition } from "../generic.types";
+import { MobileTerminal } from "@data/mobile-terminal/mobile-terminal.types";
+import { UrgentByType } from "@data/incident/incident.types";
 
 // AORE(1), AORW(0), POR(2), IOR(3);
 export const OceanRegionTranslation = {
-  AORE: 'East Atlantic (1)',
-  AORW: 'West Atlantic (0)',
-  POR: 'Pacific (2)',
-  IOR: 'Indian (3)'
+  AORE: "East Atlantic (1)",
+  AORW: "West Atlantic (0)",
+  POR: "Pacific (2)",
+  IOR: "Indian (3)",
 };
 
 export const MovementStatusTranslation = {
-  10: 'Manual Position',
-  11: 'Time of Position',
-  64: 'Power Up',
-  66: 'Power Down',
-  69: 'Antenna Blocked',
-  70: 'Stored Position',
-  71: 'Io Report',
-  72: 'Enter Zone',
-  73: 'Leave Zone',
-  80: 'Enter Sleepmode',
-  81: 'In Sleepmode',
-  82: 'Leave Sleepmode',
-  83: 'Fix Time Begin',
-  85: 'Enter Reduced',
-  86: 'In Reduced',
-  87: 'Leave Reduced',
-  88: 'Manual Position',
-  89: 'Above Speed Limit',
-  90: 'Below Speed Limit',
-  91: 'GPS Blocked',
+  10: "Manual Position",
+  11: "Time of Position",
+  64: "Power Up",
+  66: "Power Down",
+  69: "Antenna Blocked",
+  70: "Stored Position",
+  71: "Io Report",
+  72: "Enter Zone",
+  73: "Leave Zone",
+  80: "Enter Sleepmode",
+  81: "In Sleepmode",
+  82: "Leave Sleepmode",
+  83: "Fix Time Begin",
+  85: "Enter Reduced",
+  86: "In Reduced",
+  87: "Leave Reduced",
+  88: "Manual Position",
+  89: "Above Speed Limit",
+  90: "Below Speed Limit",
+  91: "GPS Blocked",
 };
 
 export type Movement = Readonly<{
@@ -52,12 +52,11 @@ export type Movement = Readonly<{
   status?: string;
 }>;
 
-
 export type ManualMovement = Readonly<{
   movement: Movement;
   asset: Readonly<{
-    cfr: string,
-    ircs: string,
+    cfr: string;
+    ircs: string;
   }>;
 }>;
 
@@ -73,13 +72,13 @@ export type AssetList = Readonly<{
 }>;
 
 export type AssetListSearchQuery = Readonly<{
-  fields: ReadonlyArray<AssetListSearchQuery|AssetListSearchQueryField>,
+  fields: ReadonlyArray<AssetListSearchQuery | AssetListSearchQueryField>;
   logicalAnd: boolean;
 }>;
 
 export type AssetListSearchQueryField = Readonly<{
   searchField: string;
-  searchValue: string|number;
+  searchValue: string | number;
   operator?: string;
 }>;
 
@@ -172,9 +171,9 @@ export type AssetFilterQuery = Readonly<{
 }>;
 
 export enum AssetFilterValueTypes {
-  NUMBER = 'NUMBER',
-  STRING = 'STRING',
-  BOOLEAN = 'BOOLEAN'
+  NUMBER = "NUMBER",
+  STRING = "STRING",
+  BOOLEAN = "BOOLEAN",
 }
 
 export type AssetMovementWithAsset = Readonly<{
@@ -203,7 +202,7 @@ export type AssetGroup = Readonly<{
 }>;
 
 export type AssetTrips = Readonly<{
-  [dateTime: string]: { readonly [assetId: string]: AssetMovement }
+  [dateTime: string]: { readonly [assetId: string]: AssetMovement };
 }>;
 
 export type UnitTonnage = Readonly<{
@@ -217,7 +216,7 @@ export type LastPositions = Readonly<{
 }>;
 
 export type LastPositionsList = Readonly<{
-  readonly [assetId: string]: LastPositions
+  readonly [assetId: string]: LastPositions;
 }>;
 
 export type AssetLicence = Readonly<{
@@ -225,91 +224,91 @@ export type AssetLicence = Readonly<{
   assetId: string;
   civicNumber: string;
   createdDate: number;
-  decisionDate: number,
-  fromDate: number,
-  licenceNumber: number,
-  toDate: number,
+  decisionDate: number;
+  fromDate: number;
+  licenceNumber: number;
+  toDate: number;
   name: string;
   constraints: string;
 }>;
 
 export type AssetLicences = Readonly<{
-  readonly [assetId: string]: AssetLicence
+  readonly [assetId: string]: AssetLicence;
 }>;
 
 export type MapStatistics = Readonly<{
-  assetFilter: Readonly<{ showing: number, total: number }>,
-  sweVMS: Readonly<{ sending: number, total: number }>,
-  licenceInfo: Readonly<{ valid: number, missing: number }>,
-  incidentInfo: UrgentByType
+  assetFilter: Readonly<{ showing: number; total: number }>;
+  sweVMS: Readonly<{ sending: number; total: number }>;
+  licenceInfo: Readonly<{ valid: number; missing: number }>;
+  incidentInfo: UrgentByType;
 }>;
 
 export enum PollType {
-  AUTOMATIC_POLL = 'AUTOMATIC_POLL',
-  PROGRAM_POLL = 'PROGRAM_POLL',
-  SAMPLING_POLL = 'SAMPLING_POLL',
-  MANUAL_POLL = 'MANUAL_POLL',
-  CONFIGURATION_POLL = 'CONFIGURATION_POLL',
-  BASE_POLL = 'BASE_POLL'
+  AUTOMATIC_POLL = "AUTOMATIC_POLL",
+  PROGRAM_POLL = "PROGRAM_POLL",
+  SAMPLING_POLL = "SAMPLING_POLL",
+  MANUAL_POLL = "MANUAL_POLL",
+  CONFIGURATION_POLL = "CONFIGURATION_POLL",
+  BASE_POLL = "BASE_POLL",
 }
 
 export enum PollStatus {
-  SUCCESSFUL = 'SUCCESSFUL',
-  TIMED_OUT = 'TIMED_OUT',
-  FAILED = 'FAILED',
-  PENDING = 'PENDING',
-  ISSUED = 'ISSUED',
+  SUCCESSFUL = "SUCCESSFUL",
+  TIMED_OUT = "TIMED_OUT",
+  FAILED = "FAILED",
+  PENDING = "PENDING",
+  ISSUED = "ISSUED",
 }
 
 export type PollPostObject = Readonly<{
-  comment: string,
-  pollType?: PollType,
-  frequency?: number,
-  startDate?: number,
-  endDate?: number,
+  comment: string;
+  pollType?: PollType;
+  frequency?: number;
+  startDate?: number;
+  endDate?: number;
 }>;
 
 export type PollHistory = Readonly<{
-  status: PollStatus,
-  timestamp: number
+  status: PollStatus;
+  timestamp: number;
 }>;
 
 export type PollStatusObject = Readonly<{
-  guid: string,
-  history: ReadonlyArray<PollHistory>,
-  identifier: string,
-  refMessage: string,
+  guid: string;
+  history: ReadonlyArray<PollHistory>;
+  identifier: string;
+  refMessage: string;
   typeRef: {
-    message: string,
-    refGuid: string,
-    type: string
-  }
+    message: string;
+    refGuid: string;
+    type: string;
+  };
 }>;
 
 export type Poll = Readonly<{
   pollInfo: {
-    assetId: string,
-    channelId: string,
-    comment: string,
-    creator: string,
-    id: string,
-    mobileterminalId: string,
-    pollTypeEnum: PollType,
-    createTime: number,
-    updatedBy: string,
-    frequency?: number,
-    endDate?: number,
-    startDate?: number,
-  },
-  pollStatus?: PollStatusObject,
-  movement?: Movement,
-  mobileTerminalSnapshot: MobileTerminal,
+    assetId: string;
+    channelId: string;
+    comment: string;
+    creator: string;
+    id: string;
+    mobileterminalId: string;
+    pollTypeEnum: PollType;
+    createTime: number;
+    updatedBy: string;
+    frequency?: number;
+    endDate?: number;
+    startDate?: number;
+  };
+  pollStatus?: PollStatusObject;
+  movement?: Movement;
+  mobileTerminalSnapshot: MobileTerminal;
 }>;
 
 export type State = Readonly<{
   selectedAssets: ReadonlyArray<string>;
-  selectedAsset: string|null;
-  selectedMovement: string|null;
+  selectedAsset: string | null;
+  selectedMovement: string | null;
   selectedAssetsLastPositions: LastPositionsList;
   assetTrips: AssetTrips;
   assetTripGranularity: number;
@@ -320,7 +319,9 @@ export type State = Readonly<{
   lastUserAssetSearch: string;
   assetMovements: Readonly<{ readonly [assetId: string]: AssetMovement }>;
   assetTracks: Readonly<{ readonly [assetId: string]: AssetTrack }>;
-  lastFullPositions: Readonly<{ readonly [assetId: string]: ReadonlyArray<Movement> }>;
+  lastFullPositions: Readonly<{
+    readonly [assetId: string]: ReadonlyArray<Movement>;
+  }>;
   forecasts: ReadonlyArray<string>;
   positionsForInspection: Readonly<{ readonly [id: number]: Movement }>;
   searchQuery: string;
@@ -329,8 +330,8 @@ export type State = Readonly<{
   assetLicences: AssetLicences;
   lastPollsForAsset: Readonly<{
     readonly [assetId: string]: Readonly<{
-      readonly [pollId: string]: Poll
-    }>
-  }>,
+      readonly [pollId: string]: Poll;
+    }>;
+  }>;
   numberOfVMSAssetsInSystem: number;
 }>;
