@@ -1,9 +1,13 @@
 <div class="content-container">
-  <i class="ri-question-fill" (click)="setActiveRightPanel(['information', 'asset-search'])"></i>
+  <i
+    class="ri-question-fill"
+    (click)="setActiveRightPanel(['information', 'asset-search'])"
+  ></i>
   <div class="search-wrapper">
     <mat-form-field>
       <input
         matInput
+        id="asset-search-field"
         placeholder="Search"
         i18n-placeholder
         type="text"
@@ -12,11 +16,18 @@
         [matAutocomplete]="auto"
         (blur)="setActiveInformationPanel(null)"
         (focus)="setActiveInformationPanel('asset-search')"
-      >
+      />
     </mat-form-field>
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)">
-      <mat-option *ngFor="let option of searchResults" [value]="option.value" data-id="{{option.id}}">
-        {{option.value}}
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="optionSelected($event)"
+    >
+      <mat-option
+        *ngFor="let option of searchResults"
+        [value]="option.value"
+        data-id="{{ option.id }}"
+      >
+        {{ option.value }}
       </mat-option>
     </mat-autocomplete>
   </div>
