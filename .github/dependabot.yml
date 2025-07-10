@@ -14,3 +14,10 @@ updates:
       angular:
         patterns:
           - "@angular/*"
+          - "@angular-devkit/*"
+      ngrx:
+        patterns:
+          - "@ngrx/*"
+      karma:
+        patterns:
+          - "karma*"
