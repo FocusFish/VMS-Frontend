@@ -5,12 +5,19 @@ updates:
     schedule:
       interval: daily
     open-pull-requests-limit: 10
-    reviewers:
-      - FocusFish/uvmsdevs
   - package-ecosystem: npm
     directory: "/app"
     schedule:
       interval: daily
     open-pull-requests-limit: 10
-    reviewers:
-      - FocusFish/uvmsdevs
+    groups:
+      angular:
+        patterns:
+          - "@angular/*"
+          - "@angular-devkit/*"
+      ngrx:
+        patterns:
+          - "@ngrx/*"
+      karma:
+        patterns:
+          - "karma*"
