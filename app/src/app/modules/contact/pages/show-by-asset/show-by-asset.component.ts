@@ -9,9 +9,10 @@ import { ContactActions, ContactTypes, ContactSelectors } from '@data/contact';
 import { RouterTypes, RouterSelectors } from '@data/router';
 
 @Component({
-  selector: 'contact-show-by-asset-page',
-  templateUrl: './show-by-asset.component.html',
-  styleUrls: ['./show-by-asset.component.scss'],
+    selector: 'contact-show-by-asset-page',
+    templateUrl: './show-by-asset.component.html',
+    styleUrls: ['./show-by-asset.component.scss'],
+    standalone: false
 })
 export class ShowByAssetPageComponent implements OnInit, OnDestroy {
 

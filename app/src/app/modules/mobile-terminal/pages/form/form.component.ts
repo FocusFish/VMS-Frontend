@@ -37,9 +37,10 @@ import { SaveUnmatchedMemberNumbersDialogComponent } from "@modules/mobile-termi
 import { Moment } from "moment-timezone";
 
 @Component({
-  selector: "mobile-terminal-edit-page",
-  templateUrl: "./form.component.html",
-  styleUrls: ["./form.component.scss"],
+    selector: "mobile-terminal-edit-page",
+    templateUrl: "./form.component.html",
+    styleUrls: ["./form.component.scss"],
+    standalone: false
 })
 export class FormPageComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild("toolbox") toolbox;

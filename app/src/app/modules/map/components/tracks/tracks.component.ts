@@ -13,8 +13,9 @@ import { toStringXY } from 'ol/coordinate';
 import { formatUnixtime } from '@app/helpers/datetime-formatter';
 
 @Component({
-  selector: 'map-tracks',
-  template: ''
+    selector: 'map-tracks',
+    template: '',
+    standalone: false
 })
 export class TracksComponent implements OnInit, OnDestroy, OnChanges {
 

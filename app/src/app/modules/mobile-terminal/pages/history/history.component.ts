@@ -17,8 +17,9 @@ import { RouterTypes, RouterSelectors } from "@data/router";
 import { UserSettingsSelectors } from "@data/user-settings";
 
 @Component({
-  selector: "mobile-terminal-history-page",
-  templateUrl: "./history.component.html",
+    selector: "mobile-terminal-history-page",
+    templateUrl: "./history.component.html",
+    standalone: false
 })
 export class HistoryPageComponent implements OnInit, OnDestroy {
   constructor(private readonly store: Store<State>) {}

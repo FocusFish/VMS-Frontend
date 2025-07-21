@@ -11,9 +11,10 @@ import { createNotesFormValidator } from './form-validator';
 import { errorMessage } from '@app/helpers/validators/error-messages';
 
 @Component({
-  selector: 'notes-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss'],
+    selector: 'notes-form',
+    templateUrl: './form.component.html',
+    styleUrls: ['./form.component.scss'],
+    standalone: false
 })
 export class FormComponent implements OnChanges {
 

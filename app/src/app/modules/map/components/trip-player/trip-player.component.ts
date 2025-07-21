@@ -5,9 +5,10 @@ import { AssetTypes } from "@data/asset";
 import { Position } from "@data/generic.types";
 
 @Component({
-  selector: "map-trip-player",
-  templateUrl: "./trip-player.component.html",
-  styleUrls: ["./trip-player.component.scss"],
+    selector: "map-trip-player",
+    templateUrl: "./trip-player.component.html",
+    styleUrls: ["./trip-player.component.scss"],
+    standalone: false
 })
 export class TripPlayerComponent implements OnDestroy {
   @Input() tripGranularity: number;

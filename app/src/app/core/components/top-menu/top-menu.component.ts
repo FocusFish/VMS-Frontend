@@ -5,10 +5,11 @@ import moment from 'moment-timezone';
 import { formatUnixtimeWithoutDate } from '@app/helpers/datetime-formatter';
 
 @Component({
-  selector: 'core-top-menu-component',
-  templateUrl: './top-menu.component.html',
-  styleUrls: ['./top-menu.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'core-top-menu-component',
+    templateUrl: './top-menu.component.html',
+    styleUrls: ['./top-menu.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class TopMenuComponent implements OnInit, OnChanges, OnDestroy {
 

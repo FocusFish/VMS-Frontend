@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'core-top-menu-component',
+    selector: 'core-top-menu-component',
+    standalone: false
 })
 export class TopMenuComponent {
   @Input() appVersion: string;

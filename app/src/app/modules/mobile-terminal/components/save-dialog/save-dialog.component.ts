@@ -9,10 +9,11 @@ import { MapSavedFiltersTypes } from "@data/map-saved-filters";
 import { UntypedFormControl, Validators } from "@angular/forms";
 
 @Component({
-  selector: "mobile-terminal-save-dialog",
-  templateUrl: "./save-dialog.component.html",
-  styleUrls: ["./save-dialog.component.scss"],
-  encapsulation: ViewEncapsulation.None,
+    selector: "mobile-terminal-save-dialog",
+    templateUrl: "./save-dialog.component.html",
+    styleUrls: ["./save-dialog.component.scss"],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class SaveDialogComponent {
   public note = new UntypedFormControl("", Validators.required);

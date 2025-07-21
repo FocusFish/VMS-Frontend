@@ -10,9 +10,10 @@ import { MapSavedFiltersTypes } from "@data/map-saved-filters";
 import { MatDialog } from "@angular/material/dialog";
 
 @Component({
-  selector: "map-saved-filters",
-  templateUrl: "./saved-filters.component.html",
-  styleUrls: ["./saved-filters.component.scss"],
+    selector: "map-saved-filters",
+    templateUrl: "./saved-filters.component.html",
+    styleUrls: ["./saved-filters.component.scss"],
+    standalone: false
 })
 export class SavedFiltersComponent {
   @Input() saveFilterFunction: (

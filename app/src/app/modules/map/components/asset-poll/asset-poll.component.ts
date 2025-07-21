@@ -5,9 +5,10 @@ import { AssetTypes } from '@data/asset';
 import { MobileTerminalTypes } from '@data/mobile-terminal';
 
 @Component({
-  selector: 'map-asset-poll',
-  templateUrl: './asset-poll.component.html',
-  styleUrls: ['./asset-poll.component.scss']
+    selector: 'map-asset-poll',
+    templateUrl: './asset-poll.component.html',
+    styleUrls: ['./asset-poll.component.scss'],
+    standalone: false
 })
 export class AssetPollComponent implements OnInit, OnChanges {
   @Input() asset: AssetTypes.Asset;

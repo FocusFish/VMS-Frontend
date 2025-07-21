@@ -9,9 +9,10 @@ import { IncidentActions, IncidentTypes, IncidentSelectors } from '@data/inciden
 import { UserSettingsSelectors } from '@data/user-settings';
 
 @Component({
-  selector: 'asset-show-page',
-  templateUrl: './show.component.html',
-  styleUrls: ['./show.component.scss']
+    selector: 'asset-show-page',
+    templateUrl: './show.component.html',
+    styleUrls: ['./show.component.scss'],
+    standalone: false
 })
 export class ShowPageComponent implements OnInit, OnDestroy, AfterViewInit {
 

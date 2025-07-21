@@ -15,9 +15,10 @@ type ExtendedMobileTerminalHistory = MobileTerminalTypes.MobileTerminalHistory &
 };
 
 @Component({
-  selector: 'mobile-terminal-attachment-history-component',
-  templateUrl: './attachment-history.component.html',
-  styleUrls: ['./attachment-history.component.scss'],
+    selector: 'mobile-terminal-attachment-history-component',
+    templateUrl: './attachment-history.component.html',
+    styleUrls: ['./attachment-history.component.scss'],
+    standalone: false
 })
 export class AttachmentHistoryComponent implements OnChanges {
   @Input() mobileTerminalHistoryList: MobileTerminalTypes.MobileTerminalHistoryList;

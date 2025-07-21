@@ -29,9 +29,10 @@ import { convertDDToDDM } from '@app/helpers/wgs84-formatter';
 
 
 @Component({
-  selector: 'map-reports',
-  templateUrl: './reports.component.html',
-  styleUrls: ['./reports.component.scss']
+    selector: 'map-reports',
+    templateUrl: './reports.component.html',
+    styleUrls: ['./reports.component.scss'],
+    standalone: false
 })
 export class ReportsComponent implements OnInit, OnDestroy {
 

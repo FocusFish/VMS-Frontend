@@ -8,9 +8,10 @@ import { AuthSelectors } from '@data/auth';
 import { RouterTypes, RouterSelectors } from '@data/router';
 
 @Component({
-  selector: 'core-full-layout-component',
-  templateUrl: './full.component.html',
-  styleUrls: ['./full.component.scss']
+    selector: 'core-full-layout-component',
+    templateUrl: './full.component.html',
+    styleUrls: ['./full.component.scss'],
+    standalone: false
 })
 
 export class FullLayoutComponent implements OnInit {

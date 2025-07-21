@@ -12,8 +12,9 @@ import Point from 'ol/geom/Point';
 import { fromLonLat } from 'ol/proj';
 
 @Component({
-  selector: 'map-asset-forecast',
-  template: '',
+    selector: 'map-asset-forecast',
+    template: '',
+    standalone: false
 })
 export class AssetForecastComponent implements OnInit, OnDestroy, OnChanges {
 

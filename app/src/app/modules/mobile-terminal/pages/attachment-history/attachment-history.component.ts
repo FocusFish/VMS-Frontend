@@ -10,8 +10,9 @@ import { RouterTypes, RouterSelectors } from '@data/router';
 import { UserSettingsSelectors } from '@data/user-settings';
 
 @Component({
-  selector: 'mobile-terminal-attachment-history-page',
-  templateUrl: './attachment-history.component.html',
+    selector: 'mobile-terminal-attachment-history-page',
+    templateUrl: './attachment-history.component.html',
+    standalone: false
 })
 export class AttachmentHistoryPageComponent implements OnInit, OnDestroy {
 

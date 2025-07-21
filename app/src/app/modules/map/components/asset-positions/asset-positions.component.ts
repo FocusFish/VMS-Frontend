@@ -14,9 +14,10 @@ type ExtendedMovement = Readonly<AssetTypes.Movement & {
 }>;
 
 @Component({
-  selector: 'map-asset-positions',
-  templateUrl: './asset-positions.component.html',
-  styleUrls: ['./asset-positions.component.scss']
+    selector: 'map-asset-positions',
+    templateUrl: './asset-positions.component.html',
+    styleUrls: ['./asset-positions.component.scss'],
+    standalone: false
 })
 export class AssetPositionsComponent implements OnInit, OnChanges {
   @Input() asset: AssetTypes.Asset;

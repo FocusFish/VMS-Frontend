@@ -8,8 +8,9 @@ import { MobileTerminalTypes } from '@data/mobile-terminal';
 
 
 @Component({
-  selector: 'map-incident-log-entry-poll',
-  templateUrl: './incident-log-entry-poll.component.html',
+    selector: 'map-incident-log-entry-poll',
+    templateUrl: './incident-log-entry-poll.component.html',
+    standalone: false
 })
 export class IncidentLogEntryPollComponent implements OnChanges {
   @Input() poll: AssetTypes.Poll;

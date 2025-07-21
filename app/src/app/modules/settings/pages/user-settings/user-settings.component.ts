@@ -12,9 +12,10 @@ import { MapSettingsTypes, MapSettingsActions, MapSettingsReducer, MapSettingsSe
 import { UserSettingsTypes, UserSettingsActions, UserSettingsReducer, UserSettingsSelectors } from '@data/user-settings';
 
 @Component({
-  selector: 'settings-user-settings',
-  templateUrl: './user-settings.component.html',
-  styleUrls: ['./user-settings.component.scss']
+    selector: 'settings-user-settings',
+    templateUrl: './user-settings.component.html',
+    styleUrls: ['./user-settings.component.scss'],
+    standalone: false
 })
 export class UserSettingsComponent implements OnInit, OnDestroy {
 

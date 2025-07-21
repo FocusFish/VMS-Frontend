@@ -29,9 +29,10 @@ import { UserSettingsSelectors } from '@data/user-settings';
 import { Position } from '@data/generic.types';
 
 @Component({
-  selector: 'map-realtime',
-  templateUrl: './realtime.component.html',
-  styleUrls: ['./realtime.component.scss']
+    selector: 'map-realtime',
+    templateUrl: './realtime.component.html',
+    styleUrls: ['./realtime.component.scss'],
+    standalone: false
 })
 export class RealtimeComponent implements OnInit, OnDestroy {
 

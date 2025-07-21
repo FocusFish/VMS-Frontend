@@ -2,9 +2,10 @@ import { Component, Input, OnChanges } from '@angular/core';
 import { IncidentTypes } from '@data/incident';
 
 @Component({
-  selector: 'map-incidents-parked',
-  templateUrl: './incidents-parked.component.html',
-  styleUrls: ['./incidents-parked.component.scss']
+    selector: 'map-incidents-parked',
+    templateUrl: './incidents-parked.component.html',
+    styleUrls: ['./incidents-parked.component.scss'],
+    standalone: false
 })
 export class IncidentsParkedComponent implements OnChanges {
   @Input() incidents: IncidentTypes.IncidentsCollectionByResolution;

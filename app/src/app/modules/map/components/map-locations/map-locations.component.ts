@@ -6,8 +6,9 @@ import Map from 'ol/Map';
 import { toLonLat } from 'ol/proj';
 
 @Component({
-  selector: 'map-locations',
-  template: '',
+    selector: 'map-locations',
+    template: '',
+    standalone: false
 })
 export class MapLocationsComponent {
   @Input() mapLocations: ReadonlyArray<MapSettingsTypes.MapLocation>;

@@ -38,10 +38,11 @@ import { convertDDMToDD, convertDDToDDM } from "@app/helpers/wgs84-formatter";
 import { formatUnixtime } from "@app/helpers/datetime-formatter";
 
 @Component({
-  selector: "map-manual-movement-form",
-  templateUrl: "./manual-movement-form.component.html",
-  styleUrls: ["./manual-movement-form.component.scss"],
-  encapsulation: ViewEncapsulation.None,
+    selector: "map-manual-movement-form",
+    templateUrl: "./manual-movement-form.component.html",
+    styleUrls: ["./manual-movement-form.component.scss"],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class ManualMovementFormComponent implements OnInit, OnDestroy {
   @Input() createManualMovement: (manualMovement: AssetTypes.Movement) => void;

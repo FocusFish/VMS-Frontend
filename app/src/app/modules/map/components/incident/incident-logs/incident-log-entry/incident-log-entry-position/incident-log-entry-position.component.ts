@@ -5,9 +5,10 @@ import { formatUnixtime } from '@app/helpers/datetime-formatter';
 import { AssetTypes } from '@data/asset';
 
 @Component({
-  selector: 'map-incident-log-entry-position',
-  templateUrl: './incident-log-entry-position.component.html',
-  styleUrls: ['./incident-log-entry-position.component.scss']
+    selector: 'map-incident-log-entry-position',
+    templateUrl: './incident-log-entry-position.component.html',
+    styleUrls: ['./incident-log-entry-position.component.scss'],
+    standalone: false
 })
 export class IncidentLogEntryPositionComponent implements OnChanges {
   @Input() position: AssetTypes.Movement;

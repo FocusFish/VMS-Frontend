@@ -2,10 +2,11 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { MapLayersTypes } from '@data/map-layers';
 
 @Component({
-  selector: 'map-layers-panel',
-  templateUrl: './map-layers-panel.component.html',
-  styleUrls: ['./map-layers-panel.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'map-layers-panel',
+    templateUrl: './map-layers-panel.component.html',
+    styleUrls: ['./map-layers-panel.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class MapLayersPanelComponent {
 

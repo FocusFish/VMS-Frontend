@@ -9,9 +9,10 @@ import { errorMessage } from '@app/helpers/validators/error-messages';
 import moment from 'moment-timezone';
 
 @Component({
-  selector: 'map-incident-expiry-date-form',
-  templateUrl: './incident-expiry-date-form.component.html',
-  styleUrls: ['./incident-expiry-date-form.component.scss']
+    selector: 'map-incident-expiry-date-form',
+    templateUrl: './incident-expiry-date-form.component.html',
+    styleUrls: ['./incident-expiry-date-form.component.scss'],
+    standalone: false
 })
 export class IncidentExpiryDateFormComponent implements OnChanges, OnDestroy, AfterViewInit {
   @Input() changeExpiryDate: (expiryDate: number | null) => void;

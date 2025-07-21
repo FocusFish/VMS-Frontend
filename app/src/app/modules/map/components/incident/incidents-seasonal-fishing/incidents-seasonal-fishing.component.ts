@@ -2,9 +2,10 @@ import { Component, Input, OnChanges } from '@angular/core';
 import { IncidentTypes } from '@data/incident';
 
 @Component({
-  selector: 'map-incidents-seasonal-fishing',
-  templateUrl: './incidents-seasonal-fishing.component.html',
-  styleUrls: ['./incidents-seasonal-fishing.component.scss']
+    selector: 'map-incidents-seasonal-fishing',
+    templateUrl: './incidents-seasonal-fishing.component.html',
+    styleUrls: ['./incidents-seasonal-fishing.component.scss'],
+    standalone: false
 })
 export class IncidentsSeasonalFishingComponent implements OnChanges {
   @Input() incidents: IncidentTypes.IncidentsCollectionByResolution;

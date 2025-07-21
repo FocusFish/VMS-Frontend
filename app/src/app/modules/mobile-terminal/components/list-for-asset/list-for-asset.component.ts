@@ -8,9 +8,10 @@ import { MobileTerminalTypes } from "@data/mobile-terminal";
 import { formatUnixtime } from "@app/helpers/datetime-formatter";
 
 @Component({
-  selector: "mobile-terminal-list-for-asset-component",
-  templateUrl: "./list-for-asset.component.html",
-  styleUrls: ["./list-for-asset.component.scss"],
+    selector: "mobile-terminal-list-for-asset-component",
+    templateUrl: "./list-for-asset.component.html",
+    styleUrls: ["./list-for-asset.component.scss"],
+    standalone: false
 })
 export class ListForAssetComponent implements OnChanges {
   @Input() mobileTerminals: ReadonlyArray<MobileTerminalTypes.MobileTerminal>;

@@ -16,9 +16,10 @@ import { IncidentResolveDialogComponent } from "@modules/map/components/incident
 import { IncidentTypeFormDialogComponent } from "@modules/map/components/incident/incident-type-form-dialog/incident-type-form-dialog.component";
 
 @Component({
-  selector: "map-incident",
-  templateUrl: "./incident.component.html",
-  styleUrls: ["./incident.component.scss"],
+    selector: "map-incident",
+    templateUrl: "./incident.component.html",
+    styleUrls: ["./incident.component.scss"],
+    standalone: false
 })
 export class IncidentComponent implements OnChanges {
   @Input() asset: AssetTypes.AssetData;

@@ -2,9 +2,10 @@ import { Component, Input, OnChanges, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 @Component({
-  selector: 'map-source-picker',
-  templateUrl: './source-picker.component.html',
-  styleUrls: ['./source-picker.component.scss']
+    selector: 'map-source-picker',
+    templateUrl: './source-picker.component.html',
+    styleUrls: ['./source-picker.component.scss'],
+    standalone: false
 })
 export class SourcePickerComponent {
 

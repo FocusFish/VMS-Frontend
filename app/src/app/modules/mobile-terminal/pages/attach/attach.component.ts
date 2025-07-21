@@ -13,9 +13,10 @@ import { MobileTerminalTypes, MobileTerminalActions, MobileTerminalSelectors } f
 import { RouterTypes, RouterSelectors } from '@data/router';
 
 @Component({
-  selector: 'mobile-terminal-attach-page',
-  templateUrl: './attach.component.html',
-  styleUrls: ['./attach.component.scss']
+    selector: 'mobile-terminal-attach-page',
+    templateUrl: './attach.component.html',
+    styleUrls: ['./attach.component.scss'],
+    standalone: false
 })
 export class AttachPageComponent implements OnInit, OnDestroy {
 

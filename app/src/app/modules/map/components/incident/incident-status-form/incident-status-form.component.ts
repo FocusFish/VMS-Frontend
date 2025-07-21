@@ -6,9 +6,10 @@ import { createIncidentStatusFormValidator } from './form-validator';
 import { errorMessage } from '@app/helpers/validators/error-messages';
 
 @Component({
-  selector: 'map-incident-status-form',
-  templateUrl: './incident-status-form.component.html',
-  styleUrls: ['./incident-status-form.component.scss']
+    selector: 'map-incident-status-form',
+    templateUrl: './incident-status-form.component.html',
+    styleUrls: ['./incident-status-form.component.scss'],
+    standalone: false
 })
 export class IncidentStatusFormComponent implements OnChanges {
   @Input() status: string;

@@ -11,9 +11,10 @@ import { RouterTypes, RouterSelectors } from '@data/router';
 import { UserSettingsSelectors } from '@data/user-settings';
 
 @Component({
-  selector: 'mobile-terminal-show-page',
-  templateUrl: './show.component.html',
-  styleUrls: ['./show.component.scss'],
+    selector: 'mobile-terminal-show-page',
+    templateUrl: './show.component.html',
+    styleUrls: ['./show.component.scss'],
+    standalone: false
 })
 export class ShowPageComponent implements OnInit, OnDestroy {
 

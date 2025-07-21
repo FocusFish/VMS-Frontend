@@ -18,8 +18,9 @@ import { pointerMove } from 'ol/events/condition.js';
 import { formatDate } from '@app/helpers/helpers';
 
 @Component({
-  selector: 'map-tracks-segments',
-  template: '',
+    selector: 'map-tracks-segments',
+    template: '',
+    standalone: false
 })
 export class TracksSegmentsComponent implements OnInit, OnDestroy, OnChanges {
 

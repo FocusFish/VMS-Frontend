@@ -13,9 +13,10 @@ import moment from 'moment-timezone';
 import { ActivityTypes } from '@data/activity';
 
 @Component({
-  selector: 'map-asset-panel-show',
-  templateUrl: './asset-panel-show.component.html',
-  styleUrls: ['./asset-panel-show.component.scss']
+    selector: 'map-asset-panel-show',
+    templateUrl: './asset-panel-show.component.html',
+    styleUrls: ['./asset-panel-show.component.scss'],
+    standalone: false
 })
 export class AssetPanelShowComponent {
   @Input() asset: AssetTypes.AssetData;
