@@ -119,25 +119,25 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "vms-frontend:build"
+            "buildTarget": "vms-frontend:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "vms-frontend:build:production"
+              "buildTarget": "vms-frontend:build:production"
             },
             "prod-sv": {
-              "browserTarget": "vms-frontend:build:sv"
+              "buildTarget": "vms-frontend:build:sv"
             },
             "dev": {
-              "browserTarget": "vms-frontend:build:dev"
+              "buildTarget": "vms-frontend:build:dev"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "vms-frontend:build",
-            "format": "xlf"
+            "format": "xlf",
+            "buildTarget": "vms-frontend:build"
           }
         },
         "test": {
