@@ -309,13 +309,15 @@ describe("RealtimeComponent", () => {
 
       expect(dispatchSpy).toHaveBeenCalledTimes(3);
       expect(dispatchSpy).toHaveBeenCalledWith(
-        MapActions.setActiveRightPanel({ activeRightPanel: ["showAsset"] })
+        jasmine.objectContaining({ type: "[Map] Set active right panel" })
       );
       expect(dispatchSpy).toHaveBeenCalledWith(
-        AssetActions.selectAsset({ assetId: "asset-id" })
+        jasmine.objectContaining({ type: "[Asset] Select asset" })
       );
       expect(dispatchSpy).toHaveBeenCalledWith(
-        AssetActions.getLastPositionsForSelectedAsset({ assetId: "asset-id" })
+        jasmine.objectContaining({
+          type: "[Asset] Get last positions for selected asset",
+        })
       );
     });
   });

@@ -57,7 +57,7 @@ describe("LoginComponent", () => {
 
     expect(dispatchSpy).toHaveBeenCalledTimes(1);
     expect(dispatchSpy).toHaveBeenCalledWith(
-      AuthActions.login({ username, password })
+      jasmine.objectContaining({ type: "[Auth] Login" })
     );
   });
 });

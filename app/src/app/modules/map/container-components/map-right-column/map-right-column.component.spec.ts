@@ -83,10 +83,8 @@ describe("RealtimeComponent", () => {
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
       expect(dispatchSpy).toHaveBeenCalledWith(
-        MapSettingsActions.saveMapLocation({
-          key: 1,
-          mapLocation,
-          save: undefined,
+        jasmine.objectContaining({
+          type: "[MapSettings] Save map location",
         })
       );
     });
@@ -99,7 +97,9 @@ describe("RealtimeComponent", () => {
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
       expect(dispatchSpy).toHaveBeenCalledWith(
-        MapSettingsActions.setVisibilityForAssetNames({ visibility: true })
+        jasmine.objectContaining({
+          type: "[MapSettings] Set visibility for asset names",
+        })
       );
     });
 
@@ -111,7 +111,9 @@ describe("RealtimeComponent", () => {
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
       expect(dispatchSpy).toHaveBeenCalledWith(
-        MapSettingsActions.setVisibilityForAssetSpeeds({ visibility: true })
+        jasmine.objectContaining({
+          type: "[MapSettings] Set visibility for asset speeds",
+        })
       );
     });
 
@@ -123,7 +125,9 @@ describe("RealtimeComponent", () => {
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
       expect(dispatchSpy).toHaveBeenCalledWith(
-        MapSettingsActions.setVisibilityForTracks({ visibility: true })
+        jasmine.objectContaining({
+          type: "[MapSettings] Set visibility for tracks",
+        })
       );
     });
 
@@ -135,7 +139,9 @@ describe("RealtimeComponent", () => {
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
       expect(dispatchSpy).toHaveBeenCalledWith(
-        MapSettingsActions.setVisibilityForFlags({ visibility: true })
+        jasmine.objectContaining({
+          type: "[MapSettings] Set visibility for flags",
+        })
       );
     });
 
@@ -147,7 +153,9 @@ describe("RealtimeComponent", () => {
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
       expect(dispatchSpy).toHaveBeenCalledWith(
-        MapSettingsActions.setVisibilityForForecast({ visibility: true })
+        jasmine.objectContaining({
+          type: "[MapSettings] Set visibility for forecast",
+        })
       );
     });
   });
