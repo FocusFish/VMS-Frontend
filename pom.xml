@@ -25,8 +25,8 @@
 					<artifactId>frontend-maven-plugin</artifactId>
 					<version>1.15.1</version>
 					<configuration>
-						<nodeVersion>v16.14.0</nodeVersion>
-						<npmVersion>8.3.1</npmVersion>
+						<nodeVersion>v18.20.3</nodeVersion>
+						<npmVersion>10.7.0</npmVersion>
 						<workingDirectory>${basedir}/app</workingDirectory>
 						<installDirectory>${basedir}</installDirectory>
 					</configuration>
@@ -130,10 +130,10 @@
 					<warName>${project.artifactId}</warName>
 					<webResources>
 						<resource>
-							<directory>${basedir}/app/dist/en</directory>
+							<directory>${basedir}/app/dist/browser/en</directory>
 						</resource>
 						<resource>
-							<directory>${basedir}/app/dist/sv</directory>
+							<directory>${basedir}/app/dist/browser/sv</directory>
 							<targetPath>sv</targetPath>
 						</resource>
 						<resource>
