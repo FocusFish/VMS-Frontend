@@ -1,7 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, LOCALE_ID } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import {} from "@angular/common/http";
+import { provideHttpClient } from "@angular/common/http";
 
 import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
@@ -12,12 +12,6 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
 // This is against flux patterns which dictates that a Action consists of a type and a payload.
 // For flexibility purpouses we will add payload as an optional instead.
 // We are patching for TS linting sake.
-declare module "@ngrx/store" {
-  interface Action {
-    type: string;
-    payload?: any;
-  }
-}
 
 import { MatDialogModule } from "@angular/material/dialog";
 
@@ -69,7 +63,6 @@ const imports = [
   }),
   NgrxRouterStoreModule,
   AppRoutingModule,
-  HttpClientModule,
   EffectsModule.forRoot([
     ActivityEffects,
     AuthEffects,
@@ -109,7 +102,7 @@ if (!environment.production && environment.useStoreDevTools) {
 @NgModule({
   declarations: [AppComponent],
   imports,
-  providers: [{ provide: LOCALE_ID, useValue: "sv-SE" }],
+  providers: [{ provide: LOCALE_ID, useValue: "sv-SE" }, provideHttpClient()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

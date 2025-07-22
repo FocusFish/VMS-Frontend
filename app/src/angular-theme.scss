@@ -1,5 +1,5 @@
 @use "@angular/material" as mat;
-@import "@angular/material/theming";
+@use "@angular/material/core/theming/theming";
 @import "variables.scss";
 /* Plus imports for other components in your app. */
 
@@ -15,10 +15,10 @@ $primary-color: (
   500: #004371,
   700: #092d4b,
   contrast: (
-    100: $light-primary-text,
-    300: $light-primary-text,
-    500: $light-primary-text,
-    700: $light-primary-text,
+    100: #092d4b,
+    300: #092d4b,
+    500: #ffffff,
+    700: #ffffff,
   ),
 );
 
@@ -28,10 +28,10 @@ $accent-color: (
   500: #227e00,
   700: #01763b,
   contrast: (
-    100: $dark-primary-text,
-    300: $dark-primary-text,
-    500: $light-primary-text,
-    700: $light-primary-text,
+    100: #01763b,
+    300: #01763b,
+    500: #ffffff,
+    700: #ffffff,
   ),
 );
 
@@ -41,10 +41,10 @@ $warn-color: (
   500: $color_warn,
   700: $color_warn_dark,
   contrast: (
-    100: $dark-primary-text,
-    300: $dark-primary-text,
-    500: $light-primary-text,
-    700: $light-primary-text,
+    100: $color_warn_dark,
+    300: $color_warn_dark,
+    500: #ffffff,
+    700: #ffffff,
   ),
 );
 

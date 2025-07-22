@@ -33,19 +33,11 @@
               "base": "dist/vms-frontend"
             },
             "index": "src/index.html",
-            "polyfills": [
-              "src/polyfills.ts",
-              "@angular/localize/init"
-            ],
+            "polyfills": ["src/polyfills.ts", "@angular/localize/init"],
             "tsConfig": "src/tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/app"
-              ]
+              "includePaths": ["src/app"]
             },
             "styles": [
               "src/angular-theme.scss",
@@ -58,9 +50,7 @@
               "src/styles.scss",
               "src/app/modules/map/map.scss"
             ],
-            "scripts": [
-              "node_modules/chart.js/dist/Chart.js"
-            ],
+            "scripts": ["node_modules/chart.js/dist/Chart.js"],
             "allowedCommonJsDependencies": [
               "i18n-iso-countries",
               "moment-timezone",
@@ -94,7 +84,7 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
+                  "maximumWarning": "11kb"
                 }
               ],
               "outputPath": {
@@ -106,7 +96,7 @@
               "budgets": [
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
+                  "maximumWarning": "11kb"
                 }
               ],
               "fileReplacements": [
@@ -162,20 +152,11 @@
               "src/app/modules/map/map.scss"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/app"
-              ]
+              "includePaths": ["src/app"]
             },
-            "scripts": [
-              "node_modules/chart.js/dist/Chart.js"
-            ],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "codeCoverageExclude": [
-              "src/testing/**/*"
-            ]
+            "scripts": ["node_modules/chart.js/dist/Chart.js"],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "codeCoverageExclude": ["src/testing/**/*"]
           }
         }
       }
