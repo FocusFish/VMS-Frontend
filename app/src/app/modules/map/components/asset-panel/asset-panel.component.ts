@@ -12,9 +12,10 @@ import { convertDDToDDM } from '@app/helpers/wgs84-formatter';
 import moment from 'moment-timezone';
 
 @Component({
-  selector: 'map-asset-panel',
-  templateUrl: './asset-panel.component.html',
-  styleUrls: ['./asset-panel.component.scss']
+    selector: 'map-asset-panel',
+    templateUrl: './asset-panel.component.html',
+    styleUrls: ['./asset-panel.component.scss'],
+    standalone: false
 })
 export class AssetPanelComponent {
   @Input() asset: AssetTypes.AssetData;

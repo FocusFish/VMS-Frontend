@@ -6,9 +6,10 @@ import { createManualPollFormValidator } from './form-validator';
 import { errorMessage } from '@app/helpers/validators/error-messages';
 
 @Component({
-  selector: 'map-incident-manual-poll-form',
-  templateUrl: './incident-manual-poll-form.component.html',
-  styleUrls: ['./incident-manual-poll-form.component.scss']
+    selector: 'map-incident-manual-poll-form',
+    templateUrl: './incident-manual-poll-form.component.html',
+    styleUrls: ['./incident-manual-poll-form.component.scss'],
+    standalone: false
 })
 export class IncidentManualPollFormComponent implements OnInit {
   @Input() pollIncident: (incidentId: number, comment: string) => void;

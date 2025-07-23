@@ -8,9 +8,10 @@ import { errorMessage } from '@app/helpers/validators/error-messages';
 import { createPeriodSelectorFormValidator } from './form-validator';
 
 @Component({
-  selector: 'map-period-selector',
-  templateUrl: './period-selector.component.html',
-  styleUrls: ['./period-selector.component.scss']
+    selector: 'map-period-selector',
+    templateUrl: './period-selector.component.html',
+    styleUrls: ['./period-selector.component.scss'],
+    standalone: false
 })
 export class PeriodSelectorComponent implements OnInit {
 

@@ -5,9 +5,10 @@ import { Position } from '@data/generic.types';
 import Map from 'ol/Map';
 
 @Component({
-  selector: 'map-locations-panel',
-  templateUrl: './map-locations-panel.component.html',
-  styleUrls: ['./map-locations-panel.component.scss']
+    selector: 'map-locations-panel',
+    templateUrl: './map-locations-panel.component.html',
+    styleUrls: ['./map-locations-panel.component.scss'],
+    standalone: false
 })
 export class MapLocationsPanelComponent implements OnChanges {
   @Input() mapLocations: ReadonlyArray<MapSettingsTypes.MapLocation>;

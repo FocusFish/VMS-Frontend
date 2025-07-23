@@ -1,23 +1,23 @@
-@import 'variables.scss';
+@use "variables.scss";
 
-$map_trip_player_right_offset: distance(7);
+$map_trip_player_right_offset: variables.distance(7);
 $control_panel_right_offset: 148px;
 
 .reports-container {
-  height: calc(100% - #{$navbar_height});
+  height: calc(100% - #{variables.$navbar_height});
   display: grid;
   grid-template-columns: 1fr;
 
   map-left-column {
     position: absolute;
     left: 0px;
-    height: calc(100% - #{$navbar_height});
+    height: calc(100% - #{variables.$navbar_height});
     z-index: 200;
   }
   map-right-column {
     position: absolute;
     right: 0px;
-    height: calc(100% - #{$navbar_height});
+    height: calc(100% - #{variables.$navbar_height});
     z-index: 200;
   }
 
@@ -32,18 +32,23 @@ $control_panel_right_offset: 148px;
 
     map-trip-player {
       position: absolute;
-      bottom: calc(#{$medium_distance} + #{$x4large_distance});
-      right: calc(#{$right_column_width} + #{$map_trip_player_right_offset});
-      transition: right $panel_animation_time ease-out;
+      bottom: calc(
+        #{variables.$medium_distance} + #{variables.$x4large_distance}
+      );
+      right: calc(
+        #{variables.$right_column_width} + #{$map_trip_player_right_offset}
+      );
+      transition: right variables.$panel_animation_time ease-out;
       width: 500px;
     }
 
-
     .control-panel {
       position: absolute;
-      bottom: $medium_distance;
-      right: calc(#{$right_column_width} + #{$control_panel_right_offset});
-      transition: right $panel_animation_time ease-out;
+      bottom: variables.$medium_distance;
+      right: calc(
+        #{variables.$right_column_width} + #{$control_panel_right_offset}
+      );
+      transition: right variables.$panel_animation_time ease-out;
 
       .control-panel-menu {
         list-style-type: none;
@@ -51,7 +56,7 @@ $control_panel_right_offset: 148px;
         padding: 0;
         display: grid;
         grid-auto-flow: column;
-        grid-column-gap: $medium_distance;
+        grid-column-gap: variables.$medium_distance;
 
         li {
           white-space: nowrap;
@@ -59,23 +64,23 @@ $control_panel_right_offset: 148px;
 
           .control-panel-submenu {
             position: absolute;
-            bottom: $x4large_distance;
+            bottom: variables.$x4large_distance;
           }
 
           .icon-map-layers {
-            @include svg-icon('/assets/svg-icons/layers.svg');
+            @include variables.svg-icon("/assets/svg-icons/layers.svg");
           }
           .icon-distance-between-points {
-            @include svg-icon('/assets/svg-icons/messure.svg');
+            @include variables.svg-icon("/assets/svg-icons/messure.svg");
           }
           .icon-asset-layers {
-            @include svg-icon('/assets/svg-icons/eye.svg');
+            @include variables.svg-icon("/assets/svg-icons/eye.svg");
           }
           .icon-map-locations {
-            @include svg-icon('/assets/svg-icons/map.svg');
+            @include variables.svg-icon("/assets/svg-icons/map.svg");
           }
           .icon-center-sweden {
-            @include svg-icon('/assets/svg-icons/target.svg');
+            @include variables.svg-icon("/assets/svg-icons/target.svg");
           }
         }
       }

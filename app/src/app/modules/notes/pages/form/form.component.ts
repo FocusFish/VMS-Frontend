@@ -9,9 +9,10 @@ import { NotesActions, NotesTypes, NotesSelectors } from '@data/notes';
 import { RouterTypes, RouterSelectors } from '@data/router';
 
 @Component({
-  selector: 'notes-edit-page',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss'],
+    selector: 'notes-edit-page',
+    templateUrl: './form.component.html',
+    styleUrls: ['./form.component.scss'],
+    standalone: false
 })
 export class FormPageComponent implements OnInit, OnDestroy {
 

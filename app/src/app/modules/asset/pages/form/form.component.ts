@@ -15,9 +15,10 @@ import { AssetTypes, AssetActions, AssetSelectors } from '@data/asset';
 import { RouterTypes, RouterSelectors } from '@data/router';
 
 @Component({
-  selector: 'asset-edit-page',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss']
+    selector: 'asset-edit-page',
+    templateUrl: './form.component.html',
+    styleUrls: ['./form.component.scss'],
+    standalone: false
 })
 export class FormPageComponent implements OnInit, OnDestroy {
     

@@ -10,9 +10,10 @@ import { errorMessage } from "@app/helpers/validators/error-messages";
 import moment from "moment-timezone";
 
 @Component({
-  selector: "map-incident-attempted-contact-dialog",
-  templateUrl: "./incident-attempted-contact-dialog.component.html",
-  styleUrls: ["./incident-attempted-contact-dialog.component.scss"],
+    selector: "map-incident-attempted-contact-dialog",
+    templateUrl: "./incident-attempted-contact-dialog.component.html",
+    styleUrls: ["./incident-attempted-contact-dialog.component.scss"],
+    standalone: false
 })
 export class IncidentAttemptedContactDialogComponent {
   public formValidator: UntypedFormGroup;

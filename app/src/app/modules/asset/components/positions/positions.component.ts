@@ -17,9 +17,10 @@ type ExtendedMovement = Readonly<AssetTypes.Movement & {
 }>;
 
 @Component({
-  selector: 'asset-show-positions',
-  templateUrl: './positions.component.html',
-  styleUrls: ['./positions.component.scss']
+    selector: 'asset-show-positions',
+    templateUrl: './positions.component.html',
+    styleUrls: ['./positions.component.scss'],
+    standalone: false
 })
 export class PositionsComponent implements OnChanges {
 

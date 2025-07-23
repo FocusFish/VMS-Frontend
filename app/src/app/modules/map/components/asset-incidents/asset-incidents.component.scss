@@ -1,60 +1,60 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .content-container {
-  grid-row-gap: $medium_distance;
+  grid-row-gap: variables.$medium_distance;
 
   h4 {
     margin: 0px;
   }
 
   .filter-for-panel-content {
-    padding-bottom: $large_distance;
+    padding-bottom: variables.$large_distance;
   }
 
   .incidents {
     display: grid;
-    grid-row-gap: $medium_distance;
-    padding: distance(1);
+    grid-row-gap: variables.$medium_distance;
+    padding: variables.distance(1);
 
     .incident {
       display: grid;
-      grid-template-columns: $medium_distance 2fr 1fr;
-      grid-column-gap: $medium_distance;
-      grid-row-gap: $small_distance;
-      padding: distance(1.5);
-      background: #FFFFFF;
+      grid-template-columns: variables.$medium_distance 2fr 1fr;
+      grid-column-gap: variables.$medium_distance;
+      grid-row-gap: variables.$small_distance;
+      padding: variables.distance(1.5);
+      background: #ffffff;
       cursor: pointer;
 
       &.other-workflow {
-        background: $color_background_gray;
+        background: variables.$color_background_gray;
       }
 
       .status {
         place-self: center;
         // border: 1px solid #000000;
-        background: $color_light_orange;
-        border-radius: $small_distance;
-        width: $medium_distance;
-        height: $medium_distance;
+        background: variables.$color_light_orange;
+        border-radius: variables.$small_distance;
+        width: variables.$medium_distance;
+        height: variables.$medium_distance;
         display: inline-block;
 
         &.dangerLvl5 {
-          background: $color_warn;
+          background: variables.$color_warn;
         }
         &.dangerLvl1 {
-          background: $color_yellow;
+          background: variables.$color_yellow;
         }
         &.dangerLvl0 {
-          background: $color_accent_light;
+          background: variables.$color_accent_light;
         }
       }
 
       .name {
         font-weight: bold;
-        color: $color_turquoise;
+        color: variables.$color_turquoise;
       }
       .ircs {
-        color: $color_turquoise;
+        color: variables.$color_turquoise;
       }
 
       .time {
@@ -65,15 +65,15 @@
       .notifications {
         position: relative;
         & > * {
-          @include small-badge();
+          @include variables.small-badge();
           position: absolute;
         }
         .created-notifications {
-          background: $color_warn;
-          right: $xlarge_distance;
+          background: variables.$color_warn;
+          right: variables.$xlarge_distance;
         }
         .updated-notifications {
-          background: $color_yellow;
+          background: variables.$color_yellow;
           right: 0px;
         }
       }
@@ -81,8 +81,7 @@
   }
 
   button.btn {
-    padding: $medium_distance $large_distance;
-    background-color: $color_light_green;
+    padding: variables.$medium_distance variables.$large_distance;
+    background-color: variables.$color_light_green;
   }
-
 }

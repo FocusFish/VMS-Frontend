@@ -1,13 +1,13 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 notes-list {
   display: grid;
   grid-template-columns: 1fr;
-  grid-row-gap: $distance;
+  grid-row-gap: variables.$distance;
 
   & > * {
     background: white;
-    padding: distance(2);
+    padding: variables.distance(2);
   }
 
   .search-wrapper {
@@ -18,27 +18,27 @@ notes-list {
   .notes {
     display: grid;
     grid-template-columns: 1fr;
-    grid-row-gap: $distance;
+    grid-row-gap: variables.$distance;
 
     .note {
       display: grid;
       grid-template-columns: 1fr 100px;
 
       & > * {
-        background: $color_cold_gray;
-        padding: distance(2);
+        background: variables.$color_cold_gray;
+        padding: variables.distance(2);
       }
 
       .left-column {
         display: grid;
-        grid-row-gap: $distance;
+        grid-row-gap: variables.$distance;
 
         .user {
           font-weight: bold;
         }
         .date {
-          margin-left: $distance;
-          color: $color_gray;
+          margin-left: variables.$distance;
+          color: variables.$color_gray;
         }
 
         .note-text {
@@ -47,15 +47,16 @@ notes-list {
       }
 
       .right-column {
-        border-left: distance(0.5) dotted #FFFFFF;
+        border-left: variables.distance(0.5) dotted #ffffff;
         .menu {
           place-self: center;
           display: grid;
-          grid-row-gap: $distance;
+          grid-row-gap: variables.$distance;
 
-          .icon-wrapper, .edit-link {
+          .icon-wrapper,
+          .edit-link {
             text-decoration: none;
-            color: $color_turquoise;
+            color: variables.$color_turquoise;
             border-radius: 30px;
             background: white;
             display: grid;
@@ -78,6 +79,6 @@ notes-list {
     font-weight: bolder;
   }
   .notes-list--menu-delete-button {
-    color: $color_warn;
+    color: variables.$color_warn;
   }
 }

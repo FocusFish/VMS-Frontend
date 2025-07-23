@@ -1,15 +1,16 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .content-container {
-  background: $color_cold_gray;
+  background: variables.$color_cold_gray;
   min-height: 100%;
-  max-height: calc(100vh - #{$navbar_height});
+  max-height: calc(100vh - #{variables.$navbar_height});
   overflow: auto;
-  width: $left_column_width;
-  transition: width $panel_animation_time ease-out;
+  width: variables.$left_column_width;
+  transition: width variables.$panel_animation_time ease-out;
 
-  #minimize-left-column, #realtime-left-column-menu {
-    transition: left $panel_animation_time ease-out;
+  #minimize-left-column,
+  #realtime-left-column-menu {
+    transition: left variables.$panel_animation_time ease-out;
   }
 
   #minimize-left-column {
@@ -19,33 +20,33 @@
     z-index: 200;
     overflow: hidden;
 
-    background: $color_cold_gray;
-    height: distance(5);
-    border-top-right-radius: distance(3);
-    border-bottom-right-radius: distance(3);
+    background: variables.$color_cold_gray;
+    height: variables.distance(5);
+    border-top-right-radius: variables.distance(3);
+    border-bottom-right-radius: variables.distance(3);
 
     cursor: pointer;
 
     &:hover {
-      background: #FFFFFF;
+      background: #ffffff;
     }
 
     display: grid;
     grid-template-columns: auto auto;
     i {
-      margin-right: distance(0.5);
+      margin-right: variables.distance(0.5);
       place-self: center;
-      font-size: distance(3);
+      font-size: variables.distance(3);
       overflow: hidden;
     }
   }
 
   .minimize-left-column-small {
-    width: distance(3);
+    width: variables.distance(3);
   }
 
   .minimize-left-column-large {
-    width: distance(6);
+    width: variables.distance(6);
   }
 
   #realtime-left-column-menu {
@@ -57,22 +58,21 @@
     margin: 0;
     padding: 0;
     display: grid;
-    grid-row-gap: $medium_distance;
+    grid-row-gap: variables.$medium_distance;
 
     li {
       white-space: nowrap;
       cursor: pointer;
 
       .icon-search {
-        @include svg-left-icon('/assets/svg-icons/search.svg');
+        @include variables.svg-left-icon("/assets/svg-icons/search.svg");
       }
       .icon-workflow {
-        @include svg-left-icon('/assets/svg-icons/workflow.svg');
+        @include variables.svg-left-icon("/assets/svg-icons/workflow.svg");
       }
       .icon-tracks {
-        @include svg-left-icon('/assets/svg-icons/route-line.svg');
+        @include variables.svg-left-icon("/assets/svg-icons/route-line.svg");
       }
-
     }
   }
   .panel {
@@ -85,21 +85,21 @@
 
   .filter-panel {
     h3.search-in-map-h3 {
-      padding: distance(4) 0px distance(1);
+      padding: variables.distance(4) 0px variables.distance(1);
     }
 
     .search-container {
       display: grid;
       grid-row-gap: 2px;
-      padding: distance(1);
+      padding: variables.distance(1);
 
       & > * {
         background: white;
-        padding: distance(1);
+        padding: variables.distance(1);
       }
       .search-header {
-        color: $color_turquoise;
-        padding: distance(2) distance(1);
+        color: variables.$color_turquoise;
+        padding: variables.distance(2) variables.distance(1);
       }
       .search-content {
         display: grid;
@@ -113,24 +113,22 @@
     padding: 5px;
     border-radius: 0px 7px 7px 0px;
   }
-  
-  
+
   .workflow-panel {
     grid-template-rows: repeat(10, auto) 1fr;
     .workflow-panel-sub {
       padding-left: 30px;
     }
   }
-  
 
   .tracks-panel {
-    padding: distance(1);
+    padding: variables.distance(1);
   }
-
 
   &.panel-hidden {
     width: 0px;
-    #minimize-left-column, #realtime-left-column-menu {
+    #minimize-left-column,
+    #realtime-left-column-menu {
       left: 0px;
     }
 
@@ -140,9 +138,10 @@
   }
 
   &.panel-expanded {
-    width: $left_column_width * 2.5;
-    #minimize-left-column, #realtime-left-column-menu {
-      left: $left_column_width * 2.5;
+    width: variables.$left_column_width * 2.5;
+    #minimize-left-column,
+    #realtime-left-column-menu {
+      left: variables.$left_column_width * 2.5;
     }
   }
 }

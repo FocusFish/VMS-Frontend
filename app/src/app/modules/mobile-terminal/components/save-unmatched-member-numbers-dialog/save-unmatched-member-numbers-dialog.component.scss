@@ -1,4 +1,4 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 $angular_material_margin: 24px;
 
@@ -8,8 +8,8 @@ mobile-terminal-save-unmatched-member-numbers-dialog {
     padding: 0px $angular_material_margin;
 
     span.selected-assets {
-      color: $color_gray;
-      margin-left: distance(2);
+      color: variables.$color_gray;
+      margin-left: variables.distance(2);
     }
   }
 

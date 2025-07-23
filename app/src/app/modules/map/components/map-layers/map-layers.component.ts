@@ -8,8 +8,9 @@ import { XYZ } from 'ol/source';
 import TileWMS from 'ol/source/TileWMS';
 
 @Component({
-  selector: 'map-layers',
-  template: '',
+    selector: 'map-layers',
+    template: '',
+    standalone: false
 })
 export class MapLayersComponent implements OnChanges, OnDestroy {
 

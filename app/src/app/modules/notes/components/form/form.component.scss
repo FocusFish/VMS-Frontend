@@ -1,8 +1,8 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .notes-edit-form {
   display: grid;
-  // grid-column-gap: $x2large_distance;
+  // grid-column-gap: variables.$x2large_distance;
   grid-template-columns: 1fr;
   padding: 0;
 
@@ -16,14 +16,14 @@
     display: grid;
     justify-content: end;
     grid-auto-flow: column;
-    grid-column-gap: distance(1);
+    grid-column-gap: variables.distance(1);
   }
 
-  textarea{
-    min-height: distance(6);
+  textarea {
+    min-height: variables.distance(6);
   }
   mat-label > .required {
-    margin-left: $small_distance;
+    margin-left: variables.$small_distance;
     color: red;
   }
 }

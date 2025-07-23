@@ -13,9 +13,10 @@ type CoordinatePopupObject = Readonly<{
 }>;
 
 @Component({
-  selector: 'map-right-click-menu',
-  templateUrl: './right-click-menu.component.html',
-    styleUrls: ['./right-click-menu.component.scss']
+    selector: 'map-right-click-menu',
+    templateUrl: './right-click-menu.component.html',
+    styleUrls: ['./right-click-menu.component.scss'],
+    standalone: false
 })
 export class RightClickMenuComponent implements OnInit, OnDestroy {
 

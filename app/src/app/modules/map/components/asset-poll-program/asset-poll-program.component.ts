@@ -17,9 +17,10 @@ type ExtendedPoll = Readonly<AssetTypes.Poll & {
 }>;
 
 @Component({
-  selector: 'map-asset-poll-program',
-  templateUrl: './asset-poll-program.component.html',
-  styleUrls: ['./asset-poll-program.component.scss']
+    selector: 'map-asset-poll-program',
+    templateUrl: './asset-poll-program.component.html',
+    styleUrls: ['./asset-poll-program.component.scss'],
+    standalone: false
 })
 export class AssetPollProgramComponent implements OnChanges {
   @Input() poll: AssetTypes.Poll;

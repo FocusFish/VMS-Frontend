@@ -14,10 +14,11 @@ import { replacePlaceholdersInTranslation } from '@app/helpers/helpers';
 import { RouterTypes, RouterSelectors } from '@data/router';
 
 @Component({
-  selector: 'core-mobile-terminal-layout-component',
-  templateUrl: './mobile-terminal.component.html',
-  styleUrls: ['./mobile-terminal.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'core-mobile-terminal-layout-component',
+    templateUrl: './mobile-terminal.component.html',
+    styleUrls: ['./mobile-terminal.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 
 export class MobileTerminalLayoutComponent implements OnInit, OnDestroy {

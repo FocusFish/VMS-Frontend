@@ -25,9 +25,10 @@ import { NotesTypes } from "@data/notes";
 import { ActivitySelectors } from "@data/activity";
 
 @Component({
-  selector: "map-left-column",
-  templateUrl: "./map-left-column.component.html",
-  styleUrls: ["./map-left-column.component.scss"],
+    selector: "map-left-column",
+    templateUrl: "./map-left-column.component.html",
+    styleUrls: ["./map-left-column.component.scss"],
+    standalone: false
 })
 export class MapLeftColumnComponent implements OnInit, OnDestroy {
   @Input() centerMapOnPosition: (position: Position) => void;

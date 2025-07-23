@@ -9,10 +9,11 @@ import { DeleteNoteDialogDialogComponent } from "@modules/notes/components/delet
 type FormattedNote = NotesTypes.Note & { createdOnFormatted: string };
 
 @Component({
-  selector: "notes-list",
-  templateUrl: "./list.component.html",
-  styleUrls: ["./list.component.scss"],
-  encapsulation: ViewEncapsulation.None,
+    selector: "notes-list",
+    templateUrl: "./list.component.html",
+    styleUrls: ["./list.component.scss"],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class ListComponent implements OnChanges {
   @Input() notes: ReadonlyArray<NotesTypes.Note>;

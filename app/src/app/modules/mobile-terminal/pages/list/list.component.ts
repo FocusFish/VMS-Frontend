@@ -22,9 +22,10 @@ type ExtendedMobileTerminal = Readonly<MobileTerminalTypes.MobileTerminal & {
 }>;
 
 @Component({
-  selector: 'mobile-terminal-list-page',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+    selector: 'mobile-terminal-list-page',
+    templateUrl: './list.component.html',
+    styleUrls: ['./list.component.scss'],
+    standalone: false
 })
 export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
 

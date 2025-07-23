@@ -1,29 +1,29 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .page-content {
   .status-info {
     background: white;
-    padding: distance(2);
+    padding: variables.distance(2);
     display: grid;
-    grid-row-gap: distance(1);
+    grid-row-gap: variables.distance(1);
 
     .info {
-      padding-top: distance(3);
+      padding-top: variables.distance(3);
     }
 
     .row {
       display: grid;
       grid-template-columns: 1fr auto;
 
-      .title .text{
+      .title .text {
         display: grid;
         grid-template-columns: auto 1fr;
 
         &:after {
           content: "";
-          border-bottom: 2px dotted $color_gray;
-          margin-left: distance(1);
-          margin-right: distance(1);
+          border-bottom: 2px dotted variables.$color_gray;
+          margin-left: variables.distance(1);
+          margin-right: variables.distance(1);
         }
       }
 
@@ -31,10 +31,10 @@
         font-weight: bold;
 
         &.active {
-          color: $color_accent;
+          color: variables.$color_accent;
         }
         &.inactive {
-          color: $color_warn;
+          color: variables.$color_warn;
         }
       }
     }

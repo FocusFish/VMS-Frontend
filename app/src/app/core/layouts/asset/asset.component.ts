@@ -13,10 +13,11 @@ import { replacePlaceholdersInTranslation } from '@app/helpers/helpers';
 import { RouterTypes, RouterSelectors } from '@data/router';
 
 @Component({
-  selector: 'core-asset-layout-component',
-  templateUrl: './asset.component.html',
-  styleUrls: ['./asset.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'core-asset-layout-component',
+    templateUrl: './asset.component.html',
+    styleUrls: ['./asset.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 
 export class AssetLayoutComponent implements OnInit, OnDestroy {

@@ -1,18 +1,20 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 $incident_header_height: 78px; // Is set automaticlly, unfortunatly this might change, and css might break.
 
 .content-container {
   display: grid;
   grid-template-rows: 1fr auto;
-  height: calc(100vh - #{$navbar_height} - #{$incident_header_height});
-  grid-row-gap: distance(2);
+  height: calc(
+    100vh - #{variables.$navbar_height} - #{$incident_header_height}
+  );
+  grid-row-gap: variables.distance(2);
 
   .incident-body {
     display: grid;
-    grid-row-gap: distance(1);
+    grid-row-gap: variables.distance(1);
     color: black;
-    padding: $medium_distance;
+    padding: variables.$medium_distance;
     overflow-y: auto;
     align-content: start;
 
@@ -22,50 +24,50 @@ $incident_header_height: 78px; // Is set automaticlly, unfortunatly this might c
   }
 
   .content-block {
-    margin-bottom: distance(1);
+    margin-bottom: variables.distance(1);
   }
 
   h4 {
     margin: 0;
     padding: 0;
-    margin-top: distance(2);
+    margin-top: variables.distance(2);
 
     &:first-child {
-      margin-top: distance(1);
+      margin-top: variables.distance(1);
     }
   }
 
   .incident-information {
     display: grid;
-    grid-row-gap: distance(2);
+    grid-row-gap: variables.distance(2);
     background: white;
-    padding: distance(2);
+    padding: variables.distance(2);
 
     .button-wrapper {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-column-gap: distance(2);
+      grid-column-gap: variables.distance(2);
     }
   }
 
-  .asset-information{
+  .asset-information {
     display: grid;
     grid-template-columns: 1fr auto;
     background: white;
-    padding: $medium_distance;
+    padding: variables.$medium_distance;
     overflow-y: scroll;
-    -ms-overflow-style: none;  // IE 10+
-    overflow: -moz-scrollbars-none;  // Firefox
+    -ms-overflow-style: none; // IE 10+
+    overflow: -moz-scrollbars-none; // Firefox
     &::-webkit-scrollbar {
-      display: none;  // Safari and Chrome
+      display: none; // Safari and Chrome
     }
 
     h5 {
       grid-column: 1 / span 2;
-      border-bottom: 1px solid $color_dark_gray;
-      margin-bottom: $medium_distance;
+      border-bottom: 1px solid variables.$color_dark_gray;
+      margin-bottom: variables.$medium_distance;
       padding-bottom: 0px;
-      padding-top: $large_distance;
+      padding-top: variables.$large_distance;
 
       &:first-child {
         padding-top: 0px;
@@ -73,7 +75,7 @@ $incident_header_height: 78px; // Is set automaticlly, unfortunatly this might c
     }
 
     legend {
-      font-size: $default_font_size;
+      font-size: variables.$default_font_size;
     }
 
     a {
@@ -82,20 +84,21 @@ $incident_header_height: 78px; // Is set automaticlly, unfortunatly this might c
   }
 
   .incident-footer {
-    padding: distance(2);
+    padding: variables.distance(2);
     background: white;
-    box-shadow: 0px distance(-0.25) distance(1) $color_dark_gray;
+    box-shadow: 0px variables.distance(-0.25) variables.distance(1)
+      variables.$color_dark_gray;
     align-self: end;
     display: grid;
     grid-template-columns: 1fr;
-    grid-row-gap: distance(1);
+    grid-row-gap: variables.distance(1);
 
     .notes-and-log {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-column-gap: distance(2);
+      grid-column-gap: variables.distance(2);
       i.ri-arrow-drop-right-fill {
-        font-size: distance(3);
+        font-size: variables.distance(3);
       }
     }
   }

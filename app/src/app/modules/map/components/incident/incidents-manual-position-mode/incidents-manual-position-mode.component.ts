@@ -3,9 +3,10 @@ import { IncidentTypes } from '@data/incident';
 import { Position } from '@data/generic.types';
 
 @Component({
-  selector: 'map-incidents-manual-position-mode',
-  templateUrl: './incidents-manual-position-mode.component.html',
-  styleUrls: ['./incidents-manual-position-mode.component.scss']
+    selector: 'map-incidents-manual-position-mode',
+    templateUrl: './incidents-manual-position-mode.component.html',
+    styleUrls: ['./incidents-manual-position-mode.component.scss'],
+    standalone: false
 })
 export class IncidentsManualPositionModeComponent implements OnChanges {
   @Input() incidents: IncidentTypes.IncidentsCollectionByResolution;

@@ -11,8 +11,9 @@ import { Point, LineString } from 'ol/geom';
 import { formatUnixtime } from '@app/helpers/datetime-formatter';
 
 @Component({
-  selector: 'map-tracks-activities',
-  template: ''
+    selector: 'map-tracks-activities',
+    template: '',
+    standalone: false
 })
 export class TracksActivitiesComponent implements OnInit, OnDestroy, OnChanges {
 

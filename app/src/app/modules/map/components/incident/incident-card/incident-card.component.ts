@@ -10,9 +10,10 @@ import { formatUnixtimeWithDot } from '@app/helpers/datetime-formatter';
 import { convertDDToDDM } from '@app/helpers/wgs84-formatter';
 
 @Component({
-  selector: 'map-incident-card',
-  templateUrl: './incident-card.component.html',
-  styleUrls: ['./incident-card.component.scss']
+    selector: 'map-incident-card',
+    templateUrl: './incident-card.component.html',
+    styleUrls: ['./incident-card.component.scss'],
+    standalone: false
 })
 export class IncidentCardComponent implements OnChanges, OnDestroy {
   @Input() incident: IncidentTypes.Incident;

@@ -2,8 +2,9 @@ import { Component, Inject } from "@angular/core";
 import { MatDialog, MAT_DIALOG_DATA } from "@angular/material/dialog";
 
 @Component({
-  selector: "map-manual-movement-form-dialog",
-  templateUrl: "./manual-movement-form-dialog.component.html",
+    selector: "map-manual-movement-form-dialog",
+    templateUrl: "./manual-movement-form-dialog.component.html",
+    standalone: false
 })
 export class ManualMovementFormDialogComponent {
   constructor(

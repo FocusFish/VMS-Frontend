@@ -23,9 +23,10 @@ type ExtendedMobileTerminalHistory = MobileTerminalTypes.MobileTerminalHistory &
 };
 
 @Component({
-  selector: 'mobile-terminal-history-component',
-  templateUrl: './history.component.html',
-  styleUrls: ['./history.component.scss'],
+    selector: 'mobile-terminal-history-component',
+    templateUrl: './history.component.html',
+    styleUrls: ['./history.component.scss'],
+    standalone: false
 })
 export class HistoryComponent implements OnChanges {
   @Input() mobileTerminalHistoryList: MobileTerminalTypes.MobileTerminalHistoryList;

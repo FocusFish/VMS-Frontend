@@ -10,9 +10,10 @@ import { errorMessage } from "@app/helpers/validators/error-messages";
 import moment from "moment-timezone";
 
 @Component({
-  selector: "map-incident-resolve-dialog",
-  templateUrl: "./incident-resolve-dialog.component.html",
-  styleUrls: ["./incident-resolve-dialog.component.scss"],
+    selector: "map-incident-resolve-dialog",
+    templateUrl: "./incident-resolve-dialog.component.html",
+    styleUrls: ["./incident-resolve-dialog.component.scss"],
+    standalone: false
 })
 export class IncidentResolveDialogComponent {
   public formValidator: UntypedFormGroup;

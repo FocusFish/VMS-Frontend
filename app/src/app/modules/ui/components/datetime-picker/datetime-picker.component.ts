@@ -18,9 +18,10 @@ import moment from 'moment-timezone';
 import MyErrorStateMatcher from './errorStateMatcher';
 
 @Component({
-  selector: 'ngx-datetime-picker',
-  templateUrl: './datetime-picker.component.html',
-  styleUrls: ['./datetime-picker.component.scss'],
+    selector: 'ngx-datetime-picker',
+    templateUrl: './datetime-picker.component.html',
+    styleUrls: ['./datetime-picker.component.scss'],
+    standalone: false
 })
 export class DatetimePickerComponent implements OnChanges, OnInit, AfterViewInit {
 

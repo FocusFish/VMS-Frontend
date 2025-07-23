@@ -5,9 +5,10 @@ import { MatDialog } from "@angular/material/dialog";
 import { EditAssetGroupDialogComponent } from "@modules/map/components/edit-asset-group-dialog/edit-asset-group-dialog.component";
 
 @Component({
-  selector: "map-asset-groups",
-  templateUrl: "./asset-groups.component.html",
-  styleUrls: ["./asset-groups.component.scss"],
+    selector: "map-asset-groups",
+    templateUrl: "./asset-groups.component.html",
+    styleUrls: ["./asset-groups.component.scss"],
+    standalone: false
 })
 export class AssetGroupsComponent {
   @Input() assetGroups: ReadonlyArray<MapSavedFiltersTypes.SavedFilter>;

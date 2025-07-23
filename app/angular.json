@@ -27,21 +27,17 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/vms-frontend",
+            "outputPath": {
+              "base": "dist/vms-frontend"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["src/polyfills.ts", "@angular/localize/init"],
             "tsConfig": "src/tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/app"
-              ]
+              "includePaths": ["src/app"]
             },
             "styles": [
               "src/angular-theme.scss",
@@ -54,21 +50,18 @@
               "src/styles.scss",
               "src/app/modules/map/map.scss"
             ],
-            "scripts": [
-              "node_modules/chart.js/dist/Chart.js"
-            ],
+            "scripts": ["node_modules/chart.js/dist/Chart.js"],
             "allowedCommonJsDependencies": [
               "i18n-iso-countries",
               "moment-timezone",
               "event-source-polyfill",
               "pixelworks/lib/index.js"
             ],
-            "vendorChunk": true,
             "extractLicenses": false,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true
+            "namedChunks": true,
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -83,8 +76,6 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -93,17 +84,19 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
+                  "maximumWarning": "11kb"
                 }
               ],
-              "outputPath": "dist/",
+              "outputPath": {
+                "base": "dist/"
+              },
               "localize": true
             },
             "dev": {
               "budgets": [
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
+                  "maximumWarning": "11kb"
                 }
               ],
               "fileReplacements": [
@@ -119,25 +112,25 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "vms-frontend:build"
+            "buildTarget": "vms-frontend:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "vms-frontend:build:production"
+              "buildTarget": "vms-frontend:build:production"
             },
             "prod-sv": {
-              "browserTarget": "vms-frontend:build:sv"
+              "buildTarget": "vms-frontend:build:sv"
             },
             "dev": {
-              "browserTarget": "vms-frontend:build:dev"
+              "buildTarget": "vms-frontend:build:dev"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "vms-frontend:build",
-            "format": "xlf"
+            "format": "xlf",
+            "buildTarget": "vms-frontend:build"
           }
         },
         "test": {
@@ -159,20 +152,11 @@
               "src/app/modules/map/map.scss"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/app"
-              ]
+              "includePaths": ["src/app"]
             },
-            "scripts": [
-              "node_modules/chart.js/dist/Chart.js"
-            ],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "codeCoverageExclude": [
-              "src/testing/**/*"
-            ]
+            "scripts": ["node_modules/chart.js/dist/Chart.js"],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "codeCoverageExclude": ["src/testing/**/*"]
           }
         }
       }

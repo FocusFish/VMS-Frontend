@@ -4,9 +4,10 @@ import { AssetTypes } from '@data/asset';
 import { IncidentTypes } from '@data/incident';
 
 @Component({
-  selector: 'map-statistics',
-  templateUrl: './map-statistics.component.html',
-  styleUrls: ['./map-statistics.component.scss']
+    selector: 'map-statistics',
+    templateUrl: './map-statistics.component.html',
+    styleUrls: ['./map-statistics.component.scss'],
+    standalone: false
 })
 export class MapStatisticsComponent implements OnChanges {
   @Input() mapStatistics: AssetTypes.MapStatistics;

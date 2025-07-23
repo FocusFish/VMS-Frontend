@@ -3,9 +3,10 @@ import { AssetTypes } from '@data/asset';
 import { NotesTypes } from '@data/notes';
 
 @Component({
-  selector: 'asset-show-notes',
-  templateUrl: './show-notes.component.html',
-  styleUrls: ['./show-notes.component.scss']
+    selector: 'asset-show-notes',
+    templateUrl: './show-notes.component.html',
+    styleUrls: ['./show-notes.component.scss'],
+    standalone: false
 })
 export class ShowNotesComponent {
   @Input() asset: AssetTypes.Asset;

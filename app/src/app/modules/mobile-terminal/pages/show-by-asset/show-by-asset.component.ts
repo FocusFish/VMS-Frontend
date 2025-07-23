@@ -26,9 +26,10 @@ import { RouterTypes, RouterSelectors } from "@data/router";
 import { UserSettingsSelectors } from "@data/user-settings";
 
 @Component({
-  selector: "mobile-terminal-show-by-asset-page",
-  templateUrl: "./show-by-asset.component.html",
-  styleUrls: ["./show-by-asset.component.scss"],
+    selector: "mobile-terminal-show-by-asset-page",
+    templateUrl: "./show-by-asset.component.html",
+    styleUrls: ["./show-by-asset.component.scss"],
+    standalone: false
 })
 export class ShowByAssetPageComponent
   implements OnInit, OnDestroy, AfterViewInit

@@ -6,9 +6,10 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'core-logout',
-  templateUrl: './logout.component.html',
-  styleUrls: ['./logout.component.scss']
+    selector: 'core-logout',
+    templateUrl: './logout.component.html',
+    styleUrls: ['./logout.component.scss'],
+    standalone: false
 })
 export class LogoutComponent implements OnInit {
   public isLoggedIn$: Observable<any>;

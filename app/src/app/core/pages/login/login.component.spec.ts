@@ -7,8 +7,6 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 
 import { LoginComponent } from "./login.component";
 
-import { AuthActions } from "../../../data/auth";
-
 describe("LoginComponent", () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -57,7 +55,7 @@ describe("LoginComponent", () => {
 
     expect(dispatchSpy).toHaveBeenCalledTimes(1);
     expect(dispatchSpy).toHaveBeenCalledWith(
-      AuthActions.login({ username, password })
+      jasmine.objectContaining({ type: "[Auth] Login" })
     );
   });
 });

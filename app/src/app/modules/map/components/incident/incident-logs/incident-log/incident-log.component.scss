@@ -1,14 +1,14 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .content-container {
   display: grid;
-  grid-row-gap: distance(1);
+  grid-row-gap: variables.distance(1);
 
   .incident-log-entry {
     display: grid;
-    grid-row-gap: distance(1);
+    grid-row-gap: variables.distance(1);
     grid-template-columns: 1fr auto;
-    padding: distance(1);
+    padding: variables.distance(1);
     background: white;
 
     .grid-entry {
@@ -25,13 +25,13 @@
       align-items: center;
 
       cursor: pointer;
-      font-size: distance(3);
+      font-size: variables.distance(3);
     }
 
     .incident-log-entry--expanded-block {
       grid-column: 1 / span 2;
-      border-top: 2px solid $color_gray;
-      padding-top: distance(1);
+      border-top: 2px solid variables.$color_gray;
+      padding-top: variables.distance(1);
     }
   }
 }

@@ -3,10 +3,11 @@ import { Component, ViewEncapsulation, Input, OnChanges, OnInit } from '@angular
 import { IncidentTypes } from '@data/incident';
 
 @Component({
-  selector: 'map-incident-logs',
-  templateUrl: './incident-logs.component.html',
-  styleUrls: ['./incident-logs.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'map-incident-logs',
+    templateUrl: './incident-logs.component.html',
+    styleUrls: ['./incident-logs.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class IncidentLogsComponent implements OnChanges, OnInit {
   @Input() incident: IncidentTypes.Incident;

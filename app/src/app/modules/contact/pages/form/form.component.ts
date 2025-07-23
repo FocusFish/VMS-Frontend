@@ -12,9 +12,10 @@ import { createContactFormValidator } from './form-validator';
 import { errorMessage } from '@app/helpers/validators/error-messages';
 
 @Component({
-  selector: 'contact-edit-page',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss'],
+    selector: 'contact-edit-page',
+    templateUrl: './form.component.html',
+    styleUrls: ['./form.component.scss'],
+    standalone: false
 })
 export class FormPageComponent implements OnInit, OnDestroy {
 

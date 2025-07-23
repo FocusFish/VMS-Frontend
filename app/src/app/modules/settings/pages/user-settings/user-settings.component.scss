@@ -1,13 +1,13 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 fieldset {
   border-top: 1px solid #000;
-  margin-top: $large_distance;
-  padding: $medium_distance;
+  margin-top: variables.$large_distance;
+  padding: variables.$medium_distance;
   legend {
     font-size: 90%;
     font-weight: bold;
-    padding: $small_distance;
+    padding: variables.$small_distance;
     width: auto;
   }
 
@@ -18,14 +18,15 @@ fieldset {
 
     .map-toggle-buttons {
       display: grid;
-      grid-template-columns: repeat( auto-fit, minmax(150px, 1fr));
-      margin-bottom: $medium_distance;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      margin-bottom: variables.$medium_distance;
     }
 
-    .map-starting-positions, .map-limits {
+    .map-starting-positions,
+    .map-limits {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-gap: $medium_distance;
+      grid-gap: variables.$medium_distance;
     }
 
     .map-asset-colors {
@@ -33,18 +34,16 @@ fieldset {
       grid-template-columns: 1fr;
     }
   }
-
-
 }
 
 fieldset.button-block {
   button {
-    margin-right: $medium_distance;
+    margin-right: variables.$medium_distance;
   }
 }
 
 .experimental-features-warning {
-  color: $color_warn;
+  color: variables.$color_warn;
   font-style: italic;
   font-size: 90%;
 }

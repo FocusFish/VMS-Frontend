@@ -1,42 +1,42 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .container-component {
-  padding: distance(1);
+  padding: variables.distance(1);
   display: grid;
-  grid-row-gap: distance(1);
+  grid-row-gap: variables.distance(1);
 
   .polls .poll {
     display: grid;
-    padding: distance(2) distance(1) distance(1);
-    grid-row-gap: distance(1);
+    padding: variables.distance(2) variables.distance(1) variables.distance(1);
+    grid-row-gap: variables.distance(1);
     &:nth-child(odd) {
-      background: $color_warm_gray;
+      background: variables.$color_warm_gray;
     }
 
     .core-data {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-column-gap: distance(1);
-      grid-row-gap: distance(1);
+      grid-column-gap: variables.distance(1);
+      grid-row-gap: variables.distance(1);
     }
 
     .expanded-information {
       display: grid;
       grid-template-columns: 110px 1fr;
-      grid-column-gap: distance(1);
-      grid-row-gap: distance(1);
+      grid-column-gap: variables.distance(1);
+      grid-row-gap: variables.distance(1);
 
       .history {
         grid-column: span 2;
         table {
-          border-top: 1px solid $color_black;
-          border-bottom: 1px solid $color_black;
-          padding-top: distance(1);
-          padding-bottom: distance(1);
+          border-top: 1px solid variables.$color_black;
+          border-bottom: 1px solid variables.$color_black;
+          padding-top: variables.distance(1);
+          padding-bottom: variables.distance(1);
           tr {
             display: grid;
             grid-template-columns: auto auto 1fr;
-            grid-column-gap: distance(2);
+            grid-column-gap: variables.distance(2);
           }
         }
       }
@@ -45,9 +45,11 @@
     .poll-block {
       display: grid;
       grid-template-columns: 1fr;
-      grid-row-gap: distance(0.5);
+      grid-row-gap: variables.distance(0.5);
 
-      &.position, &.comment, &.ocean-region {
+      &.position,
+      &.comment,
+      &.ocean-region {
         grid-column: span 2;
       }
 
@@ -63,16 +65,17 @@
     .status {
       font-weight: bold;
 
-      &.TIMED_OUT, &.FAILED {
-        color: $color_warn;
+      &.TIMED_OUT,
+      &.FAILED {
+        color: variables.$color_warn;
       }
-      &.PENDING, &.ISSUED {
-        color: $color_yellow;
+      &.PENDING,
+      &.ISSUED {
+        color: variables.$color_yellow;
       }
       &.SUCCESSFUL {
-        color: $color_accent;
+        color: variables.$color_accent;
       }
     }
-
   }
 }

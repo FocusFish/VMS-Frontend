@@ -8,9 +8,10 @@ import { MapSavedFiltersTypes } from "@data/map-saved-filters";
 import { Position } from "@data/generic.types";
 
 @Component({
-  selector: "map-selected-assets-panel",
-  templateUrl: "./selected-assets-panel.component.html",
-  styleUrls: ["./selected-assets-panel.component.scss"],
+    selector: "map-selected-assets-panel",
+    templateUrl: "./selected-assets-panel.component.html",
+    styleUrls: ["./selected-assets-panel.component.scss"],
+    standalone: false
 })
 export class SelectedAssetsPanelComponent {
   @Input() selectedAssets: ReadonlyArray<AssetTypes.AssetData>;

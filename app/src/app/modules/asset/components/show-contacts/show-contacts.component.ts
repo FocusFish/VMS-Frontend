@@ -4,9 +4,10 @@ import { AssetTypes } from '@data/asset';
 import { ContactTypes } from '@data/contact';
 
 @Component({
-  selector: 'asset-show-contacts',
-  templateUrl: './show-contacts.component.html',
-  styleUrls: ['./show-contacts.component.scss']
+    selector: 'asset-show-contacts',
+    templateUrl: './show-contacts.component.html',
+    styleUrls: ['./show-contacts.component.scss'],
+    standalone: false
 })
 export class ShowContactsComponent {
   @Input() asset: AssetTypes.Asset;

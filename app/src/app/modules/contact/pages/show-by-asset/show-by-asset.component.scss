@@ -1,15 +1,15 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .contacts {
   display: grid;
-  grid-row-gap: distance(2);
+  grid-row-gap: variables.distance(2);
 
   .contact {
     display: grid;
     grid-template-columns: 3fr 1fr;
 
     .left-block {
-      padding: distance(4);
+      padding: variables.distance(4);
       background: white;
 
       h2 {
@@ -20,29 +20,28 @@
         display: grid;
         grid-template-columns: 1fr auto;
 
-        label .text{
+        label .text {
           display: grid;
           grid-template-columns: auto 1fr;
 
           &:after {
             content: "";
-            border-bottom: 2px dotted $color_gray;
-            margin-left: $distance;
-            margin-right: $distance;
+            border-bottom: 2px dotted variables.$color_gray;
+            margin-left: variables.$distance;
+            margin-right: variables.$distance;
           }
         }
       }
     }
 
     .right-block {
-
       display: grid;
       color: white;
 
       .contact-type {
         place-self: center;
         display: grid;
-        grid-row-gap: $distance;
+        grid-row-gap: variables.$distance;
 
         .icon-wrapper {
           border: 1px solid white;
@@ -53,10 +52,10 @@
             height: 80px;
             &::before {
               place-self: center;
-              height: distance(5);
-              width: distance(5);
-              content: '';
-              background-size: distance(5) distance(5);
+              height: variables.distance(5);
+              width: variables.distance(5);
+              content: "";
+              background-size: variables.distance(5) variables.distance(5);
               background-repeat: no-repeat;
             }
           }
@@ -68,31 +67,31 @@
       }
 
       &.master {
-        background-color: $color_dark_yellow;
-       .icon-wrapper {
-          background-color: $color_yellow;
+        background-color: variables.$color_dark_yellow;
+        .icon-wrapper {
+          background-color: variables.$color_yellow;
           i.type-icon::before {
-            background-image: url('/assets/svg-icons/person.svg');
+            background-image: url("/assets/svg-icons/person.svg");
           }
         }
       }
 
       &.person {
-        background-color: $color_dark_green;
-       .icon-wrapper {
-          background-color: $color_green;
+        background-color: variables.$color_dark_green;
+        .icon-wrapper {
+          background-color: variables.$color_green;
           i.type-icon::before {
-            background-image: url('/assets/svg-icons/person.svg');
+            background-image: url("/assets/svg-icons/person.svg");
           }
         }
       }
 
       &.organization {
-        background-color: $color_dark_blue;
+        background-color: variables.$color_dark_blue;
         .icon-wrapper {
-          background-color: $color_blue;
+          background-color: variables.$color_blue;
           i.type-icon::before {
-            background-image: url('/assets/svg-icons/conference.svg');
+            background-image: url("/assets/svg-icons/conference.svg");
           }
         }
       }

@@ -1,12 +1,12 @@
-@import 'variables.scss';
+@use "variables.scss";
 #map-layers-panel.content-container {
   display: grid;
-  grid-row-gap: distance(0.5);
-  padding: distance(1);
+  grid-row-gap: variables.distance(0.5);
+  padding: variables.distance(1);
 
   mat-checkbox {
     background: white;
-    padding: distance(0.5) distance(1);
+    padding: variables.distance(0.5) variables.distance(1);
     overflow: hidden;
 
     .mat-checkbox-layout {

@@ -1,17 +1,17 @@
-@import "variables.scss";
+@use "variables.scss";
 
 *,
 ::after,
 ::before {
-  // font-size: $default_font_size;
+  // font-size: variables.$default_font_size;
   box-sizing: border-box;
 }
 
 html,
 body {
   height: 100%;
-  color: $color_black;
-  background: $color_background_gray;
+  color: variables.$color_black;
+  background: variables.$color_background_gray;
 }
 
 h1 {
@@ -42,8 +42,8 @@ h4 {
 h5 {
   margin-top: 0px;
   margin-bottom: 0px;
-  padding-top: $medium_distance;
-  padding-bottom: $medium_distance;
+  padding-top: variables.$medium_distance;
+  padding-bottom: variables.$medium_distance;
 }
 
 .hidden {
@@ -57,13 +57,13 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  font-size: $default_font_size;
+  font-size: variables.$default_font_size;
 }
 
 .container h1 {
-  font-size: $h1_font_size;
-  margin-top: $xlarge_distance;
-  margin-bottom: $xlarge_distance;
+  font-size: variables.$h1_font_size;
+  margin-top: variables.$xlarge_distance;
+  margin-bottom: variables.$xlarge_distance;
 }
 
 .container h2 {
@@ -71,7 +71,7 @@ body {
 }
 
 table.mat-table thead th {
-  color: $color_turquoise;
+  color: variables.$color_turquoise;
   font-weight: bolder;
 }
 
@@ -101,7 +101,7 @@ button {
 }
 
 .btn {
-  background-color: $color_cold_dark_gray;
+  background-color: variables.$color_cold_dark_gray;
   cursor: pointer;
   display: inline-block;
   font-weight: 400;
@@ -132,22 +132,22 @@ button {
 }
 
 .btn-default {
-  background-color: $color_light_green;
+  background-color: variables.$color_light_green;
   &:active {
-    background-color: $color_green;
+    background-color: variables.$color_green;
   }
   color: white;
 }
 
 .btn-primary {
-  background-color: $color_blue;
+  background-color: variables.$color_blue;
   &:active {
-    background-color: $color_dark_blue;
+    background-color: variables.$color_dark_blue;
   }
 }
 
 .btn-small {
-  padding: $small_distance $medium_distance;
+  padding: variables.$small_distance variables.$medium_distance;
 }
 
 button.map-panel-button {
@@ -158,8 +158,8 @@ button.map-panel-button {
   i {
     display: inline-block;
     float: right;
-    margin-right: distance(-2);
-    font-size: distance(5);
+    margin-right: variables.distance(-2);
+    font-size: variables.distance(5);
 
     &.ri-external-link-fill {
       font-size: 20px;
@@ -185,7 +185,7 @@ mat-form-field.no-white-background {
   }
   .mat-form-field-underline {
     position: unset;
-    background-color: rgba($color_orange, 0.42);
+    background-color: rgba(variables.$color_orange, 0.42);
   }
 
   .mat-form-field-wrapper {
@@ -229,7 +229,7 @@ mat-form-field .mat-form-field-infix {
 }
 
 mat-dialog-container.mat-dialog-container {
-  padding: distance(4) distance(8);
+  padding: variables.distance(4) variables.distance(8);
 
   .mat-dialog-title {
     text-align: center;
@@ -241,25 +241,25 @@ mat-dialog-container.mat-dialog-container {
 
   .mat-dialog-content {
     .ingress {
-      padding-top: distance(2);
+      padding-top: variables.distance(2);
       text-align: center;
       font-size: 16px;
       //  line-spacing: 24pt;
-      line-height: distance(1.5);
+      line-height: variables.distance(1.5);
     }
     .content-container {
-      padding-top: distance(4);
+      padding-top: variables.distance(4);
     }
   }
 
   .mat-dialog-actions {
     padding: 0px;
     margin: 0px;
-    padding-top: distance(4);
+    padding-top: variables.distance(4);
 
     button {
-      height: distance(5);
-      line-height: distance(1.5);
+      height: variables.distance(5);
+      line-height: variables.distance(1.5);
     }
   }
 
@@ -289,7 +289,7 @@ mat-dialog-container.mat-dialog-container {
 }
 
 img.flag-image {
-  border: 1px solid $color_dark_gray;
+  border: 1px solid variables.$color_dark_gray;
 }
 
 @media (min-width: 1620px) {

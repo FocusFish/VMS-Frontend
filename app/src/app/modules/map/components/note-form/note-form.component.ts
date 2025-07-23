@@ -6,9 +6,10 @@ import { createNotesFormValidator } from './form-validator';
 import { errorMessage } from '@app/helpers/validators/error-messages';
 
 @Component({
-  selector: 'map-note-form',
-  templateUrl: './note-form.component.html',
-  styleUrls: ['./note-form.component.scss']
+    selector: 'map-note-form',
+    templateUrl: './note-form.component.html',
+    styleUrls: ['./note-form.component.scss'],
+    standalone: false
 })
 export class NoteFormComponent implements OnInit {
   @Input() createNote: (note: NotesTypes.NoteParameters) => void;
