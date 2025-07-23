@@ -1,22 +1,22 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 core-logged-out-dialog {
   .mat-dialog-title {
-    padding-top: distance(6);
+    padding-top: variables.distance(6);
   }
 
   .mat-dialog-content {
-    padding-left: distance(8);
-    padding-right: distance(8);
+    padding-left: variables.distance(8);
+    padding-right: variables.distance(8);
   }
 
   .mat-dialog-actions {
-    padding-top: distance(3);
-    padding-bottom: distance(6);
+    padding-top: variables.distance(3);
+    padding-bottom: variables.distance(6);
     margin-bottom: 0px;
 
     .login-button {
-      padding: 0px distance(10);
+      padding: 0px variables.distance(10);
     }
   }
 }

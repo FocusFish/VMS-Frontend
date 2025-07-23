@@ -1,6 +1,6 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .notes-form {
   background: white;
-  padding: distance(2);
+  padding: variables.distance(2);
 }

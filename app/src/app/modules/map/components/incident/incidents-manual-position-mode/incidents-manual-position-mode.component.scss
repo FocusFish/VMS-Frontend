@@ -1,36 +1,36 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .urgency-indicator {
   grid-area: right;
   justify-self: end;
 
   & > * {
-    @include badge();
+    @include variables.badge();
     color: white;
   }
 
   .medium {
-    background: $color_system_yellow;
+    background: variables.$color_system_yellow;
   }
   .high {
-    background: $color_system_red;
+    background: variables.$color_system_red;
   }
 }
 
 .content-container {
-  grid-row-gap: $medium_distance;
+  grid-row-gap: variables.$medium_distance;
 
   h4 {
     margin: 0px;
   }
 
   .filter-for-panel-content {
-    padding-bottom: $large_distance;
+    padding-bottom: variables.$large_distance;
   }
 
   .incidents {
     display: grid;
-    grid-row-gap: $medium_distance;
+    grid-row-gap: variables.$medium_distance;
 
     h3 {
       padding-bottom: 0px;
@@ -38,8 +38,7 @@
   }
 
   button.btn {
-    padding: $medium_distance $large_distance;
-    background-color: $color_light_green;
+    padding: variables.$medium_distance variables.$large_distance;
+    background-color: variables.$color_light_green;
   }
-
 }

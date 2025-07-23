@@ -1,8 +1,8 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .page-content {
   .mobile-terminal-list-wrapper {
-    // margin-top: distance(3);
+    // margin-top: variables.distance(3);
   }
 }
 
@@ -12,16 +12,17 @@
     justify-items: center;
   }
 
-  .active-mobile-terminal, .deactive-mobile-terminal {
+  .active-mobile-terminal,
+  .deactive-mobile-terminal {
     text-align: center;
   }
   .active-mobile-terminal {
-    color: $color_accent;
+    color: variables.$color_accent;
   }
   .deactive-mobile-terminal {
-    color: $color_warn;
+    color: variables.$color_warn;
   }
   .divider {
-    border-top: distance(0.5) solid $color_gray;
+    border-top: variables.distance(0.5) solid variables.$color_gray;
   }
 }

@@ -1,15 +1,15 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .content-container {
   background: white;
-  padding: distance(4);
-  margin-bottom: distance(4);
+  padding: variables.distance(4);
+  margin-bottom: variables.distance(4);
 
   .header {
     display: grid;
     grid-template-columns: 75px 1fr auto;
-    grid-column-gap: distance(2);
-    padding-bottom: distance(2);
+    grid-column-gap: variables.distance(2);
+    padding-bottom: variables.distance(2);
 
     .title {
       display: grid;
@@ -26,7 +26,7 @@
       justify-items: end;
 
       .currentIncidentStatus {
-        background-color: $color_warn;
+        background-color: variables.$color_warn;
         color: white;
         text-transform: uppercase;
         align-self: center;
@@ -35,7 +35,7 @@
       }
 
       .inactiveAsset {
-        background-color: $color_warn;
+        background-color: variables.$color_warn;
         color: white;
         align-self: center;
         padding: 2px;
@@ -47,31 +47,31 @@
   .content-body {
     display: grid;
     grid-template-columns: 3fr 2fr;
-    grid-column-gap: distance(2);
+    grid-column-gap: variables.distance(2);
 
     .asset-image {
       display: grid;
-      background: $color_gray;
+      background: variables.$color_gray;
     }
   }
 
   .fields {
     display: grid;
-    grid-row-gap: distance(2);
+    grid-row-gap: variables.distance(2);
 
     .row {
       display: grid;
       grid-template-columns: 1fr auto;
 
-      .title .text{
+      .title .text {
         display: grid;
         grid-template-columns: auto 1fr;
 
         &:after {
           content: "";
-          border-bottom: 2px dotted $color_gray;
-          margin-left: $distance;
-          margin-right: $distance;
+          border-bottom: 2px dotted variables.$color_gray;
+          margin-left: variables.$distance;
+          margin-right: variables.$distance;
         }
       }
 
@@ -79,10 +79,10 @@
         font-weight: bold;
         &.ocean-regions span {
           &:after {
-            content: ', ';
+            content: ", ";
           }
           &:last-child:after {
-            content: '';
+            content: "";
           }
         }
       }
@@ -93,7 +93,7 @@
 .vessel-details {
   display: grid;
   grid-template-columns: 4fr 1fr;
-  margin-bottom: distance(4);
+  margin-bottom: variables.distance(4);
 
   .content-container {
     margin-bottom: 0px;
@@ -103,16 +103,16 @@
 
   .image-wrapper {
     display: grid;
-    background: $color_dark_blue;
+    background: variables.$color_dark_blue;
     .image-and-text {
-      grid-row-gap: distance(2);
+      grid-row-gap: variables.distance(2);
 
       .ship-wrapper {
         justify-self: center;
         border: 1px solid white;
         border-radius: 60px;
-        padding: distance(2.5);
-        background: $color_blue;
+        padding: variables.distance(2.5);
+        background: variables.$color_blue;
 
         i {
           font-size: 60px;
@@ -125,7 +125,7 @@
 .licence-details {
   display: grid;
   grid-template-columns: 4fr 1fr;
-  margin-bottom: distance(4);
+  margin-bottom: variables.distance(4);
 
   .content-container {
     margin-bottom: 0px;
@@ -133,31 +133,31 @@
     grid-template-columns: 3fr 1fr;
 
     .valid {
-      color: $color_accent_light;
+      color: variables.$color_accent_light;
     }
 
     .invalid {
-      color: $color_warn;
+      color: variables.$color_warn;
     }
 
     .constraints {
-      margin-top: distance(1);
+      margin-top: variables.distance(1);
       font-weight: bold;
     }
   }
 
   .image-wrapper {
     display: grid;
-    background: $color_dark_green;
+    background: variables.$color_dark_green;
     .image-and-text {
-      grid-row-gap: distance(2);
+      grid-row-gap: variables.distance(2);
 
       .licence-wrapper {
         justify-self: center;
         border: 1px solid white;
         border-radius: 60px;
-        padding: distance(2.5);
-        background: $color_green;
+        padding: variables.distance(2.5);
+        background: variables.$color_green;
 
         i {
           font-size: 60px;

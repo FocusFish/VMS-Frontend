@@ -1,13 +1,12 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .page-container {
-
   display: grid;
-  grid-row-gap: distance(4);
-  margin-bottom: distance(2);
+  grid-row-gap: variables.distance(4);
+  margin-bottom: variables.distance(2);
 
   .mobile-terminal-filter {
-    padding: distance(3);
+    padding: variables.distance(3);
     background: white;
     display: grid;
     grid-template-columns: 1fr auto;
@@ -18,14 +17,14 @@
 
     .form-button-wrapper {
       display: grid;
-      grid-column-gap: distance(1);
+      grid-column-gap: variables.distance(1);
       grid-template-columns: 1fr 1fr;
     }
 
     .lifecycle-state-filter {
       display: grid;
       grid-auto-flow: column;
-      grid-column-gap: distance(2);
+      grid-column-gap: variables.distance(2);
     }
   }
 
@@ -37,22 +36,22 @@
   .filter-response-container {
     display: grid;
     grid-column: 1fr;
-    grid-row-gap: distance(2);
+    grid-row-gap: variables.distance(2);
 
     .filter-info {
       font-weight: bold;
-      font-size: distance(2);
+      font-size: variables.distance(2);
     }
 
     .mobile-terminals-table-container > table {
       width: 100%;
 
       .inactive {
-        color: $color_warn;
+        color: variables.$color_warn;
         font-weight: bold;
       }
       .active {
-        color: $color_accent;
+        color: variables.$color_accent;
         font-weight: bold;
       }
     }
@@ -61,9 +60,8 @@
       color: black;
       text-decoration: none;
 
-
       &:hover {
-        background-color: rgba( $color_blue, 0.2);
+        background-color: rgba(variables.$color_blue, 0.2);
         text-decoration: underline;
       }
     }

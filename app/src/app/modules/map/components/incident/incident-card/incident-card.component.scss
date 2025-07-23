@@ -1,17 +1,18 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .incident {
   display: grid;
-  grid-template-columns: $medium_distance 1fr;
-  grid-column-gap: $medium_distance;
-  background: $color_cold_gray;
+  grid-template-columns: variables.$medium_distance 1fr;
+  grid-column-gap: variables.$medium_distance;
+  background: variables.$color_cold_gray;
   cursor: pointer;
 
   &.selected {
-    background-color: $color_turquoise;
+    background-color: variables.$color_turquoise;
     color: white;
 
-    .incident-content .ircs-and-name, .incident-content .status-code-and-time .status-code {
+    .incident-content .ircs-and-name,
+    .incident-content .status-code-and-time .status-code {
       color: white;
     }
 
@@ -35,23 +36,22 @@
     height: 100%;
     display: inline-block;
 
-
     &.urgancy-LOW {
-      background: $color_system_green;
+      background: variables.$color_system_green;
     }
     &.urgancy-MEDIUM {
-      background: $color_system_yellow;
+      background: variables.$color_system_yellow;
     }
     &.urgancy-HIGH {
-      background: $color_system_red;
+      background: variables.$color_system_red;
     }
   }
 
   .incident-content {
     display: grid;
-    grid-column-gap: distance(1);
-    grid-row-gap: distance(0.5);
-    padding: distance(1);
+    grid-column-gap: variables.distance(1);
+    grid-row-gap: variables.distance(0.5);
+    padding: variables.distance(1);
     padding-left: 0px;
 
     &.with-countdown {
@@ -60,23 +60,23 @@
       .countdown {
         grid-column: 2;
         grid-row: 1 / 4;
-        margin-top: -1 * distance(0.5);
+        margin-top: -1 * variables.distance(0.5);
 
         .texts {
-          margin-top: distance(2);
+          margin-top: variables.distance(2);
           text-align: center;
 
           .time {
             font-size: 13px;
-            color: $color_light_turquoise;
+            color: variables.$color_light_turquoise;
 
             &.overdue {
-              color: $color_warn;
+              color: variables.$color_warn;
             }
           }
           .time-description {
             font-size: 10px;
-            color: $color_dark_gray;
+            color: variables.$color_dark_gray;
           }
         }
       }
@@ -85,8 +85,8 @@
     .ircs-and-name {
       display: grid;
       grid-template-columns: 1fr auto;
-      grid-column-gap: distance(1);
-      color: $color_turquoise;
+      grid-column-gap: variables.distance(1);
+      color: variables.$color_turquoise;
 
       .ircs {
         font-weight: bold;
@@ -98,7 +98,7 @@
 
       .status-code {
         font-weight: bolder;
-        color: $color_turquoise;
+        color: variables.$color_turquoise;
         text-decoration: underline;
       }
     }
@@ -111,15 +111,15 @@
   .notifications {
     position: relative;
     & > * {
-      @include small-badge();
+      @include variables.small-badge();
       position: absolute;
     }
     .created-notifications {
-      background: $color_warn;
-      right: $xlarge_distance;
+      background: variables.$color_warn;
+      right: variables.$xlarge_distance;
     }
     .updated-notifications {
-      background: $color_yellow;
+      background: variables.$color_yellow;
       right: 0px;
     }
   }

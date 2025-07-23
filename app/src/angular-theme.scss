@@ -1,5 +1,5 @@
 @use "@angular/material" as mat;
-@import "variables.scss";
+@use "variables.scss";
 /* Plus imports for other components in your app. */
 
 /* Include the common styles for Angular Material. We include this here so that you only
@@ -35,13 +35,13 @@ $accent-color: (
 );
 
 $warn-color: (
-  100: $color_warn_light,
-  300: $color_warn_light,
-  500: $color_warn,
-  700: $color_warn_dark,
+  100: variables.$color_warn_light,
+  300: variables.$color_warn_light,
+  500: variables.$color_warn,
+  700: variables.$color_warn_dark,
   contrast: (
-    100: $color_warn_dark,
-    300: $color_warn_dark,
+    100: variables.$color_warn_dark,
+    300: variables.$color_warn_dark,
     500: #ffffff,
     700: #ffffff,
   ),

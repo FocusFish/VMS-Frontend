@@ -7,22 +7,23 @@
  * They are not inherited by any components nested within the template nor by any content projected into the component."
 */
 
-@import 'variables.scss';
+@use "variables.scss";
 
-.realtime-container .map-container #realtime-map, .reports-container .map-container #reports-map {
+.realtime-container .map-container #realtime-map,
+.reports-container .map-container #reports-map {
   .ol-scale-line {
     left: unset;
     left: 10px;
   }
   .ol-zoom {
     left: unset;
-    right: calc(#{$right_column_width} + #{distance(7)});
-    transition: right $panel_animation_time ease-out;
+    right: calc(#{variables.$right_column_width} + #{distance(7)});
+    transition: right variables.$panel_animation_time ease-out;
     top: unset;
     bottom: calc(#{distance(1)} - 1px);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-column-gap: distance(0.5);
+    grid-column-gap: variables.distance(0.5);
     grid-template-areas: "zoom-out zoom-in";
     padding: 0px;
 
@@ -40,34 +41,36 @@
 
     button {
       // display: grid;
-      background: $color_turquoise;
-      width: $x3large_distance;
-      height: $x3large_distance;
+      background: variables.$color_turquoise;
+      width: variables.$x3large_distance;
+      height: variables.$x3large_distance;
       font-size: 20px;
       cursor: pointer;
       border: 0px;
 
       &:hover {
-        background: $color_light_turquoise;
+        background: variables.$color_light_turquoise;
       }
     }
   }
 
   .custom-mouse-position {
     position: absolute;
-    left: calc(#{$left_column_width} + #{$distance});
-    transition: left $panel_animation_time ease-out;
+    left: calc(#{variables.$left_column_width} + #{variables.$distance});
+    transition: left variables.$panel_animation_time ease-out;
   }
 }
 
-.realtime-container .map-container.map-right-column-hidden #realtime-map, .reports-container .map-container.map-right-column-hidden #reports-map {
+.realtime-container .map-container.map-right-column-hidden #realtime-map,
+.reports-container .map-container.map-right-column-hidden #reports-map {
   .ol-zoom {
-    right: $medium_distance;
+    right: variables.$medium_distance;
   }
 }
 
-.realtime-container .map-container.map-left-column-hidden #realtime-map, .reports-container .map-container.map-left-column-hidden #reports-map {
+.realtime-container .map-container.map-left-column-hidden #realtime-map,
+.reports-container .map-container.map-left-column-hidden #reports-map {
   .custom-mouse-position {
-    left: distance(1);
+    left: variables.distance(1);
   }
 }

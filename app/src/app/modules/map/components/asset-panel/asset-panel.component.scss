@@ -1,4 +1,4 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .flag-image {
   width: 22px;
@@ -15,22 +15,22 @@
     .asset-information {
       display: grid;
       grid-template-columns: 1fr auto;
-      grid-column-gap: $medium_distance;
-      grid-row-gap: $small_distance;
+      grid-column-gap: variables.$medium_distance;
+      grid-row-gap: variables.$small_distance;
       overflow-y: scroll;
-      -ms-overflow-style: none;  // IE 10+
-      overflow: -moz-scrollbars-none;  // Firefox
+      -ms-overflow-style: none; // IE 10+
+      overflow: -moz-scrollbars-none; // Firefox
       &::-webkit-scrollbar {
-        display: none;  // Safari and Chrome
+        display: none; // Safari and Chrome
       }
 
       h2 {
-         grid-column: 1 / span 2;
+        grid-column: 1 / span 2;
       }
 
       legend {
         // font-weight: bold;
-        font-size: $default_font_size;
+        font-size: variables.$default_font_size;
         // text-decoration: underline;
       }
 
@@ -39,23 +39,23 @@
       }
 
       mat-checkbox {
-        color: $color_turquoise;
-        padding: $medium_distance $small_distance;
+        color: variables.$color_turquoise;
+        padding: variables.$medium_distance variables.$small_distance;
       }
 
       .asset-information--last-position {
         grid-column: 1 / span 2;
 
         h3 {
-          padding: distance(1) 0px distance(0.5);
+          padding: variables.distance(1) 0px variables.distance(0.5);
           font-size: 14px;
         }
 
         .asset-information--last-position--content {
-          background: rgba($color_light_turquoise, 0.1);
-          padding: distance(1);
+          background: rgba(variables.$color_light_turquoise, 0.1);
+          padding: variables.distance(1);
           display: grid;
-          grid-row-gap: distance(0.5);
+          grid-row-gap: variables.distance(0.5);
 
           .time-and-source {
             display: grid;
@@ -69,7 +69,7 @@
           .position-speed-wrapper {
             display: grid;
             grid-template-columns: 1fr auto;
-            grid-column-gap: distance(0.5);
+            grid-column-gap: variables.distance(0.5);
           }
         }
       }
@@ -85,7 +85,7 @@
     grid-template-columns: 1fr;
 
     & > * {
-      padding: $medium_distance;
+      padding: variables.$medium_distance;
       background: white;
     }
 
@@ -96,16 +96,16 @@
 
       .icon-elipsis {
         display: grid;
-        width: $x3large_distance;
-        height: $x3large_distance;
+        width: variables.$x3large_distance;
+        height: variables.$x3large_distance;
         margin: 0px auto;
         &::before {
           place-self: center;
-          height: distance(2.5);
-          width: distance(2.5);
-          content: '';
-          background-size: distance(2.5) distance(2.5);
-          background-image: url('/assets/svg-icons/elipsis.svg');
+          height: variables.distance(2.5);
+          width: variables.distance(2.5);
+          content: "";
+          background-size: variables.distance(2.5) variables.distance(2.5);
+          background-image: url("/assets/svg-icons/elipsis.svg");
           background-repeat: no-repeat;
         }
       }
@@ -124,30 +124,30 @@
 
     .minify-button-wrapper {
       cursor: pointer;
-      color: $color_turquoise;
-      padding: $small_distance;
+      color: variables.$color_turquoise;
+      padding: variables.$small_distance;
     }
   }
 
   .deselect-asset {
     display: grid;
     grid-template-columns: auto auto;
-    grid-column-gap: $medium_distance;
+    grid-column-gap: variables.$medium_distance;
     align-items: center;
-    color: $color_warn;
+    color: variables.$color_warn;
     cursor: pointer;
 
     .icon-trash {
       display: grid;
-      width: $x3large_distance;
-      height: $x3large_distance;
+      width: variables.$x3large_distance;
+      height: variables.$x3large_distance;
       &::before {
         place-self: center;
-        height: distance(2.5);
-        width: distance(2.5);
-        content: '';
-        background-size: distance(2.5) distance(2.5);
-        background-image: url('/assets/svg-icons/trash.svg');
+        height: variables.distance(2.5);
+        width: variables.distance(2.5);
+        content: "";
+        background-size: variables.distance(2.5) variables.distance(2.5);
+        background-image: url("/assets/svg-icons/trash.svg");
         background-repeat: no-repeat;
       }
     }
@@ -158,7 +158,7 @@
 
     &:hover {
       width: 100%;
-      background: $color_warn;
+      background: variables.$color_warn;
       color: white;
 
       .icon-trash {

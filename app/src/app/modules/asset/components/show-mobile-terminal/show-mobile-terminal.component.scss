@@ -1,5 +1,4 @@
-@import 'variables.scss';
-
+@use "variables.scss";
 
 .top-row {
   display: grid;
@@ -16,7 +15,7 @@ fieldset {
   border: 1px solid #000;
   label {
     font-weight: bold;
-    color: $color_green;
+    color: variables.$color_green;
   }
 
   .edit-link {

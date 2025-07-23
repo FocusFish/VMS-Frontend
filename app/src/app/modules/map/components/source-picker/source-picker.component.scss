@@ -1,10 +1,10 @@
-@import 'variables.scss';
+@use "variables.scss";
 .content-container {
   display: grid;
-  grid-row-gap: $small_distance;
+  grid-row-gap: variables.$small_distance;
 
   mat-checkbox {
     background: white;
-    padding: $small_distance $medium_distance;
+    padding: variables.$small_distance variables.$medium_distance;
   }
 }

@@ -1,30 +1,33 @@
-@use 'sass:color';
-@import 'variables.scss';
+@use "sass:color";
+@use "variables.scss";
 
 .progress-circle-component {
   width: 60px;
 
   &.bright {
-
-    .mat-progress-spinner.mat-accent circle, .mat-spinner circle {
-      stroke: color.scale($color_accent, $lightness: 20%);
+    .mat-progress-spinner.mat-accent circle,
+    .mat-spinner circle {
+      stroke: color.scale(variables.$color_accent, $lightness: 20%);
     }
-    .mat-progress-spinner.track.mat-accent circle, .mat-spinner.track circle {
-      stroke: color.scale($color_accent, $lightness: 70%);
+    .mat-progress-spinner.track.mat-accent circle,
+    .mat-spinner.track circle {
+      stroke: color.scale(variables.$color_accent, $lightness: 70%);
       stroke-opacity: 0.2 !important;
     }
 
-    .mat-progress-spinner.track.mat-warn circle, .mat-spinner.track circle {
-      stroke: color.scale($color_warn, $lightness: 70%);
+    .mat-progress-spinner.track.mat-warn circle,
+    .mat-spinner.track circle {
+      stroke: color.scale(variables.$color_warn, $lightness: 70%);
       stroke-opacity: 0.2 !important;
     }
   }
 
-  .mat-progress-spinner.track circle, .mat-spinner.track circle {
+  .mat-progress-spinner.track circle,
+  .mat-spinner.track circle {
     stroke-opacity: 0.1 !important;
   }
 
-  .mat-progress-spinner{
+  .mat-progress-spinner {
     display: inline;
   }
 }

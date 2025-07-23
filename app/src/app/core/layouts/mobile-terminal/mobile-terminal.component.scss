@@ -1,14 +1,14 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .mobile-terminal-layout--grid {
   display: grid;
   grid-template-columns: 1fr 224px 1040px 224px 1fr;
-  grid-column-gap: $xlarge_distance;
+  grid-column-gap: variables.$xlarge_distance;
   grid-template-areas:
-  "header header header header header"
-  "left-margin notifications notifications notifications right-margin"
-  "left-margin . page-title . right-margin"
-  "left-margin side-menu main toolbox right-margin";
+    "header header header header header"
+    "left-margin notifications notifications notifications right-margin"
+    "left-margin . page-title . right-margin"
+    "left-margin side-menu main toolbox right-margin";
 
   & > core-top-menu-component {
     grid-area: header;
@@ -29,57 +29,57 @@
       margin: 0px;
       list-style-type: none;
       display: grid;
-      grid-row-gap: $distance;
+      grid-row-gap: variables.$distance;
 
       li {
         display: grid;
         grid-template-columns: 40px 1fr;
-        background: $color_turquoise;
+        background: variables.$color_turquoise;
         color: white;
         cursor: pointer;
 
         &.divider {
-          border-top: distance(0.25) solid $color_gray;
-          margin-top: distance(2.5);
-          margin-bottom: distance(2);
+          border-top: variables.distance(0.25) solid variables.$color_gray;
+          margin-top: variables.distance(2.5);
+          margin-bottom: variables.distance(2);
         }
 
         &.title {
           grid-template-columns: 1fr;
           background: none;
-          font-size: distance(2.5);
+          font-size: variables.distance(2.5);
           font-weight: bolder;
-          color: $color_black;
+          color: variables.$color_black;
           cursor: default;
 
           &.deactivated {
             background: none;
-            color: $color_gray;
+            color: variables.$color_gray;
           }
         }
 
         & > * {
-          padding: $distance;
+          padding: variables.$distance;
         }
 
         .short-key {
-          background: $color_dark_turquoise;
+          background: variables.$color_dark_turquoise;
           font-weight: bold;
           text-align: center;
         }
 
         &.active {
           background: white;
-          color: $color_turquoise;
+          color: variables.$color_turquoise;
           .short-key {
             color: white;
           }
         }
 
         &.deactivated {
-          background: $color_cold_dark_gray;
+          background: variables.$color_cold_dark_gray;
           .short-key {
-            background: $color_gray;
+            background: variables.$color_gray;
           }
         }
       }
@@ -99,10 +99,10 @@
       position: sticky;
       top: 71px;
       background: white;
-      padding: $distance;
+      padding: variables.$distance;
       display: grid;
       grid-template-columns: 1fr;
-      grid-row-gap: $distance;
+      grid-row-gap: variables.$distance;
     }
   }
 }
@@ -116,16 +116,16 @@
 @media screen and (max-width: 1280px) {
   .mobile-terminal-layout--grid {
     grid-template-columns: 1fr 224px minmax(416px, 840px) 1fr;
-    grid-column-gap: distance(2);
+    grid-column-gap: variables.distance(2);
     grid-template-areas:
-    "header header header header"
-    "left-margin notifications notifications right-margin"
-    "left-margin page-title page-title right-margin"
-    "left-margin side-menu main right-margin"
-    "footer footer footer footer";
+      "header header header header"
+      "left-margin notifications notifications right-margin"
+      "left-margin page-title page-title right-margin"
+      "left-margin side-menu main right-margin"
+      "footer footer footer footer";
 
     & > router-outlet + * {
-      margin-bottom: distance(4);
+      margin-bottom: variables.distance(4);
     }
 
     .toolbox-wrapper {
@@ -134,7 +134,7 @@
       bottom: 0px;
       width: 100%;
       z-index: 100;
-      border-top: 2px solid $color_black;
+      border-top: 2px solid variables.$color_black;
     }
   }
 }

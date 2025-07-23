@@ -1,22 +1,22 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .column-wrapper {
   background: white;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-column-gap: $medium_distance;
-  padding: $distance;
+  grid-column-gap: variables.$medium_distance;
+  padding: variables.$distance;
 
   .left-column {
     display: grid;
     grid-template-rows: auto 1fr;
-    grid-row-gap: $medium_distance;
+    grid-row-gap: variables.$medium_distance;
   }
 
   .placeholder {
     margin-top: 20px;
     color: white;
-    background: $color_dark_turquoise;
+    background: variables.$color_dark_turquoise;
     min-height: 300px;
     display: grid;
     justify-items: center;

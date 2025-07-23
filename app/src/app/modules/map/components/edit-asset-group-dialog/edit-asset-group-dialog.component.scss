@@ -1,4 +1,4 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 $angular_material_margin: 24px;
 
@@ -9,10 +9,10 @@ map-edit-asset-group-dialog {
     }
     .assets {
       display: grid;
-      padding-bottom: distance(1);
+      padding-bottom: variables.distance(1);
 
       .danger {
-        color: $color_warn;
+        color: variables.$color_warn;
         text-decoration: line-through;
       }
     }

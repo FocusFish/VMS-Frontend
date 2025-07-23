@@ -1,4 +1,4 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .content-container {
   display: grid;
@@ -9,7 +9,7 @@
     background: white;
     align-self: end;
     display: grid;
-    padding: $medium_distance;
-    grid-row-gap: $medium_distance;
+    padding: variables.$medium_distance;
+    grid-row-gap: variables.$medium_distance;
   }
 }

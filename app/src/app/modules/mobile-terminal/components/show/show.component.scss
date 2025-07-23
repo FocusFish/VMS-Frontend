@@ -1,27 +1,27 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .component-content {
   .mobileTerminal {
     background: white;
-    padding: distance(2);
+    padding: variables.distance(2);
     display: grid;
-    grid-row-gap: $distance;
-    margin-bottom: distance(2);
+    grid-row-gap: variables.$distance;
+    margin-bottom: variables.distance(2);
   }
 
   .row {
     display: grid;
     grid-template-columns: 1fr auto;
 
-    .title .text{
+    .title .text {
       display: grid;
       grid-template-columns: auto 1fr;
 
       &:after {
         content: "";
-        border-bottom: 2px dotted $color_gray;
-        margin-left: $distance;
-        margin-right: $distance;
+        border-bottom: 2px dotted variables.$color_gray;
+        margin-left: variables.$distance;
+        margin-right: variables.$distance;
       }
     }
 
@@ -29,10 +29,10 @@
       font-weight: bold;
       &.ocean-regions span {
         &:after {
-          content: ', ';
+          content: ", ";
         }
         &:last-child:after {
-          content: '';
+          content: "";
         }
       }
     }

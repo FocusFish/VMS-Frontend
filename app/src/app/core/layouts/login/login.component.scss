@@ -1,9 +1,9 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .navbar {
-  background: $color_blue;
+  background: variables.$color_blue;
   color: white;
-  height: $navbar_height;
+  height: variables.$navbar_height;
   display: grid;
   grid-template-columns: auto 1fr;
 
@@ -16,7 +16,7 @@
     margin: auto 0px;
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-column-gap: distance(1);
+    grid-column-gap: variables.distance(1);
 
     .app-version {
       place-self: center;
@@ -24,22 +24,22 @@
     }
 
     .navbar-brand {
-      padding-left: distance(1);
+      padding-left: variables.distance(1);
 
       i.brand-image {
         display: block;
-        background: url('/assets/UVMS_logo.svg');
+        background: url("/assets/UVMS_logo.svg");
         height: 32px;
         width: 103.375px;
         background-size: 103.375px 32px;
-        margin-top: distance(-0.5);
+        margin-top: variables.distance(-0.5);
       }
     }
   }
 
   ul.navbar-nav {
     a:hover {
-      border-bottom: 1px solid $color_orange;
+      border-bottom: 1px solid variables.$color_orange;
     }
 
     display: inline-block;
@@ -47,7 +47,7 @@
     padding-left: 0px;
     li.nav-item {
       display: inline-block;
-      margin-right: $large_distance;
+      margin-right: variables.$large_distance;
       &:last-child {
         margin-right: 0px;
       }
@@ -56,8 +56,8 @@
 }
 
 .login-container {
-  height: calc(100% - #{$navbar_height});
-  background: url('/assets/havtest1.png');
+  height: calc(100% - #{variables.$navbar_height});
+  background: url("/assets/havtest1.png");
   background-size: 100% 100%;
   background-repeat: repeat-x, repeat-y;
 }
