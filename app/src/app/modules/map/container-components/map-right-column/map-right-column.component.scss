@@ -1,15 +1,17 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .content-container {
-  background: $color_cold_gray;
+  background: variables.$color_cold_gray;
   min-height: 100%;
-  max-height: calc(100vh - #{$navbar_height});
+  max-height: calc(100vh - #{variables.$navbar_height});
   overflow: auto;
-  width: $right_column_width;
-  transition: width $panel_animation_time ease-out;
+  width: variables.$right_column_width;
+  transition: width variables.$panel_animation_time ease-out;
 
-  #minimize-right-column, #realtime-right-column-menu, #realtime-right-column-bottom-menu {
-    transition: right $panel_animation_time ease-out;
+  #minimize-right-column,
+  #realtime-right-column-menu,
+  #realtime-right-column-bottom-menu {
+    transition: right variables.$panel_animation_time ease-out;
   }
 
   #minimize-right-column {
@@ -19,28 +21,29 @@
     z-index: 200;
     overflow: hidden;
 
-    background: $color_cold_gray;
-    height: distance(5);
-    width: distance(3);
-    border-top-left-radius: distance(3);
-    border-bottom-left-radius: distance(3);
+    background: variables.$color_cold_gray;
+    height: variables.distance(5);
+    width: variables.distance(3);
+    border-top-left-radius: variables.distance(3);
+    border-bottom-left-radius: variables.distance(3);
 
     cursor: pointer;
 
     &:hover {
-      background: #FFFFFF;
+      background: #ffffff;
     }
 
     display: grid;
     i {
-      margin-left: distance(0.5);
+      margin-left: variables.distance(0.5);
       place-self: center;
-      font-size: distance(3);
+      font-size: variables.distance(3);
       overflow: hidden;
     }
   }
 
-  #realtime-right-column-menu, #realtime-right-column-bottom-menu {
+  #realtime-right-column-menu,
+  #realtime-right-column-bottom-menu {
     position: absolute;
     right: 320px;
     z-index: 200;
@@ -48,7 +51,7 @@
     margin: 0;
     padding: 0;
     display: grid;
-    grid-row-gap: distance(1);
+    grid-row-gap: variables.distance(1);
 
     li {
       white-space: nowrap;
@@ -66,17 +69,19 @@
 
     li {
       .icon-information {
-        @include svg-right-icon('/assets/svg-icons/info-outline.svg');
+        @include variables.svg-right-icon("/assets/svg-icons/info-outline.svg");
       }
       .icon-ships {
-        @include svg-right-icon('/assets/svg-icons/multiple-ships.svg');
+        @include variables.svg-right-icon(
+          "/assets/svg-icons/multiple-ships.svg"
+        );
         &.disabled {
           background: gray;
           cursor: default;
         }
       }
       .icon-incident {
-        @include svg-right-icon('/assets/svg-icons/check-square.svg');
+        @include variables.svg-right-icon("/assets/svg-icons/check-square.svg");
         &.disabled {
           background: gray;
           cursor: default;
@@ -90,36 +95,36 @@
 
     li {
       .icon-map-layers {
-        @include svg-right-icon('/assets/svg-icons/layers.svg');
+        @include variables.svg-right-icon("/assets/svg-icons/layers.svg");
       }
       .icon-distance-between-points {
-        @include svg-right-icon('/assets/svg-icons/messure.svg');
+        @include variables.svg-right-icon("/assets/svg-icons/messure.svg");
       }
       .icon-asset-layers {
-        @include svg-right-icon('/assets/svg-icons/eye.svg');
+        @include variables.svg-right-icon("/assets/svg-icons/eye.svg");
       }
       .icon-map-locations {
-        @include svg-right-icon('/assets/svg-icons/map.svg');
+        @include variables.svg-right-icon("/assets/svg-icons/map.svg");
       }
     }
   }
 
   .panel {
     display: grid;
-    transition: opacity $panel_animation_time*0.5 ease-out;
-    height: calc(100vh - #{$navbar_height});
+    transition: opacity variables.$panel_animation_time * 0.5 ease-out;
+    height: calc(100vh - #{variables.$navbar_height});
     grid-template-rows: auto 1fr;
 
     h3 {
-      border-bottom: 1px solid $color_dark_gray;
+      border-bottom: 1px solid variables.$color_dark_gray;
       justify-self: center;
-      margin-bottom: distance(1);
+      margin-bottom: variables.distance(1);
     }
 
     .panel-title {
-      border-bottom: 1px solid $color_dark_gray;
-      margin-bottom: distance(1);
-      padding-bottom: distance(1);
+      border-bottom: 1px solid variables.$color_dark_gray;
+      margin-bottom: variables.distance(1);
+      padding-bottom: variables.distance(1);
 
       display: grid;
       position: relative;
@@ -135,42 +140,41 @@
 
       i.ri-arrow-left-s-line {
         position: absolute;
-        left: distance(0.5);
-        top: distance(1.5);
-        font-size: distance(4);
-        color: $color_turquoise;
+        left: variables.distance(0.5);
+        top: variables.distance(1.5);
+        font-size: variables.distance(4);
+        color: variables.$color_turquoise;
         cursor: pointer;
       }
 
       h3 {
         border-bottom: 0px;
         margin-bottom: 0px;
-        padding-bottom: distance(1);
+        padding-bottom: variables.distance(1);
       }
 
       .flag-and-name {
         display: grid;
         grid-template-columns: auto 1fr;
-        grid-column-gap: distance(1);
+        grid-column-gap: variables.distance(1);
       }
 
       .asset-name {
-        color: $color_turquoise;
+        color: variables.$color_turquoise;
         font-weight: 600;
       }
     }
 
-
     .breadcrumbs {
       list-style-type: "»";
-      padding-left: distance(2);
+      padding-left: variables.distance(2);
       margin: 0px;
 
       li {
         float: left;
-        margin-left: distance(1.5);
-        padding-left: distance(0.5);
-        color: $color_turquoise;
+        margin-left: variables.distance(1.5);
+        padding-left: variables.distance(0.5);
+        color: variables.$color_turquoise;
         text-decoration: underline;
         cursor: pointer;
 
@@ -181,7 +185,7 @@
         }
 
         &:last-child {
-          color: $color_black;
+          color: variables.$color_black;
           text-decoration: none;
           cursor: default;
         }
@@ -191,7 +195,9 @@
 
   &.panel-hidden {
     width: 0px;
-    #minimize-right-column, #realtime-right-column-menu, #realtime-right-column-bottom-menu {
+    #minimize-right-column,
+    #realtime-right-column-menu,
+    #realtime-right-column-bottom-menu {
       right: 0px;
     }
 

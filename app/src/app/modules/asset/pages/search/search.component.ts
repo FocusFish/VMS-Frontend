@@ -43,9 +43,10 @@ import { State } from "@app/app-reducer";
 import { AssetTypes, AssetActions, AssetSelectors } from "@data/asset";
 
 @Component({
-  selector: "asset-search-page",
-  templateUrl: "./search.component.html",
-  styleUrls: ["./search.component.scss"],
+    selector: "asset-search-page",
+    templateUrl: "./search.component.html",
+    styleUrls: ["./search.component.scss"],
+    standalone: false
 })
 export class SearchPageComponent implements OnInit, OnDestroy {
   @ViewChild("toolbox") toolbox;

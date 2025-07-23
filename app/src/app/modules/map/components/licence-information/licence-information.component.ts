@@ -4,9 +4,10 @@ import { AssetTypes } from '@data/asset';
 import { formatUnixdate } from '@app/helpers/datetime-formatter';
 
 @Component({
-  selector: 'map-licence-information',
-  templateUrl: './licence-information.component.html',
-  styleUrls: ['./licence-information.component.scss']
+    selector: 'map-licence-information',
+    templateUrl: './licence-information.component.html',
+    styleUrls: ['./licence-information.component.scss'],
+    standalone: false
 })
 export class LicenceInformationComponent implements OnChanges {
   @Input() licence: AssetTypes.AssetLicence;

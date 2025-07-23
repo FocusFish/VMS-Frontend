@@ -1,9 +1,10 @@
 import { Component, Input, OnChanges, ContentChild, ElementRef } from '@angular/core';
 
 @Component({
-  selector: 'map-panel-block',
-  templateUrl: './panel-block.component.html',
-  styleUrls: ['./panel-block.component.scss']
+    selector: 'map-panel-block',
+    templateUrl: './panel-block.component.html',
+    styleUrls: ['./panel-block.component.scss'],
+    standalone: false
 })
 export class PanelBlockComponent implements OnChanges {
   @Input() blockTitle: string;

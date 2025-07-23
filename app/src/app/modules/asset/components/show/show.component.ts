@@ -7,9 +7,10 @@ import { AssetTypes } from '@data/asset';
 import { IncidentTypes } from '@data/incident';
 
 @Component({
-  selector: 'asset-show',
-  templateUrl: './show.component.html',
-  styleUrls: ['./show.component.scss']
+    selector: 'asset-show',
+    templateUrl: './show.component.html',
+    styleUrls: ['./show.component.scss'],
+    standalone: false
 })
 export class ShowComponent implements OnChanges {
   @Input() asset: AssetTypes.Asset;

@@ -1,7 +1,7 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .content-container {
-  background: #FFFFFF;
+  background: #ffffff;
   border: 1px solid #000000;
   mat-slider {
     width: 100%;

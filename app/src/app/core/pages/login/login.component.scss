@@ -1,4 +1,4 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 app-login {
   .content-container {
@@ -10,10 +10,10 @@ app-login {
       place-self: center;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-column-gap: $medium_distance;
-      grid-row-gap: $large_distance;
+      grid-column-gap: variables.$medium_distance;
+      grid-row-gap: variables.$large_distance;
       h4 {
-        background: #E84E0F;
+        background: #e84e0f;
         padding: 13px;
         color: white;
         grid-column: 1 / span 2;

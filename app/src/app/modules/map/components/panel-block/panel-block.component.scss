@@ -1,9 +1,9 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .content-container {
   display: grid;
   grid-row-gap: 2px;
-  padding: $small_distance $medium_distance;
+  padding: variables.$small_distance variables.$medium_distance;
 
   &.no-padding {
     padding: 0;
@@ -11,7 +11,7 @@
 
   .panel-block-content {
     background: white;
-    padding: $medium_distance;
+    padding: variables.$medium_distance;
 
     &.no-padding {
       padding: 0;
@@ -19,8 +19,8 @@
   }
 
   .panel-block-header {
-    color: $color_turquoise;
-    padding: $large_distance $medium_distance;
+    color: variables.$color_turquoise;
+    padding: variables.$large_distance variables.$medium_distance;
     background: white;
 
     &.full-header-clickable {
@@ -29,31 +29,31 @@
 
     & > .arrow-toggle {
       display: grid;
-      grid-template-columns: 1fr distance(4);
+      grid-template-columns: 1fr variables.distance(4);
       font-weight: 600;
 
       .label {
         display: grid;
-        grid-column-gap: $medium_distance;
+        grid-column-gap: variables.$medium_distance;
         grid-template-columns: auto 1fr;
-        grid-template-areas: 'left right';
+        grid-template-areas: "left right";
       }
 
       .arrow {
         position: relative;
 
         i {
-          font-size: distance(4);
+          font-size: variables.distance(4);
           position: absolute;
-          right: distance(-0.5);
-          bottom: distance(-1);
+          right: variables.distance(-0.5);
+          bottom: variables.distance(-1);
         }
       }
     }
   }
 
   .panel-block-footer:not(.unstyled) {
-    padding: $medium_distance;
+    padding: variables.$medium_distance;
     background: white;
   }
 }

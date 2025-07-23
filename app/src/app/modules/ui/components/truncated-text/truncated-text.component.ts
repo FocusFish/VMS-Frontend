@@ -1,8 +1,9 @@
 import { Component, Input, OnChanges } from '@angular/core';
 
 @Component({
-  selector: 'ui-truncated-text',
-  templateUrl: './truncated-text.component.html'
+    selector: 'ui-truncated-text',
+    templateUrl: './truncated-text.component.html',
+    standalone: false
 })
 export class TruncatedTextComponent implements OnChanges {
   @Input() text: string;

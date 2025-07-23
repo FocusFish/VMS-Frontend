@@ -1,15 +1,15 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .content-container {
   display: grid;
-  grid-row-gap: distance(1);
+  grid-row-gap: variables.distance(1);
 
   .who {
     font-size: 80%;
-    color: $color_dark_gray;
+    color: variables.$color_dark_gray;
   }
 
   .danger {
-    color: $color_warn;
+    color: variables.$color_warn;
   }
 }

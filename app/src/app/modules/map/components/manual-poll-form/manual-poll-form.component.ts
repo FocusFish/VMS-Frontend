@@ -10,9 +10,10 @@ import moment from 'moment-timezone';
 
 
 @Component({
-  selector: 'map-manual-poll-form',
-  templateUrl: './manual-poll-form.component.html',
-  styleUrls: ['./manual-poll-form.component.scss']
+    selector: 'map-manual-poll-form',
+    templateUrl: './manual-poll-form.component.html',
+    styleUrls: ['./manual-poll-form.component.scss'],
+    standalone: false
 })
 export class ManualPollFormComponent implements OnInit {
   @Input() pollAsset: (assetId: number, pollPostObject: AssetTypes.PollPostObject) => void;

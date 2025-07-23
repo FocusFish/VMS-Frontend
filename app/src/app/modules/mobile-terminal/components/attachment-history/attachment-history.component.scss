@@ -1,8 +1,8 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .mobile-terminal-history--page-header {
-  margin-top: distance(2);
-  padding: distance(2) distance(3);
+  margin-top: variables.distance(2);
+  padding: variables.distance(2) variables.distance(3);
   background: white;
   b {
     font-style: italic;
@@ -11,12 +11,12 @@
 }
 
 .mobile-terminal-history--list {
-  padding-top: distance(2);
+  padding-top: variables.distance(2);
   display: grid;
-  grid-row-gap: distance(1);
+  grid-row-gap: variables.distance(1);
 
   .mobile-terminal-history {
-    padding: distance(2) distance(3);
+    padding: variables.distance(2) variables.distance(3);
     background: white;
     .history-header {
       display: grid;
@@ -27,7 +27,7 @@
   .field-column {
     cursor: pointer;
     display: grid;
-    grid-row-gap: distance(0.5);
+    grid-row-gap: variables.distance(0.5);
 
     label {
       cursor: pointer;

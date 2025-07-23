@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   app:
@@ -6,6 +6,6 @@ services:
       context: ../../
       dockerfile: docker/prod-sv/Dockerfile
     ports:
-      - '8085:80'
+      - "8085:80"
     volumes:
-      - ../../app/dist/sv:/usr/share/nginx/html
+      - ../../app/dist/browser/sv:/usr/share/nginx/html

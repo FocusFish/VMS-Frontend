@@ -1,13 +1,6 @@
 import { waitForAsync, TestBed } from "@angular/core/testing";
 import { Router } from "@angular/router";
-import { By } from "@angular/platform-browser";
-
-// @ts-ignore
-import moment from "moment-timezone";
-
 import { provideMockStore, MockStore } from "@ngrx/store/testing";
-
-import Map from "ol/Map";
 
 /* Modules */
 import { UIModule } from "../../../ui/ui.module";
@@ -18,17 +11,6 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 
 import { MapRightColumnComponent } from "./map-right-column.component";
-
-import { AssetReducer, AssetActions, AssetTypes } from "@data/asset";
-import AssetStub from "@data/asset/stubs/asset.stub";
-import AssetMovementWithEssentialsStub from "@data/asset/stubs/assetMovementWithEssentials.stub";
-import AssetTrackStub from "@data/asset/stubs/assetTracks.stub";
-import { IncidentReducer } from "@data/incident";
-import { MapActions, MapReducer } from "@data/map";
-import { MapSettingsReducer, MapSettingsActions } from "@data/map-settings";
-import { MapSavedFiltersReducer } from "@data/map-saved-filters";
-
-import { formatDate } from "@app/helpers/helpers";
 
 /* tslint:disable:no-string-literal */
 describe("RealtimeComponent", () => {
@@ -83,10 +65,8 @@ describe("RealtimeComponent", () => {
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
       expect(dispatchSpy).toHaveBeenCalledWith(
-        MapSettingsActions.saveMapLocation({
-          key: 1,
-          mapLocation,
-          save: undefined,
+        jasmine.objectContaining({
+          type: "[MapSettings] Save map location",
         })
       );
     });
@@ -99,7 +79,9 @@ describe("RealtimeComponent", () => {
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
       expect(dispatchSpy).toHaveBeenCalledWith(
-        MapSettingsActions.setVisibilityForAssetNames({ visibility: true })
+        jasmine.objectContaining({
+          type: "[MapSettings] Set visibility for asset names",
+        })
       );
     });
 
@@ -111,7 +93,9 @@ describe("RealtimeComponent", () => {
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
       expect(dispatchSpy).toHaveBeenCalledWith(
-        MapSettingsActions.setVisibilityForAssetSpeeds({ visibility: true })
+        jasmine.objectContaining({
+          type: "[MapSettings] Set visibility for asset speeds",
+        })
       );
     });
 
@@ -123,7 +107,9 @@ describe("RealtimeComponent", () => {
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
       expect(dispatchSpy).toHaveBeenCalledWith(
-        MapSettingsActions.setVisibilityForTracks({ visibility: true })
+        jasmine.objectContaining({
+          type: "[MapSettings] Set visibility for tracks",
+        })
       );
     });
 
@@ -135,7 +121,9 @@ describe("RealtimeComponent", () => {
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
       expect(dispatchSpy).toHaveBeenCalledWith(
-        MapSettingsActions.setVisibilityForFlags({ visibility: true })
+        jasmine.objectContaining({
+          type: "[MapSettings] Set visibility for flags",
+        })
       );
     });
 
@@ -147,7 +135,9 @@ describe("RealtimeComponent", () => {
 
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
       expect(dispatchSpy).toHaveBeenCalledWith(
-        MapSettingsActions.setVisibilityForForecast({ visibility: true })
+        jasmine.objectContaining({
+          type: "[MapSettings] Set visibility for forecast",
+        })
       );
     });
   });

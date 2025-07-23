@@ -4,6 +4,7 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
+    "esModuleInterop": true,
     "declaration": false,
     "module": "es2015",
     "moduleResolution": "node",
@@ -11,31 +12,15 @@
     "importHelpers": true,
     "target": "ES2022",
     "paths": {
-      "@data/*": [
-        "src/app/data/*"
-      ],
-      "@app/*": [
-        "src/app/*"
-      ],
-      "@modules/*": [
-        "src/app/modules/*"
-      ],
-      "@src/*": [
-        "src/*"
-      ],
-      "@validators/*": [
-        "src/app/helpers/validators"
-      ]
+      "@data/*": ["src/app/data/*"],
+      "@app/*": ["src/app/*"],
+      "@modules/*": ["src/app/modules/*"],
+      "@src/*": ["src/*"],
+      "@validators/*": ["src/app/helpers/validators"]
     },
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2020",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2022", "dom"],
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {

@@ -19,9 +19,10 @@ import { UserSettingsSelectors } from '@data/user-settings';
 
 
 @Component({
-  selector: 'map-right-column',
-  templateUrl: './map-right-column.component.html',
-  styleUrls: ['./map-right-column.component.scss']
+    selector: 'map-right-column',
+    templateUrl: './map-right-column.component.html',
+    styleUrls: ['./map-right-column.component.scss'],
+    standalone: false
 })
 export class MapRightColumnComponent implements OnInit, OnDestroy {
 

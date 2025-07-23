@@ -1,9 +1,8 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .page-container {
-
   display: grid;
-  grid-row-gap: distance(4);
+  grid-row-gap: variables.distance(4);
 
   .top-row {
     display: grid;
@@ -18,19 +17,19 @@
 
   .asset-search-form {
     display: grid;
-    grid-column-gap: distance(3);
+    grid-column-gap: variables.distance(3);
     grid-template-columns: 1fr auto;
-    padding: distance(3) distance(3) distance(2);
+    padding: variables.distance(3) variables.distance(3) variables.distance(2);
     background: white;
 
     mat-form-field.free-search {
       grid-column: 1 / 3;
-      margin-top: distance(1);
+      margin-top: variables.distance(1);
     }
 
     mat-radio-group {
       display: grid;
-      grid-column-gap: distance(3);
+      grid-column-gap: variables.distance(3);
       grid-template-columns: 1fr 1fr 1fr;
 
       & > * {
@@ -45,7 +44,7 @@
     .form-button-wrapper {
       place-self: center;
       display: grid;
-      grid-column-gap: distance(1);
+      grid-column-gap: variables.distance(1);
       grid-template-columns: 1fr 1fr;
     }
   }
@@ -57,11 +56,11 @@
   .response-container {
     display: grid;
     grid-column: 1fr;
-    grid-row-gap: distance(2);
+    grid-row-gap: variables.distance(2);
 
     .search-result-info {
       font-weight: bold;
-      font-size: distance(2);
+      font-size: variables.distance(2);
     }
 
     .asset-table-container > table {
@@ -73,13 +72,13 @@
         cursor: pointer;
 
         &:hover {
-          background-color: rgba( $color_blue, 0.2);
+          background-color: rgba(variables.$color_blue, 0.2);
           text-decoration: underline;
         }
       }
 
       .asset-inactive {
-        background-color: rgba( $color_gray, 0.3);
+        background-color: rgba(variables.$color_gray, 0.3);
       }
     }
   }

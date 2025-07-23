@@ -4,9 +4,10 @@ import { Observable, timer } from 'rxjs';
 import { take, map, finalize } from 'rxjs/operators';
 
 @Component({
-   selector: 'ui-countdown',
-   template: `<span>{{counter$ | async}}</span>`,
-   styleUrls: ['./countdown.component.scss']
+    selector: 'ui-countdown',
+    template: `<span>{{counter$ | async}}</span>`,
+    styleUrls: ['./countdown.component.scss'],
+    standalone: false
 })
 export class CountdownComponent implements OnInit {
   @Input() seconds: number;

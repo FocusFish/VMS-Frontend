@@ -1,11 +1,11 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .type-selection {
   width: 250px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: distance(1);
-  padding-bottom: distance(1);
+  grid-column-gap: variables.distance(1);
+  padding-bottom: variables.distance(1);
 
   .mat-slide-toggle {
     font-weight: bold;
@@ -24,9 +24,9 @@
 
     .row-details-fields {
       display: grid;
-      padding-bottom: distance(1);
+      padding-bottom: variables.distance(1);
       grid-template-columns: 1fr auto;
-      grid-column-gap: distance(0.5);
+      grid-column-gap: variables.distance(0.5);
 
       div {
         text-align: right;
@@ -34,7 +34,7 @@
     }
 
     .row-details-fields-expanded {
-      padding-right: distance(1);
+      padding-right: variables.distance(1);
       grid-template-columns: auto auto auto auto;
 
       div {
@@ -52,6 +52,6 @@
   }
 
   legend {
-    font-size: $default_font_size;
+    font-size: variables.$default_font_size;
   }
 }

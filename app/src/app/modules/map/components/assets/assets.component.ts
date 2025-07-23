@@ -15,8 +15,9 @@ import enLocale from 'i18n-iso-countries/langs/en.json';
 registerLocale(enLocale);
 
 @Component({
-  selector: 'map-assets',
-  template: '',
+    selector: 'map-assets',
+    template: '',
+    standalone: false
 })
 export class AssetsComponent implements OnInit, OnDestroy, OnChanges {
 

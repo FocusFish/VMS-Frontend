@@ -1,7 +1,6 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .content-container {
-  
   display: grid;
   height: 100%;
   form {
@@ -10,10 +9,10 @@
     place-self: center;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-column-gap: $medium_distance;
-    grid-row-gap: $large_distance;
+    grid-column-gap: variables.$medium_distance;
+    grid-row-gap: variables.$large_distance;
   }
   p {
-     place-self: center;
+    place-self: center;
   }
 }

@@ -9,9 +9,10 @@ type QueryParam = Readonly<{
 
 
 @Component({
-  selector: 'map-asset-filter',
-  templateUrl: './asset-filter.component.html',
-  styleUrls: ['./asset-filter.component.scss']
+    selector: 'map-asset-filter',
+    templateUrl: './asset-filter.component.html',
+    styleUrls: ['./asset-filter.component.scss'],
+    standalone: false
 })
 export class AssetFilterComponent implements OnChanges {
   @Input() filterFunction: (filterQuery: ReadonlyArray<AssetTypes.AssetFilterQuery>) => void;

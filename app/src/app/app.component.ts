@@ -11,8 +11,9 @@ import jwtDecode from "jwt-decode";
 import { LoggedOutDialogComponent } from "@app/core/components/logged-out-dialog/logged-out-dialog.component";
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
+    selector: "app-root",
+    templateUrl: "./app.component.html",
+    standalone: false
 })
 export class AppComponent implements OnInit {
   public unmount$: Subject<boolean> = new Subject<boolean>();

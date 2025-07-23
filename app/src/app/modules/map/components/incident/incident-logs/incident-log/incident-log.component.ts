@@ -5,9 +5,10 @@ import { formatUnixtimeWithDot } from '@app/helpers/datetime-formatter';
 import { IncidentTypes } from '@data/incident';
 
 @Component({
-  selector: 'map-incident-log',
-  templateUrl: './incident-log.component.html',
-  styleUrls: ['./incident-log.component.scss']
+    selector: 'map-incident-log',
+    templateUrl: './incident-log.component.html',
+    styleUrls: ['./incident-log.component.scss'],
+    standalone: false
 })
 export class IncidentLogComponent implements OnChanges {
   @Input() incidentLog: IncidentTypes.IncidentLog;

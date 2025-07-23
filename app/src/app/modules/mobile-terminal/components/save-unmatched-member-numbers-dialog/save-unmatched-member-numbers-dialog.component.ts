@@ -9,10 +9,11 @@ import { MapSavedFiltersTypes } from "@data/map-saved-filters";
 import { FormControl, Validators } from "@angular/forms";
 
 @Component({
-  selector: "mobile-terminal-save-unmatched-member-numbers-dialog",
-  templateUrl: "./save-unmatched-member-numbers-dialog.component.html",
-  styleUrls: ["./save-unmatched-member-numbers-dialog.component.scss"],
-  encapsulation: ViewEncapsulation.None,
+    selector: "mobile-terminal-save-unmatched-member-numbers-dialog",
+    templateUrl: "./save-unmatched-member-numbers-dialog.component.html",
+    styleUrls: ["./save-unmatched-member-numbers-dialog.component.scss"],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class SaveUnmatchedMemberNumbersDialogComponent {
   constructor(

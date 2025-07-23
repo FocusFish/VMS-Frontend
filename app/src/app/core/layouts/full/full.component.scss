@@ -1,9 +1,9 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .navbar {
-  background: $color_blue;
+  background: variables.$color_blue;
   color: white;
-  height: $navbar_height;
+  height: variables.$navbar_height;
   display: grid;
   grid-template-columns: 120px 1fr;
 
@@ -19,7 +19,7 @@
 
     .app-version {
       margin-top: 2px;
-      margin-left: $medium_distance;
+      margin-left: variables.$medium_distance;
       font-size: 80%;
       font-style: italic;
     }
@@ -31,7 +31,7 @@
 
   ul.navbar-nav {
     a:hover {
-      border-bottom: 1px solid $color_orange;
+      border-bottom: 1px solid variables.$color_orange;
     }
 
     display: inline-block;
@@ -39,7 +39,7 @@
     padding-left: 0px;
     li.nav-item {
       display: inline-block;
-      margin-right: $large_distance;
+      margin-right: variables.$large_distance;
       &:last-child {
         margin-right: 0px;
       }

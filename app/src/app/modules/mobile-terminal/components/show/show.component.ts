@@ -8,9 +8,10 @@ import { MobileTerminalTypes } from "@data/mobile-terminal";
 import { formatUnixtime } from "@app/helpers/datetime-formatter";
 
 @Component({
-  selector: "mobile-terminal-show-component",
-  templateUrl: "./show.component.html",
-  styleUrls: ["./show.component.scss"],
+    selector: "mobile-terminal-show-component",
+    templateUrl: "./show.component.html",
+    styleUrls: ["./show.component.scss"],
+    standalone: false
 })
 export class ShowComponent implements OnChanges {
   @Input() mobileTerminal: MobileTerminalTypes.MobileTerminal;

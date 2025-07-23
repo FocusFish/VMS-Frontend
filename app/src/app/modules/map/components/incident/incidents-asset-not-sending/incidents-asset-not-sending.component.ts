@@ -2,9 +2,10 @@ import { Component, Input, OnChanges } from '@angular/core';
 import { IncidentTypes } from '@data/incident';
 
 @Component({
-  selector: 'map-incidents-asset-not-sending',
-  templateUrl: './incidents-asset-not-sending.component.html',
-  styleUrls: ['./incidents-asset-not-sending.component.scss']
+    selector: 'map-incidents-asset-not-sending',
+    templateUrl: './incidents-asset-not-sending.component.html',
+    styleUrls: ['./incidents-asset-not-sending.component.scss'],
+    standalone: false
 })
 export class IncidentsAssetNotSendingComponent implements OnChanges {
   @Input() incidents: IncidentTypes.IncidentsCollectionByResolution;

@@ -1,17 +1,17 @@
-@import "variables.scss";
+@use "variables.scss";
 
 .content-container {
-  margin-top: distance(1);
+  margin-top: variables.distance(1);
   display: grid;
   grid-row-gap: 2px;
-  padding: 0px distance(1);
+  padding: 0px variables.distance(1);
 
   .header {
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-column-gap: distance(1);
-    color: $color_turquoise;
-    padding: $large_distance $medium_distance;
+    grid-column-gap: variables.distance(1);
+    color: variables.$color_turquoise;
+    padding: variables.$large_distance variables.$medium_distance;
     background: white;
 
     .flag-image {
@@ -22,7 +22,7 @@
 
   .body {
     background: white;
-    padding: $medium_distance;
+    padding: variables.$medium_distance;
     color: black;
 
     .information-wrapper {
@@ -32,7 +32,7 @@
       .asset-information {
         display: grid;
         grid-template-columns: 1fr auto;
-        grid-column-gap: $medium_distance;
+        grid-column-gap: variables.$medium_distance;
         overflow-y: scroll;
         -ms-overflow-style: none; // IE 10+
         overflow: -moz-scrollbars-none; // Firefox
@@ -46,7 +46,7 @@
 
         legend {
           // font-weight: bold;
-          font-size: $default_font_size;
+          font-size: variables.$default_font_size;
           // text-decoration: underline;
         }
 
@@ -55,8 +55,8 @@
         }
 
         mat-checkbox {
-          color: $color_turquoise;
-          padding: $medium_distance $small_distance;
+          color: variables.$color_turquoise;
+          padding: variables.$medium_distance variables.$small_distance;
         }
 
         .asset-information--other-fields {
@@ -66,7 +66,7 @@
 
           h3 {
             grid-column: 1 / span 2;
-            padding: distance(1) 0px distance(0.5);
+            padding: variables.distance(1) 0px variables.distance(0.5);
             font-size: 14px;
           }
         }
@@ -75,15 +75,15 @@
           grid-column: 1 / span 2;
 
           h3 {
-            padding: distance(1) 0px distance(0.5);
+            padding: variables.distance(1) 0px variables.distance(0.5);
             font-size: 14px;
           }
 
           .asset-information--last-position--content {
-            background: rgba($color_light_turquoise, 0.1);
-            padding: distance(1);
+            background: rgba(variables.$color_light_turquoise, 0.1);
+            padding: variables.distance(1);
             display: grid;
-            grid-row-gap: distance(0.5);
+            grid-row-gap: variables.distance(0.5);
 
             .time-and-source {
               display: grid;
@@ -97,7 +97,7 @@
             .position-fields {
               display: grid;
               grid-template-columns: 1fr auto;
-              grid-column-gap: distance(0.5);
+              grid-column-gap: variables.distance(0.5);
 
               div {
                 text-align: right;
@@ -110,15 +110,15 @@
           grid-column: 1 / span 2;
 
           h3 {
-            padding: distance(1) 0px distance(0.5);
+            padding: variables.distance(1) 0px variables.distance(0.5);
             font-size: 14px;
           }
 
           .asset-information--activity--content {
-            background: rgba($color_light_turquoise, 0.1);
-            padding: distance(1);
+            background: rgba(variables.$color_light_turquoise, 0.1);
+            padding: variables.distance(1);
             display: grid;
-            grid-row-gap: distance(0.5);
+            grid-row-gap: variables.distance(0.5);
 
             .activity-type {
               font-weight: bolder;
@@ -127,7 +127,7 @@
             .activity-fields {
               display: grid;
               grid-template-columns: 1fr auto;
-              grid-column-gap: distance(0.5);
+              grid-column-gap: variables.distance(0.5);
 
               div {
                 text-align: right;
@@ -140,7 +140,7 @@
   }
 
   .button-wrapper {
-    margin-top: distance(1);
+    margin-top: variables.distance(1);
     grid-column: 1 / span 2;
 
     display: grid;
@@ -153,14 +153,14 @@
       align-items: center;
       cursor: pointer;
       width: 100%;
-      color: $color_warn;
+      color: variables.$color_warn;
     }
   }
 
   .bottom-button-wrapper {
     display: grid;
-    grid-row-gap: distance(1);
-    margin-top: distance(1);
+    grid-row-gap: variables.distance(1);
+    margin-top: variables.distance(1);
 
     & ::ng-deep .mdc-button__label {
       display: flex;

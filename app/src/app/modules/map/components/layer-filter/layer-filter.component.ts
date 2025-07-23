@@ -2,9 +2,10 @@ import { Component, Input } from '@angular/core';
 import { MapSettingsTypes } from '@data/map-settings';
 
 @Component({
-  selector: 'map-layer-filter',
-  templateUrl: './layer-filter.component.html',
-  styleUrls: ['./layer-filter.component.scss']
+    selector: 'map-layer-filter',
+    templateUrl: './layer-filter.component.html',
+    styleUrls: ['./layer-filter.component.scss'],
+    standalone: false
 })
 export class LayerFilterComponent {
   @Input() mapSettings: MapSettingsTypes.State;

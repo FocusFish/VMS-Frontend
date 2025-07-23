@@ -1,22 +1,19 @@
 import {
   convertDDMToDD,
   convertDDToDDM,
-  convertDDToDMS,
   convertDDMToDDJustNumbers,
-} from './wgs84-formatter';
-import { truncFloat } from '@app/helpers/float';
+} from "./wgs84-formatter";
 
-describe('wg84-formatter', () => {
-
-  it('convertDDMToDD and back with convertDDToDDM', () => {
+describe("wg84-formatter", () => {
+  it("convertDDMToDD and back with convertDDToDDM", () => {
     for (let i = 0; i < 60; i++) {
       for (let j = 0; j < 99; j++) {
         let latMinutes = `${i}.${j}`;
         let latMinutes4d = `${i}.${j}00`;
-        if(j === 0) {
+        if (j === 0) {
           latMinutes = `${i}.00`;
           latMinutes4d = `${i}.0000`;
-        } else if(j < 10) {
+        } else if (j < 10) {
           latMinutes = `${i}.0${j}`;
           latMinutes4d = `${i}.0${j}00`;
         }
@@ -26,7 +23,7 @@ describe('wg84-formatter', () => {
         j++;
         let longMinutes = `${i}.${j}`;
         let longMinutes4d = `${i}.${j}00`;
-        if(j < 10) {
+        if (j < 10) {
           longMinutes = `${i}.0${j}`;
           longMinutes4d = `${i}.0${j}00`;
         }
@@ -46,15 +43,20 @@ describe('wg84-formatter', () => {
       }
     }
   });
-  it('convertDDMToDDJustNumbers', () => {
-        const latitude = 57;
-        const latitudeDM = 56.680;
-        const longitude = 11;
-        const longitudeDM = 33.840;
-        const dd = convertDDMToDDJustNumbers(latitude, latitudeDM, longitude, longitudeDM);
-        const expectedLat = 57.94;
-        const expectedLong = 11.56;
-        expect(dd.latitude).toBe(expectedLat);
-        expect(dd.longitude).toBe(expectedLong);
+  it("convertDDMToDDJustNumbers", () => {
+    const latitude = 57;
+    const latitudeDM = 56.68;
+    const longitude = 11;
+    const longitudeDM = 33.84;
+    const dd = convertDDMToDDJustNumbers(
+      latitude,
+      latitudeDM,
+      longitude,
+      longitudeDM
+    );
+    const expectedLat = 57.94;
+    const expectedLong = 11.56;
+    expect(dd.latitude).toBe(expectedLat);
+    expect(dd.longitude).toBe(expectedLong);
   });
 });

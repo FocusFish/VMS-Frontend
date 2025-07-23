@@ -2,9 +2,10 @@ import { Component, Input, OnChanges, ViewChild } from '@angular/core';
 import { MatRipple } from '@angular/material/core';
 
 @Component({
-  selector: 'core-logout-timer-component',
-  templateUrl: './logout-timer.component.html',
-  styleUrls: ['./logout-timer.component.scss']
+    selector: 'core-logout-timer-component',
+    templateUrl: './logout-timer.component.html',
+    styleUrls: ['./logout-timer.component.scss'],
+    standalone: false
 })
 export class LogoutTimerComponent implements OnChanges {
   @Input() timeToLogout: number | null;

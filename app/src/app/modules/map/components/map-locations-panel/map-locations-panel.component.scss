@@ -1,10 +1,10 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .content-container {
   display: grid;
   grid-template-columns: 1fr;
-  grid-row-gap: distance(2);
-  padding: distance(1);
+  grid-row-gap: variables.distance(2);
+  padding: variables.distance(1);
 
   .description {
     b {
@@ -15,15 +15,15 @@
   .locations {
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: distance(2);
+    grid-gap: variables.distance(2);
 
     .location-wrapper {
       .location-header {
         display: grid;
         grid-template-columns: 1fr auto auto;
-        grid-column-gap: distance(1);
-        margin-bottom: distance(1);
-        border-bottom: 1px solid $color_dark_gray;
+        grid-column-gap: variables.distance(1);
+        margin-bottom: variables.distance(1);
+        border-bottom: 1px solid variables.$color_dark_gray;
 
         .name {
           align-self: end;
@@ -37,15 +37,15 @@
           font-size: 150%;
 
           &.ri-pencil-fill:hover {
-            color: $color_turquoise;
+            color: variables.$color_turquoise;
           }
           &.ri-delete-bin-2-fill:hover {
-            color: $color_warn;
+            color: variables.$color_warn;
           }
         }
       }
       .location {
-        background: $color_dark_gray;
+        background: variables.$color_dark_gray;
         position: relative;
         cursor: pointer;
         min-height: 123px;

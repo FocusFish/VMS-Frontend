@@ -4,10 +4,11 @@ import { Store } from '@ngrx/store';
 import { AuthReducer, AuthActions, AuthSelectors, AuthTypes } from '../../../data/auth';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class LoginComponent {
   username: string;

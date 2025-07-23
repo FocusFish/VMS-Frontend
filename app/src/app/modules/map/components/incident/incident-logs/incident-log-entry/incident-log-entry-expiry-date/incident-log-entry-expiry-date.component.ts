@@ -6,9 +6,10 @@ import { IncidentTypes } from '@data/incident';
 
 
 @Component({
-  selector: 'map-incident-log-entry-expiry-date',
-  templateUrl: './incident-log-entry-expiry-date.component.html',
-  styleUrls: ['./incident-log-entry-expiry-date.component.scss']
+    selector: 'map-incident-log-entry-expiry-date',
+    templateUrl: './incident-log-entry-expiry-date.component.html',
+    styleUrls: ['./incident-log-entry-expiry-date.component.scss'],
+    standalone: false
 })
 export class IncidentLogEntryExpiryDateComponent implements OnChanges {
   @Input() logEntry: IncidentTypes.IncidentLogEntry;

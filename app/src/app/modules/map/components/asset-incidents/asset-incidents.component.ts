@@ -7,9 +7,10 @@ import { formatUnixtimeWithDot } from "@app/helpers/datetime-formatter";
 import { AssetIncidentsDialogComponent } from "@modules/map/components/asset-incidents-dialog/asset-incidents-dialog.component";
 
 @Component({
-  selector: "map-asset-incidents",
-  templateUrl: "./asset-incidents.component.html",
-  styleUrls: ["./asset-incidents.component.scss"],
+    selector: "map-asset-incidents",
+    templateUrl: "./asset-incidents.component.html",
+    styleUrls: ["./asset-incidents.component.scss"],
+    standalone: false
 })
 export class AssetIncidentsComponent {
   @Input() incidents: ReadonlyArray<IncidentTypes.Incident>;

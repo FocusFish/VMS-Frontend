@@ -11,9 +11,10 @@ import { UserSettingsSelectors } from '@data/user-settings';
 import { AuthSelectors } from '@data/auth';
 
 @Component({
-  selector: 'notes-list-page',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+    selector: 'notes-list-page',
+    templateUrl: './list.component.html',
+    styleUrls: ['./list.component.scss'],
+    standalone: false
 })
 export class ListPageComponent implements OnInit, OnDestroy {
   constructor(private readonly store: Store<State>) { }

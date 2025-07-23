@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'ui-button-toggle',
-  templateUrl: './toggle.component.html',
-  styleUrls: ['./toggle.component.scss']
+    selector: 'ui-button-toggle',
+    templateUrl: './toggle.component.html',
+    styleUrls: ['./toggle.component.scss'],
+    standalone: false
 })
 export class ToggleButtonComponent {
   // tslint:disable:ban-types

@@ -2,9 +2,10 @@ import { Component, Input, ViewChild, ElementRef, AfterViewInit } from '@angular
 import Overlay from 'ol/Overlay';
 
 @Component({
-  selector: 'map-coordinates-popup',
-  templateUrl: './coordinates-popup.component.html',
-  styleUrls: ['./coordinates-popup.component.scss']
+    selector: 'map-coordinates-popup',
+    templateUrl: './coordinates-popup.component.html',
+    styleUrls: ['./coordinates-popup.component.scss'],
+    standalone: false
 })
 export class CoordinatesPopupComponent implements AfterViewInit {
 

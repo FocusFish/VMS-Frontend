@@ -1,11 +1,11 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 form.notes-form {
   background: white;
-  padding: $small_distance;
+  padding: variables.$small_distance;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-column-gap: $small_distance;
+  grid-column-gap: variables.$small_distance;
 
   #note-form--notes {
     grid-column: 1 / span 2;

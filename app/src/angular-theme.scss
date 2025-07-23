@@ -1,12 +1,12 @@
 @use "@angular/material" as mat;
-@import "@angular/material/theming";
-@import "variables.scss";
+@use "variables.scss";
 /* Plus imports for other components in your app. */
 
 /* Include the common styles for Angular Material. We include this here so that you only
 have to load a single css file for Angular Material in your app.
 **Be sure that you only ever include this mixin once!** */
-@include mat.core();
+@include mat.elevation-classes();
+@include mat.app-background();
 
 $primary-color: (
   100: #2280a7,
@@ -14,10 +14,10 @@ $primary-color: (
   500: #004371,
   700: #092d4b,
   contrast: (
-    100: $light-primary-text,
-    300: $light-primary-text,
-    500: $light-primary-text,
-    700: $light-primary-text,
+    100: #092d4b,
+    300: #092d4b,
+    500: #ffffff,
+    700: #ffffff,
   ),
 );
 
@@ -27,38 +27,38 @@ $accent-color: (
   500: #227e00,
   700: #01763b,
   contrast: (
-    100: $dark-primary-text,
-    300: $dark-primary-text,
-    500: $light-primary-text,
-    700: $light-primary-text,
+    100: #01763b,
+    300: #01763b,
+    500: #ffffff,
+    700: #ffffff,
   ),
 );
 
 $warn-color: (
-  100: $color_warn_light,
-  300: $color_warn_light,
-  500: $color_warn,
-  700: $color_warn_dark,
+  100: variables.$color_warn_light,
+  300: variables.$color_warn_light,
+  500: variables.$color_warn,
+  700: variables.$color_warn_dark,
   contrast: (
-    100: $dark-primary-text,
-    300: $dark-primary-text,
-    500: $light-primary-text,
-    700: $light-primary-text,
+    100: variables.$color_warn_dark,
+    300: variables.$color_warn_dark,
+    500: #ffffff,
+    700: #ffffff,
   ),
 );
 
 /* Define the default theme (same as the example above). */
-$primary-color-palette: mat.define-palette($primary-color);
-$accent-color-palette: mat.define-palette($accent-color);
-$warn-color-palette: mat.define-palette($warn-color);
-$candy-app-theme: mat.define-light-theme(
+$primary-color-palette: mat.m2-define-palette($primary-color);
+$accent-color-palette: mat.m2-define-palette($accent-color);
+$warn-color-palette: mat.m2-define-palette($warn-color);
+$candy-app-theme: mat.m2-define-light-theme(
   (
     color: (
       primary: $primary-color-palette,
       accent: $accent-color-palette,
       warn: $warn-color-palette,
     ),
-    typography: mat.define-typography-config(),
+    typography: mat.m2-define-typography-config(),
     density: 0,
   )
 );

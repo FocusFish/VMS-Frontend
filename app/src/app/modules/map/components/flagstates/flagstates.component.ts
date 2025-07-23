@@ -13,8 +13,9 @@ import Point from 'ol/geom/Point';
 import { fromLonLat } from 'ol/proj';
 
 @Component({
-  selector: 'map-flagstates',
-  template: '',
+    selector: 'map-flagstates',
+    template: '',
+    standalone: false
 })
 export class FlagstatesComponent implements OnInit, OnDestroy, OnChanges {
 

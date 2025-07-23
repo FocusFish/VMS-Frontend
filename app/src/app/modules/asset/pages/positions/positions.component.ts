@@ -10,9 +10,10 @@ import { RouterTypes, RouterSelectors } from '@data/router';
 import { UserSettingsSelectors } from '@data/user-settings';
 
 @Component({
-  selector: 'asset-show-positions-page',
-  templateUrl: './positions.component.html',
-  styleUrls: ['./positions.component.scss']
+    selector: 'asset-show-positions-page',
+    templateUrl: './positions.component.html',
+    styleUrls: ['./positions.component.scss'],
+    standalone: false
 })
 export class PositionsPageComponent implements OnInit, OnDestroy, AfterViewInit {
 

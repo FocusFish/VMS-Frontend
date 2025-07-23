@@ -1,9 +1,9 @@
-@import "variables.scss";
+@use "variables.scss";
 
 .layout-top-menu.navbar {
-  background: $color_blue;
+  background: variables.$color_blue;
   color: white;
-  height: $navbar_height;
+  height: variables.$navbar_height;
   display: grid;
   grid-template-columns: auto 1fr auto auto;
 
@@ -16,7 +16,7 @@
     margin: auto 0px;
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-column-gap: distance(1);
+    grid-column-gap: variables.distance(1);
 
     .app-version {
       place-self: center;
@@ -24,7 +24,7 @@
     }
 
     .navbar-brand {
-      padding-left: distance(1);
+      padding-left: variables.distance(1);
 
       i.brand-image {
         display: block;
@@ -32,7 +32,7 @@
         height: 32px;
         width: 103.375px;
         background-size: 103.375px 32px;
-        margin-top: distance(-0.5);
+        margin-top: variables.distance(-0.5);
       }
     }
   }
@@ -43,17 +43,17 @@
     grid-auto-flow: column;
     justify-content: start;
     list-style: none;
-    padding-left: distance(6);
+    padding-left: variables.distance(6);
 
     li.nav-item {
       display: inline-block;
-      margin-right: $large_distance;
+      margin-right: variables.$large_distance;
       &:last-child {
         margin-right: 0px;
       }
 
       &.active a {
-        border-bottom: 3px solid $color_orange;
+        border-bottom: 3px solid variables.$color_orange;
       }
 
       a:hover {
@@ -61,17 +61,17 @@
       }
 
       .secret {
-        padding-left: distance(1);
+        padding-left: variables.distance(1);
         font-size: 7px;
       }
     }
   }
 
   ul.navbar-nav.right-bar {
-    padding-right: $large_distance;
+    padding-right: variables.$large_distance;
 
     .current-time {
-      margin-right: distance(1);
+      margin-right: variables.distance(1);
     }
 
     a {
@@ -93,7 +93,7 @@
       background-size: 20px 20px;
       width: 20px;
       min-height: 20px;
-      margin-right: distance(1);
+      margin-right: variables.distance(1);
     }
   }
 
@@ -101,6 +101,6 @@
     display: grid;
     grid-auto-flow: column;
     align-items: center;
-    padding-right: distance(4);
+    padding-right: variables.distance(4);
   }
 }

@@ -2,9 +2,10 @@ import { Component, Input, OnChanges } from '@angular/core';
 import { IncidentTypes } from '@data/incident';
 
 @Component({
-  selector: 'map-incidents-ownership-transfer',
-  templateUrl: './incidents-ownership-transfer.component.html',
-  styleUrls: ['./incidents-ownership-transfer.component.scss']
+    selector: 'map-incidents-ownership-transfer',
+    templateUrl: './incidents-ownership-transfer.component.html',
+    styleUrls: ['./incidents-ownership-transfer.component.scss'],
+    standalone: false
 })
 export class IncidentsOwnershipTransferComponent implements OnChanges {
   @Input() incidents: IncidentTypes.IncidentsCollectionByResolution;

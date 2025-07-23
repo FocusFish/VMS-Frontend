@@ -5,9 +5,10 @@ import { Subscription, Observable } from 'rxjs';
 import { NotificationsActions, NotificationsSelectors, NotificationsTypes } from '@data/notifications';
 
 @Component({
-  selector: 'core-login-layout-component',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'core-login-layout-component',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss'],
+    standalone: false
 })
 
 export class LoginLayoutComponent implements OnInit {

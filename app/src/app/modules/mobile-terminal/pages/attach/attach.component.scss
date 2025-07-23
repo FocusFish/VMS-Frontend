@@ -1,9 +1,8 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 .page-container {
-
   display: grid;
-  grid-row-gap: $xlarge_distance;
+  grid-row-gap: variables.$xlarge_distance;
 
   .top-row {
     display: grid;
@@ -18,14 +17,14 @@
 
   .mobile-terminal-search-form {
     display: grid;
-    grid-column-gap: $x2large_distance;
+    grid-column-gap: variables.$x2large_distance;
     grid-template-columns: 1fr auto;
-    padding: $x3large_distance;
+    padding: variables.$x3large_distance;
     background: white;
 
     mat-radio-group {
       display: grid;
-      grid-column-gap: $x2large_distance;
+      grid-column-gap: variables.$x2large_distance;
       grid-template-columns: 1fr 1fr 1fr;
 
       & > * {
@@ -47,12 +46,12 @@
     grid-template-columns: 1fr auto;
     align-items: center;
     background: white;
-    padding: distance(4);
+    padding: variables.distance(4);
 
     .serial-number {
       color: white;
-      background: $color_light_turquoise;
-      padding: distance(0.5);
+      background: variables.$color_light_turquoise;
+      padding: variables.distance(0.5);
     }
   }
 
@@ -69,14 +68,14 @@
       cursor: pointer;
 
       &:hover {
-        background-color: rgba( $color_blue, 0.2);
+        background-color: rgba(variables.$color_blue, 0.2);
         text-decoration: underline;
       }
     }
   }
 
   .error-message {
-    padding: distance(4);
-    background: $color_light_orange;
+    padding: variables.distance(4);
+    background: variables.$color_light_orange;
   }
 }

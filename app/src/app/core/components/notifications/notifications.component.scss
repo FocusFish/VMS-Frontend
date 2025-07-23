@@ -1,4 +1,4 @@
-@import 'variables.scss';
+@use "variables.scss";
 
 ul.notifications {
   padding-left: 0px;
@@ -7,7 +7,7 @@ ul.notifications {
 
   &.overlay {
     position: absolute;
-    top: calc(#{$navbar_height} + #{$medium_distance});
+    top: calc(#{variables.$navbar_height} + #{variables.$medium_distance});
 
     right: 0px;
     left: 0px;
@@ -17,16 +17,16 @@ ul.notifications {
 
   .alert {
     position: relative;
-    margin-bottom: distance(1);
+    margin-bottom: variables.distance(1);
     border: 1px solid transparent;
-    border-radius: distance(0.5);
+    border-radius: variables.distance(0.5);
     display: grid;
     grid-template-columns: 1fr auto;
-    grid-column-gap: distance(2);
+    grid-column-gap: variables.distance(2);
 
     span {
-      padding: distance(1.5) distance(2);
-      line-height: distance(2.5);
+      padding: variables.distance(1.5) variables.distance(2);
+      line-height: variables.distance(2.5);
       white-space: pre;
     }
 
@@ -34,8 +34,8 @@ ul.notifications {
       place-self: center;
       display: grid;
       grid-auto-flow: column;
-      grid-column-gap: distance(2);
-      margin-right: distance(2);
+      grid-column-gap: variables.distance(2);
+      margin-right: variables.distance(2);
 
       .coundown-wrapper {
         height: 30px;

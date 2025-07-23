@@ -9,10 +9,11 @@ import { MapSavedFiltersTypes } from "@data/map-saved-filters";
 import { UntypedFormControl, Validators } from "@angular/forms";
 
 @Component({
-  selector: "map-edit-asset-group-dialog",
-  templateUrl: "./edit-asset-group-dialog.component.html",
-  styleUrls: ["./edit-asset-group-dialog.component.scss"],
-  encapsulation: ViewEncapsulation.None,
+    selector: "map-edit-asset-group-dialog",
+    templateUrl: "./edit-asset-group-dialog.component.html",
+    styleUrls: ["./edit-asset-group-dialog.component.scss"],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class EditAssetGroupDialogComponent {
   public assetGroupFilterQuery: Readonly<MapSavedFiltersTypes.AssetFilterQuery>;

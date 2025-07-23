@@ -8,9 +8,10 @@ import { AuthSelectors } from '@data/auth';
 import { RouterTypes, RouterSelectors } from '@data/router';
 
 @Component({
-  selector: 'core-default-layout-component',
-  templateUrl: './default.component.html',
-  styleUrls: ['./default.component.scss']
+    selector: 'core-default-layout-component',
+    templateUrl: './default.component.html',
+    styleUrls: ['./default.component.scss'],
+    standalone: false
 })
 
 export class DefaultLayoutComponent implements OnInit {

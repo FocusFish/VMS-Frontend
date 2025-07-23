@@ -9,10 +9,11 @@ import { MapSavedFiltersTypes } from "@data/map-saved-filters";
 import { UntypedFormControl, Validators } from "@angular/forms";
 
 @Component({
-  selector: "map-add-to-asset-group-dialog",
-  templateUrl: "./add-to-asset-group-dialog.component.html",
-  styleUrls: ["./add-to-asset-group-dialog.component.scss"],
-  encapsulation: ViewEncapsulation.None,
+    selector: "map-add-to-asset-group-dialog",
+    templateUrl: "./add-to-asset-group-dialog.component.html",
+    styleUrls: ["./add-to-asset-group-dialog.component.scss"],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class AddToAssetGroupDialogComponent {
   public createNew = false;

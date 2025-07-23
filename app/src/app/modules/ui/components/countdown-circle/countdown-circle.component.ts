@@ -3,9 +3,10 @@ import { Subscription, interval } from 'rxjs';
 import { take, map, finalize } from 'rxjs/operators';
 
 @Component({
-   selector: 'ui-countdown-circle',
-   templateUrl: './countdown-circle.component.html',
-   styleUrls: ['./countdown-circle.component.scss']
+    selector: 'ui-countdown-circle',
+    templateUrl: './countdown-circle.component.html',
+    styleUrls: ['./countdown-circle.component.scss'],
+    standalone: false
 })
 
 export class CountdownCircleComponent implements OnChanges {

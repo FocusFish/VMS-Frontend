@@ -1,14 +1,6 @@
-import {
-  waitForAsync,
-  ComponentFixture,
-  TestBed,
-  fakeAsync,
-  tick,
-  discardPeriodicTasks,
-} from "@angular/core/testing";
+import { waitForAsync, TestBed, fakeAsync, tick } from "@angular/core/testing";
 import { NgZone } from "@angular/core";
 import { RouterTestingModule } from "@angular/router/testing";
-import { Store } from "@ngrx/store";
 import { provideMockStore, MockStore } from "@ngrx/store/testing";
 import { Router } from "@angular/router";
 import { MatSelectModule } from "@angular/material/select";

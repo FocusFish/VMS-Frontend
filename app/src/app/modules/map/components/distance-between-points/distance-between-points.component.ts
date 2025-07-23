@@ -15,10 +15,11 @@ import { fromLonLat } from 'ol/proj';
 import Draw from 'ol/interaction/Draw.js';
 
 @Component({
-  selector: 'map-distance-between-points',
-  template: '',
-  styleUrls: ['./distance-between-points.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'map-distance-between-points',
+    template: '',
+    styleUrls: ['./distance-between-points.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 
 export class DistanceBetweenPointsComponent implements OnInit, OnDestroy, OnChanges {
