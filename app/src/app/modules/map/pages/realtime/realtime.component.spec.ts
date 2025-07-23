@@ -1,13 +1,6 @@
 import { waitForAsync, TestBed } from "@angular/core/testing";
 import { Router } from "@angular/router";
-import { By } from "@angular/platform-browser";
-
-// @ts-ignore
-import moment from "moment-timezone";
-
 import { provideMockStore, MockStore } from "@ngrx/store/testing";
-
-import Map from "ol/Map";
 
 /* Modules */
 import { UIModule } from "../../../ui/ui.module";
@@ -37,14 +30,14 @@ import { MapLocationsComponent } from "../../components/map-locations/map-locati
 import { SavedFiltersComponent } from "../../components/saved-filters/saved-filters.component"; // Not tested yet.
 import { TracksComponent } from "../../components/tracks/tracks.component";
 
-import { AssetReducer, AssetActions, AssetTypes } from "@data/asset";
+import { AssetReducer, AssetTypes } from "@data/asset";
 import { ActivityReducer } from "@data/activity";
 import AssetStub from "@data/asset/stubs/asset.stub";
 import AssetMovementWithAssetStub from "@data/asset/stubs/assetMovementWithEssentials.stub";
 import AssetTrackStub from "@data/asset/stubs/assetTracks.stub";
 import { IncidentReducer } from "@data/incident";
-import { MapActions, MapReducer } from "@data/map";
-import { MapSettingsReducer, MapSettingsActions } from "@data/map-settings";
+import { MapReducer } from "@data/map";
+import { MapSettingsReducer } from "@data/map-settings";
 import { MapSavedFiltersReducer } from "@data/map-saved-filters";
 
 import {

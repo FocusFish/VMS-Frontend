@@ -3,9 +3,6 @@ import { waitForAsync, TestBed } from "@angular/core/testing";
 import { UIModule } from "@app/modules/ui/ui.module";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 
-// @ts-ignore
-import moment from "moment-timezone";
-
 import { AssetPanelComponent } from "./asset-panel.component";
 import AssetMovementStub from "@data/asset/stubs/assetMovement.stub";
 import AssetStub from "@data/asset/stubs/asset.stub";

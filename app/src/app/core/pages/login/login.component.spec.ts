@@ -7,8 +7,6 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 
 import { LoginComponent } from "./login.component";
 
-import { AuthActions } from "../../../data/auth";
-
 describe("LoginComponent", () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
