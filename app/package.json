@@ -40,7 +40,7 @@
     "moment-timezone": "^0.5.35",
     "ol": "~6.4.0",
     "proj4": "^2.6.1",
-    "remixicon": "^2.5.0",
+    "remixicon": "^4.6.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "uuid": "^8.3.1",
