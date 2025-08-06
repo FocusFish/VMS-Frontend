@@ -17,10 +17,10 @@
   }
   .ol-zoom {
     left: unset;
-    right: calc(#{variables.$right_column_width} + #{distance(7)});
+    right: calc(#{variables.$right_column_width} + #{variables.distance(7)});
     transition: right variables.$panel_animation_time ease-out;
     top: unset;
-    bottom: calc(#{distance(1)} - 1px);
+    bottom: calc(#{variables.distance(1)} - 1px);
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: variables.distance(0.5);
