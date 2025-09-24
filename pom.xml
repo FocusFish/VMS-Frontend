@@ -113,6 +113,16 @@
 						</configuration>
 					</execution>
 					<execution>
+                        <id>npm-audit</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <phase>verify</phase>
+                        <configuration>
+                            <arguments>audit --omit=dev --audit-level=high --registry=https://registry.npmjs.org</arguments>
+                        </configuration>
+                    </execution>
+					<execution>
 						<id>npm run build</id>
 						<goals>
 							<goal>npm</goal>
