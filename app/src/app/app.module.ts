@@ -31,6 +31,7 @@ import { SettingsModule } from "./modules/settings/settings.module";
 import { NotesModule } from "./modules/notes/notes.module";
 
 /* Effects */
+import { AdminEffects } from "@data/admin/admin.effects";
 import { ActivityEffects } from "@data/activity/activity.effects";
 import { AssetEffects } from "@data/asset/asset.effects";
 import { AuthEffects } from "@data/auth/auth.effects";
@@ -47,6 +48,7 @@ import { TitleEffects } from "@data/title.effects";
 
 /* Services */
 import { AuthService } from "./data/auth/auth.service";
+import { AdminModule } from "./modules/admin/admin.module";
 
 // declare to variable so we can controll if StoreDevtoolsModule should be imported or not.
 // Event tough it has a logOnly parameter it slows down the webpage conciderably when running the realtime map
@@ -64,6 +66,7 @@ const imports = [
   NgrxRouterStoreModule,
   AppRoutingModule,
   EffectsModule.forRoot([
+    AdminEffects,
     ActivityEffects,
     AuthEffects,
     AssetEffects,
@@ -82,6 +85,7 @@ const imports = [
   BrowserAnimationsModule,
   CoreModule,
   MatDialogModule,
+  AdminModule,
   AssetModule,
   ContactModule,
   MapModule,
