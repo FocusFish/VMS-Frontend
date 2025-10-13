@@ -29,6 +29,7 @@ import { MobileTerminalModule } from "./modules/mobile-terminal/mobile-terminal.
 import { NgrxRouterStoreModule } from "./modules/router/ngrx-router.module";
 import { SettingsModule } from "./modules/settings/settings.module";
 import { NotesModule } from "./modules/notes/notes.module";
+import { AdminModule } from "./modules/admin/admin.module";
 
 /* Effects */
 import { AdminEffects } from "@data/admin/admin.effects";
@@ -48,7 +49,6 @@ import { TitleEffects } from "@data/title.effects";
 
 /* Services */
 import { AuthService } from "./data/auth/auth.service";
-import { AdminModule } from "./modules/admin/admin.module";
 
 // declare to variable so we can controll if StoreDevtoolsModule should be imported or not.
 // Event tough it has a logOnly parameter it slows down the webpage conciderably when running the realtime map

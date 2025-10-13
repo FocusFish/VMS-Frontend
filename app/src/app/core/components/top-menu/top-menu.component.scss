@@ -7,9 +7,14 @@
   display: grid;
   grid-template-columns: auto 1fr auto auto;
 
-  a {
+  a,
+  .menu-button {
     color: white;
     text-decoration: none;
+  }
+
+  .menu-button {
+    font-weight: normal;
   }
 
   .navbar-brand-and-version {

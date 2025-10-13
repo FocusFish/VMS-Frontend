@@ -39,9 +39,26 @@
       >
     </li>
     <li *ngIf="isAdmin" class="nav-item" routerLinkActive="active">
-      <a class="nav-link waves-light" routerLink="settings/user" i18n>Admin</a>
+      <button
+        mat-button
+        class="nav-link waves-light menu-button"
+        [matMenuTriggerFor]="menu"
+        i18n
+      >
+        Admin
+      </button>
     </li>
   </ul>
+
+  <mat-menu #menu="matMenu">
+    @if (isAdmin) {
+    <button mat-menu-item (click)="navigateTo('users')" i18n>Users</button>
+    <button mat-menu-item (click)="navigateTo('configuration/pings')" i18n>
+      Configuration
+    </button>
+    }
+  </mat-menu>
+
   <core-logout-timer-component
     [timeToLogout]="timeToLogout"
   ></core-logout-timer-component>

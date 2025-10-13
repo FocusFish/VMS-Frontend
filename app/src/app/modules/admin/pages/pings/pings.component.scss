@@ -1,0 +1,15 @@
+@use "variables.scss";
+
+.status {
+  border-radius: 5px;
+  color: white;
+  padding: 5px;
+
+  &.green {
+    background-color: variables.$color_system_green;
+  }
+
+  &.red {
+    background-color: variables.$color_system_red;
+  }
+}

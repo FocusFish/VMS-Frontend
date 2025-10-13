@@ -137,12 +137,6 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
         })
       );
     };
-
-    this.store.dispatch(AdminActions.loadPings());
-
-    this.store
-      .select(AdminSelectors.getPings)
-      .subscribe((x) => console.log("APA", x));
   }
 
   ngOnInit() {

@@ -37,6 +37,7 @@ import { LogoutTimerComponent } from "./components/logout-timer/logout-timer.com
 import { TopMenuComponent } from "./components/top-menu/top-menu.component";
 import { NotificationsComponent } from "./components/notifications/notifications.component";
 import { TypescriptTranslationsComponent } from "./components/typescript-translations/typescript-translations.component";
+import { MatMenuModule } from "@angular/material/menu";
 
 @NgModule({
   imports: [
@@ -51,6 +52,7 @@ import { TypescriptTranslationsComponent } from "./components/typescript-transla
     MatButtonModule,
     MatRippleModule,
     MatSlideToggleModule,
+    MatMenuModule,
   ],
   declarations: [
     // Layouts
@@ -71,7 +73,7 @@ import { TypescriptTranslationsComponent } from "./components/typescript-transla
     LoggedOutDialogComponent,
     LogoutTimerComponent,
   ],
-  exports: [LoggedOutDialogComponent],
+  exports: [LoggedOutDialogComponent, TopMenuComponent, NotificationsComponent],
   providers: [AuthGuard, FishingGuard],
 })
 export class CoreModule {}
