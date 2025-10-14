@@ -1,12 +1,14 @@
-export interface CatalogItem {
+export interface GlobalItem {
   description: string;
   global: boolean;
   id: number;
   key: string;
-  module: string;
   value: any;
 }
 
+export interface CatalogItem extends GlobalItem {
+  module: string;
+}
 export interface Catalogs {
   [key: string]: CatalogItem[];
 }
@@ -20,7 +22,13 @@ export interface Pings {
 
 export interface State {
   configuration: {
-    pings: Pings;
     catalogs: Catalogs;
+    globals: GlobalItem[];
+    pings: Pings;
+  };
+  states: {
+    catalogsLoaded: boolean;
+    globalsLoaded: boolean;
+    pingsLoaded: boolean;
   };
 }

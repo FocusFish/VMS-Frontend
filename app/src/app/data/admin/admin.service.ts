@@ -9,16 +9,23 @@ import { environment } from "@src/environments/environment";
 export class AdminService {
   constructor(private http: HttpClient) {}
 
-  loadPings(authToken: string) {
+  loadCatalogs(authToken: string) {
     return this.http.get(
-      environment.baseApiUrl + "config/rest/pings",
+      environment.baseApiUrl + "config/rest/catalog",
       getDefaultHttpOptions(authToken)
     );
   }
 
-  loadCatalogs(authToken: string) {
+  loadGlobals(authToken: string) {
     return this.http.get(
-      environment.baseApiUrl + "config/rest/catalog",
+      environment.baseApiUrl + "config/rest/globals",
+      getDefaultHttpOptions(authToken)
+    );
+  }
+
+  loadPings(authToken: string) {
+    return this.http.get(
+      environment.baseApiUrl + "config/rest/pings",
       getDefaultHttpOptions(authToken)
     );
   }

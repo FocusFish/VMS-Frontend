@@ -44,6 +44,9 @@ import { ConfigurationMenuComponent } from "@app/modules/admin/components/config
 import { GlobalSettingsComponent } from "@app/modules/admin/pages/global-settings/global-settings.component";
 import { ExchangeComponent } from "@app/modules/admin/pages/exchange/exchange.component";
 import { AssetsComponent } from "@app/modules/admin/pages/assets/assets.component";
+import { MovementComponent } from "@app/modules/admin/pages/movement/movement.component";
+import { MovementRulesComponent } from "@app/modules/admin/pages/movement-rules/movement-rules.component";
+import { ReportingComponent } from "@app/modules/admin/pages/reporting/reporting.component";
 
 export const vmsRoutes: Routes = [
   {
@@ -65,12 +68,24 @@ export const vmsRoutes: Routes = [
             component: GlobalSettingsComponent,
           },
           {
+            path: "reporting",
+            component: ReportingComponent,
+          },
+          {
             path: "exchange",
             component: ExchangeComponent,
           },
           {
             path: "assets",
             component: AssetsComponent,
+          },
+          {
+            path: "movement",
+            component: MovementComponent,
+          },
+          {
+            path: "movement-rules",
+            component: MovementRulesComponent,
           },
         ],
       },

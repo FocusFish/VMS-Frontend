@@ -22,7 +22,14 @@ export class AssetsComponent {
   constructor(private store: Store<State>) {}
 
   ngOnInit(): void {
-    this.store.dispatch(AdminActions.loadCatalogs());
+    this.store
+      .select(AdminSelectors.getStates)
+      .pipe(takeUntil(this.unmount$))
+      .subscribe((states) => {
+        if (!states.catalogsLoaded) {
+          this.store.dispatch(AdminActions.loadCatalogs());
+        }
+      });
 
     this.store
       .select(AdminSelectors.getCatalogs)

@@ -4,12 +4,22 @@ import { AdminTypes } from ".";
 
 const selectAdmin = (state: State) => state.admin;
 
+export const getCatalogs = createSelector(
+  selectAdmin,
+  (state: AdminTypes.State) => state.configuration.catalogs
+);
+
+export const getGlobals = createSelector(
+  selectAdmin,
+  (state: AdminTypes.State) => state.configuration.globals
+);
+
 export const getPings = createSelector(
   selectAdmin,
   (state: AdminTypes.State) => state.configuration.pings
 );
 
-export const getCatalogs = createSelector(
+export const getStates = createSelector(
   selectAdmin,
-  (state: AdminTypes.State) => state.configuration.catalogs
+  (state: AdminTypes.State) => state.states
 );

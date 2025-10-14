@@ -15,20 +15,6 @@ export class AdminEffects {
     private store: Store<State>
   ) {}
 
-  loadPings$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(AdminActions.loadPings),
-      withLatestFrom(this.store.select(AuthSelectors.getAuthToken)),
-      mergeMap(([_, authToken]: Array<any>) => {
-        return this.adminService.loadPings(authToken).pipe(
-          map((response: any) => {
-            return AdminActions.setPings({ pings: response.body });
-          })
-        );
-      })
-    )
-  );
-
   loadCatalogs$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AdminActions.loadCatalogs),
@@ -37,6 +23,34 @@ export class AdminEffects {
         return this.adminService.loadCatalogs(authToken).pipe(
           map((response: any) => {
             return AdminActions.setCatalogs({ catalogs: response.body });
+          })
+        );
+      })
+    )
+  );
+
+  loadGlobals$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AdminActions.loadGlobals),
+      withLatestFrom(this.store.select(AuthSelectors.getAuthToken)),
+      mergeMap(([_, authToken]: Array<any>) => {
+        return this.adminService.loadGlobals(authToken).pipe(
+          map((response: any) => {
+            return AdminActions.setGlobals({ globals: response.body });
+          })
+        );
+      })
+    )
+  );
+
+  loadPings$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AdminActions.loadPings),
+      withLatestFrom(this.store.select(AuthSelectors.getAuthToken)),
+      mergeMap(([_, authToken]: Array<any>) => {
+        return this.adminService.loadPings(authToken).pipe(
+          map((response: any) => {
+            return AdminActions.setPings({ pings: response.body });
           })
         );
       })
