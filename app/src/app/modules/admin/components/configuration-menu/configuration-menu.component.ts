@@ -25,6 +25,7 @@ export class ConfigurationMenuComponent {
     {
       link: "reporting",
       name: "Reporting",
+      disabled: false,
     },
     {
       link: "assets",

@@ -1,9 +1,13 @@
 @use "variables.scss";
 
+.status-column {
+  max-width: 50px;
+}
+
 .status {
-  border-radius: 5px;
+  border-radius: 21px;
   color: white;
-  padding: 5px;
+  padding: 7px;
 
   &.green {
     background-color: variables.$color_system_green;

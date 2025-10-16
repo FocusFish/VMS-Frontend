@@ -44,8 +44,6 @@ export class AssetsComponent {
       .subscribe((catalogs) => {
         const assets = catalogs["asset"] as CatalogItem[];
 
-        console.log("assets", assets);
-
         if (assets) {
           this.assets = [...assets];
         }

@@ -110,7 +110,9 @@ export class AdminEffects {
             return response.body;
           }),
           map((response: any) => {
-            return AdminActions.setPings({ pings: response });
+            return AdminActions.setPings({
+              pings: response,
+            });
           })
         );
       })

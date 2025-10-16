@@ -297,3 +297,7 @@ img.flag-image {
     max-width: 1600px;
   }
 }
+
+.odd {
+  background-color: variables.$color_table_alternate_color !important;
+}

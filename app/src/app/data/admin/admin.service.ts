@@ -47,7 +47,10 @@ export class AdminService {
   loadReportingConfig(authToken: string) {
     return this.http.get(
       environment.baseApiUrl + "spatial/rest/config/admin",
-      getDefaultHttpOptions(authToken)
+      getDefaultHttpOptions(authToken, {
+        roleName: "AdminAll",
+        scopeName: "All Reports",
+      })
     );
   }
 }

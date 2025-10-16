@@ -17,10 +17,14 @@ type HttpOptionsType = {
   withCredentials?: boolean;
 };
 
-export const getDefaultHttpOptions = (authToken: string): HttpOptionsType => ({
+export const getDefaultHttpOptions = (
+  authToken: string,
+  extraHeaders?: any
+): HttpOptionsType => ({
   headers: new HttpHeaders({
     Authorization: authToken,
     "Cache-Control": "no-cache",
+    ...extraHeaders,
   }),
   observe: "response",
 });

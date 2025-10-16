@@ -9,14 +9,19 @@
     >
       Parameter
     </th>
-    <td class="overflow-column" mat-cell *matCellDef="let row">
+    <td
+      class="overflow-column"
+      mat-cell
+      *matCellDef="let row; let odd = odd"
+      [ngClass]="{ odd: odd }"
+    >
       {{ row.key }}
     </td>
   </ng-container>
 
   <ng-container matColumnDef="value">
     <th mat-header-cell *matHeaderCellDef mat-sort-header i18n>Value</th>
-    <td mat-cell *matCellDef="let row">
+    <td mat-cell *matCellDef="let row; let odd = odd" [ngClass]="{ odd: odd }">
       {{ row.value }}
     </td>
   </ng-container>
@@ -31,14 +36,19 @@
     >
       Description
     </th>
-    <td class="overflow-column" mat-cell *matCellDef="let row">
+    <td
+      class="overflow-column"
+      mat-cell
+      *matCellDef="let row; let odd = odd"
+      [ngClass]="{ odd: odd }"
+    >
       {{ row.description }}
     </td>
   </ng-container>
 
   <ng-container matColumnDef="edit">
     <th mat-header-cell *matHeaderCellDef mat-sort.header></th>
-    <td mat-cell *matCellDef="let row">
+    <td mat-cell *matCellDef="let row; let odd = odd" [ngClass]="{ odd: odd }">
       <button mat-icon-button (click)="openEdit(row)">
         <mat-icon>edit</mat-icon>
       </button>

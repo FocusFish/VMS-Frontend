@@ -15,6 +15,8 @@ import { RouterSelectors } from "@data/router";
 export class AuthGuard implements OnDestroy {
   private isLoggedIn = false;
   private currentUrl: string;
+  private isAdmin = false;
+
   private readonly unmount$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
@@ -31,6 +33,11 @@ export class AuthGuard implements OnDestroy {
       .select(AuthSelectors.isLoggedIn)
       .pipe(takeUntil(this.unmount$))
       .subscribe((isLoggedIn: boolean) => (this.isLoggedIn = isLoggedIn));
+
+    this.store
+      .select(AuthSelectors.isAdmin)
+      .pipe(takeUntil(this.unmount$))
+      .subscribe((isAdmin: boolean) => (this.isAdmin = isAdmin));
   }
 
   ngOnDestroy() {
@@ -39,7 +46,9 @@ export class AuthGuard implements OnDestroy {
   }
 
   canActivate(): boolean | UrlTree {
-    if (this.isLoggedIn) {
+    if (this.isAdminUrl()) {
+      return this.hasAdminAccess();
+    } else if (this.isLoggedIn) {
       return true;
     } else if (this.currentUrl === "/") {
       return this.router.createUrlTree(["/login"]);
@@ -48,7 +57,11 @@ export class AuthGuard implements OnDestroy {
     }
   }
 
-  isAdmin(): boolean {
-    return false;
+  isAdminUrl() {
+    return this.currentUrl.includes("configuration");
+  }
+
+  hasAdminAccess(): boolean {
+    return this.isLoggedIn && this.isAdmin;
   }
 }

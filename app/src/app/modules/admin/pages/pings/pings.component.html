@@ -1,7 +1,18 @@
 <table mat-table [dataSource]="dataSource">
   <ng-container matColumnDef="status">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header i18n></th>
-    <td mat-cell *matCellDef="let row">
+    <th
+      mat-header-cell
+      class="status-column"
+      *matHeaderCellDef
+      mat-sort-header
+      i18n
+    ></th>
+    <td
+      mat-cell
+      class="status-column"
+      *matCellDef="let row; let odd = odd"
+      [ngClass]="{ odd: odd }"
+    >
       @if (row.status) {
       <span class="status green" i18n>Online</span>
       } @if (!row.status) {
@@ -12,12 +23,19 @@
 
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef mat-sort-header i18n>System name</th>
-    <td mat-cell *matCellDef="let row" i18n>{{ row.name }}</td>
+    <td
+      mat-cell
+      *matCellDef="let row; let odd = odd"
+      [ngClass]="{ odd: odd }"
+      i18n
+    >
+      {{ row.name }}
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="timestamp">
     <th mat-header-cell *matHeaderCellDef mat-sort-header i18n>Date</th>
-    <td mat-cell *matCellDef="let row">
+    <td mat-cell *matCellDef="let row; let odd = odd" [ngClass]="{ odd: odd }">
       {{ row.timestamp }}
     </td>
   </ng-container>
