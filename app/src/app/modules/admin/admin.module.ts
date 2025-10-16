@@ -2,6 +2,8 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
+import { MatExpansionModule } from "@angular/material/expansion";
+import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatOptionModule } from "@angular/material/core";
 import { MatRadioModule } from "@angular/material/radio";
@@ -22,10 +24,12 @@ import { PingsComponent } from "./pages/pings/pings.component";
 import { ReportingComponent } from "./pages/reporting/reporting.component";
 
 // Components
+import { CatalogItemListComponent } from "./components/catalog-item-list/catalog-item-list.component";
 import { ConfigurationMenuComponent } from "./components/configuration-menu/configuration-menu.component";
 
 @NgModule({
   declarations: [
+    CatalogItemListComponent,
     ConfigurationMenuComponent,
     AssetsComponent,
     ExchangeComponent,
@@ -38,7 +42,10 @@ import { ConfigurationMenuComponent } from "./components/configuration-menu/conf
   imports: [
     CommonModule,
     CoreModule,
+    MatAnchor,
     MatButtonModule,
+    MatExpansionModule,
+    MatIconModule,
     MatInputModule,
     MatOptionModule,
     MatRadioModule,
@@ -48,7 +55,6 @@ import { ConfigurationMenuComponent } from "./components/configuration-menu/conf
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    MatAnchor,
   ],
 })
 export class AdminModule {}

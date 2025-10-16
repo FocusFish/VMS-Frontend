@@ -1,0 +1,24 @@
+.catalog-items-table {
+  max-width: 1080px;
+}
+
+.overflow-column {
+  max-width: 250px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.action-area {
+  display: flex;
+  justify-content: end;
+}
+
+.description-input {
+  min-height: 140px;
+}

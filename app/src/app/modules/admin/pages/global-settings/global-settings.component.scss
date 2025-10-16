@@ -33,5 +33,15 @@ mat-form-field {
 
   & .form-part {
     width: 98%;
+
+    & .available-language {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      & mat-form-field {
+        width: 80%;
+      }
+    }
   }
 }

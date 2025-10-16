@@ -8,6 +8,7 @@
       <mat-radio-group
         aria-labelledby="measurement-system"
         formControlName="measurementSystem"
+        (change)="updateGlobal('measurementSystem')"
       >
         <mat-radio-button value="metric" i18n>metric</mat-radio-button><br />
         <mat-radio-button value="imperial" i18n>imperial</mat-radio-button>
@@ -21,6 +22,7 @@
       <mat-radio-group
         aria-labelledby="coordinate-format"
         formControlName="coordinateFormat"
+        (change)="updateGlobal('coordinateFormat')"
       >
         <mat-radio-button value="degreesMinutesSeconds" i18n
           >DD MM,SS'</mat-radio-button
@@ -36,6 +38,7 @@
       <mat-radio-group
         aria-labelledby="datetime-format"
         formControlName="dateTimeFormat"
+        (change)="updateGlobal('dateTimeFormat')"
       >
         <mat-radio-button value="YYYY-MM-DD HH:mm:ss" i18n
           >YYYY-MM-DD HH:mm:ss</mat-radio-button
@@ -54,6 +57,7 @@
         <mat-select
           aria-labelledby="default-homepage"
           formControlName="defaultHomePage"
+          (selectionChange)="updateGlobal('defaultHomePage')"
         >
           @for(page of helper.getHomepages(); track $index) {
           <mat-option [value]="page">{{ page }}</mat-option>
@@ -68,6 +72,7 @@
         <mat-select
           aria-labelledby="distance-unit"
           formControlName="distanceUnit"
+          (selectionChange)="updateGlobal('distanceUnit')"
         >
           @for(unit of helper.getDistanceUnits(); track $index) {
           <mat-option [value]="unit">{{ unit }}</mat-option>
@@ -79,7 +84,11 @@
     <div class="form-part">
       <mat-form-field>
         <label id="speed-unit"><strong i18n>Speed unit</strong></label>
-        <mat-select aria-labelledby="speed-unit" formControlName="speedUnit">
+        <mat-select
+          aria-labelledby="speed-unit"
+          formControlName="speedUnit"
+          (selectionChange)="updateGlobal('speedUnit')"
+        >
           @for(unit of helper.getSpeedUnits(); track $index) {
           <mat-option [value]="unit">{{ unit }}</mat-option>
           }
@@ -90,7 +99,11 @@
     <div class="form-part">
       <mat-form-field>
         <label id="timezone"><strong i18n>Timezone</strong></label>
-        <mat-select aria-labelledby="timezone" formControlName="timezone">
+        <mat-select
+          aria-labelledby="timezone"
+          formControlName="timezone"
+          (selectionChange)="updateGlobal('timezone')"
+        >
           @for(timezone of helper.getTimezones(); track $index) {
           <mat-option [value]="timezone.code">{{ timezone.text }}</mat-option>
           }
@@ -106,6 +119,7 @@
           type="text"
           matInput
           formControlName="maxSpeed"
+          (blur)="updateGlobal('maxSpeed')"
         />
       </mat-form-field>
     </div>
@@ -115,20 +129,28 @@
     <div class="form-part">
       <div formArrayName="availableLanguages">
         @for (language of globalSettingsForm.get("availableLanguages")
-        ?.controls; track language; let i = $index) {
-        <mat-form-field>
-          <label id="available-languages"
-            ><strong i18n>Available languages</strong></label
-          >
-          <mat-select
-            [formControlName]="i"
-            aria-labelledby="available-languages"
-          >
-            @for(language of helper.getLanguages(); track $index) {
-            <mat-option [value]="language.code">{{ language.name }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
+        ?.controls; track language.value; let i = $index) {
+        <div class="available-language">
+          <mat-form-field>
+            <label id="available-languages"
+              ><strong i18n>Available languages</strong></label
+            >
+            <mat-select
+              [formControlName]="i"
+              aria-labelledby="available-languages"
+              (selectionChange)="updateGlobal('availableLanguages')"
+            >
+              @for(language of helper.getLanguages(); track $index) {
+              <mat-option [value]="language.code">{{
+                language.name
+              }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <button mat-icon-button color="warn" (click)="removeLanguage(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
         }
       </div>
       <button mat-raised-button color="primary" (click)="addLanguage()" i18n>

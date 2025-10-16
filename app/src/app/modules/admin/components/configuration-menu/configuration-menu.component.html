@@ -10,7 +10,13 @@
     <ul class="menu">
       @for (item of menu; track $index) {
       <li class="menu-item" routerLinkActive="active">
-        <a mat-button routerLink="{{ item.link }}" i18n>{{ item.name }}</a>
+        <a
+          mat-button
+          [disabled]="item.disabled"
+          routerLink="{{ item.link }}"
+          i18n
+          >{{ item.name }}</a
+        >
       </li>
       }
     </ul>

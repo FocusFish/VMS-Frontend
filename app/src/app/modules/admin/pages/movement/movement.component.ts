@@ -1,32 +1,25 @@
-import { Component, TemplateRef, ViewChild } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
-import { MatDialog } from "@angular/material/dialog";
+import { Component } from "@angular/core";
 import { MatTableDataSource } from "@angular/material/table";
 import { State } from "@app/app-reducer";
 import { AdminActions, AdminSelectors } from "@data/admin";
 import { CatalogItem } from "@data/admin/admin.types";
 import { Store } from "@ngrx/store";
 import { Subject } from "rxjs";
-import { take, takeUntil } from "rxjs/operators";
+import { takeUntil } from "rxjs/operators";
 
 @Component({
-  selector: "app-assets",
-  templateUrl: "./assets.component.html",
-  styleUrl: "./assets.component.scss",
+  selector: "app-movement",
+  templateUrl: "./movement.component.html",
+  styleUrl: "./movement.component.scss",
   standalone: false,
 })
-export class AssetsComponent {
-  @ViewChild("editingContainer") editingContainer: TemplateRef<any>;
+export class MovementComponent {
   private unmount$: Subject<boolean> = new Subject<boolean>();
 
-  public assets: CatalogItem[];
+  public displayColumns = ["key", "value", "description"];
+  public movement: CatalogItem[];
 
-  public editForm = new FormGroup({
-    value: new FormControl(""),
-    description: new FormControl(""),
-  });
-
-  constructor(private store: Store<State>, private dialog: MatDialog) {}
+  constructor(private store: Store<State>) {}
 
   ngOnInit(): void {
     this.store
@@ -42,12 +35,10 @@ export class AssetsComponent {
       .select(AdminSelectors.getCatalogs)
       .pipe(takeUntil(this.unmount$))
       .subscribe((catalogs) => {
-        const assets = catalogs["asset"] as CatalogItem[];
+        const movement = catalogs["movement"];
 
-        console.log("assets", assets);
-
-        if (assets) {
-          this.assets = [...assets];
+        if (movement) {
+          this.movement = [...movement];
         }
       });
   }

@@ -1,13 +1,6 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  ViewChild,
-  TemplateRef,
-} from "@angular/core";
+import { Component, TemplateRef, ViewChild } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { MatSort, MatSortable } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { State } from "@app/app-reducer";
 import { AdminActions, AdminSelectors } from "@data/admin";
@@ -17,17 +10,17 @@ import { Subject } from "rxjs";
 import { take, takeUntil } from "rxjs/operators";
 
 @Component({
-  selector: "app-exchange",
-  templateUrl: "./exchange.component.html",
-  styleUrl: "./exchange.component.scss",
+  selector: "app-movement-rules",
+  templateUrl: "./movement-rules.component.html",
+  styleUrl: "./movement-rules.component.scss",
   standalone: false,
 })
-export class ExchangeComponent implements OnInit, OnDestroy {
+export class MovementRulesComponent {
   @ViewChild("editingContainer") editingContainer: TemplateRef<any>;
   private unmount$: Subject<boolean> = new Subject<boolean>();
 
   public displayColumns = ["key", "value", "description", "edit"];
-  public exchange: CatalogItem[];
+  public movementRules: CatalogItem[];
 
   public editForm = new FormGroup({
     value: new FormControl(""),
@@ -50,11 +43,7 @@ export class ExchangeComponent implements OnInit, OnDestroy {
       .select(AdminSelectors.getCatalogs)
       .pipe(takeUntil(this.unmount$))
       .subscribe((catalogs) => {
-        const exchange = catalogs["exchange"] as CatalogItem[];
-
-        if (exchange) {
-          this.exchange = [...exchange];
-        }
+        this.movementRules = catalogs["movementrules"];
       });
   }
 

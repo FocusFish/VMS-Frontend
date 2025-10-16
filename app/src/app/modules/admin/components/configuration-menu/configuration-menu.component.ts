@@ -3,6 +3,7 @@ import { Component } from "@angular/core";
 type MenuItem = {
   link: string;
   name: string;
+  disabled?: boolean;
 };
 
 @Component({

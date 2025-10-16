@@ -19,6 +19,11 @@ export const getPings = createSelector(
   (state: AdminTypes.State) => state.configuration.pings
 );
 
+export const getReporting = createSelector(
+  selectAdmin,
+  (state: AdminTypes.State) => state.configuration.reporting
+);
+
 export const getStates = createSelector(
   selectAdmin,
   (state: AdminTypes.State) => state.states

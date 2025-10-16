@@ -7,6 +7,7 @@ import { Store } from "@ngrx/store";
 import { Subject } from "rxjs";
 import { filter, takeUntil } from "rxjs/operators";
 import { GlobalSettingsHelper } from "./global-settings.helper";
+import { Debounce } from "@app/helpers/decorators/debounce.decorator";
 
 @Component({
   selector: "app-global-settings",
@@ -17,8 +18,7 @@ import { GlobalSettingsHelper } from "./global-settings.helper";
 export class GlobalSettingsComponent implements OnInit, OnDestroy {
   private unmount$: Subject<boolean> = new Subject<boolean>();
 
-  public globalSettingsForm: FormGroup;
-
+  public globalSettingsForm?: FormGroup = undefined;
   public globalSettings: GlobalItem[] = [];
 
   constructor(
@@ -45,11 +45,8 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
             formGroupObject[item.key] = new FormArray([]);
             const languages = item.value.split(",");
             languages.forEach((lang) => {
-              console.log("LANG", lang);
               formGroupObject[item.key].push(new FormControl(lang));
             });
-
-            console.log("MegaNinjaSuperArr", formGroupObject[item.key]);
           } else {
             formGroupObject[item.key] = new FormControl(item.value);
           }
@@ -57,6 +54,37 @@ export class GlobalSettingsComponent implements OnInit, OnDestroy {
 
         this.globalSettingsForm = new FormGroup(formGroupObject);
       });
+  }
+
+  @Debounce(300)
+  updateGlobal(name: string) {
+    const control = this.globalSettingsForm.get(name);
+
+    if (control) {
+      const config = this.globalSettings.find((gs) => gs.key === name);
+      const setting = { ...config };
+
+      setting.value = this.controlValueToGlobalValue(name, control);
+
+      this.store.dispatch(AdminActions.updateSetting({ setting }));
+    }
+  }
+
+  controlValueToGlobalValue(name: string, control: any) {
+    if (name === "availableLanguages") {
+      const controlArray = control as FormArray;
+      return controlArray.getRawValue().join(",");
+    } else {
+      return control.value;
+    }
+  }
+
+  removeLanguage(index: number) {
+    const control = this.globalSettingsForm.get(
+      "availableLanguages"
+    ) as FormArray;
+    control.removeAt(index);
+    this.updateGlobal("availableLanguages");
   }
 
   ngOnDestroy(): void {

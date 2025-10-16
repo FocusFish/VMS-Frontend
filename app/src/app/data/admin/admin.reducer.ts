@@ -6,11 +6,21 @@ const initialState: AdminTypes.State = {
     catalogs: {},
     globals: [],
     pings: {},
+    reporting: {
+      layerSettings: {},
+      mapSettings: {},
+      styleSettings: {},
+      referenceDataSettings: {},
+      systemSettings: {},
+      toolSettings: {},
+      visibilitySettings: {},
+    },
   },
   states: {
     catalogsLoaded: false,
     globalsLoaded: false,
     pingsLoaded: false,
+    reportingLoaded: false,
   },
 };
 
@@ -47,6 +57,17 @@ export const adminReducer = createReducer(
     states: {
       ...state.states,
       pingsLoaded: true,
+    },
+  })),
+  on(AdminActions.setReporting, (state, { reporting }) => ({
+    ...state,
+    configuration: {
+      ...state.configuration,
+      reporting: { ...reporting },
+    },
+    states: {
+      ...state.states,
+      reportingLoaded: true,
     },
   }))
 );

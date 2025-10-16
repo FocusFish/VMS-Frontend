@@ -52,7 +52,9 @@
 
   <mat-menu #menu="matMenu">
     @if (isAdmin) {
-    <button mat-menu-item (click)="navigateTo('users')" i18n>Users</button>
+    <button disabled mat-menu-item (click)="navigateTo('users')" i18n>
+      Users
+    </button>
     <button mat-menu-item (click)="navigateTo('configuration/pings')" i18n>
       Configuration
     </button>

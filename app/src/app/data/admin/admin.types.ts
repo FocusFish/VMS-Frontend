@@ -20,15 +20,31 @@ export interface Pings {
   };
 }
 
+// TODO: Expand this definition
+export interface Reporting {
+  layerSettings: any;
+  mapSettings: any;
+  referenceDataSettings: any;
+  styleSettings: any;
+  systemSettings: {
+    geoserverUrl?: string;
+    bingApiKey?: string;
+  };
+  toolSettings: any;
+  visibilitySettings: any;
+}
+
 export interface State {
   configuration: {
     catalogs: Catalogs;
     globals: GlobalItem[];
     pings: Pings;
+    reporting: Reporting;
   };
   states: {
     catalogsLoaded: boolean;
     globalsLoaded: boolean;
     pingsLoaded: boolean;
+    reportingLoaded: boolean;
   };
 }
