@@ -10,6 +10,8 @@ import {
   apiErrorHandler,
   apiUpdateTokenHandler,
 } from "@app/helpers/api-response-handler";
+import { Observable, of } from "rxjs";
+import { Action } from "rxjs/internal/scheduler/Action";
 
 @Injectable()
 export class AdminEffects {
@@ -122,9 +124,15 @@ export class AdminEffects {
   loadReporting$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AdminActions.loadReporting),
-      withLatestFrom(this.store.select(AuthSelectors.getAuthToken)),
-      mergeMap(([_, authToken]: Array<any>) => {
-        return this.adminService.loadReportingConfig(authToken).pipe(
+      withLatestFrom(
+        this.store.select(AuthSelectors.getAuthToken),
+        this.store.select(AuthSelectors.getUser)
+      ),
+      filter(([_, _authToken, user]) => {
+        return !!user.role;
+      }),
+      mergeMap(([_, authToken, user]: Array<any>) => {
+        return this.adminService.loadReportingConfig(authToken, user).pipe(
           filter((response: any, index: number) =>
             this.apiErrorHandler(response, index)
           ),

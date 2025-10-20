@@ -1,11 +1,15 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
-import * as AuthTypes from './auth.types';
-import { State } from '@app/app-reducer';
+import { createFeatureSelector, createSelector } from "@ngrx/store";
+import * as AuthTypes from "./auth.types";
+import { State } from "@app/app-reducer";
 
-export const getAuthState = createFeatureSelector<AuthTypes.State>('auth');
-export const selectLoggedOutPopupActive = (state: State) => state.auth.loggedOutPopupActive;
+export const getAuthState = createFeatureSelector<AuthTypes.State>("auth");
+export const selectLoggedOutPopupActive = (state: State) =>
+  state.auth.loggedOutPopupActive;
 export const selectTimeToLogout = (state: State) => state.auth.timeToLogout;
-export const selectDecodedAuthToken = (state: State) => state.auth.user.jwtToken.decoded;
+export const selectDecodedAuthToken = (state: State) =>
+  state.auth.user.jwtToken.decoded;
+export const selectAvailableContexts = (state: State) =>
+  state.auth.availableContexts;
 
 export const getAuthToken = createSelector(
   getAuthState,
@@ -42,8 +46,8 @@ export const getUserName = createSelector(
   (state: AuthTypes.State) => {
     if (
       state.user !== null &&
-      typeof state.user.data !== 'undefined' &&
-      typeof state.user.data.username !== 'undefined'
+      typeof state.user.data !== "undefined" &&
+      typeof state.user.data.username !== "undefined"
     ) {
       return state.user.data.username;
     }
@@ -56,8 +60,8 @@ export const isLoggedIn = createSelector(
   (state: AuthTypes.State) => {
     if (
       state.user !== null &&
-      typeof state.user.data !== 'undefined' &&
-      typeof state.user.data.username !== 'undefined'
+      typeof state.user.data !== "undefined" &&
+      typeof state.user.data.username !== "undefined"
     ) {
       return true;
     }
@@ -69,14 +73,20 @@ export const isAdmin = createSelector(
   getAuthState,
   (state: AuthTypes.State) => {
     let returnBoolean = false;
-    if(
+    if (
       state.user !== null &&
-      typeof state.user.jwtToken !== 'undefined' &&
-      typeof state.user.jwtToken.decoded !== 'undefined' &&
-      typeof state.user.jwtToken.decoded.features !== 'undefined'
+      typeof state.user.jwtToken !== "undefined" &&
+      typeof state.user.jwtToken.decoded !== "undefined" &&
+      typeof state.user.jwtToken.decoded.features !== "undefined"
     ) {
       state.user.jwtToken.decoded.features.some((e) => {
-        if ( e === 100001 || e === 100018  || e === 100011 || e === 100047 || e === 100030 ) {
+        if (
+          e === 100001 ||
+          e === 100018 ||
+          e === 100011 ||
+          e === 100047 ||
+          e === 100030
+        ) {
           returnBoolean = true;
         }
       });
@@ -89,25 +99,30 @@ export const hasActivityFeature = createSelector(
   getAuthState,
   (state: AuthTypes.State) => {
     let returnBoolean = false;
-    if(
+    if (
       state.user !== null &&
-      typeof state.user.jwtToken !== 'undefined' &&
-      typeof state.user.jwtToken.decoded !== 'undefined' &&
-      typeof state.user.jwtToken.decoded.features !== 'undefined'
+      typeof state.user.jwtToken !== "undefined" &&
+      typeof state.user.jwtToken.decoded !== "undefined" &&
+      typeof state.user.jwtToken.decoded.features !== "undefined"
     ) {
       state.user.jwtToken.decoded.features.some((e) => {
-        if ( e === 100027 ) {
+        if (e === 100027) {
           returnBoolean = true;
         }
       });
     }
     return returnBoolean;
   }
-)
+);
 
 export const fishingActivityUnlocked = createSelector(
   getAuthState,
   (state: AuthTypes.State) => {
     return state.fishingActivityUnlocked;
   }
+);
+
+export const getAvailableContexts = createSelector(
+  selectAvailableContexts,
+  (contexts: any) => contexts
 );

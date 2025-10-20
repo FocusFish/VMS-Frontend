@@ -68,6 +68,18 @@ export class CatalogItemListComponent implements OnChanges {
     this.dialog.closeAll();
   }
 
+  toggleBooleanAsset(asset: CatalogItem) {
+    const setting = { ...asset };
+
+    if (setting.value.toLowerCase() === "false") {
+      setting.value = "true";
+    } else {
+      setting.value = "false";
+    }
+
+    this.store.dispatch(AdminActions.updateSetting({ setting }));
+  }
+
   ngOnDestroy(): void {
     this.unmount$.next(true);
     this.unmount$.unsubscribe();

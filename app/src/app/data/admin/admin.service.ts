@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { getDefaultHttpOptions } from "@app/helpers/api-request";
 import { environment } from "@src/environments/environment";
 import { CatalogItem, GlobalItem } from "./admin.types";
+import { User } from "@data/auth/auth.types";
 
 @Injectable({
   providedIn: "root",
@@ -44,12 +45,12 @@ export class AdminService {
     );
   }
 
-  loadReportingConfig(authToken: string) {
+  loadReportingConfig(authToken: string, user: User) {
     return this.http.get(
       environment.baseApiUrl + "spatial/rest/config/admin",
       getDefaultHttpOptions(authToken, {
-        roleName: "AdminAll",
-        scopeName: "All Reports",
+        roleName: user.role.name,
+        scopeName: user.scope.name,
       })
     );
   }

@@ -1,50 +1,56 @@
-import { Action, createReducer, on } from '@ngrx/store';
-import * as AuthActions from './auth.actions';
-import * as Types from './auth.types';
-import { environment } from '../../../environments/environment';
+import { Action, createReducer, on } from "@ngrx/store";
+import * as AuthActions from "./auth.actions";
+import * as Types from "./auth.types";
+import { environment } from "../../../environments/environment";
 
 export const initialState: Types.State = {
   user: null,
   fishingActivityUnlocked: environment.fishingActivityDefaultUnlocked,
   loggedOutPopupActive: false,
   timeToLogout: null,
+  availableContexts: null,
 };
 
-export const authReducer = createReducer(initialState,
+export const authReducer = createReducer(
+  initialState,
   on(AuthActions.loginSuccess, (state, { payload: { jwtToken, data } }) => ({
     ...state,
     user: {
       ...state.user,
       jwtToken,
-      data
-    }
+      data,
+    },
   })),
   on(AuthActions.updateToken, (state, { payload: { jwtToken, data } }) => ({
     ...state,
     user: {
       ...state.user,
       jwtToken,
-      data
-    }
+      data,
+    },
   })),
   on(AuthActions.logout, (state) => ({
     ...state,
-    user: null
+    user: null,
   })),
   on(AuthActions.setRoleAndScope, (state, { role, scope }) => ({
     ...state,
     user: {
       ...state.user,
       role,
-      scope
-    }
+      scope,
+    },
   })),
   on(AuthActions.setTimeToLogout, (state, { timeToLogout }) => ({
     ...state,
-    timeToLogout
+    timeToLogout,
   })),
   on(AuthActions.activateLoggedOutPopup, (state) => ({
     ...state,
-    loggedOutPopupActive: true
+    loggedOutPopupActive: true,
   })),
+  on(AuthActions.setAvailableContexts, (state, { contexts }) => ({
+    ...state,
+    availableContexts: contexts,
+  }))
 );

@@ -105,6 +105,20 @@
                   "with": "src/environments/environment.dev.ts"
                 }
               ]
+            },
+            "proxy": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "11kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.proxy.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": ""
@@ -123,6 +137,10 @@
             },
             "dev": {
               "buildTarget": "vms-frontend:build:dev"
+            },
+            "proxy": {
+              "buildTarget": "vms-frontend:build:proxy",
+              "proxyConfig": "proxy.conf.json"
             }
           }
         },

@@ -164,6 +164,25 @@ export class AuthEffects {
                 })
               );
 
+              response.push(
+                AuthActions.setAvailableContexts({
+                  contexts: context.contextSet.contexts.map((contextItem) => {
+                    return {
+                      role: {
+                        name: contextItem.role?.roleName,
+                        features: contextItem.role?.features,
+                      },
+                      scope: {
+                        name: contextItem.scope?.scopeName,
+                        datasets: contextItem.scope?.datasets,
+                        activeFrom: contextItem.scope?.activeFrom,
+                        activeTo: contextItem.scope?.activeTo,
+                      },
+                    };
+                  }),
+                })
+              );
+
               if (
                 typeof userSettings !== "undefined" &&
                 userSettings.optionValue !== "SYSTEM_DEFAULT_VALUE"

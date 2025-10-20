@@ -11,6 +11,12 @@ import {
 import moment from "moment-timezone";
 import { formatUnixtimeWithoutDate } from "@app/helpers/datetime-formatter";
 import { Router } from "@angular/router";
+import { Store } from "@ngrx/store";
+import { State } from "@app/app-reducer";
+import { AuthActions, AuthSelectors } from "@data/auth";
+import { filter, take, takeUntil } from "rxjs/operators";
+import { Subject } from "rxjs";
+import { User } from "@data/auth/auth.types";
 
 @Component({
   selector: "core-top-menu-component",
@@ -20,6 +26,8 @@ import { Router } from "@angular/router";
   standalone: false,
 })
 export class TopMenuComponent implements OnInit, OnChanges, OnDestroy {
+  private unmount$: Subject<boolean> = new Subject<boolean>();
+
   @Input() appVersion: string;
   @Input() isAdmin: boolean;
   @Input() setTimezone: (timezone: string) => void;
@@ -35,9 +43,12 @@ export class TopMenuComponent implements OnInit, OnChanges, OnDestroy {
   public commonTimezones = ["Europe/Stockholm", "UTC"];
   public currentTime: string;
 
+  public availableContexts: any;
+  public user: User;
+
   private intervalId: number;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private store: Store<State>) {}
 
   ngOnInit() {
     // Remove afew timezones. GMT because moment.js inverts GMT timezones.
@@ -56,6 +67,25 @@ export class TopMenuComponent implements OnInit, OnChanges, OnDestroy {
     this.intervalId = window.setInterval(() => {
       this.currentTime = formatUnixtimeWithoutDate(new Date().getTime());
     }, 1000);
+
+    this.store
+      .select(AuthSelectors.getAvailableContexts)
+      .pipe(
+        filter((contexts) => contexts !== null),
+        take(1)
+      )
+      .subscribe((contexts) => {
+        if (this.isAdmin) {
+          this.availableContexts = contexts;
+        }
+      });
+
+    this.store
+      .select(AuthSelectors.getUser)
+      .pipe(takeUntil(this.unmount$))
+      .subscribe((user: User) => {
+        this.user = user;
+      });
   }
 
   ngOnChanges() {
@@ -64,10 +94,18 @@ export class TopMenuComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy() {
     window.clearInterval(this.intervalId);
+    this.unmount$.next(true);
+    this.unmount$.unsubscribe();
   }
 
   getTimeToLogout() {
     return Math.ceil(this.timeToLogout / 60);
+  }
+
+  setRoleAndScope(chosenContext: any) {
+    if (this.isAdmin) {
+      this.store.dispatch(AuthActions.setRoleAndScope(chosenContext));
+    }
   }
 
   navigateTo(url: string) {

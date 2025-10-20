@@ -23,6 +23,14 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header i18n>Value</th>
     <td mat-cell *matCellDef="let row; let odd = odd" [ngClass]="{ odd: odd }">
       {{ row.value }}
+
+      @if (row.value.toLowerCase() === 'true' || row.value.toLowerCase() ===
+      'false') {
+      <mat-checkbox
+        (change)="toggleBooleanAsset(row)"
+        [checked]="row.value.toLowerCase() === 'true'"
+      ></mat-checkbox>
+      }
     </td>
   </ng-container>
 

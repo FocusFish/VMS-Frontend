@@ -104,10 +104,36 @@
       ></a>
     </li>
     <li *ngIf="isAdmin" class="nav-item" routerLinkActive="active">
-      <a class="nav-link waves-light" href="{{ baseUrl }}/unionvms/">{{
-        userName
-      }}</a>
+      <a class="nav-link waves-light" href="{{ baseUrl }}/unionvms/"
+        >{{ userName }} <br />
+        @if (user?.role?.name) {
+        {{ user.role.name }} } @if (user?.scope?.name) { -
+        {{ user.scope.name }} }</a
+      >
     </li>
+    @if (isAdmin) {
+    <li class="nav-item">
+      <button
+        mat-button
+        class="nav-link waves-light menu-button"
+        [matMenuTriggerFor]="contextSwitchMenu"
+        i18n
+      >
+        Switch context
+      </button>
+      <mat-menu #contextSwitchMenu>
+        @for (context of availableContexts; track $index) {
+        <button mat-menu-item (click)="setRoleAndScope(context)">
+          @if (context.role?.name) {
+          {{ context.role.name }}
+          } @if (context.scope?.name) { -
+          {{ context.scope?.name }}
+          }
+        </button>
+        }
+      </mat-menu>
+    </li>
+    }
   </ul>
 </div>
 <!--/.Navbar-->

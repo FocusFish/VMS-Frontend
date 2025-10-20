@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { MatCardModule } from "@angular/material/card";
+import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
@@ -46,6 +47,7 @@ import { ConfigurationMenuComponent } from "./components/configuration-menu/conf
     MatAnchor,
     MatButtonModule,
     MatCardModule,
+    MatCheckboxModule,
     MatExpansionModule,
     MatIconModule,
     MatInputModule,
