@@ -2,12 +2,13 @@
   <h2 i18n>Notes</h2>
   <button mat-raised-button class="btn-default" type="button" routerLink="/notes/{{asset.id}}/create" i18n>Create</button>
 </div>
-<fieldset *ngFor="let note of notes">
-  <legend>{{note.id}}</legend>
-  <a class="edit-link" routerLink="/notes/{{note.id}}/edit" i18n>Edit</a>
-
-  <ng-container *ngIf="note.note">
-    <label i18n>Note</label>
-    <div>{{note.note}}</div>
-  </ng-container>
-</fieldset>
+@for (note of notes; track note) {
+  <fieldset>
+    <legend>{{note.id}}</legend>
+    <a class="edit-link" routerLink="/notes/{{note.id}}/edit" i18n>Edit</a>
+    @if (note.note) {
+      <label i18n>Note</label>
+      <div>{{note.note}}</div>
+    }
+  </fieldset>
+}

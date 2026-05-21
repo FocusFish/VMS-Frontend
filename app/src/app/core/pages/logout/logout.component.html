@@ -1,7 +1,13 @@
 <div class="content-container">
   <p>
-    <ng-container i18n>You are now being logged out of the system</ng-container><ui-loading-dots *ngIf="(isLoggedIn$ | async) === true"></ui-loading-dots>
-    <span *ngIf="(isLoggedIn$ | async) === false">... done.</span><br />
-    <ng-container i18n="Logout page notification with automatic countdown.">Redirecting you back to login page in</ng-container>&nbsp;<ui-countdown seconds="5" [doneFunction]="redirectFactory()" *ngIf="(isLoggedIn$ | async) === false"></ui-countdown>&nbsp;<ng-container i18n>seconds</ng-container>.
+    <ng-container i18n>You are now being logged out of the system</ng-container>@if ((isLoggedIn$ | async) === true) {
+    <ui-loading-dots></ui-loading-dots>
+  }
+  @if ((isLoggedIn$ | async) === false) {
+    <span>... done.</span>
+    }<br />
+    <ng-container i18n="Logout page notification with automatic countdown.">Redirecting you back to login page in</ng-container>&nbsp;@if ((isLoggedIn$ | async) === false) {
+    <ui-countdown seconds="5" [doneFunction]="redirectFactory()"></ui-countdown>
+    }&nbsp;<ng-container i18n>seconds</ng-container>.
   </p>
 </div>

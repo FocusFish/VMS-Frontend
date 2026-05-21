@@ -2,184 +2,202 @@
   class="manual-position-form"
   [formGroup]="formValidator"
   autocomplete="off"
->
+  >
   <div id="manual-position-form--latitude--wrapper">
     <mat-form-field
       id="manual-position-form--latitude-direction"
       floatLabel="always"
-    >
+      >
       <mat-label i18n>Latitude</mat-label>
       <mat-select formControlName="latitudeDirection" required>
         <mat-option id="mat-option-plugin--latitude-direction-n" value="N"
           >N</mat-option
-        >
-        <mat-option id="mat-option-plugin--latitude-direction-s" value="S"
-          >S</mat-option
-        >
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field id="manual-position-form--latitude">
-      <input
-        matInput
-        formControlName="latitude"
-        type="text"
-        (keydown)="validateNumber($event)"
-        required
-        (blur)="renderPreview()"
-        #latitudeElement
-      />
-      <span matSuffix>&#176;&nbsp;</span>
-    </mat-form-field>
-    <mat-form-field id="manual-position-form--latitude-minute">
-      <input
-        matInput
-        formControlName="latitudeMinute"
-        type="text"
-        (keydown)="validateNumber($event)"
-        required
-        (blur)="renderPreview()"
-        #latitudeMinuteElement
-      />
-      <span matSuffix>.</span>
-    </mat-form-field>
-    <mat-form-field id="manual-position-form--latitude-decimals">
-      <input
-        matInput
-        formControlName="latitudeDecimals"
-        type="text"
-        (keydown)="validateNumber($event)"
-        required
-        (blur)="renderPreview()"
-        #latitudeDecimalsElement
-      />
-      <span matSuffix>'</span>
-    </mat-form-field>
+          >
+          <mat-option id="mat-option-plugin--latitude-direction-s" value="S"
+            >S</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field id="manual-position-form--latitude">
+          <input
+            matInput
+            formControlName="latitude"
+            type="text"
+            (keydown)="validateNumber($event)"
+            required
+            (blur)="renderPreview()"
+            #latitudeElement
+            />
+            <span matSuffix>&#176;&nbsp;</span>
+          </mat-form-field>
+          <mat-form-field id="manual-position-form--latitude-minute">
+            <input
+              matInput
+              formControlName="latitudeMinute"
+              type="text"
+              (keydown)="validateNumber($event)"
+              required
+              (blur)="renderPreview()"
+              #latitudeMinuteElement
+              />
+              <span matSuffix>.</span>
+            </mat-form-field>
+            <mat-form-field id="manual-position-form--latitude-decimals">
+              <input
+                matInput
+                formControlName="latitudeDecimals"
+                type="text"
+                (keydown)="validateNumber($event)"
+                required
+                (blur)="renderPreview()"
+                #latitudeDecimalsElement
+                />
+                <span matSuffix>'</span>
+              </mat-form-field>
 
-    <div class="errors">
-      <mat-error *ngFor="let error of getErrors(['latitude'])">{{
-        errorMessage(error)
-      }}</mat-error>
-      <mat-error *ngFor="let error of getErrors(['latitudeMinute'])">{{
-        errorMessage(error)
-      }}</mat-error>
-      <mat-error *ngFor="let error of getErrors(['latitudeDecimals'])">{{
-        errorMessage(error)
-      }}</mat-error>
-    </div>
-  </div>
-  <div id="manual-position-form--longitude--wrapper">
-    <mat-form-field
-      id="manual-position-form--longitude-direction"
-      floatLabel="always"
-    >
-      <mat-label i18n>Longitude</mat-label>
-      <mat-select formControlName="longitudeDirection" required>
-        <mat-option id="mat-option-plugin--longitude-direction-E" value="E"
-          >E</mat-option
-        >
-        <mat-option id="mat-option-plugin--longitude-direction-W" value="W"
-          >W</mat-option
-        >
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field id="manual-position-form--longitude">
-      <input
-        matInput
-        formControlName="longitude"
-        type="text"
-        (keydown)="validateNumber($event)"
-        required
-        (blur)="renderPreview()"
-        #longitudeElement
-      />
-      <span matSuffix>&#176;&nbsp;</span>
-    </mat-form-field>
-    <mat-form-field id="manual-position-form--longitude-minute">
-      <input
-        matInput
-        formControlName="longitudeMinute"
-        type="text"
-        (keydown)="validateNumber($event)"
-        required
-        (blur)="renderPreview()"
-        #longitudeMinuteElement
-      />
-      <span matSuffix>.</span>
-    </mat-form-field>
-    <mat-form-field id="manual-position-form--longitude-decimals">
-      <input
-        matInput
-        formControlName="longitudeDecimals"
-        type="text"
-        (keydown)="validateNumber($event)"
-        required
-        (blur)="renderPreview()"
-        #longitudeDecimalsElement
-      />
-      <span matSuffix>'</span>
-    </mat-form-field>
-    <div class="errors">
-      <mat-error *ngFor="let error of getErrors(['longitude'])">{{
-        errorMessage(error)
-      }}</mat-error>
-      <mat-error *ngFor="let error of getErrors(['longitudeMinute'])">{{
-        errorMessage(error)
-      }}</mat-error>
-      <mat-error *ngFor="let error of getErrors(['longitudeDecimals'])">{{
-        errorMessage(error)
-      }}</mat-error>
-    </div>
-  </div>
+              <div class="errors">
+                @for (error of getErrors(['latitude']); track error) {
+                  <mat-error>{{
+                    errorMessage(error)
+                  }}</mat-error>
+                }
+                @for (error of getErrors(['latitudeMinute']); track error) {
+                  <mat-error>{{
+                    errorMessage(error)
+                  }}</mat-error>
+                }
+                @for (error of getErrors(['latitudeDecimals']); track error) {
+                  <mat-error>{{
+                    errorMessage(error)
+                  }}</mat-error>
+                }
+              </div>
+            </div>
+            <div id="manual-position-form--longitude--wrapper">
+              <mat-form-field
+                id="manual-position-form--longitude-direction"
+                floatLabel="always"
+                >
+                <mat-label i18n>Longitude</mat-label>
+                <mat-select formControlName="longitudeDirection" required>
+                  <mat-option id="mat-option-plugin--longitude-direction-E" value="E"
+                    >E</mat-option
+                    >
+                    <mat-option id="mat-option-plugin--longitude-direction-W" value="W"
+                      >W</mat-option
+                      >
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field id="manual-position-form--longitude">
+                    <input
+                      matInput
+                      formControlName="longitude"
+                      type="text"
+                      (keydown)="validateNumber($event)"
+                      required
+                      (blur)="renderPreview()"
+                      #longitudeElement
+                      />
+                      <span matSuffix>&#176;&nbsp;</span>
+                    </mat-form-field>
+                    <mat-form-field id="manual-position-form--longitude-minute">
+                      <input
+                        matInput
+                        formControlName="longitudeMinute"
+                        type="text"
+                        (keydown)="validateNumber($event)"
+                        required
+                        (blur)="renderPreview()"
+                        #longitudeMinuteElement
+                        />
+                        <span matSuffix>.</span>
+                      </mat-form-field>
+                      <mat-form-field id="manual-position-form--longitude-decimals">
+                        <input
+                          matInput
+                          formControlName="longitudeDecimals"
+                          type="text"
+                          (keydown)="validateNumber($event)"
+                          required
+                          (blur)="renderPreview()"
+                          #longitudeDecimalsElement
+                          />
+                          <span matSuffix>'</span>
+                        </mat-form-field>
+                        <div class="errors">
+                          @for (error of getErrors(['longitude']); track error) {
+                            <mat-error>{{
+                              errorMessage(error)
+                            }}</mat-error>
+                          }
+                          @for (error of getErrors(['longitudeMinute']); track error) {
+                            <mat-error>{{
+                              errorMessage(error)
+                            }}</mat-error>
+                          }
+                          @for (error of getErrors(['longitudeDecimals']); track error) {
+                            <mat-error>{{
+                              errorMessage(error)
+                            }}</mat-error>
+                          }
+                        </div>
+                      </div>
 
-  <mat-form-field id="manual-position-form--speed">
-    <mat-label i18n>Speed</mat-label>
-    <input matInput formControlName="speed" type="number" />
-    <mat-error *ngFor="let error of getErrors(['speed'])">{{
-      errorMessage(error)
-    }}</mat-error>
-  </mat-form-field>
+                      <mat-form-field id="manual-position-form--speed">
+                        <mat-label i18n>Speed</mat-label>
+                        <input matInput formControlName="speed" type="number" />
+                        @for (error of getErrors(['speed']); track error) {
+                          <mat-error>{{
+                            errorMessage(error)
+                          }}</mat-error>
+                        }
+                      </mat-form-field>
 
-  <mat-form-field id="manual-position-form--heading">
-    <mat-label i18n>Heading</mat-label>
-    <input
-      matInput
-      formControlName="heading"
-      (blur)="renderPreview()"
-      type="number"
-    />
-    <mat-error *ngFor="let error of getErrors(['heading'])">{{
-      errorMessage(error)
-    }}</mat-error>
-  </mat-form-field>
+                      <mat-form-field id="manual-position-form--heading">
+                        <mat-label i18n>Heading</mat-label>
+                        <input
+                          matInput
+                          formControlName="heading"
+                          (blur)="renderPreview()"
+                          type="number"
+                          />
+                          @for (error of getErrors(['heading']); track error) {
+                            <mat-error>{{
+                              errorMessage(error)
+                            }}</mat-error>
+                          }
+                        </mat-form-field>
 
-  <ngx-datetime-picker
-    id="manual-position-form--timestamp"
-    [(dateTime)]="formValidator.value.timestamp"
-    (dateTimeChange)="updateTimestamp($event)"
-    label="Time ({{ userTimezone }})"
-    [errorMessages]="getErrorMessages(['timestamp'])"
-    [positionFromTop]="true"
-    [customPopupStyle]="{ left: 'auto', right: '24px', bottom: '-48px' }"
-    [autoUpdateDatetime]="autoUpdateDatetime"
-  ></ngx-datetime-picker>
+                        <ngx-datetime-picker
+                          id="manual-position-form--timestamp"
+                          [(dateTime)]="formValidator.value.timestamp"
+                          (dateTimeChange)="updateTimestamp($event)"
+                          label="Time ({{ userTimezone }})"
+                          [errorMessages]="getErrorMessages(['timestamp'])"
+                          [positionFromTop]="true"
+                          [customPopupStyle]="{ left: 'auto', right: '24px', bottom: '-48px' }"
+                          [autoUpdateDatetime]="autoUpdateDatetime"
+                        ></ngx-datetime-picker>
 
-  <mat-form-field id="manual-position-form--note">
-    <mat-label i18n>Note</mat-label>
-    <input matInput formControlName="note" required />
-    <mat-error *ngFor="let error of getErrors(['note'])">{{
-      errorMessage(error)
-    }}</mat-error>
-  </mat-form-field>
+                        <mat-form-field id="manual-position-form--note">
+                          <mat-label i18n>Note</mat-label>
+                          <input matInput formControlName="note" required />
+                          @for (error of getErrors(['note']); track error) {
+                            <mat-error>{{
+                              errorMessage(error)
+                            }}</mat-error>
+                          }
+                        </mat-form-field>
 
-  <button
-    id="manual-position-form--save"
-    mat-button
-    color="primary"
-    type="button"
-    [disabled]="!formValidator.valid"
-    (click)="openSaveDialog()"
-    i18n
-  >
+                        <button
+                          id="manual-position-form--save"
+                          mat-button
+                          color="primary"
+                          type="button"
+                          [disabled]="!formValidator.valid"
+                          (click)="openSaveDialog()"
+                          i18n
+                          >
     Save manual movement
   </button>
-</form>
+                      </form>

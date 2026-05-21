@@ -6,7 +6,7 @@
     [setActiveFunction]="toggleFormActive"
     [useArrowsAsToggle]="true"
     noExternalPadding="true"
-  >
+    >
     <map-manual-poll-form
       body
       [assetId]="asset.id"
@@ -22,22 +22,24 @@
     [useArrowsAsToggle]="true"
     noExternalPadding="true"
     noContentPadding="true"
-  >
+    >
     <div body class="polls">
-      <ng-container *ngFor="let poll of sortedPolls; trackBy: trackByPollId; let i=index">
-        <map-asset-poll-manual
-          *ngIf="!isProgramPoll(poll)"
-          [poll]="poll"
-          [index]="i"
-          [userTimezone]="userTimezone"
-        ></map-asset-poll-manual>
-        <map-asset-poll-program
-          *ngIf="isProgramPoll(poll)"
-          [poll]="poll"
-          [index]="i"
-          [userTimezone]="userTimezone"
-        ></map-asset-poll-program>
-      </ng-container>
+      @for (poll of sortedPolls; track trackByPollId(i, poll); let i = $index) {
+        @if (!isProgramPoll(poll)) {
+          <map-asset-poll-manual
+            [poll]="poll"
+            [index]="i"
+            [userTimezone]="userTimezone"
+          ></map-asset-poll-manual>
+        }
+        @if (isProgramPoll(poll)) {
+          <map-asset-poll-program
+            [poll]="poll"
+            [index]="i"
+            [userTimezone]="userTimezone"
+          ></map-asset-poll-program>
+        }
+      }
     </div>
   </map-panel-block>
 </div>

@@ -1,16 +1,16 @@
 <div class="content-container">
   <div class="incidents">
-    <ng-container *ngFor="let incident of incidents; trackBy: trackByIncidents">
+    @for (incident of incidents; track trackByIncidents($index, incident)) {
       <div
         [title]="incident.assetName"
         class="incident {{currentWorkflow !== incident.type ? 'other-workflow' : '' }}"
         (click)="openSelectIncidentDialog(incident)"
-      >
+        >
         <div class="status {{incidentStatusClass[incident.status]}}"></div>
         <ui-truncated-text class="name" [text]="incident.assetName" length="16"></ui-truncated-text>
         <div class="ircs">{{incident.assetIrcs}}</div>
         <div class="time">Last seen: {{formatDate(incident)}}</div>
       </div>
-    </ng-container>
+    }
   </div>
 </div>

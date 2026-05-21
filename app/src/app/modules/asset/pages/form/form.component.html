@@ -1,126 +1,149 @@
 <h1>
-  <ng-container *ngIf="isCreate()" i18n>Create Asset</ng-container>
-  <ng-container *ngIf="!isCreate()" i18n>Edit Asset</ng-container>
+  @if (isCreate()) {
+    <ng-container i18n>Create Asset</ng-container>
+  }
+  @if (!isCreate()) {
+    <ng-container i18n>Edit Asset</ng-container>
+  }
 </h1>
 
-<ng-container *ngIf="isFormReady()">
+@if (isFormReady()) {
   <form class="asset-edit-form" [formGroup]="formValidator">
     <fieldset formGroupName="essentailFields">
       <legend i18n>Essential fields</legend>
-
       <mat-form-field id="asset-form--flagStateCode" >
         <mat-label i18n>Flagstate</mat-label>
         <mat-select formControlName="flagState" [typeaheadDebounceInterval]="700" required>
-          <mat-option *ngFor="let flagState of flagStatesAndNames" id="mat-option-{{flagState}}" [value]="flagState">{{flagState}} </mat-option>
+          @for (flagState of flagStatesAndNames; track flagState) {
+            <mat-option id="mat-option-{{flagState}}" [value]="flagState">{{flagState}} </mat-option>
+          }
         </mat-select>
-        <mat-error *ngFor="let error of getErrors(['essentailFields', 'flagState'])">{{ errorMessage(error) }}</mat-error>
+        @for (error of getErrors(['essentailFields', 'flagState']); track error) {
+          <mat-error>{{ errorMessage(error) }}</mat-error>
+        }
       </mat-form-field>
-
       <mat-form-field id="asset-form--externalMarking">
         <mat-label i18n>External marking</mat-label>
         <input matInput formControlName="externalMarking" required>
-        <mat-error *ngFor="let error of getErrors(['essentailFields', 'externalMarking'])">{{ errorMessage(error) }}</mat-error>
+        @for (error of getErrors(['essentailFields', 'externalMarking']); track error) {
+          <mat-error>{{ errorMessage(error) }}</mat-error>
+        }
       </mat-form-field>
-
       <mat-form-field id="asset-form--name">
         <mat-label i18n>Name</mat-label>
         <input matInput formControlName="name" required>
-        <mat-error *ngFor="let error of getErrors(['essentailFields', 'name'])">{{ errorMessage(error) }}</mat-error>
+        @for (error of getErrors(['essentailFields', 'name']); track error) {
+          <mat-error>{{ errorMessage(error) }}</mat-error>
+        }
       </mat-form-field>
     </fieldset>
-
     <fieldset formGroupName="identificationFields">
       <legend i18n>Identification fields</legend>
-
       <mat-form-field id="asset-form--cfr">
         <mat-label i18n>CFR</mat-label>
         <input matInput formControlName="cfr">
-        <mat-error *ngFor="let error of getErrors(['identificationFields', 'cfr'])">{{ errorMessage(error) }}</mat-error>
+        @for (error of getErrors(['identificationFields', 'cfr']); track error) {
+          <mat-error>{{ errorMessage(error) }}</mat-error>
+        }
       </mat-form-field>
-
       <mat-form-field id="asset-form--ircs">
         <mat-label i18n>IRCS</mat-label>
         <input matInput formControlName="ircs">
-        <mat-error *ngFor="let error of getErrors(['identificationFields', 'ircs'])">{{ errorMessage(error) }}</mat-error>
+        @for (error of getErrors(['identificationFields', 'ircs']); track error) {
+          <mat-error>{{ errorMessage(error) }}</mat-error>
+        }
       </mat-form-field>
-
       <mat-form-field id="asset-form--imo">
         <mat-label i18n>IMO</mat-label>
         <input matInput formControlName="imo">
-        <mat-error *ngFor="let error of getErrors(['identificationFields', 'imo'])">Need to be a number with 7 digits or none</mat-error>
+        @for (error of getErrors(['identificationFields', 'imo']); track error) {
+          <mat-error>Need to be a number with 7 digits or none</mat-error>
+        }
       </mat-form-field>
-
       <mat-form-field id="asset-form--portOfRegistration">
         <mat-label i18n>Home port</mat-label>
         <input matInput formControlName="portOfRegistration">
-        <mat-error *ngFor="let error of getErrors(['identificationFields', 'portOfRegistration'])">{{ errorMessage(error) }}</mat-error>
+        @for (error of getErrors(['identificationFields', 'portOfRegistration']); track error) {
+          <mat-error>{{ errorMessage(error) }}</mat-error>
+        }
       </mat-form-field>
-
       <mat-form-field id="asset-form--mmsi">
         <mat-label i18n>MMSI No.</mat-label>
         <input matInput type="number" formControlName="mmsi">
-        <mat-error *ngFor="let error of getErrors(['identificationFields', 'mmsi'])">{{ errorMessage(error) }}</mat-error>
+        @for (error of getErrors(['identificationFields', 'mmsi']); track error) {
+          <mat-error>{{ errorMessage(error) }}</mat-error>
+        }
       </mat-form-field>
-
       <mat-form-field id="asset-form--vesselType" >
         <mat-label i18n>Vesseltype</mat-label>
         <mat-select formControlName="vesselType" [typeaheadDebounceInterval]="700">
-        <mat-option *ngFor="let vesselType of vesselTypes" id="mat-option-{{vesselType}}" [value]="vesselType">{{vesselType}}</mat-option>
+          @for (vesselType of vesselTypes; track vesselType) {
+            <mat-option id="mat-option-{{vesselType}}" [value]="vesselType">{{vesselType}}</mat-option>
+          }
         </mat-select>
-        <mat-error *ngFor="let error of getErrors(['identificationFields', 'vesselType'])">{{ errorMessage(error) }}</mat-error>
+        @for (error of getErrors(['identificationFields', 'vesselType']); track error) {
+          <mat-error>{{ errorMessage(error) }}</mat-error>
+        }
       </mat-form-field>
     </fieldset>
-
     <fieldset formGroupName="metrics">
       <legend i18n>Metrics</legend>
-
       <mat-form-field id="asset-form--lengthOverAll">
         <mat-label i18n>Length over all</mat-label>
         <input matInput type="number" formControlName="lengthOverAll">
-        <mat-error *ngFor="let error of getErrors(['metrics', 'lengthOverAll'])">{{ errorMessage(error) }}</mat-error>
+        @for (error of getErrors(['metrics', 'lengthOverAll']); track error) {
+          <mat-error>{{ errorMessage(error) }}</mat-error>
+        }
       </mat-form-field>
-
       <mat-form-field id="asset-form--lengthBetweenPerpendiculars">
         <mat-label i18n>Length between perpendiculars</mat-label>
         <input matInput type="number" formControlName="lengthBetweenPerpendiculars">
-        <mat-error *ngFor="let error of getErrors(['metrics', 'lengthBetweenPerpendiculars'])">{{ errorMessage(error) }}</mat-error>
+        @for (error of getErrors(['metrics', 'lengthBetweenPerpendiculars']); track error) {
+          <mat-error>{{ errorMessage(error) }}</mat-error>
+        }
       </mat-form-field>
-
       <mat-form-field class="tonnage-form-field" id="asset-form--grossTonnage">
         <mat-label i18n>G.tonnage</mat-label>
         <input matInput type="number" formControlName="grossTonnage">
         <mat-select formControlName="grossTonnageUnit">
-          <mat-option *ngFor="let unit of unitTonnages" id="mat-option-{{unit.code}}" [value]="unit.code">{{unit.name}}</mat-option>
+          @for (unit of unitTonnages; track unit) {
+            <mat-option id="mat-option-{{unit.code}}" [value]="unit.code">{{unit.name}}</mat-option>
+          }
         </mat-select>
-        <mat-error *ngFor="let error of getErrors(['metrics', 'grossTonnage'])">{{ errorMessage(error) }}</mat-error>
-        <mat-error *ngFor="let error of getErrors(['metrics', 'grossTonnageUnit'])">{{ errorMessage(error) }}</mat-error>
+        @for (error of getErrors(['metrics', 'grossTonnage']); track error) {
+          <mat-error>{{ errorMessage(error) }}</mat-error>
+        }
+        @for (error of getErrors(['metrics', 'grossTonnageUnit']); track error) {
+          <mat-error>{{ errorMessage(error) }}</mat-error>
+        }
       </mat-form-field>
-
       <mat-form-field id="asset-form--powerOfMainEngine">
         <mat-label i18n>Main power</mat-label>
         <input matInput type="number" formControlName="powerOfMainEngine">
-        <mat-error *ngFor="let error of getErrors(['metrics', 'powerOfMainEngine'])">{{ errorMessage(error) }}</mat-error>
+        @for (error of getErrors(['metrics', 'powerOfMainEngine']); track error) {
+          <mat-error>{{ errorMessage(error) }}</mat-error>
+        }
       </mat-form-field>
     </fieldset>
-
     <fieldset formGroupName="companyInformation">
       <legend i18n>Company information</legend>
-
       <mat-form-field id="asset-form--prodOrgName">
         <mat-label i18n>Organization name</mat-label>
         <input matInput formControlName="prodOrgName">
-        <mat-error *ngFor="let error of getErrors(['companyInformation', 'prodOrgName'])">{{ errorMessage(error) }}</mat-error>
+        @for (error of getErrors(['companyInformation', 'prodOrgName']); track error) {
+          <mat-error>{{ errorMessage(error) }}</mat-error>
+        }
       </mat-form-field>
-
       <mat-form-field id="asset-form--prodOrgCode">
         <mat-label i18n>Organization number</mat-label>
         <input matInput type="number" formControlName="prodOrgCode">
-        <mat-error *ngFor="let error of getErrors(['companyInformation', 'prodOrgCode'])">{{ errorMessage(error) }}</mat-error>
+        @for (error of getErrors(['companyInformation', 'prodOrgCode']); track error) {
+          <mat-error>{{ errorMessage(error) }}</mat-error>
+        }
       </mat-form-field>
     </fieldset>
-
     <div>
       <button id="asset-form--save" mat-raised-button color="primary" type="button" (click)="save()" i18n>Save</button>
     </div>
   </form>
-</ng-container>
+}

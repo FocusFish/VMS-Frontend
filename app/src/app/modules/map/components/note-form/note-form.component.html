@@ -1,7 +1,9 @@
 <form class="notes-form" [formGroup]="formValidator">
   <mat-form-field id="note-form--notes">
     <textarea matInput formControlName="note" required></textarea>
-    <mat-error *ngFor="let error of getErrors(['note'])">{{ errorMessage(error) }}</mat-error>
+    @for (error of getErrors(['note']); track error) {
+      <mat-error>{{ errorMessage(error) }}</mat-error>
+    }
   </mat-form-field>
 
   <button id="note-form--all" mat-stroked-button color="accent" type="button" routerLink="/asset/{{assetId}}/notes" i18n>Show all</button>

@@ -1,10 +1,12 @@
-<map-asset-poll-manual
-  *ngIf="!isProgramPoll(poll)"
-  [poll]="poll"
-  [userTimezone]="userTimezone"
-></map-asset-poll-manual>
-<map-asset-poll-program
-  *ngIf="isProgramPoll(poll)"
-  [poll]="poll"
-  [userTimezone]="userTimezone"
-></map-asset-poll-program>
+@if (!isProgramPoll(poll)) {
+  <map-asset-poll-manual
+    [poll]="poll"
+    [userTimezone]="userTimezone"
+  ></map-asset-poll-manual>
+}
+@if (isProgramPoll(poll)) {
+  <map-asset-poll-program
+    [poll]="poll"
+    [userTimezone]="userTimezone"
+  ></map-asset-poll-program>
+}

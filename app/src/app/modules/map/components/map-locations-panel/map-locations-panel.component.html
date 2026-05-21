@@ -9,26 +9,32 @@
     (e.g. press "alt+2" to save. Then press "2" to go to that location)
   </div>
   <div class="locations">
-    <div class="location-wrapper" *ngFor="let locationKey of locationKeys">
-      <div class="location-header">
-        <div class="name">
-          <span *ngIf="!editName[locationKey]">{{mapLocations[locationKey].name}}</span>
-          <input *ngIf="editName[locationKey]" matInput placeholder="Location name" i18n-placeholder [(ngModel)]="locationNames[locationKey]">
+    @for (locationKey of locationKeys; track locationKey) {
+      <div class="location-wrapper">
+        <div class="location-header">
+          <div class="name">
+            @if (!editName[locationKey]) {
+              <span>{{mapLocations[locationKey].name}}</span>
+            }
+            @if (editName[locationKey]) {
+              <input matInput placeholder="Location name" i18n-placeholder [(ngModel)]="locationNames[locationKey]">
+            }
+          </div>
+          <i class="ri-pencil-fill" (click)="toggleEditName(locationKey)"></i>
+          <i class="ri-delete-bin-2-fill" (click)="deleteMapLocationLocal(locationKey)"></i>
         </div>
-
-        <i class="ri-pencil-fill" (click)="toggleEditName(locationKey)"></i>
-        <i class="ri-delete-bin-2-fill" (click)="deleteMapLocationLocal(locationKey)"></i>
+        <div class="location" (click)="setLocation(locationKey)">
+          @if (mapLocations[locationKey].base64Image !== undefined) {
+            <img
+              class="location-image"
+              src="{{mapLocations[locationKey].base64Image}}"
+              alt="{{locationKey}}"
+              />
+          }
+          <div class="location-text">{{locationKey}}</div>
+        </div>
       </div>
-      <div class="location" (click)="setLocation(locationKey)">
-        <img
-          *ngIf="mapLocations[locationKey].base64Image !== undefined"
-          class="location-image"
-          src="{{mapLocations[locationKey].base64Image}}"
-          alt="{{locationKey}}"
-        />
-        <div class="location-text">{{locationKey}}</div>
-      </div>
-    </div>
+    }
   </div>
   <div id="id-loc-img">
 

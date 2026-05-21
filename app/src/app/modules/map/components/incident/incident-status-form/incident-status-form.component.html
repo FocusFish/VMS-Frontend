@@ -1,9 +1,13 @@
 <form class="status-form" [formGroup]="formValidator">
   <mat-form-field id="status-form--status">
     <mat-select formControlName="status" required>
-      <mat-option *ngFor="let status of getStatusKeys()" id="mat-option-plugin--{{status}}" [value]="status">{{getStatusText(status)}}</mat-option>
+      @for (status of getStatusKeys(); track status) {
+        <mat-option id="mat-option-plugin--{{status}}" [value]="status">{{getStatusText(status)}}</mat-option>
+      }
     </mat-select>
-    <mat-error *ngFor="let error of getErrors(['type'])">{{ errorMessage(error) }}</mat-error>
+    @for (error of getErrors(['type']); track error) {
+      <mat-error>{{ errorMessage(error) }}</mat-error>
+    }
   </mat-form-field>
 
   <button
@@ -13,7 +17,7 @@
     type="button"
     i18n
     (click)="triggerShowLog.emit()"
-    >Show all</button>
+  >Show all</button>
   <button
     i18n
     id="status-form--save"

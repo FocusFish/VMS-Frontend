@@ -13,14 +13,15 @@
       <span class="value">{{ formattedPoll.oceanRegions.join(', ') }}</span>
     </div>
   </div>
-  <button
-    *ngIf="!expanded"
-    type="button"
-    mat-button
-    (click)="expanded = true"
-    i18n
-  >Show more</button>
-  <ng-container *ngIf="expanded">
+  @if (!expanded) {
+    <button
+      type="button"
+      mat-button
+      (click)="expanded = true"
+      i18n
+    >Show more</button>
+  }
+  @if (expanded) {
     <div class="expanded-information">
       <div class="poll-block">
         <span class="label" i18n>Poll type</span>
@@ -56,5 +57,5 @@
       </div>
     </div>
     <button type="button" mat-button (click)="expanded = false" i18n>Show less</button>
-  </ng-container>
+  }
 </div>

@@ -1,26 +1,38 @@
 <div class="content-container{{ noExternalPadding ? ' no-padding' : ''}}">
-  <div class="panel-block-header" *ngIf="useArrowsAsToggle !== true">
-    <ui-button-toggle
-      [label]="blockTitle"
-      [value]="active"
-      [switchFunction]="switchFunction"
-    ></ui-button-toggle>
-  </div>
-  <div class="panel-block-header full-header-clickable" *ngIf="useArrowsAsToggle === true" (click)="switchFunction()">
-    <div class="arrow-toggle">
-      <div class="label"><ng-content select="[header]"></ng-content>{{blockTitle}}</div>
-      <div class="arrow">
-        <i *ngIf="!active" class="ri-arrow-drop-up-fill" aria-hidden="true"></i>
-        <i *ngIf="active" class="ri-arrow-drop-down-fill" aria-hidden="true"></i>
+  @if (useArrowsAsToggle !== true) {
+    <div class="panel-block-header">
+      <ui-button-toggle
+        [label]="blockTitle"
+        [value]="active"
+        [switchFunction]="switchFunction"
+      ></ui-button-toggle>
+    </div>
+  }
+  @if (useArrowsAsToggle === true) {
+    <div class="panel-block-header full-header-clickable" (click)="switchFunction()">
+      <div class="arrow-toggle">
+        <div class="label"><ng-content select="[header]"></ng-content>{{blockTitle}}</div>
+        <div class="arrow">
+          @if (!active) {
+            <i class="ri-arrow-drop-up-fill" aria-hidden="true"></i>
+          }
+          @if (active) {
+            <i class="ri-arrow-drop-down-fill" aria-hidden="true"></i>
+          }
+        </div>
       </div>
     </div>
-  </div>
-  <div class="panel-block-content{{ noContentPadding ? ' no-padding' : ''}}" *ngIf="active">
-    <ng-content select="[body]"></ng-content>
-  </div>
+  }
+  @if (active) {
+    <div class="panel-block-content{{ noContentPadding ? ' no-padding' : ''}}">
+      <ng-content select="[body]"></ng-content>
+    </div>
+  }
 
 
-  <div class="panel-block-footer {{unstyledFooter ? 'unstyled' : ''}}" *ngIf="showFooter && active">
-    <ng-content select="[footer]"></ng-content>
-  </div>
+  @if (showFooter && active) {
+    <div class="panel-block-footer {{unstyledFooter ? 'unstyled' : ''}}">
+      <ng-content select="[footer]"></ng-content>
+    </div>
+  }
 </div>

@@ -7,13 +7,14 @@
 </div>
 <div mat-dialog-actions align="center">
   <button mat-stroked-button matDialogClose cdkFocusInitial color="primary" i18n>Cancel</button>
-  <button
-    *ngIf="data.currentWorkflow !== data.incidentType"
-    mat-stroked-button
-    mat-dialog-close="switch-workflow"
-    color="accent"
-    i18n
-  >Switch to workflow</button>
+  @if (data.currentWorkflow !== data.incidentType) {
+    <button
+      mat-stroked-button
+      mat-dialog-close="switch-workflow"
+      color="accent"
+      i18n
+    >Switch to workflow</button>
+  }
   <button
     mat-raised-button
     [mat-dialog-close]="true"
