@@ -12,27 +12,17 @@
     "importHelpers": true,
     "target": "ES2022",
     "paths": {
-      "@data/*": [
-        "src/app/data/*"
-      ],
-      "@app/*": [
-        "src/app/*"
-      ],
-      "@modules/*": [
-        "src/app/modules/*"
-      ],
-      "@src/*": [
-        "src/*"
-      ],
-      "@validators/*": [
-        "src/app/helpers/validators"
-      ]
+      "@data/*": ["src/app/data/*"],
+      "@app/*": ["src/app/*"],
+      "@modules/*": ["src/app/modules/*"],
+      "@src/*": ["src/*"],
+      "@validators/*": ["src/app/helpers/validators"]
     },
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "typeRoots": ["node_modules/@types"],
     "resolveJsonModule": true,
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    // exceptions
+    "strictPropertyInitialization": false
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
