@@ -3,12 +3,20 @@
     <mat-form-field id="note-form--notes">
       <mat-label i18n>Note</mat-label>
       <textarea matInput formControlName="note" required></textarea>
-      <mat-error *ngFor="let error of getErrors(['essentailFields', 'note'])">{{ errorMessage(error) }}</mat-error>
+      @for (error of getErrors(['essentailFields', 'note']); track error) {
+        <mat-error>{{ errorMessage(error) }}</mat-error>
+      }
     </mat-form-field>
   </fieldset>
   <div class="buttons">
-    <button *ngIf="cancel" id="notes-form--cancel" type="button" mat-raised-button color="basic" (click)="cancel()" i18n>Cancel</button>
-    <button *ngIf="create" [disabled]="!this.formValidator.valid" id="notes-form--save" type="button" mat-raised-button color="primary" (click)="saveFromFormValidator()" i18n>Add note</button>
-    <button *ngIf="!create" [disabled]="!this.formValidator.valid" id="notes-form--save" type="button" mat-raised-button color="primary" (click)="saveFromFormValidator()" i18n>Update note</button>
+    @if (cancel) {
+      <button id="notes-form--cancel" type="button" mat-raised-button color="basic" (click)="cancel()" i18n>Cancel</button>
+    }
+    @if (create) {
+      <button [disabled]="!this.formValidator.valid" id="notes-form--save" type="button" mat-raised-button color="primary" (click)="saveFromFormValidator()" i18n>Add note</button>
+    }
+    @if (!create) {
+      <button [disabled]="!this.formValidator.valid" id="notes-form--save" type="button" mat-raised-button color="primary" (click)="saveFromFormValidator()" i18n>Update note</button>
+    }
   </div>
 </form>

@@ -1,3 +1,5 @@
-<div *ngIf="isFormReady()" class="notes-form">
-  <notes-form [note]="note" [save]="save" [create]="isCreate()"></notes-form>
-</div>
+@if (isFormReady()) {
+  <div class="notes-form">
+    <notes-form [note]="note" [save]="save" [create]="isCreate()"></notes-form>
+  </div>
+}

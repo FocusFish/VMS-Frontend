@@ -1,148 +1,139 @@
-<ng-container *ngIf="isFormReady()">
+@if (isFormReady()) {
   <form class="mobile-terminal-edit-form" [formGroup]="formValidator">
     <fieldset formGroupName="essentailFields">
       <h2 i18n>Essential fields</h2>
-
       <mat-form-field id="mobile-terminal-form--mobileTerminalType">
         <mat-label i18n>Transceiver system</mat-label>
         <mat-select formControlName="mobileTerminalType" required>
-          <mat-option
-            *ngFor="let plugin of plugins"
-            id="mat-option-plugin-{{plugin.pluginSatelliteType}}"
-            [value]="plugin.pluginSatelliteType"
-          >{{plugin.pluginSatelliteType}}</mat-option>
+          @for (plugin of plugins; track plugin) {
+            <mat-option
+              id="mat-option-plugin-{{plugin.pluginSatelliteType}}"
+              [value]="plugin.pluginSatelliteType"
+            >{{plugin.pluginSatelliteType}}</mat-option>
+          }
         </mat-select>
       </mat-form-field>
-
       <!-- <mat-form-field id="mobile-terminal-form--serialNo">
-        <mat-label i18n>Serial no.</mat-label>
-        <input matInput formControlName="serialNo" required (blur)="serialNumberExistsForForm()" />
-        <mat-error *ngFor="let error of getErrors(['essentailFields', 'serialNo'])">{{ errorMessage(error) }}</mat-error>
-      </mat-form-field> -->
-
-      <mat-form-field id="mobile-terminal-form--oceanRegions">
-        <mat-label i18n>Ocean region</mat-label>
-        <mat-select formControlName="selectedOceanRegions" multiple required>
+      <mat-label i18n>Serial no.</mat-label>
+      <input matInput formControlName="serialNo" required (blur)="serialNumberExistsForForm()" />
+      <mat-error *ngFor="let error of getErrors(['essentailFields', 'serialNo'])">{{ errorMessage(error) }}</mat-error>
+    </mat-form-field> -->
+    <mat-form-field id="mobile-terminal-form--oceanRegions">
+      <mat-label i18n>Ocean region</mat-label>
+      <mat-select formControlName="selectedOceanRegions" multiple required>
+        @for (oceanRegion of oceanRegions; track oceanRegion) {
           <mat-option
-            *ngFor="let oceanRegion of oceanRegions"
             id="mat-option-oceanRegion-{{oceanRegion.replace(' ', '')}}"
             [value]="oceanRegion"
           >{{oceanRegion}}</mat-option>
-        </mat-select>
-        <mat-error *ngFor="let error of getErrors(['essentailFields', 'selectedOceanRegions'])">{{ errorMessage(error) }}</mat-error>
-      </mat-form-field>
-
-      <mat-form-field id="mobile-terminal-form--transceiverType">
-        <mat-label i18n>Transceiver type</mat-label>
-        <input matInput formControlName="transceiverType" required>
-      </mat-form-field>
-    </fieldset>
-
-    <fieldset formGroupName="mobileTerminalFields">
-      <h2 i18n>Mobile terminal fields</h2>
-
-      <mat-form-field id="mobile-terminal-form--softwareVersion">
-        <mat-label i18n>Software version</mat-label>
-        <input matInput formControlName="softwareVersion">
-      </mat-form-field>
-
-      <mat-form-field id="mobile-terminal-form--antenna">
-        <mat-label i18n>Antenna</mat-label>
-        <input matInput formControlName="antenna">
-      </mat-form-field>
-
-      <mat-form-field id="mobile-terminal-form--satelliteNumber">
-        <mat-label i18n>Satellite number</mat-label>
-        <input matInput type="number" formControlName="satelliteNumber">
-      </mat-form-field>
-
-      <!-- <div id="mobile-terminal-form--active">
-        <mat-checkbox formControlName="active" i18n>Active</mat-checkbox>
-      </div> -->
-
-      <mat-form-field class="mobile-terminal-form--channel-installedBy">
-        <mat-label i18n>Installed by</mat-label>
-        <input matInput formControlName="installedBy">
-      </mat-form-field>
-
-      <ngx-datetime-picker
-        [(dateTime)]="formValidator.value.mobileTerminalFields.installDate"
-        (dateTimeChange)="updateValue(['mobileTerminalFields', 'installDate'], $event)"
-        label="Installed on"
-        [errorMessages]="getErrorMessages(['mobileTerminalFields', 'installDate'])"
-      ></ngx-datetime-picker>
-
-      <ngx-datetime-picker
-        [(dateTime)]="formValidator.value.mobileTerminalFields.uninstallDate"
-        (dateTimeChange)="updateValue(['mobileTerminalFields', 'uninstallDate'], $event)"
-        label="Unistalled on"
-        [errorMessages]="getErrorMessages(['mobileTerminalFields', 'uninstallDate'])"
-      ></ngx-datetime-picker>
-      <!-- TODO: insert label into compoenent and show it to get i18n. -->
-      <!-- <mat-label i18n>Unistalled on</mat-label> -->
-    </fieldset>
-
-    <div class="mobile-terminal-form--channel-title">
-      <h2 i18n>Channels</h2>
-      <button
-        mat-raised-button
-        color="accent"
-        class="mobile-terminal-form--new-channel-button"
-        (click)="createNewChannel()"
-        i18n
-      >New channel</button>
-    </div>
-    <fieldset class="channels" formArrayName="channels">
-      <ng-container *ngIf="formValidator.controls.channels?.value.length > 0">
-        <mat-accordion id="channels" #channels>
-          <mat-expansion-panel
-            *ngFor="let channel of formValidator.controls.channels?.value.slice(); let i = index; trackBy: trackChannelsBy"
-            [expanded]="i === currentChannelOpened"
-            (opened)="setCurrentChannelOpened(i)"
+        }
+      </mat-select>
+      @for (error of getErrors(['essentailFields', 'selectedOceanRegions']); track error) {
+        <mat-error>{{ errorMessage(error) }}</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field id="mobile-terminal-form--transceiverType">
+      <mat-label i18n>Transceiver type</mat-label>
+      <input matInput formControlName="transceiverType" required>
+    </mat-form-field>
+  </fieldset>
+  <fieldset formGroupName="mobileTerminalFields">
+    <h2 i18n>Mobile terminal fields</h2>
+    <mat-form-field id="mobile-terminal-form--softwareVersion">
+      <mat-label i18n>Software version</mat-label>
+      <input matInput formControlName="softwareVersion">
+    </mat-form-field>
+    <mat-form-field id="mobile-terminal-form--antenna">
+      <mat-label i18n>Antenna</mat-label>
+      <input matInput formControlName="antenna">
+    </mat-form-field>
+    <mat-form-field id="mobile-terminal-form--satelliteNumber">
+      <mat-label i18n>Satellite number</mat-label>
+      <input matInput type="number" formControlName="satelliteNumber">
+    </mat-form-field>
+    <!-- <div id="mobile-terminal-form--active">
+    <mat-checkbox formControlName="active" i18n>Active</mat-checkbox>
+  </div> -->
+  <mat-form-field class="mobile-terminal-form--channel-installedBy">
+    <mat-label i18n>Installed by</mat-label>
+    <input matInput formControlName="installedBy">
+  </mat-form-field>
+  <ngx-datetime-picker
+    [(dateTime)]="formValidator.value.mobileTerminalFields.installDate"
+    (dateTimeChange)="updateValue(['mobileTerminalFields', 'installDate'], $event)"
+    label="Installed on"
+    [errorMessages]="getErrorMessages(['mobileTerminalFields', 'installDate'])"
+  ></ngx-datetime-picker>
+  <ngx-datetime-picker
+    [(dateTime)]="formValidator.value.mobileTerminalFields.uninstallDate"
+    (dateTimeChange)="updateValue(['mobileTerminalFields', 'uninstallDate'], $event)"
+    label="Unistalled on"
+    [errorMessages]="getErrorMessages(['mobileTerminalFields', 'uninstallDate'])"
+  ></ngx-datetime-picker>
+  <!-- TODO: insert label into compoenent and show it to get i18n. -->
+  <!-- <mat-label i18n>Unistalled on</mat-label> -->
+</fieldset>
+<div class="mobile-terminal-form--channel-title">
+  <h2 i18n>Channels</h2>
+  <button
+    mat-raised-button
+    color="accent"
+    class="mobile-terminal-form--new-channel-button"
+    (click)="createNewChannel()"
+    i18n
+  >New channel</button>
+</div>
+<fieldset class="channels" formArrayName="channels">
+  @if (formValidator.controls.channels?.value.length > 0) {
+    <mat-accordion id="channels" #channels>
+      @for (channel of formValidator.controls.channels?.value.slice(); track trackChannelsBy(i, channel); let i = $index) {
+        <mat-expansion-panel
+          [expanded]="i === currentChannelOpened"
+          (opened)="setCurrentChannelOpened(i)"
           >
-            <mat-expansion-panel-header>
-              <mat-panel-title>{{channel.name ? channel.name : 'New channel'}}</mat-panel-title>
-              <mat-panel-description>Channel {{i + 1}}</mat-panel-description>
+          <mat-expansion-panel-header>
+            <mat-panel-title>{{channel.name ? channel.name : 'New channel'}}</mat-panel-title>
+            <mat-panel-description>Channel {{i + 1}}</mat-panel-description>
+            @if (formValidator.controls.channels?.value.length > 1) {
               <button
                 mat-raised-button
                 color="warn"
-                *ngIf="formValidator.controls.channels?.value.length > 1"
                 type="button"
                 name="removeChannel"
                 class="remove-channel-button"
                 (click)="removeChannel(i)"
                 i18n
               >Remove channel</button>
-            </mat-expansion-panel-header>
-            <fieldset
-              class="channel"
-              formGroupName="{{i}}"
+            }
+          </mat-expansion-panel-header>
+          <fieldset
+            class="channel"
+            formGroupName="{{i}}"
             >
-
-
-              <mat-form-field class="mobile-terminal-form--channel-name">
-                <mat-label i18n>Name</mat-label>
-                <input matInput formControlName="name" required>
-                <mat-error *ngFor="let error of getErrors(['channels', i + '', 'name'])">{{ errorMessage(error) }}</mat-error>
-              </mat-form-field>
-
-              <mat-form-field class="mobile-terminal-form--channel-lesDescription">
-                <mat-label i18n>Land station</mat-label>
-                <input matInput formControlName="lesDescription" required>
-              </mat-form-field>
-
-              <mat-form-field class="mobile-terminal-form--channel-dnid">
-                <mat-label i18n>DNID</mat-label>
-                <input
-                  matInput
-                  type="number"
-                  formControlName="dnid"
-                  required
-                  (blur)="proposeMemberNumber(channel); checkIfMemberNumberAndDnidExists(channel, i)"
+            <mat-form-field class="mobile-terminal-form--channel-name">
+              <mat-label i18n>Name</mat-label>
+              <input matInput formControlName="name" required>
+              @for (error of getErrors(['channels', i + '', 'name']); track error) {
+                <mat-error>{{ errorMessage(error) }}</mat-error>
+              }
+            </mat-form-field>
+            <mat-form-field class="mobile-terminal-form--channel-lesDescription">
+              <mat-label i18n>Land station</mat-label>
+              <input matInput formControlName="lesDescription" required>
+            </mat-form-field>
+            <mat-form-field class="mobile-terminal-form--channel-dnid">
+              <mat-label i18n>DNID</mat-label>
+              <input
+                matInput
+                type="number"
+                formControlName="dnid"
+                required
+                (blur)="proposeMemberNumber(channel); checkIfMemberNumberAndDnidExists(channel, i)"
                 >
-                <mat-error *ngFor="let error of getErrors(['channels', i + '', 'dnid'])">{{ errorMessage(error) }}</mat-error>
+                @for (error of getErrors(['channels', i + '', 'dnid']); track error) {
+                  <mat-error>{{ errorMessage(error) }}</mat-error>
+                }
               </mat-form-field>
-
               <mat-form-field class="mobile-terminal-form--channel-memberNumber">
                 <mat-label i18n>Member no.</mat-label>
                 <input
@@ -151,99 +142,106 @@
                   required
                   (blur)="checkIfMemberNumberAndDnidExists(channel, i)"
                   [matAutocomplete]="proposedMemberNumberAC"
-                >
-                <mat-autocomplete #proposedMemberNumberAC="matAutocomplete">
-                  <mat-optgroup label="Proposed member number" *ngIf="proposedMemberNumberForChannels[i] !== undefined && proposedMemberNumberForChannels[i] !== null">
-                    <mat-option [value]="proposedMemberNumberForChannels[i]">
-                      {{proposedMemberNumberForChannels[i]}}
-                    </mat-option>
-                  </mat-optgroup>
-                </mat-autocomplete>
-                <mat-error *ngFor="let error of getErrors(['channels', i + '', 'memberNumber'])">{{ errorMessage(error) }}</mat-error>
-              </mat-form-field>
-
-              <div id="mobile-terminal-form--channel-name">
-                <mat-checkbox
-                  formControlName="pollChannel"
-                  (change)="updateChannelInUse($event, i, 'pollChannel')"
-                  i18n
-                >Poll</mat-checkbox>
-                <mat-checkbox
-                  formControlName="configChannel"
-                  (change)="updateChannelInUse($event, i, 'configChannel')"
-                  i18n
-                >Config</mat-checkbox>
-                <mat-checkbox
-                  formControlName="defaultChannel"
-                  (change)="updateChannelInUse($event, i, 'defaultChannel')"
-                  i18n
-                >Default</mat-checkbox>
-              </div>
-
-              <ngx-datetime-picker
-                [(dateTime)]="channel.startDate"
-                (dateTimeChange)="updateValue(['channels', i + '', 'startDate'], $event)"
-                label="Started"
-                [errorMessages]="getErrorMessages(['channels', i + '', 'startDate'])"
-              ></ngx-datetime-picker>
-
-              <ngx-datetime-picker
-                [(dateTime)]="channel.endDate"
-                (dateTimeChange)="updateValue(['channels', i + '', 'endDate'], $event)"
-                label="Stopped"
-                [errorMessages]="getErrorMessages(['channels', i + '', 'endDate'])"
-              ></ngx-datetime-picker>
-
-              <mat-form-field class="mobile-terminal-form--channel-expectedFrequency">
-                <mat-label i18n>Expected Frequency</mat-label>
-                <input matInput type="number" formControlName="expectedFrequency" required>
-                <span matSuffix i18n>minutes</span>
-                <mat-error *ngFor="let error of getErrors(['channels', i + '', 'expectedFrequency'])">{{ errorMessage(error) }}</mat-error>
-              </mat-form-field>
-
-              <mat-form-field class="mobile-terminal-form--channel-frequencyGracePeriod">
-                <mat-label i18n>Frequency Grace Period</mat-label>
-                <input matInput type="number" formControlName="frequencyGracePeriod" required>
-                <span matSuffix i18n>minutes</span>
-                <mat-error *ngFor="let error of getErrors(['channels', i + '', 'frequencyGracePeriod'])">{{ errorMessage(error) }}</mat-error>
-              </mat-form-field>
-
-              <mat-form-field class="mobile-terminal-form--channel-expectedFrequencyInPort">
-                <mat-label i18n>Expected Frequency In Port</mat-label>
-                <input matInput type="number" formControlName="expectedFrequencyInPort" required>
-                <span matSuffix i18n>minutes</span>
-                <mat-error *ngFor="let error of getErrors(['channels', i + '', 'expectedFrequencyInPort'])">{{ errorMessage(error) }}</mat-error>
-              </mat-form-field>
-            </fieldset>
-          </mat-expansion-panel>
+                  >
+                  <mat-autocomplete #proposedMemberNumberAC="matAutocomplete">
+                    @if (proposedMemberNumberForChannels[i] !== undefined && proposedMemberNumberForChannels[i] !== null) {
+                      <mat-optgroup label="Proposed member number">
+                        <mat-option [value]="proposedMemberNumberForChannels[i]">
+                          {{proposedMemberNumberForChannels[i]}}
+                        </mat-option>
+                      </mat-optgroup>
+                    }
+                  </mat-autocomplete>
+                  @for (error of getErrors(['channels', i + '', 'memberNumber']); track error) {
+                    <mat-error>{{ errorMessage(error) }}</mat-error>
+                  }
+                </mat-form-field>
+                <div id="mobile-terminal-form--channel-name">
+                  <mat-checkbox
+                    formControlName="pollChannel"
+                    (change)="updateChannelInUse($event, i, 'pollChannel')"
+                    i18n
+                  >Poll</mat-checkbox>
+                  <mat-checkbox
+                    formControlName="configChannel"
+                    (change)="updateChannelInUse($event, i, 'configChannel')"
+                    i18n
+                  >Config</mat-checkbox>
+                  <mat-checkbox
+                    formControlName="defaultChannel"
+                    (change)="updateChannelInUse($event, i, 'defaultChannel')"
+                    i18n
+                  >Default</mat-checkbox>
+                </div>
+                <ngx-datetime-picker
+                  [(dateTime)]="channel.startDate"
+                  (dateTimeChange)="updateValue(['channels', i + '', 'startDate'], $event)"
+                  label="Started"
+                  [errorMessages]="getErrorMessages(['channels', i + '', 'startDate'])"
+                ></ngx-datetime-picker>
+                <ngx-datetime-picker
+                  [(dateTime)]="channel.endDate"
+                  (dateTimeChange)="updateValue(['channels', i + '', 'endDate'], $event)"
+                  label="Stopped"
+                  [errorMessages]="getErrorMessages(['channels', i + '', 'endDate'])"
+                ></ngx-datetime-picker>
+                <mat-form-field class="mobile-terminal-form--channel-expectedFrequency">
+                  <mat-label i18n>Expected Frequency</mat-label>
+                  <input matInput type="number" formControlName="expectedFrequency" required>
+                  <span matSuffix i18n>minutes</span>
+                  @for (error of getErrors(['channels', i + '', 'expectedFrequency']); track error) {
+                    <mat-error>{{ errorMessage(error) }}</mat-error>
+                  }
+                </mat-form-field>
+                <mat-form-field class="mobile-terminal-form--channel-frequencyGracePeriod">
+                  <mat-label i18n>Frequency Grace Period</mat-label>
+                  <input matInput type="number" formControlName="frequencyGracePeriod" required>
+                  <span matSuffix i18n>minutes</span>
+                  @for (error of getErrors(['channels', i + '', 'frequencyGracePeriod']); track error) {
+                    <mat-error>{{ errorMessage(error) }}</mat-error>
+                  }
+                </mat-form-field>
+                <mat-form-field class="mobile-terminal-form--channel-expectedFrequencyInPort">
+                  <mat-label i18n>Expected Frequency In Port</mat-label>
+                  <input matInput type="number" formControlName="expectedFrequencyInPort" required>
+                  <span matSuffix i18n>minutes</span>
+                  @for (error of getErrors(['channels', i + '', 'expectedFrequencyInPort']); track error) {
+                    <mat-error>{{ errorMessage(error) }}</mat-error>
+                  }
+                </mat-form-field>
+              </fieldset>
+            </mat-expansion-panel>
+          }
         </mat-accordion>
-      </ng-container>
+      }
     </fieldset>
   </form>
-</ng-container>
+}
 
 
 <ng-template #toolbox>
   <div class="toolbox-wrapper">
     <div class="toolbox">
-      <button
-        *ngIf="selectedAsset"
-        class="deactive-mobile-terminal"
-        mat-stroked-button
-        color="warn"
-        type="button"
-        routerLink="/asset/{{selectedAsset.id}}/mobileTerminals"
-        i18n
-      >Close without saving</button>
-      <button
-        *ngIf="!selectedAsset && mobileTerminal"
-        class="deactive-mobile-terminal"
-        mat-stroked-button
-        color="warn"
-        type="button"
-        routerLink="/mobileTerminal/{{mobileTerminal.id}}"
-        i18n
-      >Close without saving</button>
+      @if (selectedAsset) {
+        <button
+          class="deactive-mobile-terminal"
+          mat-stroked-button
+          color="warn"
+          type="button"
+          routerLink="/asset/{{selectedAsset.id}}/mobileTerminals"
+          i18n
+        >Close without saving</button>
+      }
+      @if (!selectedAsset && mobileTerminal) {
+        <button
+          class="deactive-mobile-terminal"
+          mat-stroked-button
+          color="warn"
+          type="button"
+          routerLink="/mobileTerminal/{{mobileTerminal.id}}"
+          i18n
+        >Close without saving</button>
+      }
       <button
         class="active-mobile-terminal"
         mat-raised-button

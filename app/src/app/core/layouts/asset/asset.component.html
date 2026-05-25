@@ -15,47 +15,71 @@
     [dismiss]="dismissNotification"
   ></core-notifications>
 
-  <h1 class="page-title">{{getTitleName()}}</h1>
+  <h1 class="page-title">{{ getTitleName() }}</h1>
 
   <div class="side-menu">
     <ul>
       <li class="title">Search</li>
-      <li routerLink="/asset" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <li
+        routerLink="/asset"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
         <span class="short-key">A</span>
         <span class="text" i18n>Assets</span>
       </li>
-      <li routerLink="/mobileTerminals" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <li
+        routerLink="/mobileTerminals"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
         <span class="short-key">M</span>
         <span class="text" i18n>Mobile terminals</span>
       </li>
       <li class="divider"></li>
-      <ng-container *ngIf="selectedAsset">
-        <li class="title">Details {{selectedAsset.externalMarking}} • {{selectedAsset.ircs}}</li>
-        <li routerLink="/asset/{{selectedAsset.id}}" class="{{ matchAssetInfoUrl() ? 'active' : '' }}">
+      @if (selectedAsset) {
+        <li class="title">
+          Details {{ selectedAsset.externalMarking }} • {{ selectedAsset.ircs }}
+        </li>
+        <li
+          routerLink="/asset/{{ selectedAsset.id }}"
+          class="{{ matchAssetInfoUrl() ? 'active' : '' }}"
+        >
           <span class="short-key">1</span>
           <span class="text" i18n>Asset info</span>
         </li>
         <li
           class="{{ matchMobileTerminalUrl() ? 'active' : '' }}"
-          routerLink="/asset/{{selectedAsset.id}}/mobileTerminals"
+          routerLink="/asset/{{ selectedAsset.id }}/mobileTerminals"
         >
           <span class="short-key">2</span>
           <span class="text" i18n>Mobile terminal</span>
         </li>
-        <li routerLink="/asset/{{selectedAsset.id}}/contacts" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <li
+          routerLink="/asset/{{ selectedAsset.id }}/contacts"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
           <span class="short-key">3</span>
           <span class="text" i18n>Contacts</span>
         </li>
-        <li routerLink="/asset/{{selectedAsset.id}}/notes" routerLinkActive="active">
+        <li
+          routerLink="/asset/{{ selectedAsset.id }}/notes"
+          routerLinkActive="active"
+        >
           <span class="short-key">4</span>
           <span class="text" i18n>Notes</span>
         </li>
-        <li  routerLink="/asset/{{selectedAsset.id}}/positions" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <li
+          routerLink="/asset/{{ selectedAsset.id }}/positions"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
           <span class="short-key">5</span>
           <span class="text" i18n>Last positions</span>
         </li>
-      </ng-container>
-      <ng-container *ngIf="!selectedAsset">
+      }
+      @if (!selectedAsset) {
         <li class="title deactivated">Details</li>
         <li class="deactivated">
           <span class="short-key">1</span>
@@ -77,7 +101,7 @@
           <span class="short-key">5</span>
           <span class="text" i18n>Last positions</span>
         </li>
-      </ng-container>
+      }
     </ul>
   </div>
 

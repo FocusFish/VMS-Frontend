@@ -1,6 +1,6 @@
 <div class="content-container">
   <div id="assets-map-panels">
-    <ng-container *ngFor="let currentAsset of selectedAssets; trackBy: trackBySelectedAssets">
+    @for (currentAsset of selectedAssets; track trackBySelectedAssets($index, currentAsset)) {
       <map-asset-panel
         [asset]="currentAsset"
         [selectAsset]="selectAsset"
@@ -14,17 +14,18 @@
         [tracksMinuteCap]="tracksMinuteCap"
         [centerMapOnPosition]="centerMapOnPosition"
       ></map-asset-panel>
-    </ng-container>
+    }
   </div>
   <div id="selected-assets-control-panel">
-    <button
-      *ngIf="!showControlPanel"
-      mat-raised-button
-      color="primary"
-      (click)="toggleControlPanel()"
-      i18n
-    >Tools for selected assets</button>
-    <ng-container *ngIf="showControlPanel">
+    @if (!showControlPanel) {
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="toggleControlPanel()"
+        i18n
+      >Tools for selected assets</button>
+    }
+    @if (showControlPanel) {
       <button
         mat-stroked-button
         disabled
@@ -56,6 +57,6 @@
         (click)="toggleControlPanel()"
         i18n
       >Close menu</button>
-    </ng-container>
+    }
   </div>
 </div>

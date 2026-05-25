@@ -4,20 +4,28 @@
     <mat-form-field>
       <mat-label i18n>Change name</mat-label>
       <input matInput [formControl]="filterName" required>
-      <mat-error *ngIf="filterName.invalid">{{getErrorMessage()}}</mat-error>
+      @if (filterName.invalid) {
+        <mat-error>{{getErrorMessage()}}</mat-error>
+      }
     </mat-form-field>
 
     <h2>Remove assets from group:</h2>
     <div class="assets">
-      <mat-checkbox
-        *ngFor="let miniAsset of miniAssets" class="asset"
-        title="{{miniAsset.assetName || 'Asset no longer exists' }}"
-        [checked]="this.assetsToRemove.includes(miniAsset.assetId)"
-        (change)="toggleRemoveAsset(miniAsset.assetId)"
-      >
-        <ui-truncated-text *ngIf="miniAsset.assetName !== null" [text]="miniAsset.assetName" length="30"></ui-truncated-text>
-        <span *ngIf="miniAsset.assetName === null" class="danger">Asset no longer exists</span>
-      </mat-checkbox>
+      @for (miniAsset of miniAssets; track miniAsset) {
+        <mat-checkbox
+          class="asset"
+          title="{{miniAsset.assetName || 'Asset no longer exists' }}"
+          [checked]="this.assetsToRemove.includes(miniAsset.assetId)"
+          (change)="toggleRemoveAsset(miniAsset.assetId)"
+          >
+          @if (miniAsset.assetName !== null) {
+            <ui-truncated-text [text]="miniAsset.assetName" length="30"></ui-truncated-text>
+          }
+          @if (miniAsset.assetName === null) {
+            <span class="danger">Asset no longer exists</span>
+          }
+        </mat-checkbox>
+      }
     </div>
   </div>
 </div>

@@ -42,8 +42,12 @@
     </div>
     <div class="data-block link" (click)="filterValidLicence(false)">
       <div class="data">
-        <span *ngIf="mapStatistics.licenceInfo.missing !== 0" class="warn">{{mapStatistics.licenceInfo.missing}}</span>
-        <span *ngIf="mapStatistics.licenceInfo.missing === 0" class="info"> - </span>
+        @if (mapStatistics.licenceInfo.missing !== 0) {
+          <span class="warn">{{mapStatistics.licenceInfo.missing}}</span>
+        }
+        @if (mapStatistics.licenceInfo.missing === 0) {
+          <span class="info"> - </span>
+        }
       </div>
       <div class="description" i18n>Missing / Expired</div>
     </div>
@@ -51,16 +55,17 @@
 
   <div class="statistics-block incidents">
     <div class="title-block" i18n>Incidents requiring attention</div>
-    <div
-      class="incident-block"
-      *ngFor="let incidentTypeStatistic of incidentTypeStatistics; trackBy: trackByIncident"
-      (click)="setActiveLeftPanelByWorkflowType(incidentTypeStatistic.type)"
-    >
-      <div class="incident-name">{{ getIncidentTypeName(incidentTypeStatistic.type) }}</div>
-      <div class="number-of-incidents {{ incidentTypeStatistic.amount === 0 ? 'no-warnings' : ''}}">
-        {{ incidentTypeStatistic.amount > 0 ? incidentTypeStatistic.amount : '-' }}
+    @for (incidentTypeStatistic of incidentTypeStatistics; track trackByIncident($index, incidentTypeStatistic)) {
+      <div
+        class="incident-block"
+        (click)="setActiveLeftPanelByWorkflowType(incidentTypeStatistic.type)"
+        >
+        <div class="incident-name">{{ getIncidentTypeName(incidentTypeStatistic.type) }}</div>
+        <div class="number-of-incidents {{ incidentTypeStatistic.amount === 0 ? 'no-warnings' : ''}}">
+          {{ incidentTypeStatistic.amount > 0 ? incidentTypeStatistic.amount : '-' }}
+        </div>
       </div>
-    </div>
+    }
   </div>
 
   <h3>Other information</h3>
@@ -70,7 +75,7 @@
       (click)="setActiveRightPanel(['information', 'asset-filter'])"
       color="primary"
       class="map-panel-button"
-    >
+      >
       <ng-container i18n>How to use "Quick filter"</ng-container>
       <i class="ri-arrow-drop-right-fill"></i>
     </button>
@@ -79,7 +84,7 @@
       (click)="setActiveRightPanel(['information', 'asset-search'])"
       color="primary"
       class="map-panel-button"
-    >
+      >
       <ng-container i18n>How to use "Search in map"</ng-container>
       <i class="ri-arrow-drop-right-fill"></i>
     </button>

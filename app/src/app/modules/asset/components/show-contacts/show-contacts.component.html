@@ -2,65 +2,61 @@
   <h2 i18n>Contacts</h2>
   <!--<button mat-raised-button class="btn-default" type="button" routerLink="/contact/{{asset.id}}/create">Create</button>-->
 </div>
-<fieldset *ngFor="let contact of contacts">
-  <legend>{{contact.id}}</legend>
-  <!--<a class="edit-link" routerLink="/contact/{{contact.id}}/edit">Edit</a>-->
-
-  <ng-container *ngIf="contact.name">
-    <label i18n>Name</label>
-    <div>{{contact.name}}</div>
-  </ng-container>
-  <ng-container *ngIf="contact.email">
-    <label i18n>Email</label>
-    <div>{{contact.email}}</div>
-  </ng-container>
-
-  <ng-container *ngIf="contact.country">
-    <label i18n>Country</label>
-    <div>{{contact.country}}</div>
-  </ng-container>
-  <ng-container *ngIf="contact.cityName">
-    <label i18n>City</label>
-    <div>{{contact.cityName}}</div>
-  </ng-container>
-
-  <ng-container *ngIf="contact.nationality">
-    <label i18n>Nationality</label>
-    <div>{{contact.nationality}}</div>
-  </ng-container>
-  <ng-container *ngIf="contact.owner">
-    <label i18n>Is owner?</label>
-    <div>{{contact.owner}}</div>
-  </ng-container>
-
-
-  <ng-container *ngIf="contact.phoneNumber">
-    <label i18n>Phone number</label>
-    <div>{{contact.phoneNumber}}</div>
-  </ng-container>
-  <ng-container *ngIf="contact.postOfficeBox">
-    <label i18n>Post office box</label>
-    <div>{{contact.postOfficeBox}}</div>
-  </ng-container>
-  <ng-container *ngIf="contact.postalArea">
-    <label i18n>Postal area</label>
-    <div>{{contact.postalArea}}</div>
-  </ng-container>
-  <ng-container *ngIf="contact.streetName">
-    <label i18n>Street name</label>
-    <div>{{contact.streetName}}</div>
-  </ng-container>
-  <ng-container *ngIf="contact.zipCode">
-    <label i18n>Zip code</label>
-    <div>{{contact.zipCode}}</div>
-  </ng-container>
-
-  <ng-container *ngIf="contact.source">
-    <label i18n>Source</label>
-    <div>{{contact.source}}</div>
-  </ng-container>
-  <ng-container *ngIf="contact.type">
-    <label i18n>Type</label>
-    <div>{{contact.type}}</div>
-  </ng-container>
-</fieldset>
+@for (contact of contacts; track contact) {
+  <fieldset>
+    <legend>{{contact.id}}</legend>
+    <!--<a class="edit-link" routerLink="/contact/{{contact.id}}/edit">Edit</a>-->
+    @if (contact.name) {
+      <label i18n>Name</label>
+      <div>{{contact.name}}</div>
+    }
+    @if (contact.email) {
+      <label i18n>Email</label>
+      <div>{{contact.email}}</div>
+    }
+    @if (contact.country) {
+      <label i18n>Country</label>
+      <div>{{contact.country}}</div>
+    }
+    @if (contact.cityName) {
+      <label i18n>City</label>
+      <div>{{contact.cityName}}</div>
+    }
+    @if (contact.nationality) {
+      <label i18n>Nationality</label>
+      <div>{{contact.nationality}}</div>
+    }
+    @if (contact.owner) {
+      <label i18n>Is owner?</label>
+      <div>{{contact.owner}}</div>
+    }
+    @if (contact.phoneNumber) {
+      <label i18n>Phone number</label>
+      <div>{{contact.phoneNumber}}</div>
+    }
+    @if (contact.postOfficeBox) {
+      <label i18n>Post office box</label>
+      <div>{{contact.postOfficeBox}}</div>
+    }
+    @if (contact.postalArea) {
+      <label i18n>Postal area</label>
+      <div>{{contact.postalArea}}</div>
+    }
+    @if (contact.streetName) {
+      <label i18n>Street name</label>
+      <div>{{contact.streetName}}</div>
+    }
+    @if (contact.zipCode) {
+      <label i18n>Zip code</label>
+      <div>{{contact.zipCode}}</div>
+    }
+    @if (contact.source) {
+      <label i18n>Source</label>
+      <div>{{contact.source}}</div>
+    }
+    @if (contact.type) {
+      <label i18n>Type</label>
+      <div>{{contact.type}}</div>
+    }
+  </fieldset>
+}

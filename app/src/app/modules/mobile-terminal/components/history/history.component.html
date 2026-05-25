@@ -5,305 +5,616 @@
 <div class="mobile-terminal-history--filter-wrapper">
   <div class="filter-header">
     <h3>Filter</h3>
-    <mat-checkbox [checked]="allFieldsChecked" (change)="toggleAll()" [indeterminate]="someFieldsChecked" *ngIf="filtersVisible" i18n>Select all</mat-checkbox>
-    <div class="arrow" (click)="toggleShowFilters()" >
-      <i class="fas fa-chevron-down" aria-hidden="true" *ngIf="filtersVisible"></i>
-      <i class="fas fa-chevron-up" aria-hidden="true" *ngIf="!filtersVisible"></i>
+    @if (filtersVisible) {
+      <mat-checkbox
+        [checked]="allFieldsChecked"
+        (change)="toggleAll()"
+        [indeterminate]="someFieldsChecked"
+        i18n
+        >Select all</mat-checkbox
+      >
+    }
+    <div class="arrow" (click)="toggleShowFilters()">
+      @if (filtersVisible) {
+        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+      }
+      @if (!filtersVisible) {
+        <i class="fas fa-chevron-up" aria-hidden="true"></i>
+      }
     </div>
   </div>
-  <div class="filter-body" *ngIf="filtersVisible">
-    <h4>Mobile terminal filters</h4>
-    <section class="mobile-terminal-filters">
-      <mat-checkbox
-        [checked]="filtersChecked.mobileTerminalFields.active"
-        (change)="updateFiltersChecked('mobileTerminalFields', 'active')"
-        i18n
-      >Active</mat-checkbox>
-      <mat-checkbox
-        [checked]="filtersChecked.mobileTerminalFields.archived"
-        (change)="updateFiltersChecked('mobileTerminalFields', 'archived')"
-        i18n
-      >Archived</mat-checkbox>
-      <mat-checkbox
-        [checked]="filtersChecked.mobileTerminalFields.assetId"
-        (change)="updateFiltersChecked('mobileTerminalFields', 'assetId')"
-        i18n
-      >Attached</mat-checkbox>
-      <mat-checkbox
-        [checked]="filtersChecked.mobileTerminalFields.mobileTerminalType"
-        (change)="updateFiltersChecked('mobileTerminalFields', 'mobileTerminalType')"
-        i18n
-      >Transceiver system</mat-checkbox>
-      <mat-checkbox
-        [checked]="filtersChecked.mobileTerminalFields.transceiverType"
-        (change)="updateFiltersChecked('mobileTerminalFields', 'transceiverType')"
-        i18n
-      >Transceiver type</mat-checkbox>
-      <mat-checkbox
-        [checked]="filtersChecked.mobileTerminalFields.satelliteNumber"
-        (change)="updateFiltersChecked('mobileTerminalFields', 'satelliteNumber')"
-        i18n
-      >Satellite number</mat-checkbox>
-      <mat-checkbox
-        [checked]="filtersChecked.mobileTerminalFields.softwareVersion"
-        (change)="updateFiltersChecked('mobileTerminalFields', 'softwareVersion')"
-        i18n
-      >Software version</mat-checkbox>
-      <mat-checkbox
-        [checked]="filtersChecked.mobileTerminalFields.antenna"
-        (change)="updateFiltersChecked('mobileTerminalFields', 'antenna')"
-        i18n
-      >Antenna</mat-checkbox>
-      <mat-checkbox
-        [checked]="filtersChecked.mobileTerminalFields.oceanRegion"
-        (change)="updateFiltersChecked('mobileTerminalFields', 'oceanRegion')"
-        i18n
-      >Ocean region</mat-checkbox>
-      <mat-checkbox
-        [checked]="filtersChecked.mobileTerminalFields.installDate"
-        (change)="updateFiltersChecked('mobileTerminalFields', 'installDate')"
-        i18n
-      >Install date</mat-checkbox>
-      <mat-checkbox
-        [checked]="filtersChecked.mobileTerminalFields.installedBy"
-        (change)="updateFiltersChecked('mobileTerminalFields', 'installedBy')"
-        i18n
-      >Installed by</mat-checkbox>
-      <mat-checkbox
-        [checked]="filtersChecked.mobileTerminalFields.uninstallDate"
-        (change)="updateFiltersChecked('mobileTerminalFields', 'uninstallDate')"
-        i18n
-      >Uninstall date</mat-checkbox>
-    </section>
-
-    <h4>
-      Channel filters
-      <mat-checkbox
-        [checked]="filtersChecked.enableChannelFilters"
-        (change)="updateFiltersChecked('enableChannelFilters')"
-        i18n
-      >Enable</mat-checkbox>
-    </h4>
-    <section class="mobile-terminal-channel-filters" *ngIf="filtersChecked.enableChannelFilters">
-      <mat-checkbox
-        [checked]="filtersChecked.channelFields.lesDescription"
-        (change)="updateFiltersChecked('channelFields', 'lesDescription')"
-        i18n
-      >Land station</mat-checkbox>
-      <mat-checkbox
-        [checked]="filtersChecked.channelFields.startDate"
-        (change)="updateFiltersChecked('channelFields', 'startDate')"
-        i18n
-      >Start date</mat-checkbox>
-      <mat-checkbox
-        [checked]="filtersChecked.channelFields.endDate"
-        (change)="updateFiltersChecked('channelFields', 'endDate')"
-        i18n
-      >End date</mat-checkbox>
-      <mat-checkbox
-        [checked]="filtersChecked.channelFields.expectedFrequency"
-        (change)="updateFiltersChecked('channelFields', 'expectedFrequency')"
-        i18n
-      >Expected frequency</mat-checkbox>
-      <mat-checkbox
-        [checked]="filtersChecked.channelFields.expectedFrequencyInPort"
-        (change)="updateFiltersChecked('channelFields', 'expectedFrequencyInPort')"
-        i18n
-      >Expected frequency in port</mat-checkbox>
-      <mat-checkbox
-        [checked]="filtersChecked.channelFields.frequencyGracePeriod"
-        (change)="updateFiltersChecked('channelFields', 'frequencyGracePeriod')"
-        i18n
-      >Frequency grace period</mat-checkbox>
-    </section>
-  </div>
+  @if (filtersVisible) {
+    <div class="filter-body">
+      <h4>Mobile terminal filters</h4>
+      <section class="mobile-terminal-filters">
+        <mat-checkbox
+          [checked]="filtersChecked.mobileTerminalFields.active"
+          (change)="updateFiltersChecked('mobileTerminalFields', 'active')"
+          i18n
+          >Active</mat-checkbox
+        >
+        <mat-checkbox
+          [checked]="filtersChecked.mobileTerminalFields.archived"
+          (change)="updateFiltersChecked('mobileTerminalFields', 'archived')"
+          i18n
+          >Archived</mat-checkbox
+        >
+        <mat-checkbox
+          [checked]="filtersChecked.mobileTerminalFields.assetId"
+          (change)="updateFiltersChecked('mobileTerminalFields', 'assetId')"
+          i18n
+          >Attached</mat-checkbox
+        >
+        <mat-checkbox
+          [checked]="filtersChecked.mobileTerminalFields.mobileTerminalType"
+          (change)="
+            updateFiltersChecked('mobileTerminalFields', 'mobileTerminalType')
+          "
+          i18n
+          >Transceiver system</mat-checkbox
+        >
+        <mat-checkbox
+          [checked]="filtersChecked.mobileTerminalFields.transceiverType"
+          (change)="
+            updateFiltersChecked('mobileTerminalFields', 'transceiverType')
+          "
+          i18n
+          >Transceiver type</mat-checkbox
+        >
+        <mat-checkbox
+          [checked]="filtersChecked.mobileTerminalFields.satelliteNumber"
+          (change)="
+            updateFiltersChecked('mobileTerminalFields', 'satelliteNumber')
+          "
+          i18n
+          >Satellite number</mat-checkbox
+        >
+        <mat-checkbox
+          [checked]="filtersChecked.mobileTerminalFields.softwareVersion"
+          (change)="
+            updateFiltersChecked('mobileTerminalFields', 'softwareVersion')
+          "
+          i18n
+          >Software version</mat-checkbox
+        >
+        <mat-checkbox
+          [checked]="filtersChecked.mobileTerminalFields.antenna"
+          (change)="updateFiltersChecked('mobileTerminalFields', 'antenna')"
+          i18n
+          >Antenna</mat-checkbox
+        >
+        <mat-checkbox
+          [checked]="filtersChecked.mobileTerminalFields.oceanRegion"
+          (change)="updateFiltersChecked('mobileTerminalFields', 'oceanRegion')"
+          i18n
+          >Ocean region</mat-checkbox
+        >
+        <mat-checkbox
+          [checked]="filtersChecked.mobileTerminalFields.installDate"
+          (change)="updateFiltersChecked('mobileTerminalFields', 'installDate')"
+          i18n
+          >Install date</mat-checkbox
+        >
+        <mat-checkbox
+          [checked]="filtersChecked.mobileTerminalFields.installedBy"
+          (change)="updateFiltersChecked('mobileTerminalFields', 'installedBy')"
+          i18n
+          >Installed by</mat-checkbox
+        >
+        <mat-checkbox
+          [checked]="filtersChecked.mobileTerminalFields.uninstallDate"
+          (change)="
+            updateFiltersChecked('mobileTerminalFields', 'uninstallDate')
+          "
+          i18n
+          >Uninstall date</mat-checkbox
+        >
+      </section>
+      <h4>
+        Channel filters
+        <mat-checkbox
+          [checked]="filtersChecked.enableChannelFilters"
+          (change)="updateFiltersChecked('enableChannelFilters')"
+          i18n
+          >Enable</mat-checkbox
+        >
+      </h4>
+      @if (filtersChecked.enableChannelFilters) {
+        <section class="mobile-terminal-channel-filters">
+          <mat-checkbox
+            [checked]="filtersChecked.channelFields.lesDescription"
+            (change)="updateFiltersChecked('channelFields', 'lesDescription')"
+            i18n
+            >Land station</mat-checkbox
+          >
+          <mat-checkbox
+            [checked]="filtersChecked.channelFields.startDate"
+            (change)="updateFiltersChecked('channelFields', 'startDate')"
+            i18n
+            >Start date</mat-checkbox
+          >
+          <mat-checkbox
+            [checked]="filtersChecked.channelFields.endDate"
+            (change)="updateFiltersChecked('channelFields', 'endDate')"
+            i18n
+            >End date</mat-checkbox
+          >
+          <mat-checkbox
+            [checked]="filtersChecked.channelFields.expectedFrequency"
+            (change)="
+              updateFiltersChecked('channelFields', 'expectedFrequency')
+            "
+            i18n
+            >Expected frequency</mat-checkbox
+          >
+          <mat-checkbox
+            [checked]="filtersChecked.channelFields.expectedFrequencyInPort"
+            (change)="
+              updateFiltersChecked('channelFields', 'expectedFrequencyInPort')
+            "
+            i18n
+            >Expected frequency in port</mat-checkbox
+          >
+          <mat-checkbox
+            [checked]="filtersChecked.channelFields.frequencyGracePeriod"
+            (change)="
+              updateFiltersChecked('channelFields', 'frequencyGracePeriod')
+            "
+            i18n
+            >Frequency grace period</mat-checkbox
+          >
+        </section>
+      }
+    </div>
+  }
 </div>
 
 <div class="mobile-terminal-history--list">
-  <ng-container *ngFor="let mobileTerminalHistoryAndAsset of mobileTerminalHistoryArrayByAsset">
-    <h2 *ngIf="assets">{{ getAssetName(mobileTerminalHistoryAndAsset.asset) }}</h2>
-    <div class="mobile-terminal-history" *ngFor="let mobileTerminalHistory of mobileTerminalHistoryAndAsset.history">
-      <div class="history-header{{getMobileTerminalHeaderCssClass(mobileTerminalHistory)}}" (click)="toggleHistory(mobileTerminalHistory.id)">
-        <div class="field-column{{getChangedClass(mobileTerminalHistory.changesAsObject.serialNo)}}">
-          <label>Serial no.</label>
-          <div class="value">{{ mobileTerminalHistory.snapshot.serialNo }}</div>
-        </div>
-        <div class="field-column{{getChangedClass(mobileTerminalHistory.changesAsObject.satelliteNumber)}}">
-          <label>Satellite number</label>
-          <div class="value">{{ mobileTerminalHistory.snapshot.satelliteNumber }}</div>
-        </div>
-        <div class="field-column{{getChangedClass(mobileTerminalHistory.changesAsObject.active)}}">
-          <label>Terminal</label>
-          <div class="value">
-            <span *ngIf="mobileTerminalHistory.snapshot.active" class="active">Active</span>
-            <span *ngIf="!mobileTerminalHistory.snapshot.active" class="inactive">Inactive</span>
+  @for (
+    mobileTerminalHistoryAndAsset of mobileTerminalHistoryArrayByAsset;
+    track mobileTerminalHistoryAndAsset
+  ) {
+    @if (assets) {
+      <h2>{{ getAssetName(mobileTerminalHistoryAndAsset.asset) }}</h2>
+    }
+    @for (
+      mobileTerminalHistory of mobileTerminalHistoryAndAsset.history;
+      track mobileTerminalHistory
+    ) {
+      <div class="mobile-terminal-history">
+        <div
+          class="history-header{{
+            getMobileTerminalHeaderCssClass(mobileTerminalHistory)
+          }}"
+          (click)="toggleHistory(mobileTerminalHistory.id)"
+        >
+          <div
+            class="field-column{{
+              getChangedClass(mobileTerminalHistory.changesAsObject.serialNo)
+            }}"
+          >
+            <label>Serial no.</label>
+            <div class="value">
+              {{ mobileTerminalHistory.snapshot.serialNo }}
+            </div>
+          </div>
+          <div
+            class="field-column{{
+              getChangedClass(
+                mobileTerminalHistory.changesAsObject.satelliteNumber
+              )
+            }}"
+          >
+            <label>Satellite number</label>
+            <div class="value">
+              {{ mobileTerminalHistory.snapshot.satelliteNumber }}
+            </div>
+          </div>
+          <div
+            class="field-column{{
+              getChangedClass(mobileTerminalHistory.changesAsObject.active)
+            }}"
+          >
+            <label>Terminal</label>
+            <div class="value">
+              @if (mobileTerminalHistory.snapshot.active) {
+                <span class="active">Active</span>
+              }
+              @if (!mobileTerminalHistory.snapshot.active) {
+                <span class="inactive">Inactive</span>
+              }
+            </div>
+          </div>
+          <div class="field-column">
+            <label>Updated date</label>
+            <div class="value">
+              {{ mobileTerminalHistory.updatedDateFormatted }}
+            </div>
+          </div>
+          <div class="field-column">
+            <label>Updated by</label>
+            <div class="value">{{ mobileTerminalHistory.updatedBy }}</div>
+          </div>
+          <div class="arrow">
+            @if (!isHistoryExpanded(mobileTerminalHistory.id)) {
+              <i class="fas fa-chevron-down" aria-hidden="true"></i>
+            }
+            @if (isHistoryExpanded(mobileTerminalHistory.id)) {
+              <i class="fas fa-chevron-up" aria-hidden="true"></i>
+            }
           </div>
         </div>
-        <div class="field-column">
-          <label>Updated date</label>
-          <div class="value">{{ mobileTerminalHistory.updatedDateFormatted }}</div>
-        </div>
-        <div class="field-column">
-          <label>Updated by</label>
-          <div class="value">{{ mobileTerminalHistory.updatedBy }}</div>
-        </div>
-        <div class="arrow">
-          <i *ngIf="!isHistoryExpanded(mobileTerminalHistory.id)" class="fas fa-chevron-down" aria-hidden="true"></i>
-          <i *ngIf="isHistoryExpanded(mobileTerminalHistory.id)" class="fas fa-chevron-up" aria-hidden="true"></i>
-        </div>
+        @if (isHistoryExpanded(mobileTerminalHistory.id)) {
+          <div class="extended-history">
+            @if (filtersChecked.mobileTerminalFields.assetId) {
+              <div
+                class="field-column{{
+                  getChangedClass(mobileTerminalHistory.changesAsObject.assetId)
+                }}"
+              >
+                <label>Attached</label>
+                <div class="value">
+                  @if (mobileTerminalHistory.snapshot.assetId) {
+                    <span class="active">Attached</span>
+                  }
+                  @if (!mobileTerminalHistory.snapshot.assetId) {
+                    <span class="inactive">Detached</span>
+                  }
+                </div>
+              </div>
+            }
+            @if (filtersChecked.mobileTerminalFields.mobileTerminalType) {
+              <div
+                class="field-column{{
+                  getChangedClass(
+                    mobileTerminalHistory.changesAsObject.mobileTerminalType
+                  )
+                }}"
+              >
+                <label>Transceiver system</label>
+                <div class="value">
+                  {{ mobileTerminalHistory.snapshot.mobileTerminalType }}
+                </div>
+              </div>
+            }
+            @if (filtersChecked.mobileTerminalFields.transceiverType) {
+              <div
+                class="field-column{{
+                  getChangedClass(
+                    mobileTerminalHistory.changesAsObject.transceiverType
+                  )
+                }}"
+              >
+                <label>Transceiver type</label>
+                <div class="value">
+                  {{ mobileTerminalHistory.snapshot.transceiverType }}
+                </div>
+              </div>
+            }
+            @if (filtersChecked.mobileTerminalFields.softwareVersion) {
+              <div
+                class="field-column{{
+                  getChangedClass(
+                    mobileTerminalHistory.changesAsObject.softwareVersion
+                  )
+                }}"
+              >
+                <label>Software version</label>
+                <div class="value">
+                  {{ mobileTerminalHistory.snapshot.softwareVersion }}
+                </div>
+              </div>
+            }
+            @if (filtersChecked.mobileTerminalFields.antenna) {
+              <div
+                class="field-column{{
+                  getChangedClass(mobileTerminalHistory.changesAsObject.antenna)
+                }}"
+              >
+                <label>Antenna</label>
+                <div class="value">
+                  {{ mobileTerminalHistory.snapshot.antenna }}
+                </div>
+              </div>
+            }
+            @if (filtersChecked.mobileTerminalFields.archived) {
+              <div
+                class="field-column{{
+                  getChangedClass(
+                    mobileTerminalHistory.changesAsObject.archived
+                  )
+                }}"
+              >
+                <label>Archived</label>
+                <div class="value">
+                  @if (mobileTerminalHistory.snapshot.archived) {
+                    <span i18n>Archived</span>
+                  }
+                  @if (!mobileTerminalHistory.snapshot.archived) {
+                    <span> - </span>
+                  }
+                </div>
+              </div>
+            }
+            @if (filtersChecked.mobileTerminalFields.oceanRegion) {
+              <div
+                class="field-column{{
+                  getChangedClass(
+                    mobileTerminalHistory.changesAsObject.oceanRegions
+                  )
+                }}"
+              >
+                <label>Ocean region</label>
+                <div class="value">
+                  {{ getOceanRegionsValue(mobileTerminalHistory.snapshot) }}
+                </div>
+              </div>
+            }
+            @if (filtersChecked.mobileTerminalFields.installDate) {
+              <div
+                class="field-column{{
+                  getChangedClass(
+                    mobileTerminalHistory.changesAsObject.installDate
+                  )
+                }}"
+              >
+                <label>Installation date</label>
+                <div class="value">
+                  {{ mobileTerminalHistory.installDateFormatted }}
+                </div>
+              </div>
+            }
+            @if (filtersChecked.mobileTerminalFields.uninstallDate) {
+              <div
+                class="field-column{{
+                  getChangedClass(
+                    mobileTerminalHistory.changesAsObject.uninstallDate
+                  )
+                }}"
+              >
+                <label>Uninstallation date</label>
+                <div class="value">
+                  {{ mobileTerminalHistory.uninstallDateFormatted }}
+                </div>
+              </div>
+            }
+            @if (filtersChecked.mobileTerminalFields.installedBy) {
+              <div
+                class="field-column{{
+                  getChangedClass(
+                    mobileTerminalHistory.changesAsObject.installedBy
+                  )
+                }}"
+              >
+                <label>Installed by</label>
+                <div class="value">
+                  {{ mobileTerminalHistory.snapshot.installedBy }}
+                </div>
+              </div>
+            }
+            @if (filtersChecked.enableChannelFilters) {
+              <div class="channel">
+                <label>Channel</label>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>DNID</th>
+                      <th>Type</th>
+                      <th>Member number</th>
+                      @if (filtersChecked.channelFields.lesDescription) {
+                        <th>Land station</th>
+                      }
+                      @if (filtersChecked.channelFields.startDate) {
+                        <th>Start date</th>
+                      }
+                      @if (filtersChecked.channelFields.endDate) {
+                        <th>End date</th>
+                      }
+                      @if (filtersChecked.channelFields.expectedFrequency) {
+                        <th>Expected Frq.</th>
+                      }
+                      @if (filtersChecked.channelFields.frequencyGracePeriod) {
+                        <th>Frq. Grace Period</th>
+                      }
+                      @if (
+                        filtersChecked.channelFields.expectedFrequencyInPort
+                      ) {
+                        <th>Expected Frq. In Port</th>
+                      }
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-template
+                      #channelRowTemplate
+                      let-channel="channel"
+                      let-isChannelRemoved="isChannelRemoved"
+                    >
+                      <tr
+                        class="channel-row {{
+                          getChannelRowClass(
+                            mobileTerminalHistory.channelChanges[channel.id]
+                          )
+                        }}{{ isChannelRemoved ? ' removed' : '' }}"
+                      >
+                        <td
+                          class="{{
+                            getChangedClassForChannel(
+                              mobileTerminalHistory.channelChanges[channel.id],
+                              'dnid'
+                            )
+                          }}"
+                        >
+                          {{ channel.dnid }}
+                        </td>
+                        <td
+                          class="{{
+                            getChangedClassForChannel(
+                              mobileTerminalHistory.channelChanges[channel.id],
+                              'defaultChannel'
+                            )
+                          }}
+                      {{
+                            getChangedClassForChannel(
+                              mobileTerminalHistory.channelChanges[channel.id],
+                              'pollChannel'
+                            )
+                          }}
+                      {{
+                            getChangedClassForChannel(
+                              mobileTerminalHistory.channelChanges[channel.id],
+                              'configChannel'
+                            )
+                          }}"
+                        >
+                          {{ channel.type }}
+                        </td>
+                        <td
+                          class="{{
+                            getChangedClassForChannel(
+                              mobileTerminalHistory.channelChanges[channel.id],
+                              'memberNumber'
+                            )
+                          }}"
+                        >
+                          {{ channel.memberNumber }}
+                        </td>
+                        @if (filtersChecked.channelFields.lesDescription) {
+                          <td
+                            class="{{
+                              getChangedClassForChannel(
+                                mobileTerminalHistory.channelChanges[
+                                  channel.id
+                                ],
+                                'lesDescription'
+                              )
+                            }}"
+                          >
+                            {{ channel.lesDescription }}
+                          </td>
+                        }
+                        @if (filtersChecked.channelFields.startDate) {
+                          <td
+                            class="{{
+                              getChangedClassForChannel(
+                                mobileTerminalHistory.channelChanges[
+                                  channel.id
+                                ],
+                                'startDate'
+                              )
+                            }}"
+                          >
+                            {{ channel.startDate }}
+                          </td>
+                        }
+                        @if (filtersChecked.channelFields.endDate) {
+                          <td
+                            class="{{
+                              getChangedClassForChannel(
+                                mobileTerminalHistory.channelChanges[
+                                  channel.id
+                                ],
+                                'endDate'
+                              )
+                            }}"
+                          >
+                            {{ channel.endDate }}
+                          </td>
+                        }
+                        @if (filtersChecked.channelFields.expectedFrequency) {
+                          <td
+                            class="{{
+                              getChangedClassForChannel(
+                                mobileTerminalHistory.channelChanges[
+                                  channel.id
+                                ],
+                                'expectedFrequency'
+                              )
+                            }}"
+                          >
+                            {{ channel.expectedFrequency }}
+                          </td>
+                        }
+                        @if (
+                          filtersChecked.channelFields.frequencyGracePeriod
+                        ) {
+                          <td
+                            class="{{
+                              getChangedClassForChannel(
+                                mobileTerminalHistory.channelChanges[
+                                  channel.id
+                                ],
+                                'frequencyGracePeriod'
+                              )
+                            }}"
+                          >
+                            {{ channel.frequencyGracePeriod }}
+                          </td>
+                        }
+                        @if (
+                          filtersChecked.channelFields.expectedFrequencyInPort
+                        ) {
+                          <td
+                            class="{{
+                              getChangedClassForChannel(
+                                mobileTerminalHistory.channelChanges[
+                                  channel.id
+                                ],
+                                'expectedFrequencyInPort'
+                              )
+                            }}"
+                          >
+                            {{ channel.expectedFrequencyInPort }}
+                          </td>
+                        }
+                      </tr>
+                    </ng-template>
+                    @for (
+                      channel of getRemovedChannels(mobileTerminalHistory);
+                      track channel
+                    ) {
+                      <ng-container
+                        *ngTemplateOutlet="
+                          channelRowTemplate;
+                          context: {
+                            channel: channel,
+                            isChannelRemoved: 'true',
+                          }
+                        "
+                      ></ng-container>
+                    }
+                    @for (
+                      channel of mobileTerminalHistory.snapshot
+                        .formattedChannels;
+                      track channel
+                    ) {
+                      <ng-container
+                        *ngTemplateOutlet="
+                          channelRowTemplate;
+                          context: { channel: channel }
+                        "
+                      ></ng-container>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            }
+            <div
+              class="field-column comment{{
+                getChangedClass(mobileTerminalHistory.changesAsObject.comment)
+              }}"
+            >
+              <label>Edit Comments</label>
+              <div class="value">
+                {{
+                  mobileTerminalHistory.changesAsObject.comment
+                    ? mobileTerminalHistory.changesAsObject.comment.newValue
+                    : ""
+                }}
+              </div>
+            </div>
+          </div>
+        }
       </div>
-      <div class="extended-history" *ngIf="isHistoryExpanded(mobileTerminalHistory.id)">
-        <div
-          class="field-column{{getChangedClass(mobileTerminalHistory.changesAsObject.assetId)}}"
-          *ngIf="filtersChecked.mobileTerminalFields.assetId"
-        >
-          <label>Attached</label>
-          <div class="value">
-            <span *ngIf="mobileTerminalHistory.snapshot.assetId" class="active">Attached</span>
-            <span *ngIf="!mobileTerminalHistory.snapshot.assetId" class="inactive">Detached</span>
-          </div>
-        </div>
-        <div
-          class="field-column{{getChangedClass(mobileTerminalHistory.changesAsObject.mobileTerminalType)}}"
-          *ngIf="filtersChecked.mobileTerminalFields.mobileTerminalType"
-        >
-          <label>Transceiver system</label>
-          <div class="value">{{ mobileTerminalHistory.snapshot.mobileTerminalType }}</div>
-        </div>
-        <div
-          class="field-column{{getChangedClass(mobileTerminalHistory.changesAsObject.transceiverType)}}"
-          *ngIf="filtersChecked.mobileTerminalFields.transceiverType"
-        >
-          <label>Transceiver type</label>
-          <div class="value">{{ mobileTerminalHistory.snapshot.transceiverType }}</div>
-        </div>
-        <div
-          class="field-column{{getChangedClass(mobileTerminalHistory.changesAsObject.softwareVersion)}}"
-          *ngIf="filtersChecked.mobileTerminalFields.softwareVersion"
-        >
-          <label>Software version</label>
-          <div class="value">{{ mobileTerminalHistory.snapshot.softwareVersion }}</div>
-        </div>
-        <div
-          class="field-column{{getChangedClass(mobileTerminalHistory.changesAsObject.antenna)}}"
-          *ngIf="filtersChecked.mobileTerminalFields.antenna"
-        >
-          <label>Antenna</label>
-          <div class="value">{{ mobileTerminalHistory.snapshot.antenna }}</div>
-        </div>
-        <div
-          class="field-column{{getChangedClass(mobileTerminalHistory.changesAsObject.archived)}}"
-          *ngIf="filtersChecked.mobileTerminalFields.archived"
-        >
-          <label>Archived</label>
-          <div class="value">
-            <span *ngIf="mobileTerminalHistory.snapshot.archived" i18n>Archived</span>
-            <span *ngIf="!mobileTerminalHistory.snapshot.archived"> - </span>
-          </div>
-        </div>
-        <div
-          class="field-column{{getChangedClass(mobileTerminalHistory.changesAsObject.oceanRegions)}}"
-          *ngIf="filtersChecked.mobileTerminalFields.oceanRegion"
-        >
-          <label>Ocean region</label>
-          <div class="value">{{ getOceanRegionsValue(mobileTerminalHistory.snapshot) }}</div>
-        </div>
-        <div
-          class="field-column{{getChangedClass(mobileTerminalHistory.changesAsObject.installDate)}}"
-          *ngIf="filtersChecked.mobileTerminalFields.installDate"
-        >
-          <label>Installation date</label>
-          <div class="value">{{ mobileTerminalHistory.installDateFormatted }}</div>
-        </div>
-        <div
-          class="field-column{{getChangedClass(mobileTerminalHistory.changesAsObject.uninstallDate)}}"
-          *ngIf="filtersChecked.mobileTerminalFields.uninstallDate"
-        >
-          <label>Uninstallation date</label>
-          <div class="value">{{ mobileTerminalHistory.uninstallDateFormatted }}</div>
-        </div>
-        <div
-          class="field-column{{getChangedClass(mobileTerminalHistory.changesAsObject.installedBy)}}"
-          *ngIf="filtersChecked.mobileTerminalFields.installedBy"
-        >
-          <label>Installed by</label>
-          <div class="value">{{ mobileTerminalHistory.snapshot.installedBy }}</div>
-        </div>
-        <div class="channel" *ngIf="filtersChecked.enableChannelFilters">
-          <label>Channel</label>
-          <table>
-            <thead>
-              <tr>
-                <th>DNID</th>
-                <th>Type</th>
-                <th>Member number</th>
-                <th *ngIf="filtersChecked.channelFields.lesDescription">Land station</th>
-                <th *ngIf="filtersChecked.channelFields.startDate">Start date</th>
-                <th *ngIf="filtersChecked.channelFields.endDate">End date</th>
-                <th *ngIf="filtersChecked.channelFields.expectedFrequency">Expected Frq.</th>
-                <th *ngIf="filtersChecked.channelFields.frequencyGracePeriod">Frq. Grace Period</th>
-                <th *ngIf="filtersChecked.channelFields.expectedFrequencyInPort">Expected Frq. In Port</th>
-              </tr>
-            </thead>
-            <tbody>
-
-              <ng-template #channelRowTemplate let-channel="channel" let-isChannelRemoved="isChannelRemoved">
-                <tr class="channel-row {{getChannelRowClass(mobileTerminalHistory.channelChanges[channel.id])}}{{ isChannelRemoved ? ' removed' : ''}}">
-                  <td
-                    class="{{getChangedClassForChannel(mobileTerminalHistory.channelChanges[channel.id], 'dnid')}}"
-                  >{{channel.dnid}}</td>
-                  <td
-                    class="{{getChangedClassForChannel(mobileTerminalHistory.channelChanges[channel.id], 'defaultChannel')}}
-                      {{getChangedClassForChannel(mobileTerminalHistory.channelChanges[channel.id], 'pollChannel')}}
-                      {{getChangedClassForChannel(mobileTerminalHistory.channelChanges[channel.id], 'configChannel')}}"
-                  >{{channel.type}}</td>
-                  <td
-                    class="{{getChangedClassForChannel(mobileTerminalHistory.channelChanges[channel.id], 'memberNumber')}}"
-                  >{{channel.memberNumber}}</td>
-                  <td
-                    class="{{getChangedClassForChannel(mobileTerminalHistory.channelChanges[channel.id], 'lesDescription')}}"
-                    *ngIf="filtersChecked.channelFields.lesDescription"
-                  >{{channel.lesDescription}}</td>
-                  <td
-                    class="{{getChangedClassForChannel(mobileTerminalHistory.channelChanges[channel.id], 'startDate')}}"
-                    *ngIf="filtersChecked.channelFields.startDate"
-                  >{{channel.startDate}}</td>
-                  <td
-                    class="{{getChangedClassForChannel(mobileTerminalHistory.channelChanges[channel.id], 'endDate')}}"
-                    *ngIf="filtersChecked.channelFields.endDate"
-                  >{{channel.endDate}}</td>
-                  <td
-                    class="{{getChangedClassForChannel(mobileTerminalHistory.channelChanges[channel.id], 'expectedFrequency')}}"
-                    *ngIf="filtersChecked.channelFields.expectedFrequency"
-                    >{{channel.expectedFrequency}}</td>
-                  <td
-                    class="{{getChangedClassForChannel(mobileTerminalHistory.channelChanges[channel.id], 'frequencyGracePeriod')}}"
-                    *ngIf="filtersChecked.channelFields.frequencyGracePeriod"
-                  >{{channel.frequencyGracePeriod}}</td>
-                  <td
-                    class="{{getChangedClassForChannel(mobileTerminalHistory.channelChanges[channel.id], 'expectedFrequencyInPort')}}"
-                    *ngIf="filtersChecked.channelFields.expectedFrequencyInPort"
-                  >{{channel.expectedFrequencyInPort}}</td>
-                </tr>
-              </ng-template>
-
-              <ng-container *ngFor="let channel of getRemovedChannels(mobileTerminalHistory)">
-                <ng-container *ngTemplateOutlet="channelRowTemplate;context:{ channel: channel, isChannelRemoved: 'true' }"></ng-container>
-              </ng-container>
-
-              <ng-container *ngFor="let channel of mobileTerminalHistory.snapshot.formattedChannels">
-                <ng-container *ngTemplateOutlet="channelRowTemplate;context:{ channel: channel }"></ng-container>
-              </ng-container>
-            </tbody>
-          </table>
-        </div>
-        <div
-          class="field-column comment{{getChangedClass(mobileTerminalHistory.changesAsObject.comment)}}"
-        >
-          <label>Edit Comments</label>
-          <div class="value">{{ mobileTerminalHistory.changesAsObject.comment ? mobileTerminalHistory.changesAsObject.comment.newValue : '' }}</div>
-        </div>
-      </div>
-    </div>
-  </ng-container>
+    }
+  }
 </div>

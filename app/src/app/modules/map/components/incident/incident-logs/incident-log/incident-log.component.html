@@ -1,53 +1,68 @@
 <div class="content-container">
-  <div class="incident-log-entry" *ngFor="let logEntry of incidentLogList">
-    <div class="incident-log-entry--content">
-      <span class="date">{{ formatTime(logEntry.createDate) }}</span>
-      <span class="message">{{ logEntry.message }}</span>
-    </div>
-    <div class="incident-log-entry--expand-button">
-      <i *ngIf="!isExpanded(logEntry.id)" (click)="expanded.push(logEntry.id)" aria-hidden="true" class="ri-arrow-right-s-line"></i>
-      <i *ngIf="isExpanded(logEntry.id)" (click)="expanded.splice(expanded.indexOf(logEntry.id), 1)" aria-hidden="true" class="ri-arrow-down-s-line"></i>
-    </div>
-    <div *ngIf="isExpanded(logEntry.id)" class="incident-log-entry--expanded-block">
-      <div
-        *ngIf="isStatusUpdatedEvent(logEntry)"
-        class="grid-entry"
-      >
-        <b i18n>From:</b><div>{{getIncidentStatusTranslation(logEntry.data.from)}}</div>
-        <b i18n>To:</b><div>{{getIncidentStatusTranslation(logEntry.data.to)}}</div>
-        <b i18n>By user:</b><div>{{logEntry.data.user}}</div>
+  @for (logEntry of incidentLogList; track logEntry) {
+    <div class="incident-log-entry">
+      <div class="incident-log-entry--content">
+        <span class="date">{{ formatTime(logEntry.createDate) }}</span>
+        <span class="message">{{ logEntry.message }}</span>
       </div>
-      <div
-        *ngIf="isIncidentTypeChangeEvent(logEntry)"
-        class="grid-entry"
-      >
-        <b i18n>From:</b><div>{{getIncidentTypeTranslation(logEntry.data.from)}}</div>
-        <b i18n>To:</b><div>{{getIncidentTypeTranslation(logEntry.data.to)}}</div>
-        <b i18n>By user:</b><div>{{logEntry.data.user}}</div>
+      <div class="incident-log-entry--expand-button">
+        @if (!isExpanded(logEntry.id)) {
+          <i (click)="expanded.push(logEntry.id)" aria-hidden="true" class="ri-arrow-right-s-line"></i>
+        }
+        @if (isExpanded(logEntry.id)) {
+          <i (click)="expanded.splice(expanded.indexOf(logEntry.id), 1)" aria-hidden="true" class="ri-arrow-down-s-line"></i>
+        }
       </div>
-      <div
-        *ngIf="isAutoPollCreationFailedEvent(logEntry)"
-      ><b i18n>Reason: </b>{{logEntry.data.errorMessage}}</div>
-      <map-incident-log-entry-expiry-date
-        *ngIf="isExpiryDateEvent(logEntry)"
-        [logEntry]="logEntry"
-        [userTimezone]="userTimezone"
-      ></map-incident-log-entry-expiry-date>
-      <map-incident-log-entry-poll
-        *ngIf="logEntry.relatedObjectType === 'POLL'"
-        [poll]="incidentLog.relatedObjects.polls[logEntry.relatedObjectId]"
-        [userTimezone]="userTimezone"
-      ></map-incident-log-entry-poll>
-      <map-incident-log-entry-position
-        *ngIf="logEntry.relatedObjectType === 'MOVEMENT'"
-        [position]="incidentLog.relatedObjects.positions[logEntry.relatedObjectId]"
-        [incidentClosed]="logEntry.eventType === 'INCIDENT_CLOSED'"
-        [userTimezone]="userTimezone"
-      ></map-incident-log-entry-position>
-      <map-incident-log-entry-note
-        *ngIf="logEntry.relatedObjectType === 'NOTE'"
-        [note]="incidentLog.relatedObjects.notes[logEntry.relatedObjectId]"
-      ></map-incident-log-entry-note>
-    </div>
+      @if (isExpanded(logEntry.id)) {
+        <div class="incident-log-entry--expanded-block">
+          @if (isStatusUpdatedEvent(logEntry)) {
+            <div
+              class="grid-entry"
+              >
+              <b i18n>From:</b><div>{{getIncidentStatusTranslation(logEntry.data.from)}}</div>
+              <b i18n>To:</b><div>{{getIncidentStatusTranslation(logEntry.data.to)}}</div>
+              <b i18n>By user:</b><div>{{logEntry.data.user}}</div>
+            </div>
+          }
+          @if (isIncidentTypeChangeEvent(logEntry)) {
+            <div
+              class="grid-entry"
+              >
+              <b i18n>From:</b><div>{{getIncidentTypeTranslation(logEntry.data.from)}}</div>
+              <b i18n>To:</b><div>{{getIncidentTypeTranslation(logEntry.data.to)}}</div>
+              <b i18n>By user:</b><div>{{logEntry.data.user}}</div>
+            </div>
+          }
+          @if (isAutoPollCreationFailedEvent(logEntry)) {
+            <div
+              ><b i18n>Reason: </b>{{logEntry.data.errorMessage}}</div>
+            }
+            @if (isExpiryDateEvent(logEntry)) {
+              <map-incident-log-entry-expiry-date
+                [logEntry]="logEntry"
+                [userTimezone]="userTimezone"
+              ></map-incident-log-entry-expiry-date>
+            }
+            @if (logEntry.relatedObjectType === 'POLL') {
+              <map-incident-log-entry-poll
+                [poll]="incidentLog.relatedObjects.polls[logEntry.relatedObjectId]"
+                [userTimezone]="userTimezone"
+              ></map-incident-log-entry-poll>
+            }
+            @if (logEntry.relatedObjectType === 'MOVEMENT') {
+              <map-incident-log-entry-position
+                [position]="incidentLog.relatedObjects.positions[logEntry.relatedObjectId]"
+                [incidentClosed]="logEntry.eventType === 'INCIDENT_CLOSED'"
+                [userTimezone]="userTimezone"
+              ></map-incident-log-entry-position>
+            }
+            @if (logEntry.relatedObjectType === 'NOTE') {
+              <map-incident-log-entry-note
+                [note]="incidentLog.relatedObjects.notes[logEntry.relatedObjectId]"
+              ></map-incident-log-entry-note>
+            }
+          </div>
+        }
+      </div>
+    }
   </div>
-</div>

@@ -33,36 +33,42 @@
           formControlName="frequencyHours"
           type="number"
           required
-        />
-        <span matSuffix i18n>h</span>
-        <mat-error *ngFor="let error of getErrors(['frequencyHours'])">{{ errorMessage(error) }}</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input
-          matInput
-          formControlName="frequencyMinutes"
-          type="number"
-          required
-        />
-        <span matSuffix i18n>min</span>
-        <mat-error *ngFor="let error of getErrors(['frequencyMinutes'])">{{ errorMessage(error) }}</mat-error>
-      </mat-form-field>
-    </div>
-  </div>
+          />
+          <span matSuffix i18n>h</span>
+          @for (error of getErrors(['frequencyHours']); track error) {
+            <mat-error>{{ errorMessage(error) }}</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            formControlName="frequencyMinutes"
+            type="number"
+            required
+            />
+            <span matSuffix i18n>min</span>
+            @for (error of getErrors(['frequencyMinutes']); track error) {
+              <mat-error>{{ errorMessage(error) }}</mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </div>
 
-  <mat-form-field id="manual-poll-form--comment">
-    <mat-label i18n>Comment/Reason</mat-label>
-    <textarea matInput formControlName="comment" required></textarea>
-    <mat-error *ngFor="let error of getErrors(['comment'])">{{ errorMessage(error) }}</mat-error>
-  </mat-form-field>
+      <mat-form-field id="manual-poll-form--comment">
+        <mat-label i18n>Comment/Reason</mat-label>
+        <textarea matInput formControlName="comment" required></textarea>
+        @for (error of getErrors(['comment']); track error) {
+          <mat-error>{{ errorMessage(error) }}</mat-error>
+        }
+      </mat-form-field>
 
-  <button
-    id="manual-poll-form--save"
-    mat-button
-    color="primary"
-    type="button"
-    [disabled]="!formValidator.valid"
-    (click)="save()"
-    i18n
-  >Poll manually</button>
-</form>
+      <button
+        id="manual-poll-form--save"
+        mat-button
+        color="primary"
+        type="button"
+        [disabled]="!formValidator.valid"
+        (click)="save()"
+        i18n
+      >Poll manually</button>
+    </form>

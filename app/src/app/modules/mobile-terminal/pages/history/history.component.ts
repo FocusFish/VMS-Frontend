@@ -17,9 +17,9 @@ import { RouterTypes, RouterSelectors } from "@data/router";
 import { UserSettingsSelectors } from "@data/user-settings";
 
 @Component({
-    selector: "mobile-terminal-history-page",
-    templateUrl: "./history.component.html",
-    standalone: false
+  selector: "mobile-terminal-history-page",
+  templateUrl: "./history.component.html",
+  standalone: false,
 })
 export class HistoryPageComponent implements OnInit, OnDestroy {
   constructor(private readonly store: Store<State>) {}
@@ -27,16 +27,16 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
   public unmount$: Subject<boolean> = new Subject<boolean>();
   public userTimezone$: Observable<string>;
   public assets: Readonly<{ readonly [assetId: string]: AssetTypes.Asset }>;
-  public mobileTerminal: MobileTerminalTypes.MobileTerminal;
+  public mobileTerminal?: MobileTerminalTypes.MobileTerminal;
   public mobileTerminalHistoryList: MobileTerminalTypes.MobileTerminalHistoryList;
   public mobileTerminalHistoryFilter$: Observable<MobileTerminalTypes.MobileTerminalHistoryFilter>;
   public mergedRoute: RouterTypes.MergedRoute;
 
   public addMobileTerminalHistoryFilters: (
-    historyFilter: MobileTerminalTypes.MobileTerminalHistoryFilter
+    historyFilter: MobileTerminalTypes.MobileTerminalHistoryFilter,
   ) => void;
   public removeMobileTerminalHistoryFilters: (
-    historyFilter: MobileTerminalTypes.MobileTerminalHistoryFilter
+    historyFilter: MobileTerminalTypes.MobileTerminalHistoryFilter,
   ) => void;
 
   mapStateToProps() {
@@ -45,7 +45,7 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.unmount$),
         skipWhile((mobileTerminal) => typeof mobileTerminal === "undefined"),
-        take(1)
+        take(1),
       )
       .subscribe((mobileTerminal) => {
         this.mobileTerminal = mobileTerminal;
@@ -53,13 +53,13 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
 
     this.store
       .select(
-        MobileTerminalSelectors.getMobileTerminalHistoryFilteredForUrlMobileTerminal
+        MobileTerminalSelectors.getMobileTerminalHistoryFilteredForUrlMobileTerminal,
       )
       .pipe(takeUntil(this.unmount$))
       .subscribe((mobileTerminalHistory) => {
         this.mobileTerminalHistoryList = mobileTerminalHistory;
         const assetIds = Object.values(this.mobileTerminalHistoryList).reduce(
-          (acc, mtHistory) => {
+          (acc: string[], mtHistory) => {
             if (
               typeof mtHistory.snapshot.assetId !== "undefined" &&
               !acc.includes(mtHistory.snapshot.assetId)
@@ -68,7 +68,7 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
             }
             return acc;
           },
-          []
+          [],
         );
         this.store.dispatch(
           AssetActions.searchAssets({
@@ -80,7 +80,7 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
               logicalAnd: false,
             },
             userSearch: false,
-          })
+          }),
         );
       });
 
@@ -91,13 +91,13 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
         filter(
           (searchResults) =>
             searchResults.length !== 0 &&
-            typeof this.mobileTerminalHistoryList !== "undefined"
-        )
+            typeof this.mobileTerminalHistoryList !== "undefined",
+        ),
       )
       .subscribe((searchResults) => {
         this.assets = searchResults.reduce(
           (acc, asset) => ({ ...acc, [asset.id]: asset }),
-          {}
+          {},
         );
       });
 
@@ -108,35 +108,37 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
         this.mergedRoute = mergedRoute;
         if (typeof this.mergedRoute.params.mobileTerminalId !== "undefined") {
           this.store.dispatch(
-            MobileTerminalActions.getSelectedMobileTerminal()
+            MobileTerminalActions.getSelectedMobileTerminal(),
           );
           this.store.dispatch(
             MobileTerminalActions.getMobileTerminalHistory({
               mobileTerminalId: this.mergedRoute.params.mobileTerminalId,
-            })
+            }),
           );
         }
       });
     this.userTimezone$ = this.store.select(UserSettingsSelectors.getTimezone);
     this.mobileTerminalHistoryFilter$ = this.store.select(
-      MobileTerminalSelectors.getMobileTerminalHistoryFilter
+      MobileTerminalSelectors.getMobileTerminalHistoryFilter,
     );
   }
 
   mapDispatchToProps() {
     this.addMobileTerminalHistoryFilters = (
-      historyFilter: MobileTerminalTypes.MobileTerminalHistoryFilter
+      historyFilter: MobileTerminalTypes.MobileTerminalHistoryFilter,
     ) =>
       this.store.dispatch(
-        MobileTerminalActions.addMobileTerminalHistoryFilters({ historyFilter })
+        MobileTerminalActions.addMobileTerminalHistoryFilters({
+          historyFilter,
+        }),
       );
     this.removeMobileTerminalHistoryFilters = (
-      historyFilter: MobileTerminalTypes.MobileTerminalHistoryFilter
+      historyFilter: MobileTerminalTypes.MobileTerminalHistoryFilter,
     ) =>
       this.store.dispatch(
         MobileTerminalActions.removeMobileTerminalHistoryFilters({
           historyFilter,
-        })
+        }),
       );
   }
 

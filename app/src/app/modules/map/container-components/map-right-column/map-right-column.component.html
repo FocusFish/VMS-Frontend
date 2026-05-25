@@ -1,7 +1,11 @@
 <div class="content-container {{ columnHidden ? 'panel-hidden' : ''}}">
   <div id="minimize-right-column" (click)="hideRightColumn(!columnHidden)">
-    <i class="ri-arrow-right-s-line" aria-hidden="true" *ngIf="!columnHidden"></i>
-    <i class="ri-arrow-left-s-line" aria-hidden="true" *ngIf="columnHidden"></i>
+    @if (!columnHidden) {
+      <i class="ri-arrow-right-s-line" aria-hidden="true"></i>
+    }
+    @if (columnHidden) {
+      <i class="ri-arrow-left-s-line" aria-hidden="true"></i>
+    }
   </div>
   <ul id="realtime-right-column-menu">
     <li (click)="setActivePanelAndShowColumn(['information'])">
@@ -19,258 +23,301 @@
         aria-hidden="true"
       ></i>
     </li>
-    <ng-container *ngIf="activeLeftPanel[0] === 'workflows'">
+    @if (activeLeftPanel[0] === 'workflows') {
       <li
         (click)="selectedIncident !== undefined && setActiveAssetToMatchIncident() && setActivePanelAndShowColumn(['incident'])"
-      ><i class="icon-incident {{ activeInformationPanel === null && activePanel[0] === 'incident' ? 'active' : '' }} {{ selectedIncident === undefined ? 'disabled' : '' }}" aria-hidden="true"></i></li>
-    </ng-container>
-  </ul>
-  <ul id="realtime-right-column-bottom-menu">
-    <li (click)="setActivePanelAndShowColumn(['map-layers'])">
-      <i
-        title="Map layers."
-        class="icon-map-layers {{ activeInformationPanel === null && activePanel[0] === 'map-layers' ? 'active' : '' }}"
-        aria-hidden="true"
-      ></i>
-    </li>
-    <li (click)="setActivePanelAndShowColumn(['distance-between-points'])">
-      <i
-        title="Messure distance."
-        class="icon-distance-between-points {{ activeInformationPanel === null && activePanel[0] === 'distance-between-points' ? 'active' : '' }}"
-        aria-hidden="true"
-      ></i>
-    </li>
-    <li (click)="setActivePanelAndShowColumn(['asset-layers'])">
-      <i
-        title="Hide and show asset information on map."
-        class="icon-asset-layers {{ activeInformationPanel === null && activePanel[0] === 'asset-layers' ? 'active' : '' }}"
-        aria-hidden="true"
-      ></i>
-    </li>
-    <li (click)="setActivePanelAndShowColumn(['map-locations'])">
-      <i
-        title="Saved map positions."
-        class="icon-map-locations {{ activeInformationPanel === null && activePanel[0] === 'map-locations' ? 'active' : '' }}"
-        aria-hidden="true"
-      ></i>
-    </li>
-  </ul>
-  <div class="panel information-panel" *ngIf="activeInformationPanel !== null || activePanel[0] === 'information'">
-    <ng-container *ngIf="activeInformationPanel === null && activePanel[1] === undefined">
-      <h3 i18n>Map Information</h3>
-      <map-statistics
-        [mapStatistics]="mapStatistics$ | async"
-        [setAssetFilter]="filterAssets"
-        [setActiveLeftPanel]="setActiveLeftPanel"
-        [setActiveRightPanel]="setActivePanel"
-      ></map-statistics>
-    </ng-container>
-    <ng-container *ngIf="activeInformationPanel === 'asset-filter' || activePanel[1] === 'asset-filter'">
-      <div class="panel-title">
-        <i class="ri-arrow-left-s-line panel-back-button" aria-hidden="true" (click)="setActivePanel(['information'])"></i>
-        <h3 i18n>Quick filter</h3>
+        ><i class="icon-incident {{ activeInformationPanel === null && activePanel[0] === 'incident' ? 'active' : '' }} {{ selectedIncident === undefined ? 'disabled' : '' }}" aria-hidden="true"></i></li>
+      }
+    </ul>
+    <ul id="realtime-right-column-bottom-menu">
+      <li (click)="setActivePanelAndShowColumn(['map-layers'])">
+        <i
+          title="Map layers."
+          class="icon-map-layers {{ activeInformationPanel === null && activePanel[0] === 'map-layers' ? 'active' : '' }}"
+          aria-hidden="true"
+        ></i>
+      </li>
+      <li (click)="setActivePanelAndShowColumn(['distance-between-points'])">
+        <i
+          title="Messure distance."
+          class="icon-distance-between-points {{ activeInformationPanel === null && activePanel[0] === 'distance-between-points' ? 'active' : '' }}"
+          aria-hidden="true"
+        ></i>
+      </li>
+      <li (click)="setActivePanelAndShowColumn(['asset-layers'])">
+        <i
+          title="Hide and show asset information on map."
+          class="icon-asset-layers {{ activeInformationPanel === null && activePanel[0] === 'asset-layers' ? 'active' : '' }}"
+          aria-hidden="true"
+        ></i>
+      </li>
+      <li (click)="setActivePanelAndShowColumn(['map-locations'])">
+        <i
+          title="Saved map positions."
+          class="icon-map-locations {{ activeInformationPanel === null && activePanel[0] === 'map-locations' ? 'active' : '' }}"
+          aria-hidden="true"
+        ></i>
+      </li>
+    </ul>
+    @if (activeInformationPanel !== null || activePanel[0] === 'information') {
+      <div class="panel information-panel">
+        @if (activeInformationPanel === null && activePanel[1] === undefined) {
+          <h3 i18n>Map Information</h3>
+          <map-statistics
+            [mapStatistics]="mapStatistics$ | async"
+            [setAssetFilter]="filterAssets"
+            [setActiveLeftPanel]="setActiveLeftPanel"
+            [setActiveRightPanel]="setActivePanel"
+          ></map-statistics>
+        }
+        @if (activeInformationPanel === 'asset-filter' || activePanel[1] === 'asset-filter') {
+          <div class="panel-title">
+            <i class="ri-arrow-left-s-line panel-back-button" aria-hidden="true" (click)="setActivePanel(['information'])"></i>
+            <h3 i18n>Quick filter</h3>
+          </div>
+          <map-asset-filter-information-panel></map-asset-filter-information-panel>
+        }
+        @if (activeInformationPanel === 'asset-search' || activePanel[1] === 'asset-search') {
+          <div class="panel-title">
+            <i class="ri-arrow-left-s-line panel-back-button" aria-hidden="true" (click)="setActivePanel(['information'])"></i>
+            <h3 i18n>Asset search</h3>
+          </div>
+          <map-asset-search-information-panel></map-asset-search-information-panel>
+        }
       </div>
-      <map-asset-filter-information-panel></map-asset-filter-information-panel>
-    </ng-container>
-    <ng-container *ngIf="activeInformationPanel === 'asset-search' || activePanel[1] === 'asset-search'">
-      <div class="panel-title">
-        <i class="ri-arrow-left-s-line panel-back-button" aria-hidden="true" (click)="setActivePanel(['information'])"></i>
-        <h3 i18n>Asset search</h3>
-      </div>
-      <map-asset-search-information-panel></map-asset-search-information-panel>
-    </ng-container>
-  </div>
-  <div class="panel showAsset-panel" *ngIf="activePanel[0] === 'showAsset'">
-    <div class="panel-title">
-      <i
-        class="ri-arrow-left-s-line"
-        aria-hidden="true"
-        (click)="setActivePanel(['showAsset'])"
-        *ngIf="checkIfSecondaryPanelIsActive()"
-      ></i>
-      <h3>
-        <ng-container *ngIf="!checkIfSecondaryPanelIsActive()" i18n>Detailed asset information</ng-container>
-        <ng-container *ngIf="activePanel[1] === 'licenceInformation'" i18n>Licence</ng-container>
-        <ng-container *ngIf="activePanel[1] === 'incidentList'" i18n>Asset incidents</ng-container>
-        <ng-container *ngIf="activePanel[1] === 'positions'" i18n>Positions</ng-container>
-        <ng-container *ngIf="activePanel[1] === 'managePolling'" i18n>Manage polling</ng-container>
-      </h3>
-      <div class="asset-name" *ngIf="selectedAsset">
-        {{ (selectedAsset.asset.ircs !== undefined ? selectedAsset.asset.ircs + ' &#183; ' : '') +
-        (selectedAsset.asset.name !== undefined ? selectedAsset.asset.name : selectedAsset.asset.externalMarking)  }}
-      </div>
-    </div>
-    <ng-container *ngIf="selectedAsset">
-      <map-asset-panel-show
-        *ngIf="!checkIfSecondaryPanelIsActive()"
-        [asset]="selectedAsset"
-        [selectAsset]="selectAsset"
-        [deselectAsset]="deselectAsset"
-        [forecasts]="forecasts$|async"
-        [getAssetTrack]="getAssetTrack"
-        [getAssetTrackTimeInterval]="getAssetTrackTimeInterval"
-        [untrackAsset]="untrackAsset"
-        [addForecast]="addForecast"
-        [removeForecast]="removeForecast"
-        [tracksMinuteCap]="mapSettings.settings.tracksMinuteCap"
-        [centerMapOnPosition]="centerMapOnPosition"
-        [getIncidentsForAssetId]="getIncidentsForAssetId"
-        [setActiveRightPanel]="setActivePanel"
-        [selectedAssetsLastPositions]="selectedAssetsLastPositions[selectedAsset.asset.id]"
-        [selectedAssetsLastActivity]="selectedAssetsLastActivities[selectedAsset.asset.id]"
-        [getLicenceForAsset]="getLicenceForAsset"
-      ></map-asset-panel-show>
-      <map-licence-information
-        *ngIf="activePanel[1] === 'licenceInformation'"
-        [licence]="licence$ | async"
-        [licenceLoaded]="licenceLoaded"
-      ></map-licence-information>
-      <map-asset-incidents
-        *ngIf="activePanel[1] === 'incidentList'"
-        [incidents]="incidentsForAssets[selectedAsset.asset.id]"
-        [selectIncident]="selectIncident"
-        [setActiveWorkflow]="setActiveLeftPanel"
-        [currentWorkflow]="activeLeftPanel[1]"
-      ></map-asset-incidents>
-      <map-asset-positions
-        *ngIf="activePanel[1] === 'positions'"
-        [asset]="selectedAsset.asset"
-        [lastPositions]="selectedAssetsLastPositions[selectedAsset.asset.id]"
-        [positions]="lastFullPositionsForSelectedAsset$ | async"
-        [createManualMovement]="createManualMovement"
-        [createNote]="createNote"
-        [map]="map"
-        [userTimezone]="userTimezone$ | async"
-        [getLastFullPositionsForAsset]="getLastFullPositionsForAsset"
-      ></map-asset-positions>
-      <map-asset-poll
-        *ngIf="activePanel[1] === 'managePolling'"
-        [asset]="selectedAsset.asset"
-        [polls]="lastPollsForSelectedAsset$ | async"
-        [pollAsset]="pollAsset"
-        [getLatestPollsForAsset]="getLatestPollsForAsset"
-        [userTimezone]="userTimezone$ | async"
-      ></map-asset-poll>
-    </ng-container>
-  </div>
-  <div class="panel listAssets-panel" *ngIf="activePanel[0] === 'listAssets'">
-    <h3><span i18n>Overview multiple Assets</span> ({{selectedAssets.length}} <span i18n>chosen</span>)</h3>
-    <map-selected-assets-panel
-      [selectedAssets]="selectedAssets"
-      [selectAsset]="selectAsset"
-      [clearForecasts]="clearForecasts"
-      [clearTracks]="clearTracks"
-      [clearSelectedAssets]="clearSelectedAssets"
-      [deselectAsset]="deselectAsset"
-      [forecasts]="forecasts$|async"
-      [getAssetTrack]="getAssetTrack"
-      [getAssetTrackTimeInterval]="getAssetTrackTimeInterval"
-      [untrackAsset]="untrackAsset"
-      [addForecast]="addForecast"
-      [removeForecast]="removeForecast"
-      [tracksMinuteCap]="mapSettings.settings.tracksMinuteCap"
-      [centerMapOnPosition]="centerMapOnPosition"
-      [assetGroupFilters]="assetGroupFilters"
-      [saveFilter]="saveFilter"
-    ></map-selected-assets-panel>
-  </div>
-  <div class="panel incident-panel" *ngIf="activePanel[0] === 'incident'">
-    <div class="panel-title">
-      <i
-        class="ri-arrow-left-s-line panel-back-button"
-        aria-hidden="true"
-        (click)="setActivePanel(['incident'])"
-        *ngIf="checkIfSecondaryPanelIsActive()"
-      ></i>
-      <h3>
-        <ng-container i18n>Incident</ng-container>
-        <span *ngIf="selectedAsset !== undefined && selectedIncident !== undefined">
-          #{{ selectedIncident.id }}
-        </span>
-      </h3>
-      <div class="flag-and-name">
-        <img
-          *ngIf="selectedAsset !== undefined && selectedAsset.asset.flagStateCode !== '???' && selectedAsset.asset.flagStateCode !== undefined"
-          class="flag-image"
-          src="/assets/flags/4x3/{{getCountryCode(selectedAsset)}}.svg"
-          alt="getCountryCode(selectedAsset)"
-        />
-        <div class="asset-name" *ngIf="selectedAsset">
-          {{ (selectedAsset.asset.ircs !== undefined ? selectedAsset.asset.ircs + ' &#183; ' : '') +
-          (selectedAsset.asset.name !== undefined ? selectedAsset.asset.name : selectedAsset.asset.externalMarking)  }}
+    }
+    @if (activePanel[0] === 'showAsset') {
+      <div class="panel showAsset-panel">
+        <div class="panel-title">
+          @if (checkIfSecondaryPanelIsActive()) {
+            <i
+              class="ri-arrow-left-s-line"
+              aria-hidden="true"
+              (click)="setActivePanel(['showAsset'])"
+            ></i>
+          }
+          <h3>
+            @if (!checkIfSecondaryPanelIsActive()) {
+              <ng-container i18n>Detailed asset information</ng-container>
+            }
+            @if (activePanel[1] === 'licenceInformation') {
+              <ng-container i18n>Licence</ng-container>
+            }
+            @if (activePanel[1] === 'incidentList') {
+              <ng-container i18n>Asset incidents</ng-container>
+            }
+            @if (activePanel[1] === 'positions') {
+              <ng-container i18n>Positions</ng-container>
+            }
+            @if (activePanel[1] === 'managePolling') {
+              <ng-container i18n>Manage polling</ng-container>
+            }
+          </h3>
+          @if (selectedAsset) {
+            <div class="asset-name">
+              {{ (selectedAsset.asset.ircs !== undefined ? selectedAsset.asset.ircs + ' &#183; ' : '') +
+              (selectedAsset.asset.name !== undefined ? selectedAsset.asset.name : selectedAsset.asset.externalMarking)  }}
+            </div>
+          }
         </div>
+        @if (selectedAsset) {
+          @if (!checkIfSecondaryPanelIsActive()) {
+            <map-asset-panel-show
+              [asset]="selectedAsset"
+              [selectAsset]="selectAsset"
+              [deselectAsset]="deselectAsset"
+              [forecasts]="forecasts$|async"
+              [getAssetTrack]="getAssetTrack"
+              [getAssetTrackTimeInterval]="getAssetTrackTimeInterval"
+              [untrackAsset]="untrackAsset"
+              [addForecast]="addForecast"
+              [removeForecast]="removeForecast"
+              [tracksMinuteCap]="mapSettings.settings.tracksMinuteCap"
+              [centerMapOnPosition]="centerMapOnPosition"
+              [getIncidentsForAssetId]="getIncidentsForAssetId"
+              [setActiveRightPanel]="setActivePanel"
+              [selectedAssetsLastPositions]="selectedAssetsLastPositions[selectedAsset.asset.id]"
+              [selectedAssetsLastActivity]="selectedAssetsLastActivities[selectedAsset.asset.id]"
+              [getLicenceForAsset]="getLicenceForAsset"
+            ></map-asset-panel-show>
+          }
+          @if (activePanel[1] === 'licenceInformation') {
+            <map-licence-information
+              [licence]="licence$ | async"
+              [licenceLoaded]="licenceLoaded"
+            ></map-licence-information>
+          }
+          @if (activePanel[1] === 'incidentList') {
+            <map-asset-incidents
+              [incidents]="incidentsForAssets[selectedAsset.asset.id]"
+              [selectIncident]="selectIncident"
+              [setActiveWorkflow]="setActiveLeftPanel"
+              [currentWorkflow]="activeLeftPanel[1]"
+            ></map-asset-incidents>
+          }
+          @if (activePanel[1] === 'positions') {
+            <map-asset-positions
+              [asset]="selectedAsset.asset"
+              [lastPositions]="selectedAssetsLastPositions[selectedAsset.asset.id]"
+              [positions]="lastFullPositionsForSelectedAsset$ | async"
+              [createManualMovement]="createManualMovement"
+              [createNote]="createNote"
+              [map]="map"
+              [userTimezone]="userTimezone$ | async"
+              [getLastFullPositionsForAsset]="getLastFullPositionsForAsset"
+            ></map-asset-positions>
+          }
+          @if (activePanel[1] === 'managePolling') {
+            <map-asset-poll
+              [asset]="selectedAsset.asset"
+              [polls]="lastPollsForSelectedAsset$ | async"
+              [pollAsset]="pollAsset"
+              [getLatestPollsForAsset]="getLatestPollsForAsset"
+              [userTimezone]="userTimezone$ | async"
+            ></map-asset-poll>
+          }
+        }
       </div>
-    </div>
-    <ng-container *ngIf="selectedAsset !== undefined && selectedIncident !== undefined">
-      <map-incident
-        *ngIf="!checkIfSecondaryPanelIsActive()"
-        [asset]="selectedAsset"
-        [incident]="selectedIncident"
-        [map]="map"
-        [createManualMovement]="createManualMovement"
-        [updateIncidentType]="updateIncidentType"
-        [updateIncidentStatus]="updateIncidentStatus"
-        [updateIncidentExpiry]="updateIncidentExpiry"
-        [createNote]="createIncidentNote"
-        [pollIncident]="pollIncident"
-        [incidentTypes]="incidentTypes$ | async"
-        [setActiveWorkflow]="setActiveWorkflow"
-        [setActiveRightPanel]="setActivePanelAndShowColumn"
-        [userTimezone]="userTimezone$ | async"
-      ></map-incident>
-      <map-incident-logs
-        *ngIf="activePanel[1] === 'incidentLogs'"
-        [incident]="selectedIncident"
-        [incidentLog]="incidentLogIfItExists()"
-        [getLogForIncident]="getLogForIncident"
-        [userTimezone]="userTimezone$ | async"
-      ></map-incident-logs>
-      <map-note-form
-        *ngIf="activePanel[1] === 'incidentNote'"
-        [createNote]="createNoteWithIncidentId"
-        [assetId]="selectedAsset.asset.id"
-      ></map-note-form>
-    </ng-container>
+    }
+    @if (activePanel[0] === 'listAssets') {
+      <div class="panel listAssets-panel">
+        <h3><span i18n>Overview multiple Assets</span> ({{selectedAssets.length}} <span i18n>chosen</span>)</h3>
+        <map-selected-assets-panel
+          [selectedAssets]="selectedAssets"
+          [selectAsset]="selectAsset"
+          [clearForecasts]="clearForecasts"
+          [clearTracks]="clearTracks"
+          [clearSelectedAssets]="clearSelectedAssets"
+          [deselectAsset]="deselectAsset"
+          [forecasts]="forecasts$|async"
+          [getAssetTrack]="getAssetTrack"
+          [getAssetTrackTimeInterval]="getAssetTrackTimeInterval"
+          [untrackAsset]="untrackAsset"
+          [addForecast]="addForecast"
+          [removeForecast]="removeForecast"
+          [tracksMinuteCap]="mapSettings.settings.tracksMinuteCap"
+          [centerMapOnPosition]="centerMapOnPosition"
+          [assetGroupFilters]="assetGroupFilters"
+          [saveFilter]="saveFilter"
+        ></map-selected-assets-panel>
+      </div>
+    }
+    @if (activePanel[0] === 'incident') {
+      <div class="panel incident-panel">
+        <div class="panel-title">
+          @if (checkIfSecondaryPanelIsActive()) {
+            <i
+              class="ri-arrow-left-s-line panel-back-button"
+              aria-hidden="true"
+              (click)="setActivePanel(['incident'])"
+            ></i>
+          }
+          <h3>
+            <ng-container i18n>Incident</ng-container>
+            @if (selectedAsset !== undefined && selectedIncident !== undefined) {
+              <span>
+                #{{ selectedIncident.id }}
+              </span>
+            }
+          </h3>
+          <div class="flag-and-name">
+            @if (selectedAsset !== undefined && selectedAsset.asset.flagStateCode !== '???' && selectedAsset.asset.flagStateCode !== undefined) {
+              <img
+                class="flag-image"
+                src="/assets/flags/4x3/{{getCountryCode(selectedAsset)}}.svg"
+                alt="getCountryCode(selectedAsset)"
+                />
+            }
+            @if (selectedAsset) {
+              <div class="asset-name">
+                {{ (selectedAsset.asset.ircs !== undefined ? selectedAsset.asset.ircs + ' &#183; ' : '') +
+                (selectedAsset.asset.name !== undefined ? selectedAsset.asset.name : selectedAsset.asset.externalMarking)  }}
+              </div>
+            }
+          </div>
+        </div>
+        @if (selectedAsset !== undefined && selectedIncident !== undefined) {
+          @if (!checkIfSecondaryPanelIsActive()) {
+            <map-incident
+              [asset]="selectedAsset"
+              [incident]="selectedIncident"
+              [map]="map"
+              [createManualMovement]="createManualMovement"
+              [updateIncidentType]="updateIncidentType"
+              [updateIncidentStatus]="updateIncidentStatus"
+              [updateIncidentExpiry]="updateIncidentExpiry"
+              [createNote]="createIncidentNote"
+              [pollIncident]="pollIncident"
+              [incidentTypes]="incidentTypes$ | async"
+              [setActiveWorkflow]="setActiveWorkflow"
+              [setActiveRightPanel]="setActivePanelAndShowColumn"
+              [userTimezone]="userTimezone$ | async"
+            ></map-incident>
+          }
+          @if (activePanel[1] === 'incidentLogs') {
+            <map-incident-logs
+              [incident]="selectedIncident"
+              [incidentLog]="incidentLogIfItExists()"
+              [getLogForIncident]="getLogForIncident"
+              [userTimezone]="userTimezone$ | async"
+            ></map-incident-logs>
+          }
+          @if (activePanel[1] === 'incidentNote') {
+            <map-note-form
+              [createNote]="createNoteWithIncidentId"
+              [assetId]="selectedAsset.asset.id"
+            ></map-note-form>
+          }
+        }
+      </div>
+    }
+    @if (activePanel[0] === 'map-locations' && mapSettings && map) {
+      <div class="panel map-locations-panel">
+        <h3 i18n>Map positions</h3>
+        <map-locations-panel
+          [centerMapOnPosition]="centerMapOnPosition"
+          [mapLocations]="mapSettings.mapLocations"
+          [saveMapLocation]="saveMapLocation"
+          [deleteMapLocation]="deleteMapLocation"
+        ></map-locations-panel>
+      </div>
+    }
+    @if (activePanel[0] === 'map-layers') {
+      <div class="panel map-layers-panel">
+        <h3 i18n>Map layers</h3>
+        <map-layers-panel
+          [activeMapLayers]="activeMapLayers$ | async"
+          [mapLayers]="mapLayers$ | async"
+          [cascadedLayers]="cascadedLayers$ | async"
+          [addActiveLayerFunction]="addActiveLayer"
+          [removeActiveLayerFunction]="removeActiveLayer"
+        ></map-layers-panel>
+      </div>
+    }
+    @if (activePanel[0] === 'distance-between-points') {
+      <div class="panel map-distance-between-points-panel">
+        <h3 i18n>Messure distance</h3>
+        <map-distance-between-points-panel
+          [clearMessurements]="clearMessurements"
+        ></map-distance-between-points-panel>
+      </div>
+    }
+    @if (activePanel[0] === 'asset-layers') {
+      <div class="panel map-layer-filter-panel">
+        <h3 i18n>Asset features on map</h3>
+        <map-layer-filter
+          [mapSettings]="mapSettings"
+          [setVisibilityForAssetNames]="setVisibilityForAssetNames"
+          [setVisibilityForAssetSpeeds]="setVisibilityForAssetSpeeds"
+          [setVisibilityForFlags]="setVisibilityForFlags"
+          [setVisibilityForTracks]="setVisibilityForTracks"
+          [setVisibilityForForecast]="setVisibilityForForecast"
+          [flagsDisabled]="mapZoom < 10"
+          [tracksDisabled]="false"
+          [namesDisabled]="mapZoom < 10"
+          [speedsDisabled]="mapZoom < 10"
+          [forecastsDisabled]="mapZoom < 10"
+        ></map-layer-filter>
+      </div>
+    }
   </div>
-  <div class="panel map-locations-panel" *ngIf="activePanel[0] === 'map-locations' && mapSettings && map">
-    <h3 i18n>Map positions</h3>
-    <map-locations-panel
-      [centerMapOnPosition]="centerMapOnPosition"
-      [mapLocations]="mapSettings.mapLocations"
-      [saveMapLocation]="saveMapLocation"
-      [deleteMapLocation]="deleteMapLocation"
-    ></map-locations-panel>
-  </div>
-  <div class="panel map-layers-panel" *ngIf="activePanel[0] === 'map-layers'">
-    <h3 i18n>Map layers</h3>
-    <map-layers-panel
-      [activeMapLayers]="activeMapLayers$ | async"
-      [mapLayers]="mapLayers$ | async"
-      [cascadedLayers]="cascadedLayers$ | async"
-      [addActiveLayerFunction]="addActiveLayer"
-      [removeActiveLayerFunction]="removeActiveLayer"
-    ></map-layers-panel>
-  </div>
-  <div class="panel map-distance-between-points-panel" *ngIf="activePanel[0] === 'distance-between-points'">
-    <h3 i18n>Messure distance</h3>
-    <map-distance-between-points-panel
-      [clearMessurements]="clearMessurements"
-    ></map-distance-between-points-panel>
-  </div>
-  <div class="panel map-layer-filter-panel" *ngIf="activePanel[0] === 'asset-layers'">
-    <h3 i18n>Asset features on map</h3>
-    <map-layer-filter
-      [mapSettings]="mapSettings"
-      [setVisibilityForAssetNames]="setVisibilityForAssetNames"
-      [setVisibilityForAssetSpeeds]="setVisibilityForAssetSpeeds"
-      [setVisibilityForFlags]="setVisibilityForFlags"
-      [setVisibilityForTracks]="setVisibilityForTracks"
-      [setVisibilityForForecast]="setVisibilityForForecast"
-      [flagsDisabled]="mapZoom < 10"
-      [tracksDisabled]="false"
-      [namesDisabled]="mapZoom < 10"
-      [speedsDisabled]="mapZoom < 10"
-      [forecastsDisabled]="mapZoom < 10"
-    ></map-layer-filter>
-  </div>
-</div>

@@ -24,22 +24,27 @@
 </div>
 
 <ng-template #toolbox>
-  <div class="toolbox-wrapper" *ngIf="currentTab === 0">
-    <div class="toolbox">
-      <ng-container *ngIf="currentMobileTerminal !== undefined">
-        <div class="active-toggle-wrapper">
-          <mat-slide-toggle
-            color="accent"
-            [checked]="currentMobileTerminal && currentMobileTerminal.active"
-            [disabled]="activeToggleDisabled()"
-            (change)="toggleActive($event)"
-          >
-            <b *ngIf="currentMobileTerminal.active" class="active-mobile-terminal">Terminal is active</b>
-            <b *ngIf="!currentMobileTerminal.active" class="deactive-mobile-terminal">Terminal is inactive</b>
-          </mat-slide-toggle>
-        </div>
-        <ng-container *ngIf="currentMobileTerminal && currentMobileTerminal.active">
-          <!-- <div
+  @if (currentTab === 0) {
+    <div class="toolbox-wrapper">
+      <div class="toolbox">
+        @if (currentMobileTerminal !== undefined) {
+          <div class="active-toggle-wrapper">
+            <mat-slide-toggle
+              color="accent"
+              [checked]="currentMobileTerminal && currentMobileTerminal.active"
+              [disabled]="activeToggleDisabled()"
+              (change)="toggleActive($event)"
+              >
+              @if (currentMobileTerminal.active) {
+                <b class="active-mobile-terminal">Terminal is active</b>
+              }
+              @if (!currentMobileTerminal.active) {
+                <b class="deactive-mobile-terminal">Terminal is inactive</b>
+              }
+            </mat-slide-toggle>
+          </div>
+          @if (currentMobileTerminal && currentMobileTerminal.active) {
+            <!-- <div
             class="active-mobile-terminal"
             i18n
           >Terminal active</div> -->
@@ -50,58 +55,58 @@
             [disabled]="true"
             i18n
           >Inactivate before detaching</button>
-        </ng-container>
-        <ng-container *ngIf="currentMobileTerminal && !currentMobileTerminal.active">
+        }
+        @if (currentMobileTerminal && !currentMobileTerminal.active) {
           <!-- <div
-            class="deactive-mobile-terminal"
-            i18n
-            >Terminal inactive</div> -->
-          <button
-            mat-stroked-button
-            color="warn"
-            type="button"
-            (click)="openDetachDialog(detachDialog)"
-            i18n
-            id="mobile-terminal-show--detach-button"
-          >Detach</button>
-          <ng-template #detachDialog>
-            <h1 mat-dialog-title i18n>Warning!</h1>
-            <div mat-dialog-content>
-              <div class="ingress">
-                <p i18n>You are about to detach a mobile terminal from this asset.</p>
-                <p i18n>Are you sure you want to continue?</p>
-              </div>
-            </div>
-            <div mat-dialog-actions align="center">
-              <button mat-stroked-button matDialogClose cdkFocusInitial color="primary" i18n>Cancel</button>
-              <button mat-raised-button [mat-dialog-close]="true" color="warn" i18n>Detach</button>
-            </div>
-          </ng-template>
-          <button
-            mat-stroked-button
-            color="warn"
-            type="button"
-            (click)="openArchiveDialog(archiveDialog)"
-            i18n
-            id="mobile-terminal-show--archive-button"
-          >Archive</button>
-          <ng-template #archiveDialog>
-            <h1 mat-dialog-title i18n>Warning!</h1>
-            <div mat-dialog-content>
-              <div class="ingress">
-                <p i18n>You are about to archive this mobile terminal.</p>
-                <p i18n>This action will also detach the mobile terminal.</p>
-                <p i18n>Are you sure you want to continue?</p>
-              </div>
-            </div>
-            <div mat-dialog-actions align="center">
-              <button mat-stroked-button matDialogClose cdkFocusInitial color="primary" i18n>Cancel</button>
-              <button mat-raised-button [mat-dialog-close]="true" color="warn" i18n>Archive</button>
-            </div>
-          </ng-template>
-        </ng-container>
+          class="deactive-mobile-terminal"
+          i18n
+        >Terminal inactive</div> -->
         <button
-          *ngIf="currentMobileTerminal"
+          mat-stroked-button
+          color="warn"
+          type="button"
+          (click)="openDetachDialog(detachDialog)"
+          i18n
+          id="mobile-terminal-show--detach-button"
+        >Detach</button>
+        <ng-template #detachDialog>
+          <h1 mat-dialog-title i18n>Warning!</h1>
+          <div mat-dialog-content>
+            <div class="ingress">
+              <p i18n>You are about to detach a mobile terminal from this asset.</p>
+              <p i18n>Are you sure you want to continue?</p>
+            </div>
+          </div>
+          <div mat-dialog-actions align="center">
+            <button mat-stroked-button matDialogClose cdkFocusInitial color="primary" i18n>Cancel</button>
+            <button mat-raised-button [mat-dialog-close]="true" color="warn" i18n>Detach</button>
+          </div>
+        </ng-template>
+        <button
+          mat-stroked-button
+          color="warn"
+          type="button"
+          (click)="openArchiveDialog(archiveDialog)"
+          i18n
+          id="mobile-terminal-show--archive-button"
+        >Archive</button>
+        <ng-template #archiveDialog>
+          <h1 mat-dialog-title i18n>Warning!</h1>
+          <div mat-dialog-content>
+            <div class="ingress">
+              <p i18n>You are about to archive this mobile terminal.</p>
+              <p i18n>This action will also detach the mobile terminal.</p>
+              <p i18n>Are you sure you want to continue?</p>
+            </div>
+          </div>
+          <div mat-dialog-actions align="center">
+            <button mat-stroked-button matDialogClose cdkFocusInitial color="primary" i18n>Cancel</button>
+            <button mat-raised-button [mat-dialog-close]="true" color="warn" i18n>Archive</button>
+          </div>
+        </ng-template>
+      }
+      @if (currentMobileTerminal) {
+        <button
           id="mobile-terminal-show--edit"
           routerLink="/asset/{{currentMobileTerminal.assetId}}/mobileTerminal/{{currentMobileTerminal.id}}/edit"
           mat-raised-button
@@ -109,10 +114,11 @@
           type="button"
           i18n
         >Edit</button>
-        <div class="divider"></div>
-      </ng-container>
+      }
+      <div class="divider"></div>
+    }
+    @if (selectedAsset && selectedAsset.id) {
       <button
-        *ngIf="selectedAsset && selectedAsset.id"
         mat-raised-button
         color="accent"
         type="button"
@@ -120,6 +126,8 @@
         id="mobile-terminal-show--attach"
         i18n
       >Attach</button>
-    </div>
+    }
   </div>
+</div>
+}
 </ng-template>

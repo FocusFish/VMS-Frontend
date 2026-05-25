@@ -28,7 +28,7 @@
         <span class="text" i18n>Mobile terminals</span>
       </li>
       <li class="divider"></li>
-      <ng-container *ngIf="selectedMobileTerminal">
+      @if (selectedMobileTerminal) {
         <li class="title">Details {{ selectedMobileTerminal.serialNo }}</li>
         <li routerLink="/mobileTerminal/{{selectedMobileTerminal.id}}" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <span class="short-key">1</span>
@@ -46,8 +46,8 @@
           <span class="short-key">4</span>
           <span class="text" i18n>Terminal history</span>
         </li>
-      </ng-container>
-      <ng-container *ngIf="!selectedMobileTerminal">
+      }
+      @if (!selectedMobileTerminal) {
         <li class="title deactivated">Details</li>
         <li class="deactivated">
           <span class="short-key">1</span>
@@ -65,7 +65,7 @@
           <span class="short-key">4</span>
           <span class="text" i18n>Terminal history</span>
         </li>
-      </ng-container>
+      }
     </ul>
   </div>
 

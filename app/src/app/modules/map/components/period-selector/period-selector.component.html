@@ -6,7 +6,9 @@
         <mat-form-field id="period-selector-form--periodLength">
           <mat-label i18n>Period length</mat-label>
           <mat-select formControlName="periodLength" required>
-            <mat-option *ngFor="let period of periods" id="mat-option-plugin-{{period.value}}" [value]="period.value">{{period.label}}</mat-option>
+            @for (period of periods; track period) {
+              <mat-option id="mat-option-plugin-{{period.value}}" [value]="period.value">{{period.label}}</mat-option>
+            }
           </mat-select>
         </mat-form-field>
 
