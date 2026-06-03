@@ -16,19 +16,20 @@
         [matAutocomplete]="auto"
         (blur)="setActiveInformationPanel(null)"
         (focus)="setActiveInformationPanel('asset-search')"
-      />
-    </mat-form-field>
-    <mat-autocomplete
-      #auto="matAutocomplete"
-      (optionSelected)="optionSelected($event)"
-    >
-      <mat-option
-        *ngFor="let option of searchResults"
-        [value]="option.value"
-        data-id="{{ option.id }}"
-      >
-        {{ option.value }}
-      </mat-option>
-    </mat-autocomplete>
+        />
+      </mat-form-field>
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="optionSelected($event)"
+        >
+        @for (option of searchResults; track option) {
+          <mat-option
+            [value]="option.value"
+            data-id="{{ option.id }}"
+            >
+            {{ option.value }}
+          </mat-option>
+        }
+      </mat-autocomplete>
+    </div>
   </div>
-</div>

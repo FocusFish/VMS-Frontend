@@ -1,107 +1,136 @@
 <div class="content-container">
   <div header class="header">
-    <img
-      *ngIf="asset.asset.flagStateCode !== '???' && asset.asset.flagStateCode !== undefined && getCountryCode() !== '???'"
-      class="flag-image"
-      src="/assets/flags/4x3/{{getCountryCode()}}.svg"
-      [alt]="getCountryCode()"
-    />
+    @if (asset.asset.flagStateCode !== '???' && asset.asset.flagStateCode !== undefined && getCountryCode() !== '???') {
+      <img
+        class="flag-image"
+        src="/assets/flags/4x3/{{getCountryCode()}}.svg"
+        [alt]="getCountryCode()"
+        />
+    }
     <span>{{ (asset.asset.name !== undefined ? asset.asset.name  : '') +
-        (asset.asset.name !== undefined && asset.asset.externalMarking !== undefined ? ' — '  : '') +
-       (asset.asset.externalMarking !== undefined ? asset.asset.externalMarking : '') }}</span>
+      (asset.asset.name !== undefined && asset.asset.externalMarking !== undefined ? ' — '  : '') +
+    (asset.asset.externalMarking !== undefined ? asset.asset.externalMarking : '') }}</span>
   </div>
   <div body class="body">
     <div class="information-wrapper">
       <div class="asset-information">
-        <ng-container *ngIf="asset.asset.ircs">
+        @if (asset.asset.ircs) {
           <legend i18n>Ircs:</legend>
           <div>{{asset.asset.ircs}}</div>
-        </ng-container>
-        <ng-container *ngIf="asset.asset.vesselType">
+        }
+        @if (asset.asset.vesselType) {
           <legend i18n>Vessel type:</legend>
           <div>{{asset.asset.vesselType}}</div>
-        </ng-container>
+        }
 
-        <div class="asset-information--last-position" *ngIf="selectedAssetsLastPositions !== undefined && selectedAssetsLastPositions.ais !== undefined">
-          <h3>Last AIS position ({{ getAisClass() }})</h3>
-          <div class="asset-information--last-position--content">
-            <div class="time-and-source">
-              <div class="time">{{ formatDate(selectedAssetsLastPositions.ais.timestamp) }}</div>
-              <div class="source">
-                <span *ngIf="selectedAssetsLastPositions.ais.aisPositionAccuracy === 1" i18n>High accuracy</span>
-                <span *ngIf="selectedAssetsLastPositions.ais.aisPositionAccuracy === 0" i18n>Low accuracy</span>
+        @if (selectedAssetsLastPositions !== undefined && selectedAssetsLastPositions.ais !== undefined) {
+          <div class="asset-information--last-position">
+            <h3>Last AIS position ({{ getAisClass() }})</h3>
+            <div class="asset-information--last-position--content">
+              <div class="time-and-source">
+                <div class="time">{{ formatDate(selectedAssetsLastPositions.ais.timestamp) }}</div>
+                <div class="source">
+                  @if (selectedAssetsLastPositions.ais.aisPositionAccuracy === 1) {
+                    <span i18n>High accuracy</span>
+                  }
+                  @if (selectedAssetsLastPositions.ais.aisPositionAccuracy === 0) {
+                    <span i18n>Low accuracy</span>
+                  }
+                </div>
               </div>
-            </div>
-            <div class="position-fields">
-              <label i18n>Speed:</label>
-              <div  *ngIf="selectedAssetsLastPositions.ais.speed">{{selectedAssetsLastPositions.ais.speed.toFixed(2)}} <span i18n="Knots SI symbol">kn</span></div>
-              <div  *ngIf="!selectedAssetsLastPositions.ais.speed">N/A <span i18n="Knots SI symbol">kn</span></div>
-              <label i18n>Heading:</label>
-              <div *ngIf="selectedAssetsLastPositions.ais.heading">{{selectedAssetsLastPositions.ais.heading.toFixed(2)}}°</div>
-              <div *ngIf="!selectedAssetsLastPositions.ais.heading">N/A <span i18n="Knots SI symbol">kn</span></div>
-              <label i18n>Position:</label>
-              <div>
-                <div (click)="goToPosition(selectedAssetsLastPositions.ais.location)">{{ formatLocation(selectedAssetsLastPositions.ais.location) }}</div>
+              <div class="position-fields">
+                <label i18n>Speed:</label>
+                @if (selectedAssetsLastPositions.ais.speed) {
+                  <div >{{selectedAssetsLastPositions.ais.speed.toFixed(2)}} <span i18n="Knots SI symbol">kn</span></div>
+                }
+                @if (!selectedAssetsLastPositions.ais.speed) {
+                  <div >N/A <span i18n="Knots SI symbol">kn</span></div>
+                }
+                <label i18n>Heading:</label>
+                @if (selectedAssetsLastPositions.ais.heading) {
+                  <div>{{selectedAssetsLastPositions.ais.heading.toFixed(2)}}°</div>
+                }
+                @if (!selectedAssetsLastPositions.ais.heading) {
+                  <div>N/A <span i18n="Knots SI symbol">kn</span></div>
+                }
+                <label i18n>Position:</label>
+                <div>
+                  <div (click)="goToPosition(selectedAssetsLastPositions.ais.location)">{{ formatLocation(selectedAssetsLastPositions.ais.location) }}</div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        }
 
-        <div class="asset-information--last-position" *ngIf="selectedAssetsLastPositions !== undefined && selectedAssetsLastPositions.vms !== undefined">
-          <h3>Last VMS position ({{ selectedAssetsLastPositions.vms.source }})</h3>
-          <div class="asset-information--last-position--content">
-            <div class="time-and-source">
-              <div class="time">{{ formatDate(selectedAssetsLastPositions.vms.timestamp) }}</div>
-              <div class="source">
-                <span *ngIf="selectedAssetsLastPositions.vms.sourceSatelliteId !== undefined">
-                  {{ translateOceanRegion(selectedAssetsLastPositions.vms.sourceSatelliteId) }}
-                </span>
+        @if (selectedAssetsLastPositions !== undefined && selectedAssetsLastPositions.vms !== undefined) {
+          <div class="asset-information--last-position">
+            <h3>Last VMS position ({{ selectedAssetsLastPositions.vms.source }})</h3>
+            <div class="asset-information--last-position--content">
+              <div class="time-and-source">
+                <div class="time">{{ formatDate(selectedAssetsLastPositions.vms.timestamp) }}</div>
+                <div class="source">
+                  @if (selectedAssetsLastPositions.vms.sourceSatelliteId !== undefined) {
+                    <span>
+                      {{ translateOceanRegion(selectedAssetsLastPositions.vms.sourceSatelliteId) }}
+                    </span>
+                  }
+                </div>
               </div>
-            </div>
-            <div class="position-fields">
-              <label i18n>Speed:</label>
-              <div>{{selectedAssetsLastPositions.vms.speed.toFixed(2)}} <span i18n="Knots SI symbol">kn</span></div>
-              <label i18n>Heading:</label>
-              <div>{{selectedAssetsLastPositions.vms.heading.toFixed(2)}}°</div>
-              <label i18n>Position:</label>
-              <div>
-                <div (click)="goToPosition(selectedAssetsLastPositions.vms.location)">{{ formatLocation(selectedAssetsLastPositions.vms.location) }}</div>
+              <div class="position-fields">
+                <label i18n>Speed:</label>
+                <div>{{selectedAssetsLastPositions.vms.speed.toFixed(2)}} <span i18n="Knots SI symbol">kn</span></div>
+                <label i18n>Heading:</label>
+                <div>{{selectedAssetsLastPositions.vms.heading.toFixed(2)}}°</div>
+                <label i18n>Position:</label>
+                <div>
+                  <div (click)="goToPosition(selectedAssetsLastPositions.vms.location)">{{ formatLocation(selectedAssetsLastPositions.vms.location) }}</div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        }
 
-        <div class="asset-information--activity" *ngIf="selectedAssetsLastActivity !== undefined">
-          <h3 i18n>Last Activity</h3>
-          <div class="asset-information--activity--content">
-            <div class="activity-type">
-              {{ selectedAssetsLastActivity.activityType.replace('_', ' ') | titlecase }} ({{ selectedAssetsLastActivity.FAReportType.replace('_', ' ') | titlecase }})
-            </div>
-            <div>{{ formatDate(selectedAssetsLastActivity.startDate) }}</div>
-            <div class="activity-fields" *ngFor="let port of selectedAssetsLastActivity.port">
-              <label i18n>Port:</label>
-              <div>{{ port }}</div>
-            </div>
-            <div class="activity-fields" *ngFor="let gear of selectedAssetsLastActivity.fishingGears">
-              <label i18n>Gear ({{ gear.gearRoleCode | titlecase }}):</label>
-              <div>{{ gear.gearTypeCode }}</div>
-            </div>
-            <div class="activity-fields" *ngFor="let activity of selectedAssetsLastActivity.relatedActivities">
-              <label>{{ activity.activityType.replace('_', ' ') | titlecase }}:</label>
-              <div>{{ formatDate(activity.occurence) }}</div>
-            </div>
-            <div class="activity-fields" *ngFor="let species of selectedAssetsLastActivity.species">
-              <label i18n>Species: ({{ species.typeCode | titlecase }}):</label>
-              <div>{{ species.code }} ({{ species.sizeClass }})</div>
-              <label i18n>Weight: ({{ species.weightMeans | titlecase }}):</label>
-              <div>{{ species.weight }}</div>
+        @if (selectedAssetsLastActivity !== undefined) {
+          <div class="asset-information--activity">
+            <h3 i18n>Last Activity</h3>
+            <div class="asset-information--activity--content">
+              <div class="activity-type">
+                {{ selectedAssetsLastActivity.activityType.replace('_', ' ') | titlecase }} ({{ selectedAssetsLastActivity.FAReportType.replace('_', ' ') | titlecase }})
+              </div>
+              <div>{{ formatDate(selectedAssetsLastActivity.startDate) }}</div>
+              @for (port of selectedAssetsLastActivity.port; track port) {
+                <div class="activity-fields">
+                  <label i18n>Port:</label>
+                  <div>{{ port }}</div>
+                </div>
+              }
+              @for (gear of selectedAssetsLastActivity.fishingGears; track gear) {
+                <div class="activity-fields">
+                  <label i18n>Gear ({{ gear.gearRoleCode | titlecase }}):</label>
+                  <div>{{ gear.gearTypeCode }}</div>
+                </div>
+              }
+              @for (activity of selectedAssetsLastActivity.relatedActivities; track activity) {
+                <div class="activity-fields">
+                  <label>{{ activity.activityType.replace('_', ' ') | titlecase }}:</label>
+                  <div>{{ formatDate(activity.occurence) }}</div>
+                </div>
+              }
+              @for (species of selectedAssetsLastActivity.species; track species) {
+                <div class="activity-fields">
+                  <label i18n>Species: ({{ species.typeCode | titlecase }}):</label>
+                  <div>{{ species.code }} ({{ species.sizeClass }})</div>
+                  <label i18n>Weight: ({{ species.weightMeans | titlecase }}):</label>
+                  <div>{{ species.weight }}</div>
+                </div>
+              }
             </div>
           </div>
-        </div>
+        }
 
         <div class="asset-information--other-fields">
           <h3>Other:</h3>
-          <ng-container *ngIf="asset.asset.mmsi">
+          @if (asset.asset.mmsi) {
             <legend i18n>Mmsi:</legend>
             <div>
               <a
@@ -109,31 +138,31 @@
                 target="_blank"
               >{{asset.asset.mmsi}}</a>
             </div>
-          </ng-container>
-          <ng-container *ngIf="asset.asset.flagStateCode">
+          }
+          @if (asset.asset.flagStateCode) {
             <legend i18n>Flagstate:</legend>
             <div>{{asset.asset.flagStateCode}}</div>
-          </ng-container>
-          <ng-container *ngIf="asset.asset.externalMarking">
+          }
+          @if (asset.asset.externalMarking) {
             <legend i18n>External marking:</legend>
             <div>{{asset.asset.externalMarking}}</div>
-          </ng-container>
-          <ng-container *ngIf="asset.asset.lengthOverAll">
+          }
+          @if (asset.asset.lengthOverAll) {
             <legend i18n>Length:</legend>
             <div>{{asset.asset.lengthOverAll}} <span i18n="Meter SI symbol">m</span></div>
-          </ng-container>
-          <ng-container *ngIf="asset.asset.licenceType">
+          }
+          @if (asset.asset.licenceType) {
             <legend i18n>LicenceType:</legend>
             <div>{{asset.asset.licenceType}}</div>
-          </ng-container>
-          <ng-container *ngIf="asset.asset.prodOrgCode">
+          }
+          @if (asset.asset.prodOrgCode) {
             <legend i18n>Org. Nr:</legend>
             <div>{{asset.asset.prodOrgCode}}</div>
-          </ng-container>
-          <ng-container *ngIf="asset.asset.prodOrgName">
+          }
+          @if (asset.asset.prodOrgName) {
             <legend i18n>Org. namn:</legend>
             <div>{{asset.asset.prodOrgName}}</div>
-          </ng-container>
+          }
         </div>
 
         <div class="button-wrapper">
@@ -175,7 +204,7 @@
       (click)="getLicenceForAsset(asset.asset.id); setActiveRightPanel(['showAsset', 'licenceInformation'])"
       color="primary"
       class="map-panel-button"
-    >
+      >
       <ng-container i18n>License</ng-container>
       <i class="ri-arrow-drop-right-fill"></i>
     </button>
@@ -184,7 +213,7 @@
       (click)="setActiveRightPanel(['showAsset', 'managePolling'])"
       color="primary"
       class="map-panel-button"
-    >
+      >
       <ng-container i18n>Manage polling</ng-container>
       <i class="ri-arrow-drop-right-fill"></i>
     </button>
@@ -193,7 +222,7 @@
       (click)="setActiveRightPanel(['showAsset', 'positions'])"
       color="primary"
       class="map-panel-button"
-    >
+      >
       <ng-container i18n>Positions</ng-container>
       <i class="ri-arrow-drop-right-fill"></i>
     </button>
@@ -202,7 +231,7 @@
       (click)="getIncidentsForAssetId(asset.asset.id); setActiveRightPanel(['showAsset', 'incidentList'])"
       color="primary"
       class="map-panel-button"
-    >
+      >
       <ng-container i18n>Incidents</ng-container>
       <i class="ri-arrow-drop-right-fill"></i>
     </button>

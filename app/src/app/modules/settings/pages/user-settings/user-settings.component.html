@@ -1,6 +1,6 @@
 <h1 i18n>Settings</h1>
 
-<ng-container *ngIf="isFormReady">
+@if (isFormReady) {
   <form class="mobile-terminal-edit-form" [formGroup]="formValidator">
     <fieldset formGroupName="mapSettings" class="map-settings">
       <legend i18n>Map default settings</legend>
@@ -11,25 +11,23 @@
         <mat-slide-toggle formControlName="speedsVisible" color="primary" i18n>Show speeds</mat-slide-toggle>
         <mat-slide-toggle formControlName="forecastsVisible" color="primary" i18n>Show forecasts</mat-slide-toggle>
       </div>
-
       <fieldset formGroupName="mapStartPosition">
         <legend i18n>Map start position</legend>
         <mat-form-field>
           <input matInput type="number" placeholder="Start zoom level" i18n-placeholder formControlName="startZoomLevel" required>
-          <mat-error *ngFor="let error of getErrors(['mapSettings', 'mapStartPosition', 'startZoomLevel'])">{{ errorMessage(error) }}</mat-error>
+          @for (error of getErrors(['mapSettings', 'mapStartPosition', 'startZoomLevel']); track error) {
+            <mat-error>{{ errorMessage(error) }}</mat-error>
+          }
         </mat-form-field>
-
         <div class="map-starting-positions">
           <mat-form-field>
             <input matInput placeholder="Start latitude" i18n-placeholder formControlName="latitude" required>
           </mat-form-field>
-
           <mat-form-field>
             <input matInput placeholder="Start longitude" i18n-placeholder formControlName="longitude" required>
           </mat-form-field>
         </div>
       </fieldset>
-
       <fieldset formGroupName="mapLimits">
         <legend i18n>Tracks and forecasts</legend>
         <div class="map-limits">
@@ -47,7 +45,6 @@
           </mat-form-field>
         </div>
       </fieldset>
-
       <label i18n>Choose ship color logic:</label>
       <mat-radio-group
         aria-labelledby="map-asset-colors"
@@ -58,7 +55,6 @@
         <mat-radio-button class="map-asset-color-button" value="flagstate" i18n>Flagstate</mat-radio-button>
         <mat-radio-button class="map-asset-color-button" value="length" i18n>Size (length)</mat-radio-button>
       </mat-radio-group>
-
       <mat-form-field>
         <legend i18n>Unit of distance</legend>
         <mat-select formControlName="unitOfDistance">
@@ -66,21 +62,16 @@
           <mat-option value="nautical" i18n>Nautical mile</mat-option>
         </mat-select>
       </mat-form-field>
-
       <mat-slide-toggle formControlName="autoHelp" color="primary" i18n>Automatically show help when using certain filter & search tools</mat-slide-toggle>
     </fieldset>
-
-
     <fieldset formGroupName="userSettings" class="user-settings">
       <legend i18n>Test the latest and greatest</legend>
       <div class="experimental-features-warning" i18n>Warning: these features might not work as expected and will probably have more bugs.</div>
       <mat-slide-toggle formControlName="experimentalFeaturesEnabled" color="primary" i18n>Enable experimental features</mat-slide-toggle>
     </fieldset>
-
-
     <fieldset class="button-block">
       <button mat-raised-button [disabled]="!formValidator.valid" color="primary" type="button" (click)="save()" i18n>Save settings</button>
       <button mat-stroked-button color="warn" type="button" (click)="resetToDefault()" i18n>Reset to default</button>
     </fieldset>
   </form>
-</ng-container>
+}

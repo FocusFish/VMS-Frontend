@@ -2,7 +2,9 @@
   <mat-form-field id="manual-poll-form--comment">
     <mat-label>Comment/Reason</mat-label>
     <textarea matInput formControlName="comment" required></textarea>
-    <mat-error *ngFor="let error of getErrors(['comment'])">{{ errorMessage(error) }}</mat-error>
+    @for (error of getErrors(['comment']); track error) {
+      <mat-error>{{ errorMessage(error) }}</mat-error>
+    }
   </mat-form-field>
 
   <button

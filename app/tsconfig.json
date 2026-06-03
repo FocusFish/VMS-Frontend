@@ -7,7 +7,7 @@
     "esModuleInterop": true,
     "declaration": false,
     "module": "es2015",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
@@ -19,9 +19,10 @@
       "@validators/*": ["src/app/helpers/validators"]
     },
     "typeRoots": ["node_modules/@types"],
-    "lib": ["es2022", "dom"],
     "resolveJsonModule": true,
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    // exceptions
+    "strictPropertyInitialization": false
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

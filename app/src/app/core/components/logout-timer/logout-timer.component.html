@@ -1,3 +1,5 @@
-<div class="logout-time-left" *ngIf="showLogoutTimer" matRipple>
-  <ng-container i18n>Logout timer</ng-container>: {{ timeToLogoutFormatted }} min
-</div>
+@if (showLogoutTimer) {
+  <div class="logout-time-left" matRipple>
+    <ng-container i18n>Logout timer</ng-container>: {{ timeToLogoutFormatted }} min
+  </div>
+}

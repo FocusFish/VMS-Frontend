@@ -1,38 +1,51 @@
-<ul
-  class="notifications {{addConditionalClasses()}}"
-  *ngIf="notificationsVisible"
->
-  <li *ngFor="let notification of notifications.success" [@dropAndFadeAnimation]="'in'" class="alert alert-success">
-    <span [innerHTML]="notification.notification" ngPreserveWhitespaces></span>
-    <div class="end-section">
-      <div class="coundown-wrapper" *ngIf="notification.autoDismissInMs !== undefined">
-        <ui-countdown-circle diameter="30" [seconds]="notification.autoDismissInMs / 1000" color="accent"></ui-countdown-circle>
-      </div>
-      <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="dismiss('success', notification.id)" i18n>
+@if (notificationsVisible) {
+  <ul
+    class="notifications {{addConditionalClasses()}}"
+    >
+    @for (notification of notifications.success; track notification) {
+      <li [@dropAndFadeAnimation]="'in'" class="alert alert-success">
+        <span [innerHTML]="notification.notification" ngPreserveWhitespaces></span>
+        <div class="end-section">
+          @if (notification.autoDismissInMs !== undefined) {
+            <div class="coundown-wrapper">
+              <ui-countdown-circle diameter="30" [seconds]="notification.autoDismissInMs / 1000" color="accent"></ui-countdown-circle>
+            </div>
+          }
+          <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="dismiss('success', notification.id)" i18n>
         Dismiss
       </button>
-    </div>
-  </li>
-  <li *ngFor="let notification of notifications.notices" [@dropAndFadeAnimation]="'in'" class="alert alert-notice">
-    <span [innerHTML]="notification.notification" ngPreserveWhitespaces></span>
-    <div class="end-section">
-      <div class="coundown-wrapper" *ngIf="notification.autoDismissInMs !== undefined">
-        <ui-countdown-circle diameter="30" [seconds]="notification.autoDismissInMs / 1000" color="primary"></ui-countdown-circle>
-      </div>
-      <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="dismiss('notices', notification.id)" i18n>
+        </div>
+      </li>
+    }
+    @for (notification of notifications.notices; track notification) {
+      <li [@dropAndFadeAnimation]="'in'" class="alert alert-notice">
+        <span [innerHTML]="notification.notification" ngPreserveWhitespaces></span>
+        <div class="end-section">
+          @if (notification.autoDismissInMs !== undefined) {
+            <div class="coundown-wrapper">
+              <ui-countdown-circle diameter="30" [seconds]="notification.autoDismissInMs / 1000" color="primary"></ui-countdown-circle>
+            </div>
+          }
+          <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="dismiss('notices', notification.id)" i18n>
         Dismiss
       </button>
-    </div>
-  </li>
-  <li *ngFor="let notification of notifications.errors" [@dropAndFadeAnimation]="'in'" class="alert alert-error">
-    <span [innerHTML]="notification.notification" ngPreserveWhitespaces></span>
-    <div class="end-section">
-      <div class="coundown-wrapper" *ngIf="notification.autoDismissInMs !== undefined">
-        <ui-countdown-circle diameter="30" [seconds]="notification.autoDismissInMs / 1000" color="warn"></ui-countdown-circle>
-      </div>
-      <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="dismiss('errors', notification.id)" i18n>
+        </div>
+      </li>
+    }
+    @for (notification of notifications.errors; track notification) {
+      <li [@dropAndFadeAnimation]="'in'" class="alert alert-error">
+        <span [innerHTML]="notification.notification" ngPreserveWhitespaces></span>
+        <div class="end-section">
+          @if (notification.autoDismissInMs !== undefined) {
+            <div class="coundown-wrapper">
+              <ui-countdown-circle diameter="30" [seconds]="notification.autoDismissInMs / 1000" color="warn"></ui-countdown-circle>
+            </div>
+          }
+          <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="dismiss('errors', notification.id)" i18n>
         Dismiss
       </button>
-    </div>
-  </li>
-</ul>
+        </div>
+      </li>
+    }
+  </ul>
+}

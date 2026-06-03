@@ -3,15 +3,21 @@
     animationDuration="0ms"
     [selectedIndex]="selectedTabIndex"
     (selectedIndexChange)="changeTab($event)"
-  >
+    >
     <mat-tab label="Full log">
-      <map-incident-log *ngIf="incidentLog" [incidentLog]="incidentLog" [userTimezone]="userTimezone"></map-incident-log>
+      @if (incidentLog) {
+        <map-incident-log [incidentLog]="incidentLog" [userTimezone]="userTimezone"></map-incident-log>
+      }
     </mat-tab>
     <mat-tab label="Status change log">
-      <map-incident-log *ngIf="incidentLog" [incidentLog]="incidentStatusLog" [userTimezone]="userTimezone"></map-incident-log>
+      @if (incidentLog) {
+        <map-incident-log [incidentLog]="incidentStatusLog" [userTimezone]="userTimezone"></map-incident-log>
+      }
     </mat-tab>
     <mat-tab label="Manual position log">
-      <map-incident-log *ngIf="incidentLog" [incidentLog]="incidentManualPositionLog" [userTimezone]="userTimezone"></map-incident-log>
+      @if (incidentLog) {
+        <map-incident-log [incidentLog]="incidentManualPositionLog" [userTimezone]="userTimezone"></map-incident-log>
+      }
     </mat-tab>
   </mat-tab-group>
 </div>

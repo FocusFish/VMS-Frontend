@@ -3,3 +3,8 @@
 .positions-container {
   display: grid;
 }
+
+.mdc-data-table__cell,
+.mdc-data-table__header-cell {
+  padding: 0 7px !important;
+}

@@ -5,21 +5,38 @@
     <a class="navbar-brand" routerLink="/">
       <i class="brand-image"></i>
     </a>
-    <div class="app-version">v {{appVersion}}</div>
+    <div class="app-version">v {{ appVersion }}</div>
   </div>
   <!-- Links -->
   <ul class="navbar-nav">
-    <li class="nav-item{{ assetTabActive ? ' active' : '' }}" routerLinkActive="active">
+    <li
+      class="nav-item{{ assetTabActive ? ' active' : '' }}"
+      routerLinkActive="active"
+    >
       <a class="nav-link waves-light" routerLink="/asset" i18n>Assets</a>
     </li>
     <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link waves-light" routerLink="/map/realtime" routerLinkActive="active" i18n>Realtime map</a>
+      <a
+        class="nav-link waves-light"
+        routerLink="/map/realtime"
+        routerLinkActive="active"
+        i18n
+        >Realtime map</a
+      >
     </li>
     <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link waves-light" routerLink="/map/reports" routerLinkActive="active" i18n>Reports map</a>
+      <a
+        class="nav-link waves-light"
+        routerLink="/map/reports"
+        routerLinkActive="active"
+        i18n
+        >Reports map</a
+      >
     </li>
-    <li class="nav-item"  routerLinkActive="active">
-      <a class="nav-link waves-light" routerLink="/settings/user" i18n>My Settings</a>
+    <li class="nav-item" routerLinkActive="active">
+      <a class="nav-link waves-light" routerLink="/settings/user" i18n
+        >My Settings</a
+      >
     </li>
   </ul>
   <core-logout-timer-component
@@ -27,29 +44,56 @@
   ></core-logout-timer-component>
   <!-- Links -->
   <ul class="navbar-nav right-bar">
-    <li><span class="current-time">{{currentTime}}</span></li>
+    <li>
+      <span class="current-time">{{ currentTime }}</span>
+    </li>
     <li class="nav-item">
-      <fieldset *ngIf="currentTimezone" class="timezone-selector">
-        <mat-select [(value)]="currentTimezone" (selectionChange)="setTimezone($event.value)">
-          <mat-optgroup label="Common timezones">
-            <mat-option *ngFor="let timezoneName of commonTimezones" id="mat-option--timezone-{{timezoneName.replace('/', '-')}}" value="{{timezoneName}}">{{timezoneName}}</mat-option>
-          </mat-optgroup>
-          <mat-optgroup label="Other timezones">
-            <mat-option *ngFor="let timezoneName of timezones" id="mat-option--timezone-{{timezoneName.replace('/', '-')}}" value="{{timezoneName}}">{{timezoneName}}</mat-option>
-          </mat-optgroup>
-        </mat-select>
-      </fieldset>
+      @if (currentTimezone) {
+        <fieldset class="timezone-selector">
+          <mat-select
+            [(value)]="currentTimezone"
+            (selectionChange)="setTimezone($event.value)"
+          >
+            <mat-optgroup label="Common timezones">
+              @for (timezoneName of commonTimezones; track timezoneName) {
+                <mat-option
+                  id="mat-option--timezone-{{ timezoneName.replace('/', '-') }}"
+                  value="{{ timezoneName }}"
+                  >{{ timezoneName }}</mat-option
+                >
+              }
+            </mat-optgroup>
+            <mat-optgroup label="Other timezones">
+              @for (timezoneName of timezones; track timezoneName) {
+                <mat-option
+                  id="mat-option--timezone-{{ timezoneName.replace('/', '-') }}"
+                  value="{{ timezoneName }}"
+                  >{{ timezoneName }}</mat-option
+                >
+              }
+            </mat-optgroup>
+          </mat-select>
+        </fieldset>
+      }
     </li>
     <li class="nav-item" routerLinkActive="active">
       <a class="nav-link waves-light" routerLink="/logout" i18n>Logout</a>
     </li>
-    <li *ngIf="isAdmin" >
-      <a class="nav-link waves-light icon-user-name" href="{{baseUrl}}/unionvms/"></a>
-    </li>
-    <li *ngIf="isAdmin" class="nav-item" routerLinkActive="active">
-      <a class="nav-link waves-light" href="{{baseUrl}}/unionvms/">{{userName}}</a>
-    </li>
+    @if (isAdmin) {
+      <li>
+        <a
+          class="nav-link waves-light icon-user-name"
+          href="{{ baseUrl }}/unionvms/"
+        ></a>
+      </li>
+    }
+    @if (isAdmin) {
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link waves-light" href="{{ baseUrl }}/unionvms/">{{
+          userName
+        }}</a>
+      </li>
+    }
   </ul>
-
 </div>
 <!--/.Navbar-->

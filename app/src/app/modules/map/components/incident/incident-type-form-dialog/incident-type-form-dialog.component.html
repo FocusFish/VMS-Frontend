@@ -8,28 +8,33 @@
     <form class="type-form" [formGroup]="formValidator">
       <div id="type-form--types">
         <mat-radio-group formControlName="type" required>
-          <mat-radio-button id="mat-radio-button--{{type}}" *ngFor="let type of data.types" [value]="type" color="primary">
-            {{getTypeName(type)}}
-          </mat-radio-button>
+          @for (type of data.types; track type) {
+            <mat-radio-button id="mat-radio-button--{{type}}" [value]="type" color="primary">
+              {{getTypeName(type)}}
+            </mat-radio-button>
+          }
         </mat-radio-group>
       </div>
       <mat-form-field id="type-form--note">
         <mat-label i18n>Why are you moving this incident?</mat-label>
         <input matInput formControlName="note" required />
-        <mat-error *ngFor="let error of getErrors(['note'])">{{ errorMessage(error) }}</mat-error>
+        @for (error of getErrors(['note']); track error) {
+          <mat-error>{{ errorMessage(error) }}</mat-error>
+        }
       </mat-form-field>
-      <ngx-datetime-picker  
-        *ngIf="formValidator.value.type === 'PARKED'"
-        id="expiry-date-form--expiryDate"
-        [(dateTime)]="formValidator.value.expiryDate"
-        (dateTimeChange)="updateTimestamp($event)"
-        label="Expiry date"
-        [positionFromTop]="true"
-        [autoUpdateDatetime]="false"
-      ></ngx-datetime-picker>
+      @if (formValidator.value.type === 'PARKED') {
+        <ngx-datetime-picker
+          id="expiry-date-form--expiryDate"
+          [(dateTime)]="formValidator.value.expiryDate"
+          (dateTimeChange)="updateTimestamp($event)"
+          label="Expiry date"
+          [positionFromTop]="true"
+          [autoUpdateDatetime]="false"
+        ></ngx-datetime-picker>
+      }
     </form>
-       <!--</ngx-datetime-picker> [errorMessages]="getErrorMessages(['expiryDate'])" -->
-  </div>
+  <!--</ngx-datetime-picker> [errorMessages]="getErrorMessages(['expiryDate'])" -->
+</div>
 </div>
 <div mat-dialog-actions align="center">
   <button mat-stroked-button [matDialogClose]="false" cdkFocusInitial color="primary" i18n>Cancel</button>

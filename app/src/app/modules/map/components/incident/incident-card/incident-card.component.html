@@ -2,39 +2,61 @@
   [title]="formattedIncident.assetName"
   class="incident{{ incidentIsSelected ? ' selected' : ''}}"
   (mousedown)="selectIncident(incident)"
->
+  >
   <div class="status urgancy-{{urgency}}"></div>
   <div class="incident-content{{ countdown !== undefined ? ' with-countdown' : ''}}">
     <div class="ircs-and-name">
       <div class="ircs">{{incident.assetIrcs}}</div>
-      <ui-truncated-text *ngIf="countdown === undefined" class="name" [text]="incident.assetName" length="16"></ui-truncated-text>
+      @if (countdown === undefined) {
+        <ui-truncated-text class="name" [text]="incident.assetName" length="16"></ui-truncated-text>
+      }
     </div>
     <div class="status-code-and-time">
-      <ng-container *ngIf="formattedIncident.lastKnownLocationStatus">
+      @if (formattedIncident.lastKnownLocationStatus) {
         <span
           class="status-code"
           #tooltip="matTooltip"
           matTooltip="{{formattedIncident.lastKnownLocationStatusDescription}}"
           matTooltipPosition="above"
         >{{ formattedIncident.lastKnownLocationStatus }}</span> •
-      </ng-container>
+      }
       <span class="time">{{ formattedIncident.formattedDate }}</span>
     </div>
     <div class="location">{{ formattedIncident.formattedCoordinates }}</div>
-    <div *ngIf="countdown !== undefined" class="countdown">
-      <ui-progress-circle [progress]="getProgress()" diameter="60" [bright]="incidentIsSelected"></ui-progress-circle>
-      <div class="texts">
-        <div class="time{{count > 0 ? ' overdue' : ''}}">
-          <span *ngIf="count > 0">+</span>
-          <span *ngIf="count <= -5940">{{floor(count / 1440)}}</span>
-          <span *ngIf="count < 60 && count >= -120">{{count}} min</span>
-          <span *ngIf="(count >= 60 && count < 6000) || (count < -120 && count > -5940)">{{floor(count / 60)}} hour<ng-container *ngIf="count >= 120 || count <= -120">s</ng-container></span>
-          <span *ngIf="count >= 6000">{{floor(count / 1440)}} days</span>
+    @if (countdown !== undefined) {
+      <div class="countdown">
+        <ui-progress-circle [progress]="getProgress()" diameter="60" [bright]="incidentIsSelected"></ui-progress-circle>
+        <div class="texts">
+          <div class="time{{count > 0 ? ' overdue' : ''}}">
+            @if (count > 0) {
+              <span>+</span>
+            }
+            @if (count <= -5940) {
+              <span>{{floor(count / 1440)}}</span>
+            }
+            @if (count < 60 && count >= -120) {
+              <span>{{count}} min</span>
+            }
+            @if ((count >= 60 && count < 6000) || (count < -120 && count > -5940)) {
+              <span>{{floor(count / 60)}} hour@if (count >= 120 || count <= -120) {
+                s
+              }</span>
+            }
+            @if (count >= 6000) {
+              <span>{{floor(count / 1440)}} days</span>
+            }
+          </div>
+          @if (count <= -5940) {
+            <div class="time-description">days left</div>
+          }
+          @if (count <= 0 && count > -5940) {
+            <div class="time-description">time left</div>
+          }
+          @if (count > 0) {
+            <div class="time-description">past time</div>
+          }
         </div>
-        <div class="time-description" *ngIf="count <= -5940">days left</div>
-        <div class="time-description" *ngIf="count <= 0 && count > -5940">time left</div>
-        <div class="time-description" *ngIf="count > 0">past time</div>
       </div>
-    </div>
+    }
   </div>
 </div>

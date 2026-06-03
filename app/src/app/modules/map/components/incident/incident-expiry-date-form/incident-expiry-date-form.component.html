@@ -13,7 +13,9 @@
   <mat-form-field id="expiry-date-form--note">
     <mat-label i18n>Note</mat-label>
     <input matInput formControlName="note" required />
-    <mat-error *ngFor="let error of getErrors(['note'])">{{ errorMessage(error) }}</mat-error>
+    @for (error of getErrors(['note']); track error) {
+      <mat-error>{{ errorMessage(error) }}</mat-error>
+    }
   </mat-form-field>
 
   <button

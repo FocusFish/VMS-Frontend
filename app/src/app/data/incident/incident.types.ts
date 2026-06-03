@@ -1,12 +1,12 @@
-import { Movement, PollStatusObject } from '@data/asset/asset.types';
+import { Movement, PollStatusObject } from "@data/asset/asset.types";
 
 export enum IncidentNotificationTypes {
   created,
   updated,
-  done
+  done,
 }
 
-export const IncidentResolvedStatus = 'RESOLVED';
+export const IncidentResolvedStatus = "RESOLVED";
 
 export const StatusTranslations = {
   POLL_FAILED: $localize`:@@ts-issue-status-poll-failed:Poll Failed`,
@@ -24,51 +24,51 @@ export const StatusTranslations = {
 };
 
 export enum AssetNotSendingStatuses {
-  INCIDENT_CREATED = 'INCIDENT_CREATED',
-  ATTEMPTED_CONTACT = 'ATTEMPTED_CONTACT',
-  RESOLVED = 'RESOLVED'
+  INCIDENT_CREATED = "INCIDENT_CREATED",
+  ATTEMPTED_CONTACT = "ATTEMPTED_CONTACT",
+  RESOLVED = "RESOLVED",
 }
 
 export enum ManualPositionModeStatuses {
-  MANUAL_POSITION_MODE = 'MANUAL_POSITION_MODE',
-  MANUAL_POSITION_LATE = 'MANUAL_POSITION_LATE',
-  RECEIVING_VMS_POSITIONS = 'RECEIVING_VMS_POSITIONS',
-  RESOLVED = 'RESOLVED'
+  MANUAL_POSITION_MODE = "MANUAL_POSITION_MODE",
+  MANUAL_POSITION_LATE = "MANUAL_POSITION_LATE",
+  RECEIVING_VMS_POSITIONS = "RECEIVING_VMS_POSITIONS",
+  RESOLVED = "RESOLVED",
 }
 
 export enum SeasonalFishingStatuses {
-  PARKED = 'PARKED',
-  RECEIVING_AIS_POSITIONS = 'RECEIVING_AIS_POSITIONS',
-  OVERDUE = 'OVERDUE',
-  RESOLVED = 'RESOLVED'
+  PARKED = "PARKED",
+  RECEIVING_AIS_POSITIONS = "RECEIVING_AIS_POSITIONS",
+  OVERDUE = "OVERDUE",
+  RESOLVED = "RESOLVED",
 }
 
 export enum ParkedStatuses {
-  PARKED = 'PARKED',
-  RECEIVING_AIS_POSITIONS = 'RECEIVING_AIS_POSITIONS',
-  OVERDUE = 'OVERDUE',
-  RESOLVED = 'RESOLVED'
+  PARKED = "PARKED",
+  RECEIVING_AIS_POSITIONS = "RECEIVING_AIS_POSITIONS",
+  OVERDUE = "OVERDUE",
+  RESOLVED = "RESOLVED",
 }
 
 export enum OwnershipTransferStatuses {
-  NOT_RECEIVING_VMS_POSITIONS = 'NOT_RECEIVING_VMS_POSITIONS',
-  RECEIVING_VMS_POSITIONS = 'RECEIVING_VMS_POSITIONS',
-  RESOLVED = 'RESOLVED',
+  NOT_RECEIVING_VMS_POSITIONS = "NOT_RECEIVING_VMS_POSITIONS",
+  RECEIVING_VMS_POSITIONS = "RECEIVING_VMS_POSITIONS",
+  RESOLVED = "RESOLVED",
 }
 
 export enum IncidentRisk {
-  none = 'NONE',
-  low = 'LOW',
-  medium = 'MEDIUM',
-  high = 'HIGH',
+  none = "NONE",
+  low = "LOW",
+  medium = "MEDIUM",
+  high = "HIGH",
 }
 
 export enum IncidentTypes {
-  assetNotSending = 'ASSET_NOT_SENDING',
-  seasonalFishing = 'SEASONAL_FISHING',
-  ownershipTransfer = 'OWNERSHIP_TRANSFER',
-  parked = 'PARKED',
-  manualPositionMode = 'MANUAL_POSITION_MODE',
+  assetNotSending = "ASSET_NOT_SENDING",
+  seasonalFishing = "SEASONAL_FISHING",
+  ownershipTransfer = "OWNERSHIP_TRANSFER",
+  parked = "PARKED",
+  manualPositionMode = "MANUAL_POSITION_MODE",
 }
 
 export const IncidentTypesTranslations = {
@@ -77,11 +77,16 @@ export const IncidentTypesTranslations = {
   OWNERSHIP_TRANSFER: $localize`:@@ts-issue-type-ownership-transfer:Ownership transfer`,
   LONG_TERM_PARKED: $localize`:@@ts-issue-type-long-term-parked:Long term parked`,
   PARKED: $localize`:@@ts-issue-type-parked:Parked`,
-  MANUAL_POSITION_MODE: $localize`:@@ts-issue-type-manual-position-mode:Manual position`
+  MANUAL_POSITION_MODE: $localize`:@@ts-issue-type-manual-position-mode:Manual position`,
 };
 
-export const IncidentTypesInverted = Object.entries(IncidentTypes).reduce((acc, [a, b]) => ({ ...acc, [b]: a }), {});
-export const IncidentTypesValues = Object.values(IncidentTypes).map((incidentType) => incidentType.toString());
+export const IncidentTypesInverted = Object.entries(IncidentTypes).reduce(
+  (acc, [a, b]) => ({ ...acc, [b]: a }),
+  {},
+);
+export const IncidentTypesValues = Object.values(IncidentTypes).map(
+  (incidentType) => incidentType.toString(),
+);
 
 export type IncidentTypesCollection = ReadonlyArray<IncidentTypes>;
 
@@ -92,7 +97,7 @@ export type Incident = Readonly<{
   assetName: string;
   createDate: number;
   lastKnownLocation: Movement;
-  status: string,
+  status: string;
   ticketId: string;
   updateDate: number;
   type: IncidentTypes;
@@ -106,7 +111,7 @@ export type IncidentsCollectionByResolution = Readonly<{
 }>;
 
 export type IncidentsByTypeAndStatus = Readonly<{
-  readonly [typeName: string]: IncidentsCollectionByResolution
+  readonly [typeName: string]: IncidentsCollectionByResolution;
 }>;
 
 export type IncidentIdsCollectionByType = Readonly<{
@@ -115,18 +120,18 @@ export type IncidentIdsCollectionByType = Readonly<{
 }>;
 
 export type IncidentIdsByTypeAndStatus = Readonly<{
-  assetNotSending: IncidentIdsCollectionByType,
-  manualPositionMode: IncidentIdsCollectionByType,
-  seasonalFishing: IncidentIdsCollectionByType,
-  parked: IncidentIdsCollectionByType,
-  ownershipTransfer: IncidentIdsCollectionByType,
+  assetNotSending: IncidentIdsCollectionByType;
+  manualPositionMode: IncidentIdsCollectionByType;
+  seasonalFishing: IncidentIdsCollectionByType;
+  parked: IncidentIdsCollectionByType;
+  ownershipTransfer: IncidentIdsCollectionByType;
 }>;
 
 export type UrgentByType = Readonly<{
-  assetNotSending: number,
-  manualPositionMode: number,
-  seasonalFishing: number,
-  parked: number,
+  assetNotSending: number;
+  manualPositionMode: number;
+  seasonalFishing: number;
+  parked: number;
 }>;
 
 export type IncidentNotifications = Readonly<{
@@ -139,44 +144,45 @@ export type IncidentNotificationsCollections = Readonly<{
 }>;
 
 export enum LogEntryType {
-  MANUAL_POSITION = 'MANUAL_POSITION',
-  MANUAL_POSITION_LATE = 'MANUAL_POSITION_LATE',
-  RECEIVED_AIS_POSITION = 'RECEIVED_AIS_POSITION',
-  RECEIVED_VMS_POSITION = 'RECEIVED_VMS_POSITION',
-  POLL_CREATED = 'POLL_CREATED',
-  AUTO_POLL_CREATED = 'AUTO_POLL_CREATED',
-  AUTO_POLL_CREATION_FAILED = 'AUTO_POLL_CREATION_FAILED',
-  NOTE_CREATED = 'NOTE_CREATED',
-  INCIDENT_CREATED = 'INCIDENT_CREATED',
-  EXPIRY_UPDATED = 'EXPIRY_UPDATED',
-  INCIDENT_CLOSED = 'INCIDENT_CLOSED',
-  INCIDENT_STATUS = 'INCIDENT_STATUS',
-  INCIDENT_TYPE = 'INCIDENT_TYPE',
+  MANUAL_POSITION = "MANUAL_POSITION",
+  MANUAL_POSITION_LATE = "MANUAL_POSITION_LATE",
+  RECEIVED_AIS_POSITION = "RECEIVED_AIS_POSITION",
+  RECEIVED_VMS_POSITION = "RECEIVED_VMS_POSITION",
+  POLL_CREATED = "POLL_CREATED",
+  AUTO_POLL_CREATED = "AUTO_POLL_CREATED",
+  AUTO_POLL_CREATION_FAILED = "AUTO_POLL_CREATION_FAILED",
+  NOTE_CREATED = "NOTE_CREATED",
+  INCIDENT_CREATED = "INCIDENT_CREATED",
+  EXPIRY_UPDATED = "EXPIRY_UPDATED",
+  INCIDENT_CLOSED = "INCIDENT_CLOSED",
+  INCIDENT_STATUS = "INCIDENT_STATUS",
+  INCIDENT_TYPE = "INCIDENT_TYPE",
 }
 
 export type IncidentLogEntry = Readonly<{
-  id: number,
+  id: number;
   data?: {
-    user?: string,
-    expiry?: number,
-    from?: string,
-    to?: string,
-    errorMessage?: string,
+    user?: string;
+    expiry?: number;
+    from?: string;
+    to?: string;
+    errorMessage?: string;
   };
-  eventType: LogEntryType,
-  createDate: number,
-  incidentId: number,
-  message: string,
-  relatedObjectId: string
+  eventType: LogEntryType;
+  createDate: number;
+  incidentId: number;
+  message: string;
+  relatedObjectId: string;
+  relatedObjectType?: string;
 }>;
 
 export type IncidentLog = Readonly<{
-  log: { readonly [logEntryId: number]: IncidentLogEntry }
+  log: { readonly [logEntryId: number]: IncidentLogEntry };
   relatedObjects: {
-    notes: { readonly [noteLogId: string]: any },
-    polls: { readonly [pollLogId: string]: PollStatusObject },
-    positions: { readonly [positionLogId: string]: Movement }
-  }
+    notes: { readonly [noteLogId: string]: any };
+    polls: { readonly [pollLogId: string]: PollStatusObject };
+    positions: { readonly [positionLogId: string]: Movement };
+  };
 }>;
 
 export type IncidentLogs = Readonly<{
@@ -186,12 +192,12 @@ export type IncidentLogs = Readonly<{
 export type State = Readonly<{
   selectedIncidentId: number;
   incidents: {
-    readonly [incidentId: number]: Incident
+    readonly [incidentId: number]: Incident;
   };
   incidentsForAssets: {
-    readonly [assetId: string]: ReadonlyArray<number>
+    readonly [assetId: string]: ReadonlyArray<number>;
   };
   incidentsByTypesAndStatus: IncidentIdsByTypeAndStatus;
   incidentLogs: IncidentLogs;
-  incidentTypes: IncidentTypesCollection
+  incidentTypes: IncidentTypesCollection;
 }>;

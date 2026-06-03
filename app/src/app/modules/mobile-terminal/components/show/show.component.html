@@ -11,10 +11,18 @@
     <div class="row">
       <div class="title"><span class="text" i18n>Ocean regions</span></div>
       <div class="value ocean-regions">
-        <span *ngIf="formattedMobileTerminal.eastAtlanticOceanRegion" i18n>East Atlantic</span>
-        <span *ngIf="formattedMobileTerminal.westAtlanticOceanRegion" i18n>West Atlantic</span>
-        <span *ngIf="formattedMobileTerminal.pacificOceanRegion" i18n>Pacific</span>
-        <span *ngIf="formattedMobileTerminal.indianOceanRegion" i18n>Indian</span>
+        @if (formattedMobileTerminal.eastAtlanticOceanRegion) {
+          <span i18n>East Atlantic</span>
+        }
+        @if (formattedMobileTerminal.westAtlanticOceanRegion) {
+          <span i18n>West Atlantic</span>
+        }
+        @if (formattedMobileTerminal.pacificOceanRegion) {
+          <span i18n>Pacific</span>
+        }
+        @if (formattedMobileTerminal.indianOceanRegion) {
+          <span i18n>Indian</span>
+        }
       </div>
     </div>
     <div class="row">
@@ -48,62 +56,69 @@
   </div>
   <h2>Channels</h2>
   <mat-accordion id="channels">
-    <mat-expansion-panel *ngFor="let channel of formattedMobileTerminal.channels; let i = index">
-      <mat-expansion-panel-header>
-        <mat-panel-title>{{channel.name ? channel.name : channel.id}}</mat-panel-title>
-        <mat-panel-description>Channel {{i + 1}}</mat-panel-description>
-      </mat-expansion-panel-header>
-      <div class="channel">
-        <div class="row">
-          <div class="title"><span class="text" i18n>Land station</span></div>
-          <div class="value">{{channel.lesDescription}}</div>
+    @for (channel of formattedMobileTerminal.channels; track channel; let i = $index) {
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{channel.name ? channel.name : channel.id}}</mat-panel-title>
+          <mat-panel-description>Channel {{i + 1}}</mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="channel">
+          <div class="row">
+            <div class="title"><span class="text" i18n>Land station</span></div>
+            <div class="value">{{channel.lesDescription}}</div>
+          </div>
+          <div class="row">
+            <div class="title"><span class="text" i18n>Dnid</span></div>
+            <div class="value">{{channel.dnid}}</div>
+          </div>
+          <div class="row">
+            <div class="title"><span class="text" i18n>Member no.</span></div>
+            <div class="value">{{channel.memberNumber}}</div>
+          </div>
+          <div class="row">
+            <div class="title"><span class="text" i18n>Channel</span></div>
+            <div class="value">{{channel.name}}</div>
+          </div>
+          <div class="row">
+            <div class="title"><span class="text" i18n>Poll Channel</span></div>
+            <div class="value">@if (channel.pollChannel) {
+              <span>Active</span>
+            }</div>
+          </div>
+          <div class="row">
+            <div class="title"><span class="text" i18n>Config Channel</span></div>
+            <div class="value">@if (channel.configChannel) {
+              <span>Active</span>
+            }</div>
+          </div>
+          <div class="row">
+            <div class="title"><span class="text" i18n>Default Channel</span></div>
+            <div class="value">@if (channel.defaultChannel) {
+              <span>Active</span>
+            }</div>
+          </div>
+          <div class="row">
+            <div class="title"><span class="text" i18n>Start date</span></div>
+            <div class="value">{{channel.startDateFormatted}}</div>
+          </div>
+          <div class="row">
+            <div class="title"><span class="text" i18n>End date</span></div>
+            <div class="value">{{channel.endDateFormatted}}</div>
+          </div>
+          <div class="row">
+            <div class="title"><span class="text" i18n>Expected Frequency</span></div>
+            <div class="value">{{channel.expectedFrequency / (60 * 1000)}} min</div>
+          </div>
+          <div class="row">
+            <div class="title"><span class="text" i18n>Frequency Grace Period</span></div>
+            <div class="value">{{channel.frequencyGracePeriod / (60 * 1000)}} min</div>
+          </div>
+          <div class="row">
+            <div class="title"><span class="text" i18n>Expected Frequency In Port</span></div>
+            <div class="value">{{channel.expectedFrequencyInPort / (60 * 1000)}} min</div>
+          </div>
         </div>
-        <div class="row">
-          <div class="title"><span class="text" i18n>Dnid</span></div>
-          <div class="value">{{channel.dnid}}</div>
-        </div>
-        <div class="row">
-          <div class="title"><span class="text" i18n>Member no.</span></div>
-          <div class="value">{{channel.memberNumber}}</div>
-        </div>
-        <div class="row">
-          <div class="title"><span class="text" i18n>Channel</span></div>
-          <div class="value">{{channel.name}}</div>
-        </div>
-        <div class="row">
-          <div class="title"><span class="text" i18n>Poll Channel</span></div>
-          <div class="value"><span *ngIf="channel.pollChannel">Active</span></div>
-        </div>
-        <div class="row">
-          <div class="title"><span class="text" i18n>Config Channel</span></div>
-          <div class="value"><span *ngIf="channel.configChannel">Active</span></div>
-        </div>
-        <div class="row">
-          <div class="title"><span class="text" i18n>Default Channel</span></div>
-          <div class="value"><span *ngIf="channel.defaultChannel">Active</span></div>
-        </div>
-        <div class="row">
-          <div class="title"><span class="text" i18n>Start date</span></div>
-          <div class="value">{{channel.startDateFormatted}}</div>
-        </div>
-        <div class="row">
-          <div class="title"><span class="text" i18n>End date</span></div>
-          <div class="value">{{channel.endDateFormatted}}</div>
-        </div>
-        <div class="row">
-          <div class="title"><span class="text" i18n>Expected Frequency</span></div>
-          <div class="value">{{channel.expectedFrequency / (60 * 1000)}} min</div>
-        </div>
-        <div class="row">
-          <div class="title"><span class="text" i18n>Frequency Grace Period</span></div>
-          <div class="value">{{channel.frequencyGracePeriod / (60 * 1000)}} min</div>
-        </div>
-
-        <div class="row">
-          <div class="title"><span class="text" i18n>Expected Frequency In Port</span></div>
-          <div class="value">{{channel.expectedFrequencyInPort / (60 * 1000)}} min</div>
-        </div>
-      </div>
-    </mat-expansion-panel>
+      </mat-expansion-panel>
+    }
   </mat-accordion>
 </div>

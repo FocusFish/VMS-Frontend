@@ -3,21 +3,29 @@
   <div class="content-container">
     <mat-radio-group aria-label="Select an option" [(ngModel)]="selectedGroup">
       <ul>
-        <li *ngFor="let assetGroupFilter of data.assetGroupFilters">
-          <mat-radio-button [value]="assetGroupFilter.id">{{assetGroupFilter.name}}</mat-radio-button>
-        </li>
-        <li *ngIf="!createNew" class="create-new-group" (click)="createNew = !createNew">+ Create new group</li>
-        <li *ngIf="createNew && !newGroupNameDecided">
-          <mat-form-field>
-            <input matInput [formControl]="newGroupName" required>
-          </mat-form-field>
-          <button mat-raised-button color="accent" [disabled]="!newGroupName.valid" (click)="newGroupNameDecided = true" i18n>Create</button>
-        </li>
-        <li *ngIf="createNew && newGroupNameDecided">
-          <mat-radio-button value="new">{{ newGroupName.value }}</mat-radio-button>
-          <i class="ri-pencil-fill" (click)="newGroupNameDecided = false"></i>
-          <i class="ri-delete-bin-2-fill" (click)="deleteNewGroup()"></i>
-        </li>
+        @for (assetGroupFilter of data.assetGroupFilters; track assetGroupFilter) {
+          <li>
+            <mat-radio-button [value]="assetGroupFilter.id">{{assetGroupFilter.name}}</mat-radio-button>
+          </li>
+        }
+        @if (!createNew) {
+          <li class="create-new-group" (click)="createNew = !createNew">+ Create new group</li>
+        }
+        @if (createNew && !newGroupNameDecided) {
+          <li>
+            <mat-form-field>
+              <input matInput [formControl]="newGroupName" required>
+            </mat-form-field>
+            <button mat-raised-button color="accent" [disabled]="!newGroupName.valid" (click)="newGroupNameDecided = true" i18n>Create</button>
+          </li>
+        }
+        @if (createNew && newGroupNameDecided) {
+          <li>
+            <mat-radio-button value="new">{{ newGroupName.value }}</mat-radio-button>
+            <i class="ri-pencil-fill" (click)="newGroupNameDecided = false"></i>
+            <i class="ri-delete-bin-2-fill" (click)="deleteNewGroup()"></i>
+          </li>
+        }
       </ul>
     </mat-radio-group>
   </div>

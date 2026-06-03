@@ -1,4 +1,6 @@
-<map-period-selector *ngIf="showPeriodSelector" [setPeriod]="setTimeInterval"></map-period-selector>
+@if (showPeriodSelector) {
+  <map-period-selector [setPeriod]="setTimeInterval"></map-period-selector>
+}
 <div class="reports-container">
   <map-left-column
     [centerMapOnPosition]="centerMapOnPosition"
@@ -8,7 +10,7 @@
   ></map-left-column>
   <div class="map-container">
     <div id="reports-map"></div>
-    <ng-container *ngIf="mapSettingsLoaded">
+    @if (mapSettingsLoaded) {
       <map-right-click-menu
         [map]="map"
         [addOverlay]="addOverlay"
@@ -17,47 +19,52 @@
         [registerOnClickFunction]="registerOnClickFunction"
         [unregisterOnClickFunction]="unregisterOnClickFunction"
       ></map-right-click-menu>
-      <map-assets
-        *ngIf="registerOnSelectFunction !== undefined"
-        [assets]="assetMovements"
-        [selectedAssets]="selectedAssets"
-        [map]="map"
-        [mapZoom]="mapZoom"
-        [namesVisible]="mapSettings.settings.namesVisible"
-        [speedsVisible]="mapSettings.settings.speedsVisible"
-        [selectAsset]="selectAsset"
-        [deselectAsset]="deselectAsset"
-        [shipColorLogic]="mapSettings.settings.assetColorMethod"
-        [registerOnSelectFunction]="registerOnSelectFunction"
-        [unregisterOnSelectFunction]="unregisterOnSelectFunction"
-      ></map-assets>
-      <map-tracks-segments
-        *ngIf="mapSettings.settings.tracksVisible"
-        [assetTracks]="assetTracks$|async"
-        [map]="map"
-      ></map-tracks-segments>
-      <map-tracks
-        *ngIf="mapSettings.settings.tracksVisible && mapZoom > 5"
-        [assetTracks]="assetTracks$|async"
-        [map]="map"
-        [registerOnClickFunction]="registerOnClickFunction"
-        [unregisterOnClickFunction]="unregisterOnClickFunction"
-        [userTimezone]="userTimezone$ | async"
-      ></map-tracks>
-      <map-flagstates
-        *ngIf="mapSettings.settings.flagsVisible && mapZoom > 9 && registerOnSelectFunction !== undefined"
-        [assets]="assetMovements"
-        [map]="map"
-        [selectAsset]="selectAsset"
-        [registerOnSelectFunction]="registerOnSelectFunction"
-        [unregisterOnSelectFunction]="unregisterOnSelectFunction"
-      ></map-flagstates>
-      <map-asset-forecast
-        *ngIf="mapSettings.settings.forecastsVisible && mapZoom > 9"
-        [map]="map"
-        [assetMovements]="forecasts$|async"
-        [forecastInterval]="mapSettings.settings.forecastInterval"
-      ></map-asset-forecast>
+      @if (registerOnSelectFunction !== undefined) {
+        <map-assets
+          [assets]="assetMovements"
+          [selectedAssets]="selectedAssets"
+          [map]="map"
+          [mapZoom]="mapZoom"
+          [namesVisible]="mapSettings.settings.namesVisible"
+          [speedsVisible]="mapSettings.settings.speedsVisible"
+          [selectAsset]="selectAsset"
+          [deselectAsset]="deselectAsset"
+          [shipColorLogic]="mapSettings.settings.assetColorMethod"
+          [registerOnSelectFunction]="registerOnSelectFunction"
+          [unregisterOnSelectFunction]="unregisterOnSelectFunction"
+        ></map-assets>
+      }
+      @if (mapSettings.settings.tracksVisible) {
+        <map-tracks-segments
+          [assetTracks]="assetTracks$|async"
+          [map]="map"
+        ></map-tracks-segments>
+      }
+      @if (mapSettings.settings.tracksVisible && mapZoom > 5) {
+        <map-tracks
+          [assetTracks]="assetTracks$|async"
+          [map]="map"
+          [registerOnClickFunction]="registerOnClickFunction"
+          [unregisterOnClickFunction]="unregisterOnClickFunction"
+          [userTimezone]="userTimezone$ | async"
+        ></map-tracks>
+      }
+      @if (mapSettings.settings.flagsVisible && mapZoom > 9 && registerOnSelectFunction !== undefined) {
+        <map-flagstates
+          [assets]="assetMovements"
+          [map]="map"
+          [selectAsset]="selectAsset"
+          [registerOnSelectFunction]="registerOnSelectFunction"
+          [unregisterOnSelectFunction]="unregisterOnSelectFunction"
+        ></map-flagstates>
+      }
+      @if (mapSettings.settings.forecastsVisible && mapZoom > 9) {
+        <map-asset-forecast
+          [map]="map"
+          [assetMovements]="forecasts$|async"
+          [forecastInterval]="mapSettings.settings.forecastInterval"
+        ></map-asset-forecast>
+      }
       <map-locations
         [centerMapOnPosition]="centerMapOnPosition"
         [mapLocations]="mapSettings.mapLocations"
@@ -70,13 +77,14 @@
         [tripTimestamp]="tripTimestamp$ | async"
         [setTripTimestamp]="setAssetPositionsFromTripByTimestamp"
       ></map-trip-player>
-      <map-layers
-        *ngIf="(authToken$ | async) !== undefined && (mapLayers$ | async).length > 0"
-        [map]="map"
-        [authToken]="authToken$ | async"
-        [mapLayers]="mapLayers$ | async"
-        [activeMapLayers]="activeMapLayers$ | async"
-      ></map-layers>
+      @if ((authToken$ | async) !== undefined && (mapLayers$ | async).length > 0) {
+        <map-layers
+          [map]="map"
+          [authToken]="authToken$ | async"
+          [mapLayers]="mapLayers$ | async"
+          [activeMapLayers]="activeMapLayers$ | async"
+        ></map-layers>
+      }
       <map-distance-between-points
         [map]="map"
         [registerOnClickFunction]="registerOnClickFunction"
@@ -96,7 +104,7 @@
           </li>
         </ul>
       </div>
-    </ng-container>
+    }
   </div>
   <map-right-column
     [centerMapOnPosition]="centerMapOnPosition"

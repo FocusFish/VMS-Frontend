@@ -19,6 +19,8 @@ export type Channel = Readonly<{
   startDate: number;
   updateTime: number;
   updateUser: string;
+  startDateFormatted?: string;
+  endDateFormatted?: string;
 }>;
 
 export type Capability = Readonly<{
@@ -70,6 +72,9 @@ export type MobileTerminal = Readonly<{
   updatetime: string;
   updateuser: string;
   westAtlanticOceanRegion: boolean;
+  installDateFormatted?: string;
+  uninstallDateFormatted?: string;
+  formattedChannels?: any[];
 }>;
 
 export type Transponder = Readonly<{
@@ -91,9 +96,9 @@ export type MobileTerminalHistoryChange = Readonly<{
 }>;
 
 export enum MobileTerminalChangeType {
-  CREATED = 'CREATED',
-  REMOVED = 'REMOVED',
-  UPDATED = 'UPDATED',
+  CREATED = "CREATED",
+  REMOVED = "REMOVED",
+  UPDATED = "UPDATED",
 }
 
 export type ChannelChange = Readonly<{
@@ -116,9 +121,9 @@ export type MobileTerminalHistoryList = Readonly<{
 }>;
 
 export type MobileTerminalHistoryFilter = Readonly<{
-  mobileTerminalFields?: ReadonlyArray<string>,
+  mobileTerminalFields?: ReadonlyArray<string>;
   filterChannels?: boolean;
-  channelFields?: ReadonlyArray<string>
+  channelFields?: ReadonlyArray<string>;
 }>;
 
 export type State = Readonly<{
@@ -129,7 +134,11 @@ export type State = Readonly<{
   searchResults: Readonly<{ readonly [hash: number]: ReadonlyArray<string> }>;
   lastSearchHash: number;
   createWithSerialNo: string;
-  mobileTerminalHistory: Readonly<{ readonly [mobileTerminalId: string]: MobileTerminalHistoryList; }>;
-  mobileTerminalHistoryForAsset: Readonly<{ readonly [assetId: string]: MobileTerminalHistoryList; }>;
+  mobileTerminalHistory: Readonly<{
+    readonly [mobileTerminalId: string]: MobileTerminalHistoryList;
+  }>;
+  mobileTerminalHistoryForAsset: Readonly<{
+    readonly [assetId: string]: MobileTerminalHistoryList;
+  }>;
   mobileTerminalHistoryFilter: MobileTerminalHistoryFilter;
 }>;

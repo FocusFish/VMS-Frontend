@@ -15,8 +15,6 @@ updates:
         patterns:
           - "@angular/*"
           - "@angular-devkit/*"
-      ngrx:
-        patterns:
           - "@ngrx/*"
       karma:
         patterns:

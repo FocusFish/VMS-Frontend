@@ -1,20 +1,29 @@
 <div class="content-container">
   <div class="header">
-    <img
-      *ngIf="asset.flagStateCode !== '???' && asset.flagStateCode !== undefined && getCountryCode() !== '???'"
-      class="flag-image"
-      src="/assets/flags/4x3/{{getCountryCode()}}.svg"
-      [alt]="getCountryCode()"
-    />
+    @if (asset.flagStateCode !== '???' && asset.flagStateCode !== undefined && getCountryCode() !== '???') {
+      <img
+        class="flag-image"
+        src="/assets/flags/4x3/{{getCountryCode()}}.svg"
+        [alt]="getCountryCode()"
+        />
+    }
     <div class="title">
       <h2 i18n>{{asset.externalMarking}} • {{asset.ircs}}</h2>
       <span>{{asset.prodOrgName}} • Org. nr: {{asset.prodOrgCode}}</span>
     </div>
     <div class="linksAndIncidentStatus">
-      <a *ngIf="experimentalFeaturesEnabled && asset.source !== 'NATIONAL'" class="edit-link" routerLink="/asset/{{asset.id}}/edit" i18n>Edit asset</a>
-      <span *ngIf="experimentalFeaturesEnabled && asset.source === 'NATIONAL'" class="edit-link" i18n>Read only asset</span>
-      <div *ngIf="this.currentIncident !== undefined" class="currentIncidentStatus">{{this.currentIncident}}</div>
-      <div *ngIf="!asset.active" class="inactiveAsset" i18n>INACTIVE</div>
+      @if (experimentalFeaturesEnabled && asset.source !== 'NATIONAL') {
+        <a class="edit-link" routerLink="/asset/{{asset.id}}/edit" i18n>Edit asset</a>
+      }
+      @if (experimentalFeaturesEnabled && asset.source === 'NATIONAL') {
+        <span class="edit-link" i18n>Read only asset</span>
+      }
+      @if (this.currentIncident !== undefined) {
+        <div class="currentIncidentStatus">{{this.currentIncident}}</div>
+      }
+      @if (!asset.active) {
+        <div class="inactiveAsset" i18n>INACTIVE</div>
+      }
     </div>
   </div>
 
@@ -75,11 +84,15 @@
       </div>
       <div class="row">
         <div class="title"><span class="text" i18n>Length over all</span></div>
-        <div *ngIf="asset.lengthOverAll" class="value">{{formatFixed2(asset.lengthOverAll)}} m</div>
+        @if (asset.lengthOverAll) {
+          <div class="value">{{formatFixed2(asset.lengthOverAll)}} m</div>
+        }
       </div>
       <div class="row">
         <div class="title"><span class="text" i18n>Length between perpendiculars</span></div>
-        <div *ngIf="asset.lengthBetweenPerpendiculars" class="value">{{formatFixed2(asset.lengthBetweenPerpendiculars)}} m</div>
+        @if (asset.lengthBetweenPerpendiculars) {
+          <div class="value">{{formatFixed2(asset.lengthBetweenPerpendiculars)}} m</div>
+        }
       </div>
     </div>
   </div>
@@ -93,52 +106,58 @@
   </div>
 </div>
 
-<div class="licence-details" *ngIf="formattedLicence">
-  <div class="content-container">
-    <div class="fields">
-      <div class="row">
-        <div class="title"><span class="text" i18n>Licence status</span></div>
-        <div class="value">
-          <span class="valid" *ngIf="formattedLicence.valid" i18n>VALID</span>
-          <span class="invalid" *ngIf="!formattedLicence.valid" i18n>INVALID</span>
+@if (formattedLicence) {
+  <div class="licence-details">
+    <div class="content-container">
+      <div class="fields">
+        <div class="row">
+          <div class="title"><span class="text" i18n>Licence status</span></div>
+          <div class="value">
+            @if (formattedLicence.valid) {
+              <span class="valid" i18n>VALID</span>
+            }
+            @if (!formattedLicence.valid) {
+              <span class="invalid" i18n>INVALID</span>
+            }
+          </div>
+        </div>
+        <div class="row">
+          <div class="title"><span class="text" i18n>Licence no.</span></div>
+          <div class="value">{{formattedLicence.licenceNumber}}</div>
+        </div>
+        <div class="row">
+          <div class="title"><span class="text" i18n>Holder</span></div>
+          <div class="value">{{formattedLicence.name}}</div>
+        </div>
+        <div class="row">
+          <div class="title"><span class="text" i18n>Civic number</span></div>
+          <div class="value">{{formattedLicence.formattedCivicNumber}}</div>
+        </div>
+        <div class="row">
+          <div class="title"><span class="text" i18n>From date</span></div>
+          <div class="value">{{formattedLicence.formattedFromDate}}</div>
+        </div>
+        <div class="row">
+          <div class="title"><span class="text" i18n>To date</span></div>
+          <div class="value{{!formattedLicence.valid ? ' invalid' : ''}}">{{formattedLicence.formattedToDate}}</div>
+        </div>
+        <div class="row">
+          <div class="title"><span class="text" i18n>Order date</span></div>
+          <div class="value">{{formattedLicence.formattedDecisionDate}}</div>
+        </div>
+        <div>
+          <div i18n>Limitations</div>
+          <div class="constraints">{{formattedLicence.constraints}}</div>
         </div>
       </div>
-      <div class="row">
-        <div class="title"><span class="text" i18n>Licence no.</span></div>
-        <div class="value">{{formattedLicence.licenceNumber}}</div>
-      </div>
-      <div class="row">
-        <div class="title"><span class="text" i18n>Holder</span></div>
-        <div class="value">{{formattedLicence.name}}</div>
-      </div>
-      <div class="row">
-        <div class="title"><span class="text" i18n>Civic number</span></div>
-        <div class="value">{{formattedLicence.formattedCivicNumber}}</div>
-      </div>
-      <div class="row">
-        <div class="title"><span class="text" i18n>From date</span></div>
-        <div class="value">{{formattedLicence.formattedFromDate}}</div>
-      </div>
-      <div class="row">
-        <div class="title"><span class="text" i18n>To date</span></div>
-        <div class="value{{!formattedLicence.valid ? ' invalid' : ''}}">{{formattedLicence.formattedToDate}}</div>
-      </div>
-      <div class="row">
-        <div class="title"><span class="text" i18n>Order date</span></div>
-        <div class="value">{{formattedLicence.formattedDecisionDate}}</div>
-      </div>
-      <div>
-        <div i18n>Limitations</div>
-        <div class="constraints">{{formattedLicence.constraints}}</div>
+    </div>
+    <div class="image-wrapper">
+      <div class="image-and-text">
+        <div class="licence-wrapper">
+          <i class="ri-information-line"></i>
+        </div>
+        <span i18n>Licence</span>
       </div>
     </div>
   </div>
-  <div class="image-wrapper">
-    <div class="image-and-text">
-      <div class="licence-wrapper">
-        <i class="ri-information-line"></i>
-      </div>
-      <span i18n>Licence</span>
-    </div>
-  </div>
-</div>
+}

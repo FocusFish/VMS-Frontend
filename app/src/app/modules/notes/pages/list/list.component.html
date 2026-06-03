@@ -1,14 +1,16 @@
-<div class="notes-list" *ngIf="asset">
-  <div class="notes-list--create">
-    <h3>Create new note</h3>
-    <notes-form [note]="emptyNote" [save]="save" [create]="true"></notes-form>
+@if (asset) {
+  <div class="notes-list">
+    <div class="notes-list--create">
+      <h3>Create new note</h3>
+      <notes-form [note]="emptyNote" [save]="save" [create]="true"></notes-form>
+    </div>
+    <h3 class="all-notes">All notes</h3>
+    <notes-list
+      [notes]="notes$ | async"
+      [save]="save"
+      [userTimezone]="userTimezone"
+      [username]="username"
+      [deleteNote]="deleteNote"
+    ></notes-list>
   </div>
-  <h3 class="all-notes">All notes</h3>
-  <notes-list
-    [notes]="notes$ | async"
-    [save]="save"
-    [userTimezone]="userTimezone"
-    [username]="username"
-    [deleteNote]="deleteNote"
-  ></notes-list>
-</div>
+}

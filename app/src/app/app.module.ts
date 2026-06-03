@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule, LOCALE_ID } from "@angular/core";
+import { NgModule, LOCALE_ID, provideZoneChangeDetection } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { provideHttpClient } from "@angular/common/http";
 
@@ -95,14 +95,18 @@ if (!environment.production && environment.useStoreDevTools) {
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states2
       logOnly: environment.production, // Restrict extension to log-only mode
-    })
+    }),
   );
 }
 
 @NgModule({
   declarations: [AppComponent],
   imports,
-  providers: [{ provide: LOCALE_ID, useValue: "sv-SE" }, provideHttpClient()],
+  providers: [
+    { provide: LOCALE_ID, useValue: "sv-SE" },
+    provideHttpClient(),
+    provideZoneChangeDetection(),
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

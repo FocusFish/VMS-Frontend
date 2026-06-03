@@ -1,14 +1,14 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges } from "@angular/core";
 
-import { formatUnixtimeWithDot } from '@app/helpers/datetime-formatter';
+import { formatUnixtimeWithDot } from "@app/helpers/datetime-formatter";
 
-import { IncidentTypes } from '@data/incident';
+import { IncidentTypes } from "@data/incident";
 
 @Component({
-    selector: 'map-incident-log',
-    templateUrl: './incident-log.component.html',
-    styleUrls: ['./incident-log.component.scss'],
-    standalone: false
+  selector: "map-incident-log",
+  templateUrl: "./incident-log.component.html",
+  styleUrls: ["./incident-log.component.scss"],
+  standalone: false,
 })
 export class IncidentLogComponent implements OnChanges {
   @Input() incidentLog: IncidentTypes.IncidentLog;
@@ -18,7 +18,9 @@ export class IncidentLogComponent implements OnChanges {
   public expanded: Array<number> = [];
 
   ngOnChanges() {
-    this.incidentLogList = Object.values(this.incidentLog.log).sort((a, b) => b.createDate - a.createDate);
+    this.incidentLogList = Object.values(this.incidentLog.log).sort(
+      (a, b) => b.createDate - a.createDate,
+    );
   }
 
   formatTime(unixtime: number) {
@@ -34,7 +36,10 @@ export class IncidentLogComponent implements OnChanges {
   }
 
   isAutoPollCreationFailedEvent(logEntry: IncidentTypes.IncidentLogEntry) {
-    return logEntry.eventType === IncidentTypes.LogEntryType.AUTO_POLL_CREATION_FAILED;
+    return (
+      logEntry.eventType ===
+      IncidentTypes.LogEntryType.AUTO_POLL_CREATION_FAILED
+    );
   }
 
   isIncidentTypeChangeEvent(logEntry: IncidentTypes.IncidentLogEntry) {
@@ -50,7 +55,10 @@ export class IncidentLogComponent implements OnChanges {
   }
 
   getIncidentTypeTranslation(incidentTypeName: string) {
-    return IncidentTypes.IncidentTypesTranslations[incidentTypeName] || incidentTypeName;
+    return (
+      IncidentTypes.IncidentTypesTranslations[incidentTypeName] ||
+      incidentTypeName
+    );
   }
 
   getIncidentStatusTranslation(incidentStatus: string) {

@@ -1,8 +1,9 @@
 <div class="page-content">
-  <mobile-terminal-attachment-history-component
-    *ngIf="mobileTerminal !== undefined && mobileTerminalHistoryList !== undefined"
-    [mobileTerminalHistoryList]="mobileTerminalHistoryList"
-    [assets]="assets"
-    [userTimezone]="userTimezone$ | async"
-  ></mobile-terminal-attachment-history-component>
+  @if (mobileTerminal !== undefined && mobileTerminalHistoryList !== undefined) {
+    <mobile-terminal-attachment-history-component
+      [mobileTerminalHistoryList]="mobileTerminalHistoryList"
+      [assets]="assets"
+      [userTimezone]="userTimezone$ | async"
+    ></mobile-terminal-attachment-history-component>
+  }
 </div>
